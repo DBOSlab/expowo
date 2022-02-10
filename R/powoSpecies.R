@@ -2,38 +2,38 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a data frame listing all accepted species, and associated
-#' geographical distribution, from URI addresses of genera of angiosperm 
+#' @description It produces a data frame listing all accepted species and associated
+#' geographical distribution, from URI addresses of genera of angiosperm
 #' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
-#' 
+#'
 #' @usage
 #' powoSpecies(family, genus, uri)
-#' 
-#' @param family Either a single family name or a vector of multiple families 
+#'
+#' @param family Either a single family name or a vector of multiple families
 #' that are present in POWO.
-#' 
-#' @param genus Either a single genus name or a vector of multiple genera 
+#'
+#' @param genus Either a single genus name or a vector of multiple genera
 #' that are present in POWO.
-#'                        
-#' @param uri one or multiple URI addresses for each genus to be searched in POWO. 
-#'              
+#'
+#' @param uri one or multiple URI addresses for each genus to be searched in POWO.
+#'
 #' @return Table in data frame format
 #'
 #' @seealso \code{\link{powoGenera}}
-#' 
+#'
 #' @examples
 #' \dontrun{
 #' powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
 #' powocodes <- data.frame(powocodes)
 #' powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
-#' 
+#'
 #' resGenera <- powoGenera(powocodes$family, powocodes$uri,
 #'                         verbose = TRUE)
-#'                         
+#'
 #' resSpecies <- powoSpecies(resGenera$family, resGenera$genus, resGenera$uri,
-#'                           hybridspp = FALSE, 
+#'                           hybridspp = FALSE,
 #'                           verbose = TRUE)
-#'                           
+#'
 #' write.csv(resSpecies, "powo_genera_list_accepted_spp.csv", row.names=FALSE)
 #'}
 #'
@@ -46,16 +46,16 @@
 powoSpecies <- function(family, genus, uri,
                         hybridspp = FALSE,
                         verbose = TRUE) {
-  
-  powo_codes <- data.frame(family = family, 
-                           genus = genus, 
+
+  powo_codes <- data.frame(family = family,
+                           genus = genus,
                            uri = uri)
-  
+
   # POWO search for the number of genera in each family
-  powo_genus_uri <- list() 
+  powo_genus_uri <- list()
   list_genus <- list()
   for (i in seq_along(powo_codes$uri)) {
-    # Adding a pause 300 seconds of um pause every 500th search, 
+    # Adding a pause 300 seconds of um pause every 500th search,
     # because POWO website cannot permite constant search
     if (i%%500 == 0) {
       Sys.sleep(300)
@@ -66,12 +66,12 @@ powoSpecies <- function(family, genus, uri,
                    powo_codes$genus[i], " ",
                    powo_codes$family[i], " ", i, "/", length(powo_codes$family)))
     }
-    
+
     powo_genus_uri[[i]] <- readLines(powo_codes$uri[i], encoding = "UTF-8", warn = F)
-    
+
     temp <- grepl("<li><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]", powo_genus_uri[[i]])
     powo_spp_uri <- powo_genus_uri[[i]][temp]
-    
+
     list_genus[[i]] <- data.frame(temp_spp_uri = powo_spp_uri,
                                   family = powo_codes$family[i],
                                   genus = powo_codes$genus[i],
@@ -80,54 +80,54 @@ powoSpecies <- function(family, genus, uri,
                                   species_author = NA,
                                   hybrid = NA,
                                   powo_uri = NA)
-    
-    # Filling in each column 
+
+    # Filling in each column
     list_genus[[i]][["temp_spp_uri"]] <- gsub(".*<li><a href[=]\"", "", list_genus[[i]][["temp_spp_uri"]])
     list_genus[[i]][["powo_uri"]] <- paste("http://www.plantsoftheworldonline.org", gsub("\".+", "", list_genus[[i]][["temp_spp_uri"]]), sep = "")
-    
+
     list_genus[[i]][["author"]] <- gsub(".*em>", "", list_genus[[i]][["temp_spp_uri"]])
     list_genus[[i]][["author"]] <- gsub("<.*", "", list_genus[[i]][["author"]])
     list_genus[[i]][["author"]] <- gsub("^\\s", "", list_genus[[i]][["author"]])
     list_genus[[i]][["species"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "", list_genus[[i]][["temp_spp_uri"]])
     list_genus[[i]][["species_author"]] <- paste(list_genus[[i]][["species"]], list_genus[[i]][["author"]])
-    
+
     # Select specific columns of interest
-    list_genus[[i]] <- list_genus[[i]] %>% select("family", "genus", "species", 
-                                                  "author", "species_author", 
+    list_genus[[i]] <- list_genus[[i]] %>% select("family", "genus", "species",
+                                                  "author", "species_author",
                                                   "hybrid", "powo_uri")
-    
+
     # Remove any possible generic synomym from  the retrieved list
     list_genus[[i]] <- list_genus[[i]][grepl("\\s", list_genus[[i]]$species), ]
-    
+
     tf <- grepl("[+]|\\s×\\s", list_genus[[i]]$species)
     list_genus[[i]]$hybrid[tf] <- "yes"
     list_genus[[i]]$hybrid[!tf] <- "no"
-    
+
     if (hybridspp == FALSE) {
       list_genus[[i]] <- list_genus[[i]] %>% filter(hybrid == "no") %>% select(-"hybrid")
     }
-    
+
   }
   names(list_genus) <- powo_codes$genus
-  
+
   # Combining all dataframes from the list of each family search
   df <- list_genus[[1]]
   for (i in 2:length(list_genus)) {
     df <- rbind(df, list_genus[[i]])
   }
-  
+
   # Extract distribution using auxiliary function getDist
-  df <- getDist(df, 
+  df <- getDist(df,
                 listspp = FALSE,
                 verbose = verbose)
-  
-  
+
+
   # Select specific columns of interest
   if (hybridspp == FALSE) {
-    df <- df %>% select("family", 
+    df <- df %>% select("family",
                         "genus",
                         "species",
-                        "author", 
+                        "author",
                         "species_author",
                         "bibliography",
                         "native_to_country",
@@ -136,10 +136,10 @@ powoSpecies <- function(family, genus, uri,
                         "introduced_to_botanical_countries",
                         "powo_uri")
   } else {
-    df <- df %>% select("family", 
+    df <- df %>% select("family",
                         "genus",
                         "species",
-                        "author", 
+                        "author",
                         "species_author",
                         "bibliography",
                         "hybrid",
@@ -148,9 +148,9 @@ powoSpecies <- function(family, genus, uri,
                         "introduced_to_country",
                         "introduced_to_botanical_countries",
                         "powo_uri")
-    
+
   }
-  
+
   return(df)
 }
 
