@@ -2,7 +2,7 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a data frame listing all genera and associated number
+#' @description It produces a data frame listing all genera with associated number
 #' of accepted species and geographical distribution, from URI addresses of angiosperm
 #' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
