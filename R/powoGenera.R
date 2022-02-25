@@ -4,6 +4,7 @@
 #'
 #' @description It produces a data frame listing all genera with associated number
 #' of accepted species and geographical distribution, from URI addresses of angiosperm
+#'
 #' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
 #' @usage
@@ -66,7 +67,7 @@ powoGenera <- function(family, uri,
     list_fams[[i]] <- data.frame(temp_genus_uri = powo_genus_uri[temp],
                                  family = powo_codes$family[i],
                                  genus = NA,
-                                 author = NA,
+                                 authors = NA,
                                  genus_author = NA,
                                  kew_id = NA,
                                  powo_uri = NA)
@@ -74,16 +75,17 @@ powoGenera <- function(family, uri,
     # Filling in each column
     list_fams[[i]][["temp_genus_uri"]] <- gsub(".*<li><a href[=]\"", "", list_fams[[i]][["temp_genus_uri"]])
     list_fams[[i]][["powo_uri"]] <- paste("http://www.plantsoftheworldonline.org", gsub("\".+", "", list_fams[[i]][["temp_genus_uri"]]), sep = "")
+   
     list_fams[[i]][["kew_id"]] <- gsub(".+[:]", "", list_fams[[i]][["powo_uri"]])
 
-    list_fams[[i]][["author"]] <- gsub(".*em>", "", list_fams[[i]][["temp_genus_uri"]])
-    list_fams[[i]][["author"]] <- gsub("<.*", "", list_fams[[i]][["author"]])
-    list_fams[[i]][["author"]] <- gsub("^\\s", "", list_fams[[i]][["author"]])
+    list_fams[[i]][["authors"]] <- gsub(".*em>", "", list_fams[[i]][["temp_genus_uri"]])
+    list_fams[[i]][["authors"]] <- gsub("<.*", "", list_fams[[i]][["authors"]])
+    list_fams[[i]][["authors"]] <- gsub("^\\s", "", list_fams[[i]][["authors"]])
     list_fams[[i]][["genus"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "", list_fams[[i]][["temp_genus_uri"]])
-    list_fams[[i]][["genus_author"]] <- paste(list_fams[[i]][["genus"]], list_fams[[i]][["author"]])
+    list_fams[[i]][["genus_author"]] <- paste(list_fams[[i]][["genus"]], list_fams[[i]][["authors"]])
 
     # Select specific columns of interest
-    list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "author", "genus_author", "kew_id", "powo_uri")
+    list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "authors", "genus_author", "kew_id", "powo_uri")
 
   }
   names(list_fams) <- powo_codes$family
@@ -106,9 +108,9 @@ powoGenera <- function(family, uri,
   # Select specific columns of interest
   df <- df %>% select("family",
                       "genus",
-                      "author",
+                      "authors",
                       "genus_author",
-                      "bibliography",
+                      "publication",
                       "no_species",
                       "native_to_country",
                       "native_to_botanical_countries",
