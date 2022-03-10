@@ -74,7 +74,6 @@ powoGenera <- function(family, uri,
     # Filling in each column
     list_fams[[i]][["temp_genus_uri"]] <- gsub(".*<li><a href[=]\"", "", list_fams[[i]][["temp_genus_uri"]])
     list_fams[[i]][["powo_uri"]] <- paste("http://www.plantsoftheworldonline.org", gsub("\".+", "", list_fams[[i]][["temp_genus_uri"]]), sep = "")
-
     list_fams[[i]][["kew_id"]] <- gsub(".+[:]", "", list_fams[[i]][["powo_uri"]])
 
     list_fams[[i]][["authors"]] <- gsub(".*em>", "", list_fams[[i]][["temp_genus_uri"]])
