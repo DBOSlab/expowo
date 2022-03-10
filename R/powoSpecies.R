@@ -79,11 +79,13 @@ powoSpecies <- function(family, genus, uri,
                                   authors = NA,
                                   species_author = NA,
                                   hybrid = NA,
+                                  kew_id = NA,
                                   powo_uri = NA)
 
     # Filling in each column
     list_genus[[i]][["temp_spp_uri"]] <- gsub(".*<li><a href[=]\"", "", list_genus[[i]][["temp_spp_uri"]])
     list_genus[[i]][["powo_uri"]] <- paste("http://www.plantsoftheworldonline.org", gsub("\".+", "", list_genus[[i]][["temp_spp_uri"]]), sep = "")
+    list_genus[[i]][["kew_id"]] <- gsub(".+[:]", "", list_genus[[i]][["powo_uri"]])
 
     list_genus[[i]][["authors"]] <- gsub(".*em>", "", list_genus[[i]][["temp_spp_uri"]])
     list_genus[[i]][["authors"]] <- gsub("<.*", "", list_genus[[i]][["authors"]])
@@ -92,9 +94,10 @@ powoSpecies <- function(family, genus, uri,
     list_genus[[i]][["species_author"]] <- paste(list_genus[[i]][["taxon_name"]], list_genus[[i]][["authors"]])
 
     # Select specific columns of interest
+
     list_genus[[i]] <- list_genus[[i]] %>% select("family", "genus", "taxon_name",
                                                   "authors", "species_author",
-                                                  "hybrid", "powo_uri")
+                                                  "hybrid", "kew_id", "powo_uri")
 
     # Remove any possible generic synomym from  the retrieved list
     list_genus[[i]] <- list_genus[[i]][grepl("\\s", list_genus[[i]]$taxon_name), ]
@@ -134,6 +137,7 @@ powoSpecies <- function(family, genus, uri,
                         "native_to_botanical_countries",
                         "introduced_to_country",
                         "introduced_to_botanical_countries",
+                        "kew_id",
                         "powo_uri")
   } else {
     df <- df %>% select("family",
@@ -147,6 +151,7 @@ powoSpecies <- function(family, genus, uri,
                         "native_to_botanical_countries",
                         "introduced_to_country",
                         "introduced_to_botanical_countries",
+                        "kew_id",
                         "powo_uri")
 
   }

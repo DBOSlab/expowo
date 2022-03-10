@@ -2,8 +2,9 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a data frame listing all genera, and associated accepted
-#' species and geographical distribution, from URI addresses of angiosperm
+#' @description It produces a data frame listing all genera with associated number
+#' of accepted species and geographical distribution, from URI addresses of angiosperm
+#'
 #' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
 #' @usage
@@ -32,7 +33,6 @@
 #'
 #' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
-#@importFrom progress progress_bar
 #'
 #' @export
 #'
@@ -69,11 +69,14 @@ powoGenera <- function(family, uri,
                                  genus = NA,
                                  authors = NA,
                                  genus_author = NA,
+                                 kew_id = NA,
                                  powo_uri = NA)
 
     # Filling in each column
     list_fams[[i]][["temp_genus_uri"]] <- gsub(".*<li><a href[=]\"", "", list_fams[[i]][["temp_genus_uri"]])
     list_fams[[i]][["powo_uri"]] <- paste("http://www.plantsoftheworldonline.org", gsub("\".+", "", list_fams[[i]][["temp_genus_uri"]]), sep = "")
+   
+    list_fams[[i]][["kew_id"]] <- gsub(".+[:]", "", list_fams[[i]][["powo_uri"]])
 
     list_fams[[i]][["authors"]] <- gsub(".*em>", "", list_fams[[i]][["temp_genus_uri"]])
     list_fams[[i]][["authors"]] <- gsub("<.*", "", list_fams[[i]][["authors"]])
@@ -82,7 +85,7 @@ powoGenera <- function(family, uri,
     list_fams[[i]][["genus_author"]] <- paste(list_fams[[i]][["genus"]], list_fams[[i]][["authors"]])
 
     # Select specific columns of interest
-    list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "authors", "genus_author", "powo_uri")
+    list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "authors", "genus_author", "kew_id", "powo_uri")
 
   }
   names(list_fams) <- powo_codes$family
@@ -97,12 +100,10 @@ powoGenera <- function(family, uri,
     }
   }
 
-
   # Extract number of species and distribution using auxiliary function getDist
   df <- getDist(df,
                 listspp = TRUE,
                 verbose = verbose)
-
 
   # Select specific columns of interest
   df <- df %>% select("family",
@@ -115,11 +116,8 @@ powoGenera <- function(family, uri,
                       "native_to_botanical_countries",
                       "introduced_to_country",
                       "introduced_to_botanical_countries",
+                      "kew_id",
                       "powo_uri")
-
-
 
   return(df)
 }
-
-
