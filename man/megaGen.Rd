@@ -36,7 +36,7 @@ powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 resMega <- megaGen(powocodes$family, powocodes$uri,
                    treshold = 500,
                    verbose = TRUE)
-                        
+
 write.csv(resMega, "powo_megagenera_accepted_number_spp.csv", row.names=FALSE)
 }
 

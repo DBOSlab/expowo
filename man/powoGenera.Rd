@@ -28,7 +28,7 @@ powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 
 resGenera <- powoGenera(powocodes$family, powocodes$uri,
                         verbose = TRUE)
-                        
+
 write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
 }
 

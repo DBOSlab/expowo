@@ -19,7 +19,7 @@ that are present in POWO.}
 Table in data frame format
 }
 \description{
-It produces a data frame listing all accepted species, and associated
+It produces a data frame listing all accepted species and associated
 geographical distribution, from URI addresses of genera of angiosperm
 families at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
@@ -31,11 +31,11 @@ powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 
 resGenera <- powoGenera(powocodes$family, powocodes$uri,
                         verbose = TRUE)
-                        
+
 resSpecies <- powoSpecies(resGenera$family, resGenera$genus, resGenera$uri,
-                          hybridspp = FALSE, 
+                          hybridspp = FALSE,
                           verbose = TRUE)
-                          
+
 write.csv(resSpecies, "powo_genera_list_accepted_spp.csv", row.names=FALSE)
 }
 
