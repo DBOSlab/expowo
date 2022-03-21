@@ -1,4 +1,4 @@
-#' Extracts top ten genera with highest species diversity from POWO
+#' Extracts top ten genera with highest species diversity
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
@@ -7,15 +7,13 @@
 #' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
 #' @usage
-#' toptengen(family, uri,
+#' toptenGen(family, uri,
 #'           verbose = TRUE)
 #'
 #' @param family Either a single family name or a vector of multiple families
 #' that are present in POWO.
 #'
 #' @param uri one or multiple URI addresses for each family to be searched in POWO.
-#'
-#' @param treshold defined limit of species number within a genus.
 #'
 #' @return Table in data frame format.
 #'
@@ -26,7 +24,7 @@
 #' powocodes <- data.frame(powocodes)
 #' powocodes <- cbind(family = c("Araceae", "Lecythidaceae"), powocodes)
 #'
-#' resTopten <- toptengen(powocodes$family, powocodes$uri,
+#' resTopten <- toptenGen(powocodes$family, powocodes$uri,
 #'                        verbose = TRUE)
 #'
 #' write.csv(resTopten, "powo_toptengen_accepted_number_spp.csv", row.names=FALSE)
@@ -38,7 +36,7 @@
 #' @export
 #'
 
-toptengen <- function(family, uri,
+toptenGen <- function(family, uri,
                       verbose = TRUE) {
 
   powo_codes <- data.frame(family = family,
@@ -69,7 +67,7 @@ toptengen <- function(family, uri,
                                  family = powo_codes$family[i],
                                  genus = NA,
                                  authors = NA,
-                                 genus_author = NA,
+                                 scientific_name = NA,
                                  powo_uri = NA)
 
     # Filling in each column
@@ -80,10 +78,10 @@ toptengen <- function(family, uri,
     list_fams[[i]][["authors"]] <- gsub("<.*", "", list_fams[[i]][["authors"]])
     list_fams[[i]][["authors"]] <- gsub("^\\s", "", list_fams[[i]][["authors"]])
     list_fams[[i]][["genus"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "", list_fams[[i]][["temp_genus_uri"]])
-    list_fams[[i]][["genus_author"]] <- paste(list_fams[[i]][["genus"]], list_fams[[i]][["authors"]])
+    list_fams[[i]][["scientific_name"]] <- paste(list_fams[[i]][["genus"]], list_fams[[i]][["authors"]])
 
     # Select specific columns of interest
-    list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "authors", "genus_author", "powo_uri")
+    list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "authors", "scientific_name", "powo_uri")
 
   }
   names(list_fams) <- powo_codes$family
@@ -109,12 +107,12 @@ toptengen <- function(family, uri,
   df <- df %>% select("family",
                       "genus",
                       "authors",
-                      "genus_author",
+                      "scientific_name",
                       "no_species",
                       "powo_uri") %>%
        arrange(desc(no_species))  %>%     # displaying in the decreasing order
        group_by(family) %>%               # to search for each family
-       slice(1:10)                        # filtering the top ten genera
+       slice(1:10)                        # filtering the top ten richest genera
 
   return(df)
 }
