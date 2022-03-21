@@ -75,9 +75,10 @@ powoSpecies <- function(family, genus, uri,
     list_genus[[i]] <- data.frame(temp_spp_uri = powo_spp_uri,
                                   family = powo_codes$family[i],
                                   genus = powo_codes$genus[i],
+                                  species = NA,
                                   taxon_name = NA,
                                   authors = NA,
-                                  species_author = NA,
+                                  scientific_name = NA,
                                   hybrid = NA,
                                   kew_id = NA,
                                   powo_uri = NA)
@@ -87,17 +88,22 @@ powoSpecies <- function(family, genus, uri,
     list_genus[[i]][["powo_uri"]] <- paste("http://www.plantsoftheworldonline.org", gsub("\".+", "", list_genus[[i]][["temp_spp_uri"]]), sep = "")
     list_genus[[i]][["kew_id"]] <- gsub(".+[:]", "", list_genus[[i]][["powo_uri"]])
 
+    list_genus[[i]][["species"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "", list_genus[[i]][["temp_spp_uri"]])
+    list_genus[[i]][["species"]] <- gsub(".*\\s", "", list_genus[[i]][["species"]])
+
     list_genus[[i]][["authors"]] <- gsub(".*em>", "", list_genus[[i]][["temp_spp_uri"]])
     list_genus[[i]][["authors"]] <- gsub("<.*", "", list_genus[[i]][["authors"]])
     list_genus[[i]][["authors"]] <- gsub("^\\s", "", list_genus[[i]][["authors"]])
     list_genus[[i]][["taxon_name"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "", list_genus[[i]][["temp_spp_uri"]])
-    list_genus[[i]][["species_author"]] <- paste(list_genus[[i]][["taxon_name"]], list_genus[[i]][["authors"]])
+    list_genus[[i]][["taxon_name"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "", list_genus[[i]][["temp_spp_uri"]])
+    list_genus[[i]][["scientific_name"]] <- paste(list_genus[[i]][["taxon_name"]], list_genus[[i]][["authors"]])
 
     # Select specific columns of interest
 
-    list_genus[[i]] <- list_genus[[i]] %>% select("family", "genus", "taxon_name",
-                                                  "authors", "species_author",
-                                                  "hybrid", "kew_id", "powo_uri")
+    list_genus[[i]] <- list_genus[[i]] %>% select("family", "genus", "species",
+                                                  "taxon_name","authors",
+                                                  "scientific_name","hybrid",
+                                                  "kew_id", "powo_uri")
 
     # Remove any possible generic synomym from  the retrieved list
     list_genus[[i]] <- list_genus[[i]][grepl("\\s", list_genus[[i]]$taxon_name), ]
@@ -129,9 +135,10 @@ powoSpecies <- function(family, genus, uri,
   if (hybridspp == FALSE) {
     df <- df %>% select("family",
                         "genus",
+                        "species",
                         "taxon_name",
                         "authors",
-                        "species_author",
+                        "scientific_name",
                         "publication",
                         "native_to_country",
                         "native_to_botanical_countries",
@@ -142,9 +149,10 @@ powoSpecies <- function(family, genus, uri,
   } else {
     df <- df %>% select("family",
                         "genus",
+                        "species",
                         "taxon_name",
                         "authors",
-                        "species_author",
+                        "scientific_name",
                         "publication",
                         "hybrid",
                         "native_to_country",
