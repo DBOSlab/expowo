@@ -3,6 +3,7 @@
 export(megaGen)
 export(powoGenera)
 export(powoSpecies)
+export(toptenGen)
 importFrom(dplyr,filter)
 importFrom(dplyr,select)
 importFrom(magrittr,"%>%")
