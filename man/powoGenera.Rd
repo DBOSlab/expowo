@@ -16,8 +16,8 @@ that are present in POWO.}
 Table in data frame format.
 }
 \description{
-It produces a data frame listing all genera, and associated accepted
-species and geographical distribution, from URI addresses of angiosperm
+It produces a data frame listing all genera with associated number
+of accepted species and geographical distribution, from URI addresses of angiosperm
 families at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
