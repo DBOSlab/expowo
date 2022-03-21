@@ -94,8 +94,8 @@ getDist <- function(df,
   list_dist_nat[unlist(temp)] <- NA
 
   # Extracting the publication where the name was first published
-  df$bibliography <- NA
-  df$bibliography <- unlist(list_publ, use.names = F)
+  df$publication <- NA
+  df$publication <- unlist(list_publ, use.names = F)
 
   # Extracting the native distribution of each species from the list during the POWO searching
   df$native_to_country <- NA
