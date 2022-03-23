@@ -23,14 +23,14 @@
 #'
 #' @examples
 #' \dontrun{
-#' powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
+#' powocodes <- taxize::get_pow(c("Araceae", "Lecythidaceae"))
 #' powocodes <- data.frame(powocodes)
-#' powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
+#' powocodes <- cbind(family = c("Araceae", "Lecythidaceae"), powocodes)
 #'
 #' resGenera <- powoGenera(powocodes$family, powocodes$uri,
 #'                         verbose = TRUE)
 #'
-#' resSpecies <- powoSpecies(resGenera$family, resGenera$genus, resGenera$uri,
+#' resSpecies <- powoSpecies(resGenera$family, resGenera$genus, resGenera$powo_uri,
 #'                           hybridspp = FALSE,
 #'                           verbose = TRUE)
 #'
