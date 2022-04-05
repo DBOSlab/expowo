@@ -18,31 +18,49 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The main goal of the expowo package is to retrieve information on diversity
-and distribution for any plant family as publicly available at [Plants of the World Online (POWO)](https://powo.science.kew.org)
+## Overview
 
+The main goal of the expowo package is to retrieve information on diversity
+and distribution for any plant family as publicly available at [Plants of the World Online (POWO)](https://powo.science.kew.org). The package's basic functions starts 
+with an object called `powocodes`, wich can be created by using the package 
+[taxize](https://github.com/ropensci/taxize) or our associated data `POWOcodes`.
+It includes the scientific name of all flowering plants family and allows storing information  beyond uri of each one of them. This is the main input file to everything you can do with expowo package.  
+
+![How the first 15 lines of our associated data 'POWOcodes' should appear](vignettes/POWOcodes.png)
 
 ## Installation
 
-You can install the development version of expowo from [GitHub](https://github.com/) with:
+You can install the development version of expowo from [GitHub](https://github.com/) using the [devtools](https://github.com/r-lib/devtools) package with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("deborazuanny/expowo")
 ```
 
-## Example
+## Usage
 
 See below examples on how to use expowo functions to get basic information
 on plant diversity and distribution, as well as full checklist of species for
 any genera of a particular family.
 
+#### _1. powoGenera
+
 ``` r
 library(expowo)
-## basic example code
+
+## Basic example code for powoGenera function:
+powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
+powocodes <- data.frame(powocodes)
+powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
+
+resGenera <- powoGenera(powocodes$family, powocodes$uri,
+                         verbose = TRUE)
+
+write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
 ```
 
-Note that in your computer the individual DNA alignments could be loaded into a single list by adjusting the abovementioned code as follows:
+Note that you can choose between the names of individual plant families or search 
+for all of them just by adjusting the abovementioned code.
 
 ```{r, eval=FALSE}
 library(expowo)
@@ -58,12 +76,32 @@ write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
 ```
 
 
-#### _1. When the DNA alignments have just a single sequence per species_
+#### _2. powoSpecies
 
-The species/sequences may be simply named as __Genus_species__, just like the example below. The generic name could even be abbreviated but always keeping separated from the specific epithet like __G_species__. Note that the sequences may also be labeled by including "cf" or "aff" between the genus and specific epithet, but they must be separated by an underscore.
+With this function, you will be able to produce a table of each genera with the 
+accepted number of species, considering hybrid species or not, according to the 
+data available at POWO's database.
 
 
-![Example with no identifiers in the sequences](vignettes/labelling_no_identifiers.png)
+
+![Example with hybrid spp](vignettes/.png)
+#### _3. megaGen
+
+In the megaGen function, our goal is to provide a data frame with 
+
+``` r
+powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
+powocodes <- data.frame(powocodes)
+powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
+
+resMega <- megaGen(powocodes$family, powocodes$uri,
+                    treshold = 500,
+                    verbose = TRUE)
+
+write.csv(resMega, "powo_megagenera_accepted_number_spp.csv", row.names=FALSE)
+```
+
+#### _4. toptenGen
 
 
 ## Documentation
