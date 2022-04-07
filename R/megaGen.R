@@ -111,14 +111,14 @@ megaGen <- function(family, uri,
 
 
   # Select specific columns of interest and the megadiverse genera by a treshold
-  df$no_species <- as.numeric(df$no_species)
+  df$species_number <- as.numeric(df$species_number)
   df <- df %>% select("family",
                       "genus",
                       "authors",
                       "genus_author",
-                      "no_species",
+                      "species_number",
                       "powo_uri") %>%
-    filter(no_species >= treshold)
+    filter(species_number >= treshold)
 
   return(df)
 }
