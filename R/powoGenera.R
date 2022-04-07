@@ -23,6 +23,9 @@
 #' with native distribution known to any of the provided country names, as available
 #' in POWO.
 #'
+#' @param verbose Logical, if \code{FALSE}, the search results will not be printed
+#' in the console in full.
+#'
 #' @return Table in data frame format.
 #'
 #' @seealso \code{\link{powoSpecies}}

@@ -22,9 +22,8 @@
 #' with native distribution known to any of the provided country names, as available
 #' in POWO.
 #'
-#' @param verbose logical parameter (TRUE or FALSE) wich prints in the console
-#' the search results showing in wich step the script is. When TRUE, it should
-#' print the searching steps in full.
+#' @param verbose Logical, if \code{FALSE}, the search results will not be printed
+#' in the console in full.
 #'
 #' @return Table in data frame format
 #'
@@ -55,6 +54,7 @@
 
 powoSpecies <- function(family, genus, uri,
                         hybridspp = FALSE,
+                        country = NULL,
                         verbose = TRUE) {
 
   powo_codes <- data.frame(family = family,
@@ -66,7 +66,7 @@ powoSpecies <- function(family, genus, uri,
   list_genus <- list()
   for (i in seq_along(powo_codes$uri)) {
     # Adding a pause 300 seconds of um pause every 500th search,
-    # because POWO website cannot permite constant search
+    # because POWO website may crash when searching uninterruptedly
     if (i%%500 == 0) {
       Sys.sleep(300)
     }
@@ -243,6 +243,7 @@ powoSpecies <- function(family, genus, uri,
       cat(paste("Genera listed below were removed from the original search because they are not native to any of the given country vector:\n", "\n",
                 df$genus[!temp]))
     }
+
     df <- df[temp, ]
 
   }

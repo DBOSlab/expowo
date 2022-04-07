@@ -16,14 +16,13 @@
 #' @param family Either a single family name or a vector of multiple families
 #' that are present in POWO.
 #'
-#' @param uri one or multiple URI addresses for each family to be searched in POWO.
+#' @param uri One or multiple URI addresses for each family to be searched in POWO.
 #'
-#' @param treshold defined limit of species number within a genus to be considered
+#' @param treshold Defined limit of species number within a genus to be considered
 #' megadiverse.
 #'
-#' @param verbose logical parameter (TRUE or FALSE) wich prints in the console
-#' the search results showing in wich step the script is. When TRUE (default),
-#' it should print the searching steps in full.
+#' @param verbose Logical, if \code{FALSE}, the search results will not be printed
+#' in the console in full.
 #'
 #' @return Table in data frame format.
 #'
