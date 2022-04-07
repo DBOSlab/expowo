@@ -21,6 +21,10 @@
 #' @param treshold defined limit of species number within a genus to be considered
 #' megadiverse.
 #'
+#' @param verbose logical parameter (TRUE or FALSE) wich prints in the console
+#' the search results showing in wich step the script is. When TRUE (default),
+#' it should print the searching steps in full.
+#'
 #' @return Table in data frame format.
 #'
 #'
