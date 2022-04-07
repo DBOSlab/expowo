@@ -98,8 +98,9 @@ the data available at POWO's database.
 #### _3. megaGen_
 
 In the megaGen function, our goal is to provide a data frame with the most diverse 
-genera of each family you provided and above the treshold that you previously defined.
-In the following example, we choose the plant families ""Fabaceae" and ""Lecythidaceae""
+genera of each family you set and with those genera above the treshold that you 
+previously defined.
+In the following example, we choose the plant families "Fabaceae" and "Lecythidaceae"
 and considered a megagenera those with more than 500 species, as set in the 
 parameter treshold. 
 
