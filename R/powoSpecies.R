@@ -17,8 +17,14 @@
 #'
 #' @param uri one or multiple URI addresses for each genus to be searched in POWO.
 #'
-#' @param verbose print in the console the search results showing in wich step
-#' the script is. When TRUE, it should print the searching steps in full.
+#' @param country Either a single country name or a vector of multiple countries.
+#' If you provide any country name, then the function will return only the species
+#' with native distribution known to any of the provided country names, as available
+#' in POWO.
+#'
+#' @param verbose logical parameter (TRUE or FALSE) wich prints in the console
+#' the search results showing in wich step the script is. When TRUE, it should
+#' print the searching steps in full.
 #'
 #' @return Table in data frame format
 #'
@@ -35,7 +41,7 @@
 #'
 #' resSpecies <- powoSpecies(resGenera$family, resGenera$genus, resGenera$powo_uri,
 #'                           hybridspp = FALSE,
-#'                           country = c("Brazil", "Argentina"),
+#'                           country = c("Argentina", "Brazil", "French Guiana"),
 #'                           verbose = TRUE)
 #'
 #' write.csv(resSpecies, "powo_genera_list_accepted_spp.csv", row.names=FALSE)
