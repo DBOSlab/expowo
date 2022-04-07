@@ -7,7 +7,7 @@
 #' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
 #' @usage
-#' powoGenera(family, uri, genus)
+#' powoGenera(family, uri, genus, country)
 #'
 #' @param family Either a single family name or a vector of multiple families
 #' that are present in POWO.
@@ -15,8 +15,13 @@
 #' @param uri one or multiple URI addresses for each family to be searched in POWO.
 #'
 #' @param genus Either a single genus name or a vector of multiple genera
-#' that are present in POWO. If you do not provided any genus name, then the function
+#' that are present in POWO. If you do not provide any genus name, then the function
 #' will search all accepted genera known for the family names provided.
+#'
+#' @param country Either a single country name or a vector of multiple countries.
+#' If you provide any country name, then the function will return only the genera
+#' with native distribution known to any of the provided country names, as available
+#' in POWO.
 #'
 #' @return Table in data frame format.
 #'
@@ -33,9 +38,10 @@
 #'
 #' write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
 #'
-#'# This time providing a vector with the genus of interest
+#' This time providing a vector with the genus of interest
 #' resGenera <- powoGenera(powocodes$family, powocodes$uri,
 #'                         genus = c("Luetzelburgia", "Bertholletia"),
+#'                         country = c("Argentina", "Brazil", "French Guiana"),
 #'                         verbose = TRUE)
 #'
 #' write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
@@ -50,6 +56,7 @@
 
 powoGenera <- function(family, uri,
                        genus = NULL,
+                       country = NULL,
                        verbose = TRUE) {
 
   powo_codes <- data.frame(family = family,
@@ -197,6 +204,79 @@ powoGenera <- function(family, uri,
                       "kew_id",
                       "powo_uri")
 
+
+  # If a vector of country names is provided, then remove any genera that do not
+  # occur in the given country. The temp vector is logical (TRUE or FALSE) and
+  # shows which genus/row should be kept in the search given the provided country vector
+  if (!is.null(country)) {
+
+    temp <- vector()
+
+    for (i in seq_along(df$native_to_country)) {
+
+      tt <- gsub("^\\s", "", strsplit(df$native_to_country[i], ",")[[1]]) %in% country
+
+      if (any(tt)) {
+        temp[i] <- TRUE
+      } else {
+        temp[i] <- FALSE
+      }
+
+    }
+
+    # The following conditions is just to show/print how the df will be subsetted
+    # according to the provided country vector
+    if (any(temp)) {
+      tl <- list()
+      for (i in seq_along(country)) {
+        tv <- vector()
+        for (l in seq_along(df$native_to_country)) {
+          tv[l] <- country[i] %in% gsub("^\\s", "", strsplit(df$native_to_country[l], ",")[[1]])
+        }
+        if (length(which(tv == TRUE)) == 0) {
+          tl[[i]] <- FALSE
+        }
+        if (length(which(tv == TRUE)) != 0 & length(which(tv == TRUE)) < length(tv)) {
+          tl[[i]] <- TRUE
+        }
+        if (length(which(tv == TRUE)) == length(tv)) {
+          tl[[i]] <- TRUE
+        }
+      }
+      cv <- country[unlist(tl)]
+
+      if (length(country[country %in% cv]) != length(country)) {
+        cat(paste("Your search returned genera with distribution only in the following countries:\n", "\n",
+
+                  paste(country[country %in% cv], collapse = ", "), "\n", "\n",
+
+                  "There is no genus occurring in the countries below:\n", "\n",
+
+                  paste(country[!country %in% cv], collapse = ", "), "\n", "\n",
+
+                  "Check whether any genus does not occur in the countries above either because:\n",
+                  "1. The genus indeed does not occur in the provided country vector;\n",
+                  "2. The country name is written with any typo;\n",
+                  "3. Any country name in the country vector is not written in English language.\n", "\n"))
+      }
+
+    } else {
+
+      cat(paste("Your search returned an empty data frame either because:\n",
+                "1. No genus occurs in the provided country vector;\n",
+                "2. The country vector has any typo;\n",
+                "3. Any country name in the country vector is not written in English language."))
+
+    }
+
+    # Subset the searched genera according to the country vector
+    if(length(df$genus[temp]) != length(temp)) {
+      cat(paste("Genera listed below were removed from the original search because they are not native to any of the given country vector:\n", "\n",
+                df$genus[!temp]))
+    }
+    df <- df[temp, ]
+
+  }
 
   return(df)
 
