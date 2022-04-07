@@ -17,6 +17,9 @@
 #'
 #' @param uri one or multiple URI addresses for each genus to be searched in POWO.
 #'
+#' @param verbose print in the console the search results showing in wich step
+#' the script is. When TRUE, it should print the searching steps in full.
+#'
 #' @return Table in data frame format
 #'
 #' @seealso \code{\link{powoGenera}}
@@ -32,6 +35,7 @@
 #'
 #' resSpecies <- powoSpecies(resGenera$family, resGenera$genus, resGenera$powo_uri,
 #'                           hybridspp = FALSE,
+#'                           country = c("Brazil", "Argentina"),
 #'                           verbose = TRUE)
 #'
 #' write.csv(resSpecies, "powo_genera_list_accepted_spp.csv", row.names=FALSE)
