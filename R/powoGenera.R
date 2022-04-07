@@ -33,7 +33,7 @@
 #'
 #' write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
 #'
-#'
+#'# This time providing a vector with the genus of interest
 #' resGenera <- powoGenera(powocodes$family, powocodes$uri,
 #'                         genus = c("Luetzelburgia", "Bertholletia"),
 #'                         verbose = TRUE)
