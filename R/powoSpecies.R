@@ -174,6 +174,80 @@ powoSpecies <- function(family, genus, uri,
 
   }
 
+  # If a vector of country names is provided, then remove any species that do not
+  # occur in the given country. The temp vector is logical (TRUE or FALSE) and
+  # shows which species/row should be kept in the search given the provided country vector
+  if (!is.null(country)) {
+
+    temp <- vector()
+
+    for (i in seq_along(df$native_to_country)) {
+
+      tt <- gsub("^\\s", "", strsplit(df$native_to_country[i], ",")[[1]]) %in% country
+
+      if (any(tt)) {
+        temp[i] <- TRUE
+      } else {
+        temp[i] <- FALSE
+      }
+
+    }
+
+    # The following conditions is just to show/print how the df will be subsetted
+    # according to the provided country vector
+    if (any(temp)) {
+      tl <- list()
+      for (i in seq_along(country)) {
+        tv <- vector()
+        for (l in seq_along(df$native_to_country)) {
+          tv[l] <- country[i] %in% gsub("^\\s", "", strsplit(df$native_to_country[l], ",")[[1]])
+        }
+        if (length(which(tv == TRUE)) == 0) {
+          tl[[i]] <- FALSE
+        }
+        if (length(which(tv == TRUE)) != 0 & length(which(tv == TRUE)) < length(tv)) {
+          tl[[i]] <- TRUE
+        }
+        if (length(which(tv == TRUE)) == length(tv)) {
+          tl[[i]] <- TRUE
+        }
+      }
+      cv <- country[unlist(tl)]
+
+      if (length(country[country %in% cv]) != length(country)) {
+        cat(paste("Your search returned species with distribution only in the following countries:\n", "\n",
+
+                  paste(country[country %in% cv], collapse = ", "), "\n", "\n",
+
+                  "There is no species occurring in the countries below:\n", "\n",
+
+                  paste(country[!country %in% cv], collapse = ", "), "\n", "\n",
+
+                  "Check whether any species does not occur in the countries above either because:\n",
+                  "1. The species indeed does not occur in the provided country vector;\n",
+                  "2. The country name is written with any typo;\n",
+                  "3. Any country name in the country vector is not written in English language.\n", "\n"))
+      }
+
+    } else {
+
+      cat(paste("Your search returned an empty data frame either because:\n",
+                "1. No species occurs in the provided country vector;\n",
+                "2. The country vector has any typo;\n",
+                "3. Any country name in the country vector is not written in English language."))
+
+    }
+
+    # Subset the searched genera according to the country vector
+    if(length(df$genus[temp]) != length(temp)) {
+      cat(paste("Genera listed below were removed from the original search because they are not native to any of the given country vector:\n", "\n",
+                df$genus[!temp]))
+    }
+    df <- df[temp, ]
+
+  }
+
   return(df)
+
 }
 
