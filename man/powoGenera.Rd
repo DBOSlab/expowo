@@ -4,13 +4,17 @@
 \alias{powoGenera}
 \title{Extracts list of genera from POWO}
 \usage{
-powoGenera(family, uri)
+powoGenera(family, uri, genus)
 }
 \arguments{
 \item{family}{Either a single family name or a vector of multiple families
 that are present in POWO.}
 
 \item{uri}{one or multiple URI addresses for each family to be searched in POWO.}
+
+\item{genus}{Either a single genus name or a vector of multiple genera
+that are present in POWO. If you do not provided any genus name, then the function
+will search all accepted genera known for the family names provided.}
 }
 \value{
 Table in data frame format.
@@ -30,6 +34,14 @@ resGenera <- powoGenera(powocodes$family, powocodes$uri,
                         verbose = TRUE)
 
 write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
+
+# This time providing a vector with the genus of interest
+resGenera <- powoGenera(powocodes$family, powocodes$uri,
+                        genus = c("Luetzelburgia", "Bertholletia"),
+                        verbose = TRUE)
+
+write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
+
 }
 
 }
