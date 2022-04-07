@@ -15,6 +15,10 @@
 #'
 #' @param uri one or multiple URI addresses for each family to be searched in POWO.
 #'
+#' @param verbose logical parameter (TRUE or FALSE) wich prints in the console
+#' the search results showing in wich step the script is. When TRUE, it should
+#' print the searching steps in full.
+#'
 #' @return Table in data frame format.
 #'
 #'
