@@ -26,7 +26,9 @@ with an object called `powocodes`, wich can be created by using the package
 [taxize](https://github.com/ropensci/taxize) or our associated data `POWOcodes`.
 It includes the scientific name of all flowering plants family and allows storing 
 information  beyond uri of each one of them. This is the main input file to 
-everything you can do with expowo package.  
+everything you can do with expowo package. There are four main functions associated 
+to the expowo package: powoGenera, powoSpecies, megaGen and toptenGen. Continue
+reading to see how to use them!
 
 ![How the first 15 lines of our associated data 'POWOcodes' should appear in your RStudio](vignettes/POWOcodes.png)
 
@@ -45,7 +47,7 @@ See below examples on how to use expowo functions to get basic information
 on plant diversity and distribution, as well as full checklist of species for
 any genera of a particular family.
 
-#### _1. powoGenera
+#### _1. powoGenera_
 
 
 Descricao da funcao e dos argumentos, como inserir cada um
@@ -61,7 +63,6 @@ powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 resGenera <- powoGenera(powocodes$family, powocodes$uri,
                          verbose = TRUE)
 
-write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
 ```
 
 Note that you can choose between the names of individual plant families or search 
@@ -77,11 +78,10 @@ powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 resGenera <- powoGenera(powocodes$family, powocodes$uri,
                          verbose = TRUE)
 
-write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
 ```
 
 
-#### _2. powoSpecies
+#### _2. powoSpecies_
 
 With this function, you will be able to produce a dataframe of each genera with 
 the accepted number of species, considering hybrid species or not, according to 
@@ -95,7 +95,7 @@ the data available at POWO's database.
 
 
 
-#### _3. megaGen
+#### _3. megaGen_
 
 In the megaGen function, our goal is to provide a data frame with the most diverse 
 genera of each family you provided and above the treshold that you previously defined.
@@ -119,12 +119,12 @@ resMega <- megaGen(powocodes$family, powocodes$uri,
 
 
 
-#### _4. toptenGen
+#### _4. toptenGen_
+
+Descricao da funcao, argumentos e dica de como usar.
 
 
-
-
-##### Example of a running search with megaGen function:
+##### Example of a running search with toptenGen function:
 
 ```r
 powocodes <- taxize::get_pow(c("Araceae", "Lecythidaceae"))
@@ -134,6 +134,7 @@ powocodes <- taxize::get_pow(c("Araceae", "Lecythidaceae"))
 #' resTopten <- toptenGen(powocodes$family, powocodes$uri,
 #'                        verbose = TRUE)
 ```
+![Result generated from the example above, using the toptenGen function](vignettes/.png)
 
 
 ## Documentation
