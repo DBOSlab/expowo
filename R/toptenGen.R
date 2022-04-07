@@ -103,14 +103,14 @@ toptenGen <- function(family, uri,
 
 
   # Select specific columns of interest and the most diverse genera
-  df$no_species <- as.numeric(df$no_species)
+  df$species_number <- as.numeric(df$species_number)
   df <- df %>% select("family",
                       "genus",
                       "authors",
                       "scientific_name",
-                      "no_species",
+                      "species_number",
                       "powo_uri") %>%
-       arrange(desc(no_species))  %>%     # displaying in the decreasing order
+       arrange(desc(species_number))  %>%     # displaying in the decreasing order
        group_by(family) %>%               # to search for each family
        slice(1:10)                        # filtering the top ten richest genera
 
