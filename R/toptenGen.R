@@ -3,7 +3,7 @@
 #' @author Debora Zuanny & Domingos Cardoso
 #'
 #' @description It produces a data frame listing the top ten most diverse genera
-#' of a wanted botanical family associated to the URI addresses of angiosperm
+#' of any target botanical family associated to the URI addresses of angiosperm
 #' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
 #' @usage

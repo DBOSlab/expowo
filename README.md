@@ -8,21 +8,14 @@
 
 ## Overview
 
-The main goal of the expowo package is to retrieve information on
-diversity and distribution for any plant family as publicly available at
-[Plants of the World Online (POWO)](https://powo.science.kew.org). The
-package’s basic functions starts with an object called `powocodes`, wich
-can be created by using the package
-[taxize](https://github.com/ropensci/taxize) or our associated data
-`POWOcodes`. It includes the scientific name of all flowering plants
-family and allows storing information beyond uri of each one of them.
-This is the main input file to everything you can do with expowo
-package. There are four main functions associated to the expowo package:
-powoGenera, powoSpecies, megaGen and toptenGen. Continue reading to see
-how to use them!
-
-![How the first 15 lines of our associated data ‘POWOcodes’ should
-appear in your RStudio](vignettes/POWOcodes.png)
+The main goal of the **expowo** package is to retrieve information the
+diversity and distribution of any plant family as publicly available at
+the taxonomically verified database [Plants of the World Online
+(POWO)](https://powo.science.kew.org). The package is intended to
+efficiently miner the content on the source html pages for any specific
+genus and family. It can return a comma-separated values (CSV) file with
+the number of accepted species and distribution for any genus as well as
+the full checklist of accepted species.
 
 ## Installation
 
@@ -31,21 +24,36 @@ You can install the development version of expowo from
 [devtools](https://github.com/r-lib/devtools) package with:
 
 ``` r
-# install.packages("devtools")
+install.packages("devtools")
 devtools::install_github("deborazuanny/expowo")
 ```
 
 ## Usage
 
-See below examples on how to use expowo functions to get basic
-information on plant diversity and distribution, as well as full
-checklist of species for any genera of a particular family.
+The package’s four basic functions (`powoGenera`, `powoSpecies`,
+`megaGen`, and `toptenGen`) requires only the name of the target family
+(or a vector with multiple family names) and the associated specific URI
+(Uniform Resource Identifier) that identifies the html page for each
+family at POWO. To get the POWO URI for any accepted plant family, you
+can either look at the data frame object under `POWOcodes` that come
+together with the installed expowo package, or you can use the function
+`get_pow` from the package
+[**taxize**](https://github.com/ropensci/taxize). So, the vector of URI
+codes is the main input file to everything you can do with expowo
+package. See below examples on how to use expowo functions to get the
+basic information on the global plant diversity and distribution.
 
-#### *1. powoGenera*
+![How the first 15 lines of our associated data ‘POWOcodes’ should
+appear in your RStudio](vignettes/POWOcodes.png)
 
-Descricao da funcao e dos argumentos, como inserir cada um
+#### *1. `powoGenera`: Extracting a list of plant genera*
 
-##### Example of a running search with powoGenera function:
+This function produces a CSV file listing all genera with associated
+number of accepted species and their geographical distribution. You can
+also narrow down the search to focus on just a particular genus from a
+particular country or a list of genera from a list of countries.
+
+##### Example of a POWO search with `powoGenera`:
 
 ``` r
 library(expowo)
@@ -69,30 +77,31 @@ powocodes <- data.frame(powocodes)
 powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 
 resGenera <- powoGenera(powocodes$family, powocodes$uri,
-                         verbose = TRUE)
+                        verbose = TRUE)
 ```
 
-#### *2. powoSpecies*
+#### *2. `powoSpecies`: Extracting a list of plant species*
 
-With this function, you will be able to produce a dataframe of each
-genera with the accepted number of species, considering hybrid species
-or not, according to the data available at POWO’s database.
+With this function, you will be able to produce a CSV file of each genus
+with the accepted number of species, considering hybrid species or not,
+according to the data available at POWO’s database. You can also narrow
+down the search to focus on just the species from a particular country
+or a list of countries.
 
-##### Example of a running search with powoSpecies function:
+##### Example of a POWO search with `powoSpecies`:
 
 ![Example with hybrid spp](vignettes/POWOcodes_b.png) ![Example with
 accepted spp](vignettes/POWOcodes_c.png)
 
-#### *3. megaGen*
+#### *3. `megaGen`: Extracting a list of mega-diverse genera*
 
-In the megaGen function, our goal is to provide a data frame with the
-most diverse genera of each family you set and with those genera above
-the treshold that you previously defined. In the following example, we
-choose the plant families “Fabaceae” and “Lecythidaceae” and considered
-a megagenera those with more than 500 species, as set in the parameter
-treshold.
+This function is intended to produce a CSV file with the most diverse
+genera of any family, based on a threshold number you set. In the
+following example, we choose the plant families “Fabaceae” and
+“Lecythidaceae” and considered a genus as mega-diverse when it more than
+500 species, as set in the argument threshold.
 
-##### Example of a running search with megaGen function:
+##### Example of a POWO search with `megaGen`:
 
 ``` r
 powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
@@ -100,26 +109,28 @@ powocodes <- data.frame(powocodes)
 powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 
 resMega <- megaGen(powocodes$family, powocodes$uri,
-                    treshold = 500,
-                    verbose = TRUE)
+                   treshold = 500,
+                   verbose = TRUE)
 ```
 
 ![Result from the example above, using the megaGen
 function](vignettes/POWOcodes_d.png)
 
-#### *4. toptenGen*
+#### *4. `toptenGen`: Extracting the top ten genera with highest species diversity*
 
-Descricao da funcao, argumentos e dica de como usar.
+This function is relatively similar to the `megaGen`, but instead of
+using any specific threshold, it produces a CSV file listing the top ten
+most diverse genera of any target plant family.
 
-##### Example of a running search with toptenGen function:
+##### Example of a POWO search with `toptenGen`:
 
 ``` r
 powocodes <- taxize::get_pow(c("Araceae", "Lecythidaceae"))
-#' powocodes <- data.frame(powocodes)
-#' powocodes <- cbind(family = c("Araceae", "Lecythidaceae"), powocodes)
-#'
-#' resTopten <- toptenGen(powocodes$family, powocodes$uri,
-#'                        verbose = TRUE)
+powocodes <- data.frame(powocodes)
+powocodes <- cbind(family = c("Araceae", "Lecythidaceae"), powocodes)
+
+resTopten <- toptenGen(powocodes$family, powocodes$uri,
+                      verbose = TRUE)
 ```
 
 ![Result generated from the example above, using the toptenGen
