@@ -90,8 +90,8 @@ the data available at POWO's database.
 ##### Example of a running search with powoSpecies function:
 
 
-![Example with hybrid spp](vignettes/.png)
-![Example with accepted spp](vignettes/.png)
+![Example with hybrid spp](vignettes/POWOcodes_b.png)
+![Example with accepted spp](vignettes/POWOcodes_c.png)
 
 
 
@@ -115,7 +115,7 @@ resMega <- megaGen(powocodes$family, powocodes$uri,
                     verbose = TRUE)
 
 ```
-![Result from the example above, using the megaGen function](vignettes/.png)
+![Result from the example above, using the megaGen function](vignettes/POWOcodes_d.png)
 
 
 
@@ -135,7 +135,7 @@ powocodes <- taxize::get_pow(c("Araceae", "Lecythidaceae"))
 #' resTopten <- toptenGen(powocodes$family, powocodes$uri,
 #'                        verbose = TRUE)
 ```
-![Result generated from the example above, using the toptenGen function](vignettes/.png)
+![Result generated from the example above, using the toptenGen function](vignettes/POWOcodes_e.png)
 
 
 ## Documentation

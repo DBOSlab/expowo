@@ -12,6 +12,9 @@ toptenGen(family, uri,
 that are present in POWO.}
 
 \item{uri}{one or multiple URI addresses for each family to be searched in POWO.}
+
+\item{verbose}{Logical, if \code{FALSE}, the search results will not be printed
+in the console in full.}
 }
 \value{
 Table in data frame format.

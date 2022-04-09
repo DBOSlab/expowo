@@ -4,7 +4,7 @@
 \alias{powoGenera}
 \title{Extracts list of genera from POWO}
 \usage{
-powoGenera(family, uri, genus)
+powoGenera(family, uri, genus, country)
 }
 \arguments{
 \item{family}{Either a single family name or a vector of multiple families
@@ -13,8 +13,16 @@ that are present in POWO.}
 \item{uri}{one or multiple URI addresses for each family to be searched in POWO.}
 
 \item{genus}{Either a single genus name or a vector of multiple genera
-that are present in POWO. If you do not provided any genus name, then the function
+that are present in POWO. If you do not provide any genus name, then the function
 will search all accepted genera known for the family names provided.}
+
+\item{country}{Either a single country name or a vector of multiple countries.
+If you provide any country name, then the function will return only the genera
+with native distribution known to any of the provided country names, as available
+in POWO.}
+
+\item{verbose}{Logical, if \code{FALSE}, the search results will not be printed
+in the console in full.}
 }
 \value{
 Table in data frame format.
@@ -35,9 +43,10 @@ resGenera <- powoGenera(powocodes$family, powocodes$uri,
 
 write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
 
-# This time providing a vector with the genus of interest
+This time providing a vector with the genus of interest
 resGenera <- powoGenera(powocodes$family, powocodes$uri,
                         genus = c("Luetzelburgia", "Bertholletia"),
+                        country = c("Argentina", "Brazil", "French Guiana"),
                         verbose = TRUE)
 
 write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
