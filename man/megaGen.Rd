@@ -12,10 +12,13 @@ megaGen(family, uri,
 \item{family}{Either a single family name or a vector of multiple families
 that are present in POWO.}
 
-\item{uri}{one or multiple URI addresses for each family to be searched in POWO.}
+\item{uri}{One or multiple URI addresses for each family to be searched in POWO.}
 
-\item{treshold}{defined limit of species number within a genus to be considered
+\item{treshold}{Defined limit of species number within a genus to be considered
 megadiverse.}
+
+\item{verbose}{Logical, if \code{FALSE}, the search results will not be printed
+in the console in full.}
 }
 \value{
 Table in data frame format.
