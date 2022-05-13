@@ -131,19 +131,20 @@ toptenGen <- function(dir = "results_toptenGen/",
        group_by(family) %>%               # to search for each family
        slice(1:10)                        # filtering the top ten richest genera
 
-  if(save = TRUE){
+
+  if(save){
     # Create a new directory to save the results with current date
-    if(!dir.exists(dir)) {
-      todaydate <- format(Sys.time(), "%d %b %Y")
-      folder_name <- paste0(dir, gsub(" ", "", todaydate))
-      message(paste0("Writing ", folder_name, "on disk."))
-      dir.create(folder_name) } #if there is no directory... make one!
+    #if(!dir.exists(dir)) {
+     # todaydate <- format(Sys.time(), "%d %b %Y")
+     # folder_name <- paste0(dir, gsub(" ", "", todaydate))
+     # message(paste0("Writing ", folder_name, " on disk."))
+     # dir.create(folder_name) } #if there is no directory... make one!
 
     # Creating and saving the spreadsheet in .csv format
     fullname <- paste0(dir, filename, ".csv")
-    message(paste0("Writing the spreadsheet ", fullname, "on disk."))
+    message(paste0("Writing the spreadsheet `", fullname, "` on disk."))
     fwrite(df,
-           fullname,
+           file = fullname,
            sep = ",",
            row.names = FALSE,
            col.names = TRUE)
