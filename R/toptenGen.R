@@ -133,15 +133,16 @@ toptenGen <- function(dir = "results_toptenGen/",
 
 
   if(save){
-    # Create a new directory to save the results with current date
-    #if(!dir.exists(dir)) {
-     # todaydate <- format(Sys.time(), "%d %b %Y")
-     # folder_name <- paste0(dir, gsub(" ", "", todaydate))
-     # message(paste0("Writing ", folder_name, " on disk."))
-     # dir.create(folder_name) } #if there is no directory... make one!
+    #Create a new directory to save the results with current date
+    if(!dir.exists(dir)) {
+      dir.create(dir)
+      todaydate <- format(Sys.time(), "%d %b %Y")
+      folder_name <- paste0(dir, gsub(" ", "", todaydate))
+      message(paste0("Writing `", folder_name, "` on disk."))
+      dir.create(folder_name) } #if there is no directory... make one!
 
     # Creating and saving the spreadsheet in .csv format
-    fullname <- paste0(dir, filename, ".csv")
+    fullname <- paste0(folder_name, "/", filename, ".csv")
     message(paste0("Writing the spreadsheet `", fullname, "` on disk."))
     fwrite(df,
            file = fullname,
