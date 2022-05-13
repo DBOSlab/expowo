@@ -2,7 +2,7 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a data frame listing the top ten most diverse genera
+#' @description It produces a CSV file listing the top ten most diverse genera
 #' of any target botanical family associated to the URI addresses of angiosperm
 #' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
@@ -27,7 +27,7 @@
 #' @param save Logical, if \code{FALSE}, the search results will not be saved.
 #' Defaults is TRUE.
 #'
-#' @return Table in data frame format.
+#' @return Table in .csv format and saves the output on disk.
 #'
 #' @examples
 #' \dontrun{
