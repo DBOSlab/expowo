@@ -7,8 +7,14 @@
 #' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
 #' @usage
-#' toptenGen(family, uri,
-#'           verbose = TRUE)
+#' toptenGen(dir, filename, family, uri,
+#'           verbose = TRUE, save = TRUE)
+#'
+#' @param dir Pathway to computer`s directory, where the file will be saved if the
+#' param "save" is setted up in \code{TRUE}. Default is to create a directory
+#' named "results_toptenGen/".
+#'
+#' @param filename Name of the final output file. Default is to create a file entitled "output".
 #'
 #' @param family Either a single family name or a vector of multiple families
 #' that are present in POWO.
@@ -16,10 +22,12 @@
 #' @param uri one or multiple URI addresses for each family to be searched in POWO.
 #'
 #' @param verbose Logical, if \code{FALSE}, the search results will not be printed
-#' in the console in full.
+#' in the console in full. Defaults is TRUE.
+#'
+#' @param save Logical, if \code{FALSE}, the search results will not be saved.
+#' Defaults is TRUE.
 #'
 #' @return Table in data frame format.
-#'
 #'
 #' @examples
 #' \dontrun{
@@ -27,20 +35,26 @@
 #' powocodes <- data.frame(powocodes)
 #' powocodes <- cbind(family = c("Araceae", "Lecythidaceae"), powocodes)
 #'
-#' resTopten <- toptenGen(powocodes$family, powocodes$uri,
-#'                        verbose = TRUE)
-#'
-#' write.csv(resTopten, "powo_toptengen_accepted_number_spp.csv", row.names=FALSE)
+#'toptenGen(dir = "results_toptenGen/",
+#'          filename = "Araceae_Lecythidaceae",
+#'          powocodes$family,
+#'          powocodes$uri,
+#'          verbose = TRUE,
+#'          save = TRUE)
 #'}
 #'
 #' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
+#' @importFrom data.table fwrite
 #'
 #' @export
 #'
 
-toptenGen <- function(family, uri,
-                      verbose = TRUE) {
+toptenGen <- function(dir = "results_toptenGen/",
+                      filename = "output",
+                      family, uri,
+                      verbose = TRUE,
+                      save = TRUE) {
 
   powo_codes <- data.frame(family = family,
                            uri = uri)
@@ -116,6 +130,24 @@ toptenGen <- function(family, uri,
        arrange(desc(species_number))  %>%     # displaying in the decreasing order
        group_by(family) %>%               # to search for each family
        slice(1:10)                        # filtering the top ten richest genera
+
+  if(save = TRUE){
+    # Create a new directory to save the results with current date
+    if(!dir.exists(dir)) {
+      todaydate <- format(Sys.time(), "%d %b %Y")
+      folder_name <- paste0(dir, gsub(" ", "", todaydate))
+      message(paste0("Writing ", folder_name, "on disk."))
+      dir.create(folder_name) } #if there is no directory... make one!
+
+    # Creating and saving the spreadsheet in .csv format
+    fullname <- paste0(dir, filename, ".csv")
+    message(paste0("Writing the spreadsheet ", fullname, "on disk."))
+    fwrite(df,
+           fullname,
+           sep = ",",
+           row.names = FALSE,
+           col.names = TRUE)
+  }
 
   return(df)
 }
