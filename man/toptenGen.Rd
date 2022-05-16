@@ -2,40 +2,68 @@
 % Please edit documentation in R/toptenGen.R
 \name{toptenGen}
 \alias{toptenGen}
-\title{Extracts top ten genera with highest species diversity}
+\title{Extracts the top ten genera with highest species diversity}
 \usage{
 toptenGen(family, uri,
-          verbose = TRUE)
+          verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
-\item{family}{Either a single family name or a vector of multiple families
-that are present in POWO.}
+\item{family}{Either one family name or a vector of multiple families that are
+present in POWO.}
 
-\item{uri}{one or multiple URI addresses for each family to be searched in POWO.}
+\item{uri}{URI address for each family to be searched in POWO.}
 
 \item{verbose}{Logical, if \code{FALSE}, the search results will not be printed
 in the console in full.}
+
+\item{save}{Logical, if \code{FALSE}, the search results will not be saved.}
+
+\item{dir}{Pathway to the computer's directory, where the file will be saved
+provided that the argument \code{save} is set up in \code{TRUE}. The default
+is to create a directory named \strong{results_toptenGen} and the searched results
+will be saved within a subfolder named by the current date.}
+
+\item{filename}{Name of the output file to be saved. Default is to create a file
+entitled \strong{output}.}
 }
 \value{
-Table in data frame format.
+Table in .csv format that is saved on disk.
 }
 \description{
-It produces a data frame listing the top ten most diverse genera
-of any target botanical family associated to the URI addresses of angiosperm
-families at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
+It produces a CSV file listing the top ten most diverse genera
+of any target botanical family of flowering plants at
+\href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
 \dontrun{
-powocodes <- taxize::get_pow(c("Araceae", "Lecythidaceae"))
-powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = c("Araceae", "Lecythidaceae"), powocodes)
+library(expowo)
+library(taxize)
+fam <- c("Araceae", "Lecythidaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
 
-resTopten <- toptenGen(powocodes$family, powocodes$uri,
-                       verbose = TRUE)
+toptenGen(powocodes$family, powocodes$uri,
+          verbose = TRUE,
+          save = TRUE,
+          dir = "results_toptenGen/",
+          filename = "Araceae_Lecythidaceae")
 
-write.csv(resTopten, "powo_toptengen_accepted_number_spp.csv", row.names=FALSE)
+## Searching for the top ten most diverse genera
+## in any or all flowering plant families, by using
+## the URI addresses within the POWOcodes data file
+
+data(POWOcodes)
+
+toptenGen(POWOcodes$family, POWOcodes$uri,
+        verbose = TRUE,
+        save = TRUE,
+        dir = "results_toptenGen/",
+        filename = "toptendiverse_plant_genera")
 }
 
+}
+\seealso{
+\code{\link{POWOcodes}}
 }
 \author{
 Debora Zuanny & Domingos Cardoso

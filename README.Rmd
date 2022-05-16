@@ -15,136 +15,181 @@ knitr::opts_chunk$set(
 
 # expowo
 
-<!-- badges: start -->
-<!-- badges: end -->
+An R package for mining plant checklist, diversity estimates, and distribution data 
+from RGB Kew’s [Plants of the World Online (POWO)](https://powo.science.kew.org).
 
 ## Overview
 
-The main goal of the __expowo__ package is to retrieve information the diversity and
-distribution of any plant family as publicly available at the taxonomically verified
-database [Plants of the World Online (POWO)](https://powo.science.kew.org).
+The main goal of the __expowo__ package is to retrieve information about the 
+diversity and distribution of any plant family as publicly available at the 
+taxonomically verified database [Plants of the World Online (POWO)](https://powo.science.kew.org).
 The package is intended to efficiently miner the content on the source html pages
 for any specific genus and family. It can return a comma-separated values (CSV) 
-file with the number of accepted species and distribution for any genus as well 
-as the full checklist of accepted species.
+file with the number of accepted species and country-level distribution for any genus
+as well as the full checklist of accepted species in any genus or family, their authorship, original publication and global distribution.
+
+
+## Before using __expowo__
+
+#### Update R and RStudio versions
+Please make sure you have installed the latest versions of both R (<a href= "https://cran.r-project.org/bin/macosx/" target="_blank">Mac OS</a>, <a href= "https://cran.r-project.org/bin/windows/base/" target="_blank">Windows</a>) and 
+RStudio (<a href= "https://www.rstudio.com/products/rstudio/download/" 
+target="_blank">Mac OS /  Windows</a>: choose the free version).
+
 
 ## Installation
 
-You can install the development version of expowo from [GitHub](https://github.com/) using the [devtools](https://github.com/r-lib/devtools) package with:
+You can install the latest development version of __expowo__ from [GitHub](https://github.com/) 
+using the [devtools](https://github.com/r-lib/devtools) package with the following 
+R code:
 
 ``` r
 install.packages("devtools")
 devtools::install_github("deborazuanny/expowo")
 ```
+```r
+library(expowo)
+```
+
+OBS.: To download the development version, you will need to have the [Git](http://git-scm.com/) software installed. And if your operating system is Microsoft Windows, you will 
+also need to download the [Rtools](http://cran.r-project.org/bin/windows/Rtools/).
+
+Otherwise, you will be able to install __expowo__ more easily when it is available
+on CRAN, by just running the following R code:
+
+``` r
+install.packages("expowo")
+```
+```r
+library(expowo)
+```
 
 ## Usage
 
-The package's four basic functions (`powoGenera`, `powoSpecies`, `megaGen`, and 
-`toptenGen`) requires only the name of the target family (or a vector with multiple 
+The package's four major functions (`powoGenera`, `powoSpecies`, `megaGen`, and 
+`toptenGen`) require only the name of the target family (or a vector with multiple 
 family names) and the associated specific URI (Uniform Resource Identifier) that 
-identifies the html page for each family at POWO. To get the POWO URI for any accepted 
-plant family, you can either look at the data frame object under `POWOcodes` that 
-come together with the installed expowo package, or you can use the function 
-`get_pow` from the package [__taxize__](https://github.com/ropensci/taxize).
-So, the vector of URI codes is the main input file to everything you can do with 
-expowo package. See below examples on how to use expowo functions to get the basic 
+identifies the html page for each family in POWO. These four major functions work 
+with other three auxiliary functions (`getGenURI`, `getNumb`, and `getDist`)
+to mine the plant data. Respectively, `getGenURI` mines the URI for each genus, 
+`getNumb` mines the total number of species within any genus, and `getDist` does 
+a complete search for native and introduced country-level distribution any genus 
+and species. To get the POWO URI for any accepted plant family, 
+you can either look at the data frame object `POWOcodes` that come together 
+with the installed __expowo__ package, or you can use the function `get_pow` from 
+the package [__taxize__](https://github.com/ropensci/taxize). So, the vector of URI 
+codes is the main input file to everything you can do with expowo package. See 
+below examples on how to use the __expowo__'s major functions for mining basic 
 information on the global plant diversity and distribution.
 
-![How the first 15 lines of our associated data 'POWOcodes' should appear in your RStudio](vignettes/POWOcodes.png)
+#### _1. `powoGenera`: Mining all accepted genera for any angiosperm family_
 
-#### _1. `powoGenera`: Extracting a list of plant genera_
-
-This function produces a CSV file listing all genera with associated number
-of accepted species and their geographical distribution. You can also narrow down
-the search to focus on just a particular genus from a particular country or a list 
-of genera from a list of countries.
+This function produces a CSV file listing all genera with associated number of 
+accepted species and their global geographical distribution at country level. 
+You can also narrow down the search to focus on just a particular genus from a particular country or a list of genera from a list of countries (please check this [article](https://github.com/domingoscardoso/expowo) for further details)
 
 ##### Example of a POWO search with `powoGenera`:
 ``` r
 library(expowo)
+library(taxize)
 
-powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
-powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
+fam <- c("Fabaceae", "Lecythidaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
 
-resGenera <- powoGenera(powocodes$family, powocodes$uri,
-                         verbose = TRUE)
-
-```
-
-Note that you can choose between the names of individual plant families or search 
-for all of them just by adjusting the abovementioned code.
-
-```r
-library(expowo)
-
-powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
-powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
-
-resGenera <- powoGenera(powocodes$family, powocodes$uri,
-                        verbose = TRUE)
+powoGenera(powocodes$family,
+           powocodes$uri,
+           verbose = TRUE,
+           save = TRUE,
+           dir = "results_powoGenera/",
+           filename = "Fabaceae_Lecythidaceae")
 ```
 
 
-#### _2. `powoSpecies`: Extracting a list of plant species_
+#### _2. `powoSpecies`: Mining accepted species for any angiosperm genus or family_
 
 With this function, you will be able to produce a CSV file of each genus with 
 the accepted number of species, considering hybrid species or not, according to 
-the data available at POWO's database. You can also narrow down the search to 
-focus on just the species from a particular country or a list of countries.
+the data available in the POWO's database. You can also narrow down the search to 
+focus on just the species from a particular country or a list of countries, as 
+the following example.
 
 ##### Example of a POWO search with `powoSpecies`:
 
+``` r
+library(expowo)
+library(taxize)
 
-![Example with hybrid spp](vignettes/POWOcodes_b.png)
-![Example with accepted spp](vignettes/POWOcodes_c.png)
+fam <- c("Araceae", "Lecythidaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
+                   
+powoSpecies(powocodes$family, powocodes$uri,
+            hybridspp = FALSE,
+            verbose = TRUE,
+            save = TRUE,
+            dir = "results_powoSpecies/",
+            filename = "Araceae_Lecythidaceae")
+```
 
-
-
-#### _3. `megaGen`: Extracting a list of mega-diverse genera_
+#### _3. `megaGen`: Mining megadiverse genera for any angiosperm family_
 
 This function is intended to produce a CSV file with the most diverse genera of 
-any family, based on a threshold number you set. In the following example, we 
-choose the plant families "Fabaceae" and "Lecythidaceae" and considered a genus 
-as mega-diverse when it more than 500 species, as set in the argument threshold.
+any flowering plant family, based on a specified threshold number. In the following 
+example, we choose the plant families "Fabaceae" and "Lecythidaceae", and considered 
+a threshold of 500 species for a megadiverse genus, as set in the argument \code{thld}.
 
 ##### Example of a POWO search with `megaGen`:
+
 ``` r
-powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
-powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
+library(expowo)
+library(taxize)
 
-resMega <- megaGen(powocodes$family, powocodes$uri,
-                   treshold = 500,
-                   verbose = TRUE)
+fam <- c("Fabaceae", "Lecythidaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
+
+megaGen(powocodes$family, powocodes$uri,
+        thld = 500,
+        verbose = TRUE,
+        save = TRUE,
+        dir = "results_megaGen/",
+        filename = "Fabaceae_Lecythidaceae")
 ```
-![Result from the example above, using the megaGen function](vignettes/POWOcodes_d.png)
 
-
-#### _4. `toptenGen`: Extracting the top ten genera with highest species diversity_
+#### _4. `toptenGen`: Mining the top ten most species-rich genera for any angiosperm family_
 
 This function is relatively similar to the `megaGen`, but instead of using any 
-specific threshold, it produces a CSV file listing the top ten most diverse genera
-of any target plant family.
-
+specific threshold, it saves a CSV file listing the top ten most diverse genera
+of any target angiosperm family.
 
 ##### Example of a POWO search with `toptenGen`:
 
-```r
-powocodes <- taxize::get_pow(c("Araceae", "Lecythidaceae"))
-powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = c("Araceae", "Lecythidaceae"), powocodes)
+``` r
+library(expowo)
+library(taxize)
 
-resTopten <- toptenGen(powocodes$family, powocodes$uri,
-                      verbose = TRUE)
+fam <- c("Araceae", "Lecythidaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
+
+toptenGen(powocodes$family, powocodes$uri,
+          verbose = TRUE,
+          save = TRUE,
+          dir = "results_toptenGen/",
+          filename = "Araceae_Lecythidaceae")
 ```
-![Result generated from the example above, using the toptenGen function](vignettes/POWOcodes_e.png)
 
 
 ## Documentation
-A detailed description of the _expowo_'s full functionality will soon be available in [here](https://github.com/deborazuanny/expowo/tree/main/vignettes/).
+A detailed description of the __expowo__'s full functionality will soon be available in [here](https://github.com/deborazuanny/expowo/tree/main/vignettes/).
 
+The __expowo__ package is being continuously constructed. If you want to make 
+suggestions, let us know! We hope it will be helpful for your botanical research!
 
 ## Citation
-Zuanny, D. & Cardoso, D. (2022). expowo: An R package for mining plant diversity and distribution data. https://github.com/deborazuanny/expowo
+Zuanny, D. & Cardoso, D. (2022). expowo: An R package for mining plant diversity 
+and distribution data. https://github.com/deborazuanny/expowo
+
+
+![](vignettes/DBOSlab_logo.png){width=30%}

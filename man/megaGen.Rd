@@ -2,47 +2,76 @@
 % Please edit documentation in R/megaGen.R
 \name{megaGen}
 \alias{megaGen}
-\title{Extracts mega-diverse genera from POWO}
+\title{Extracts megadiverse genera from POWO}
 \usage{
-megaGen(family, uri,
-        treshold = NULL,
-        verbose = TRUE)
+megaGen(family, uri, thld = NULL,
+        verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
-\item{family}{Either a single family name or a vector of multiple families
-that are present in POWO.}
+\item{family}{Either one family name or a vector of multiple families that are
+present in POWO.}
 
-\item{uri}{One or multiple URI addresses for each family to be searched in POWO.}
+\item{uri}{URI address for each family to be searched in POWO.}
 
-\item{treshold}{Defined limit of species number within a genus to be considered
+\item{thld}{A defined threshold of species number for a genus to be considered
 megadiverse.}
 
-\item{verbose}{Logical, if \code{FALSE}, the search results will not be printed
+\item{verbose}{Logical, if \code{FALSE}, the searched results will not be printed
 in the console in full.}
+
+\item{save}{Logical, if \code{FALSE}, the searched results will not be saved on disk.}
+
+\item{dir}{Pathway to the computer's directory, where the file will be saved
+provided that the argument \code{save} is set up in \code{TRUE}. The default
+is to create a directory named \strong{results_megaGen} and the searched results
+will be saved within a subfolder named by the current date.}
+
+\item{filename}{Name of the output file to be saved. Default is to create a file
+entitled \strong{output}.}
 }
 \value{
-Table in data frame format.
+Table in .csv format that is saved on disk.
 }
 \description{
-It produces a data frame listing all megadiverse genera associated to
-the URI addresses of angiosperm families at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
-The treshold to be considered a megadiverse genus should be defined by a numeric
-value. \href{https://doi.org/10.2307/4135449}{Frodin (2004)} suggests 500 species
-as the treshold for megadiverse genera.
+It produces a CSV file listing all megadiverse genera
+any angiosperm family at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
+A numeric value should define the threshold to be considered a megadiverse genus.
+\href{https://doi.org/10.2307/4135449}{Frodin (2004)} suggests 500 species
+as the threshold for megadiverse genera.
 }
 \examples{
 \dontrun{
-powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
-powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 
-resMega <- megaGen(powocodes$family, powocodes$uri,
-                   treshold = 500,
-                   verbose = TRUE)
+library(expowo)
+library(taxize)
+fam <- c("Fabaceae", "Lecythidaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
 
-write.csv(resMega, "powo_megagenera_accepted_number_spp.csv", row.names=FALSE)
+megaGen(powocodes$family, powocodes$uri,
+        thld = 500,
+        verbose = TRUE,
+        save = TRUE,
+        dir = "results_megaGen/",
+        filename = "Fabaceae_Lecythidaceae")
+
+## Searching for all megadiverse angiosperm genera
+## in any or all families, by using the URI addresses
+## within the POWOcodes data file
+
+data(POWOcodes)
+
+megaGen(POWOcodes$family, POWOcodes$uri,
+        thld = 500,
+        verbose = TRUE,
+        save = TRUE,
+        dir = "results_megaGen/",
+        filename = "megadiverse_plant_genera")
 }
 
+}
+\seealso{
+\code{\link{POWOcodes}}
 }
 \author{
 Debora Zuanny & Domingos Cardoso

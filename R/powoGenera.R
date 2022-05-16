@@ -2,54 +2,87 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a data frame listing all genera with associated number
-#' of accepted species and geographical distribution, from URI addresses of angiosperm
-#' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
+#' @description It produces a CSV file listing all genera with associated number
+#' of accepted species and geographical distribution for any angiosperm
+#' family at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
 #' @usage
-#' powoGenera(family, uri, genus, country)
+#' powoGenera(family, uri, genus = NULL, country = NULL,
+#'            verbose = TRUE, save = TRUE, dir, filename)
 #'
-#' @param family Either a single family name or a vector of multiple families
-#' that are present in POWO.
+#' @param family Either one family name or a vector of multiple families that are
+#' present in POWO.
 #'
-#' @param uri one or multiple URI addresses for each family to be searched in POWO.
+#' @param uri URI address for each family to be searched in POWO.
 #'
-#' @param genus Either a single genus name or a vector of multiple genera
-#' that are present in POWO. If you do not provide any genus name, then the function
-#' will search all accepted genera known for the family names provided.
+#' @param genus Either one genus name or a vector of multiple genera
+#' that are present in POWO. If any genus name is not provided, then the function
+#' will search all accepted genera known for the target family.
 #'
-#' @param country Either a single country name or a vector of multiple countries.
-#' If you provide any country name, then the function will return only the genera
-#' with native distribution known to any of the provided country names, as available
-#' in POWO.
+#' @param country Either one country name or a vector of multiple countries.
+#' If country names are provided, then the function will return only the genera
+#' that are native to such countries, according to POWO.
 #'
-#' @param verbose Logical, if \code{FALSE}, the search results will not be printed
+#' @param verbose Logical, if \code{FALSE}, the searched results will not be printed
 #' in the console in full.
 #'
-#' @return Table in data frame format.
+#' @param save Logical, if \code{FALSE}, the searched results will not be saved on disk.
 #'
+#' @param dir Pathway to the computer's directory, where the file will be saved
+#' provided that the argument \code{save} is set up in \code{TRUE}. The default
+#' is to create a directory named **results_powoGenera** and the searched results
+#' will be saved within a subfolder named by the current date.
+#'
+#' @param filename Name of the output file to be saved. Default is to create a file
+#' entitled **output**.
+#'
+#' @return Table in .csv format and saves the output on disk.
+#'
+#' @seealso \code{\link{megaGen}}
+#' @seealso \code{\link{toptenGen}}
 #' @seealso \code{\link{powoSpecies}}
+#' @seealso \code{\link{POWOcodes}}
 #'
 #' @examples
 #' \dontrun{
-#' powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
-#' powocodes <- data.frame(powocodes)
-#' powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
+#' library(expowo)
+#' library(taxize)
 #'
-#' resGenera <- powoGenera(powocodes$family, powocodes$uri,
-#'                         verbose = TRUE)
-#' write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
+#' fam <- c("Fabaceae", "Lecythidaceae")
+#' powocodes <- cbind(family = fam,
+#'                    data.frame(taxize::get_pow(fam)))
 #'
-#' resGenera <- powoGenera(powocodes$family, powocodes$uri,
-#'                         genus = c("Luetzelburgia", "Bertholletia"),
-#'                         country = c("Argentina", "Brazil", "French Guiana"),
-#'                         verbose = TRUE)
-#' write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
+#' powoGenera(powocodes$family,
+#'            powocodes$uri,
+#'            verbose = TRUE,
+#'            save = TRUE,
+#'            dir = "results_powoGenera/",
+#'            filename = "Fabaceae_Lecythidaceae")
 #'
+#' powoGenera(powocodes$family, powocodes$uri,
+#'            genus = c("Luetzelburgia", "Bertholletia"),
+#'            country = c("Argentina", "Brazil", "French Guiana"),
+#'            verbose = TRUE,
+#'            save = TRUE,
+#'            dir = "results_powoGenera/",
+#'            filename = "Fabaceae_Lecythidaceae")
+#'
+#' ## Searching for all genera and associated species number and global distribution
+#' ## in any or all angiosperm families, by using the URI addresses
+#' ## within the POWOcodes data file
+#'
+#' data(POWOcodes)
+#'
+#' powoGenera(POWOcodes$family, POWOcodes$uri,
+#'            verbose = TRUE,
+#'            save = TRUE,
+#'            dir = "results_powoGenera/",
+#'            filename = "all_angiosperm_genera")
 #'}
 #'
 #' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
+#' @importFrom data.table fwrite
 #'
 #' @export
 #'
@@ -57,133 +90,18 @@
 powoGenera <- function(family, uri,
                        genus = NULL,
                        country = NULL,
-                       verbose = TRUE) {
+                       verbose = TRUE,
+                       save = TRUE,
+                       dir = "results_powoGenera/",
+                       filename = "output") {
 
-  powo_codes <- data.frame(family = family,
-                           uri = uri)
+  powo_codes_fam <- data.frame(family = family,
+                               uri = uri)
 
-  # POWO search for the number of genera in each family
-  powo_fams_uri <- list()
-  list_fams <- list()
-  for (i in seq_along(powo_codes$uri)) {
-    # Adding a pause 300 seconds of um pause every 500th search,
-    # because POWO website cannot permit constant search
-    if (i%%500 == 0) {
-      Sys.sleep(300)
-    }
-    # Adding a counter to identify each running search
-    if (verbose) {
-      print(paste0("Searching... ",
-                   powo_codes$family[i], " ", i, "/", length(powo_codes$family)))
-    }
-
-    # Visiting POWO source page for each entry family
-    powo_fams_uri[[i]] <- readLines(powo_codes$uri[i], encoding = "UTF-8", warn = F)
-
-    # Find whether the family exists by searching a pattern for constituent accepted genera
-    tt <- grepl("\\s{2,}This is a synonym of", powo_fams_uri[[i]])
-    temp <- powo_fams_uri[[i]][tt]
-
-    if (length(temp) != 0) {
-
-      tt <- grepl("<a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]", powo_fams_uri[[i]])
-
-      powo_fams_uri[[i]][tt] <- gsub(".*org[:]names[:]", "", powo_fams_uri[[i]][tt])
-      new_powo_fam_uri <- gsub("\".*", "", powo_fams_uri[[i]][tt])
-      new_fam_name <- gsub(".*[=]", "", powo_fams_uri[[i]][tt])
-      new_fam_name <- gsub("<.*", "", new_fam_name)
-      new_fam_name <- gsub(".*>", "", new_fam_name)
-      print(paste(powo_codes$family[i], "is under synonym of",  new_fam_name))
-
-
-      if (any(!new_fam_name %in% powo_codes$family)) {
-        print(paste("Searching genera now under", paste0(new_fam_name, "...")))
-        new_powo_fam_uri <- paste("http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:", new_powo_fam_uri, sep = "")
-
-        # Visiting POWO source page again for the accepted family name of an originally
-        # entered family that is under synonym
-        powo_fams_uri[[i]] <- readLines(new_powo_fam_uri, encoding = "UTF-8", warn = F)
-
-        tt <- grepl("\\s{2,}This is a synonym of", powo_fams_uri[[i]])
-        temp <- powo_fams_uri[[i]][tt]
-
-        powo_codes$family[i] <- new_fam_name
-
-      } else {
-        powo_codes <- powo_codes[!powo_codes$family %in% powo_codes$family[i], ]
-      }
-
-    }
-
-    if (length(temp) == 0) {
-      # The temp vector get the uri for each genus within the family
-      temp <- grepl("<li><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]", powo_fams_uri[[i]])
-      powo_genus_uri <- powo_fams_uri[[i]][temp]
-      # The following subset within the retrieved genus uri within the temp vector
-      # is to exclude any possible uri of family-level synonyms
-      temp <- !grepl("aceae|oideae|meta\\sproperty|meta\\sname|Compositae|Cruciferae|Gramineae|Guttiferae|Labiatae|Leguminosae|Palmae|Umbelliferae", powo_genus_uri)
-
-      list_fams[[i]] <- data.frame(temp_genus_uri = powo_genus_uri[temp],
-                                   family = powo_codes$family[i],
-                                   genus = NA,
-                                   authors = NA,
-                                   scientific_name = NA,
-                                   kew_id = NA,
-                                   powo_uri = NA)
-
-      # Filling in each column
-      list_fams[[i]][["temp_genus_uri"]] <- gsub(".*<li><a href[=]\"", "", list_fams[[i]][["temp_genus_uri"]])
-      list_fams[[i]][["powo_uri"]] <- paste("http://www.plantsoftheworldonline.org", gsub("\".+", "", list_fams[[i]][["temp_genus_uri"]]), sep = "")
-      list_fams[[i]][["kew_id"]] <- gsub(".+[:]", "", list_fams[[i]][["powo_uri"]])
-
-      list_fams[[i]][["authors"]] <- gsub(".*em>", "", list_fams[[i]][["temp_genus_uri"]])
-      list_fams[[i]][["authors"]] <- gsub("<.*", "", list_fams[[i]][["authors"]])
-      list_fams[[i]][["authors"]] <- gsub("^\\s", "", list_fams[[i]][["authors"]])
-      list_fams[[i]][["genus"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "", list_fams[[i]][["temp_genus_uri"]])
-      list_fams[[i]][["scientific_name"]] <- paste(list_fams[[i]][["genus"]], list_fams[[i]][["authors"]])
-
-      # Select specific columns of interest
-      list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "authors", "scientific_name", "kew_id", "powo_uri")
-    }
-
-    # ending the main for loop
-  }
-  names(list_fams) <- powo_codes$family
-
-  # Combining all dataframes from the list of each family search
-  # Each dataframe includes the retrieved genus uri for each searched family
-  if (length(list_fams) == 1) {
-    df <- list_fams[[1]]
-  } else {
-    df <- list_fams[[1]]
-    for (i in 2:length(list_fams)) {
-      df <- rbind(df, list_fams[[i]])
-    }
-  }
-
-  # If a vector of genus names is provided, then remove all other genera in the
-  # family during the next search steps
-  if (!is.null(genus)) {
-
-    temp <- df$genus %in% genus
-
-    if (length(which(temp == TRUE)) == length(genus)) {
-
-      df <- df[temp, ]
-
-    } else {
-
-      stop(paste("Any genus in the provided genus vector might have a typo or is not present in POWO.\n",
-                 "Please correct the following names in your genus vector according to POWO:\n", "\n",
-
-                 paste(genus[!genus %in% df$genus], collapse = ", "), "\n", "\n",
-
-                 "Find help also at DBOSLab-UFBA:\n",
-                 "Débora Zuanny, deborazuanny@gmail.com\n",
-                 "Domingos Cardoso, cardosobot@gmail.com"))
-    }
-  }
-
+  # POWO search for the genus URI in each family using auxiliary function getGenURI
+  df <- getGenURI(powo_codes_fam,
+                  genus = genus,
+                  verbose = verbose)
 
   # Extract number of species and distribution using auxiliary function getDist
   df <- getDist(df,
@@ -276,6 +194,28 @@ powoGenera <- function(family, uri,
     }
     df <- df[temp, ]
 
+  }
+
+  if (save) {
+    # Create a new directory to save the results with current date
+    if (!dir.exists(dir)) {
+      dir.create(dir)
+      todaydate <- format(Sys.time(), "%d %b %Y")
+      folder_name <- paste0(dir, gsub(" ", "", todaydate))
+      print(paste0("Writing '", folder_name, "' on disk."))
+      dir.create(folder_name) # If there is no directory... make one!
+    } else {
+      # If directory was created during a previous search, get its name to save results
+      folder_name <- paste0(dir, gsub(" ", "", format(Sys.time(), "%d %b %Y")))
+    }
+    # Create and save the spreadsheet in .csv format
+    fullname <- paste0(folder_name, "/", filename, ".csv")
+    print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
+    data.table::fwrite(df,
+                       file = fullname,
+                       sep = ",",
+                       row.names = FALSE,
+                       col.names = TRUE)
   }
 
   return(df)

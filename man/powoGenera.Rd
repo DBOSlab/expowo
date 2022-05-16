@@ -4,58 +4,89 @@
 \alias{powoGenera}
 \title{Extracts list of genera from POWO}
 \usage{
-powoGenera(family, uri, genus, country)
+powoGenera(family, uri, genus = NULL, country = NULL,
+           verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
-\item{family}{Either a single family name or a vector of multiple families
-that are present in POWO.}
+\item{family}{Either one family name or a vector of multiple families that are
+present in POWO.}
 
-\item{uri}{one or multiple URI addresses for each family to be searched in POWO.}
+\item{uri}{URI address for each family to be searched in POWO.}
 
-\item{genus}{Either a single genus name or a vector of multiple genera
-that are present in POWO. If you do not provide any genus name, then the function
-will search all accepted genera known for the family names provided.}
+\item{genus}{Either one genus name or a vector of multiple genera
+that are present in POWO. If any genus name is not provided, then the function
+will search all accepted genera known for the target family.}
 
-\item{country}{Either a single country name or a vector of multiple countries.
-If you provide any country name, then the function will return only the genera
-with native distribution known to any of the provided country names, as available
-in POWO.}
+\item{country}{Either one country name or a vector of multiple countries.
+If country names are provided, then the function will return only the genera
+that are native to such countries, according to POWO.}
 
-\item{verbose}{Logical, if \code{FALSE}, the search results will not be printed
+\item{verbose}{Logical, if \code{FALSE}, the searched results will not be printed
 in the console in full.}
+
+\item{save}{Logical, if \code{FALSE}, the searched results will not be saved on disk.}
+
+\item{dir}{Pathway to the computer's directory, where the file will be saved
+provided that the argument \code{save} is set up in \code{TRUE}. The default
+is to create a directory named \strong{results_powoGenera} and the searched results
+will be saved within a subfolder named by the current date.}
+
+\item{filename}{Name of the output file to be saved. Default is to create a file
+entitled \strong{output}.}
 }
 \value{
-Table in data frame format.
+Table in .csv format and saves the output on disk.
 }
 \description{
-It produces a data frame listing all genera with associated number
-of accepted species and geographical distribution, from URI addresses of angiosperm
-families at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
+It produces a CSV file listing all genera with associated number
+of accepted species and geographical distribution for any angiosperm
+family at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
 \dontrun{
-powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
-powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
+library(expowo)
+library(taxize)
+fam <- c("Fabaceae", "Lecythidaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
 
-resGenera <- powoGenera(powocodes$family, powocodes$uri,
-                        verbose = TRUE)
+powoGenera(powocodes$family,
+           powocodes$uri,
+           verbose = TRUE,
+           save = TRUE,
+           dir = "results_powoGenera/",
+           filename = "Fabaceae_Lecythidaceae")
 
-write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
+powoGenera(powocodes$family, powocodes$uri,
+           genus = c("Luetzelburgia", "Bertholletia"),
+           country = c("Argentina", "Brazil", "French Guiana"),
+           verbose = TRUE,
+           save = TRUE,
+           dir = "results_powoGenera/",
+           filename = "Fabaceae_Lecythidaceae")
 
-This time providing a vector with the genus of interest
-resGenera <- powoGenera(powocodes$family, powocodes$uri,
-                        genus = c("Luetzelburgia", "Bertholletia"),
-                        country = c("Argentina", "Brazil", "French Guiana"),
-                        verbose = TRUE)
+## Searching for all genera and associated species number and global distribution
+## in any or all angiosperm families, by using the URI addresses
+## within the POWOcodes data file
 
-write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
+data(POWOcodes)
 
+powoGenera(POWOcodes$family, POWOcodes$uri,
+           verbose = TRUE,
+           save = TRUE,
+           dir = "results_powoGenera/",
+           filename = "all_angiosperm_genera")
 }
 
 }
 \seealso{
+\code{\link{megaGen}}
+
+\code{\link{toptenGen}}
+
 \code{\link{powoSpecies}}
+
+\code{\link{POWOcodes}}
 }
 \author{
 Debora Zuanny & Domingos Cardoso

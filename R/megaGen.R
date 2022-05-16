@@ -1,129 +1,133 @@
-#' Extracts mega-diverse genera from POWO
+#' Extracts megadiverse genera from POWO
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a data frame listing all megadiverse genera associated to
-#' the URI addresses of angiosperm families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
-#' The treshold to be considered a megadiverse genus should be defined by a numeric
-#' value. [Frodin (2004)](https://doi.org/10.2307/4135449) suggests 500 species
-#' as the treshold for megadiverse genera.
+#' @description It produces a CSV file listing all megadiverse genera
+#' any angiosperm family at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
+#' A numeric value should define the threshold to be considered a megadiverse genus.
+#' [Frodin (2004)](https://doi.org/10.2307/4135449) suggests 500 species
+#' as the threshold for megadiverse genera.
 #'
 #' @usage
-#' megaGen(family, uri,
-#'         treshold = NULL,
-#'         verbose = TRUE)
+#' megaGen(family, uri, thld = NULL,
+#'         verbose = TRUE, save = TRUE, dir, filename)
 #'
-#' @param family Either a single family name or a vector of multiple families
-#' that are present in POWO.
+#' @param family Either one family name or a vector of multiple families that are
+#' present in POWO.
 #'
-#' @param uri One or multiple URI addresses for each family to be searched in POWO.
+#' @param uri URI address for each family to be searched in POWO.
 #'
-#' @param treshold Defined limit of species number within a genus to be considered
+#' @param thld A defined threshold of species number for a genus to be considered
 #' megadiverse.
 #'
-#' @param verbose Logical, if \code{FALSE}, the search results will not be printed
+#' @param verbose Logical, if \code{FALSE}, the searched results will not be printed
 #' in the console in full.
 #'
-#' @return Table in data frame format.
+#' @param save Logical, if \code{FALSE}, the searched results will not be saved on disk.
 #'
+#' @param dir Pathway to the computer's directory, where the file will be saved
+#' provided that the argument \code{save} is set up in \code{TRUE}. The default
+#' is to create a directory named **results_megaGen** and the searched results
+#' will be saved within a subfolder named by the current date.
+#'
+#' @param filename Name of the output file to be saved. Default is to create a file
+#' entitled **output**.
+#'
+#' @return Table in .csv format that is saved on disk.
+#'
+#' @seealso \code{\link{POWOcodes}}
 #'
 #' @examples
 #' \dontrun{
-#' powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
-#' powocodes <- data.frame(powocodes)
-#' powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 #'
-#' resMega <- megaGen(powocodes$family, powocodes$uri,
-#'                    treshold = 500,
-#'                    verbose = TRUE)
+#' library(expowo)
+#' library(taxize)
 #'
-#' write.csv(resMega, "powo_megagenera_accepted_number_spp.csv", row.names=FALSE)
+#' fam <- c("Fabaceae", "Lecythidaceae")
+#' powocodes <- cbind(family = fam,
+#'                    data.frame(taxize::get_pow(fam)))
+#'
+#' megaGen(powocodes$family, powocodes$uri,
+#'         thld = 500,
+#'         verbose = TRUE,
+#'         save = TRUE,
+#'         dir = "results_megaGen/",
+#'         filename = "Fabaceae_Lecythidaceae")
+#'
+#' ## Searching for all megadiverse angiosperm genera
+#' ## in any or all families, by using the URI addresses
+#' ## within the POWOcodes data file
+#'
+#' data(POWOcodes)
+#'
+#' megaGen(POWOcodes$family, POWOcodes$uri,
+#'         thld = 500,
+#'         verbose = TRUE,
+#'         save = TRUE,
+#'         dir = "results_megaGen/",
+#'         filename = "megadiverse_plant_genera")
 #'}
 #'
 #' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
+#' @importFrom data.table fwrite
 #'
 #' @export
 #'
 
 megaGen <- function(family, uri,
-                    treshold = NULL,
-                    verbose = TRUE) {
+                    thld = NULL,
+                    verbose = TRUE,
+                    save = TRUE,
+                    dir = "results_megaGen/",
+                    filename = "output") {
 
-  powo_codes <- data.frame(family = family,
-                           uri = uri)
 
-  # POWO search for the number of genera in each family
-  powo_fams_uri <- list()
-  list_fams <- list()
-  for (i in seq_along(powo_codes$uri)) {
-    # Adding a pause 300 seconds of um pause every 500th search,
-    # because POWO website cannot permit constant search
-    if (i%%500 == 0) {
-      Sys.sleep(300)
-    }
-    # Adding a counter to identify each running search
-    if (verbose) {
-      print(paste0("Searching... ",
-                   powo_codes$family[i], " ", i, "/", length(powo_codes$family)))
-    }
+  powo_codes_fam <- data.frame(family = family,
+                               uri = uri)
 
-    powo_fams_uri[[i]] <- readLines(powo_codes$uri[i], encoding = "UTF-8", warn = F)
-
-    temp <- grepl("<li><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]", powo_fams_uri[[i]])
-    powo_genus_uri <- powo_fams_uri[[i]][temp]
-    temp <- !grepl("aceae|oideae|meta\\sproperty|meta\\sname|Compositae|Cruciferae|Gramineae|Guttiferae|Labiatae|Leguminosae|Palmae|Umbelliferae", powo_genus_uri)
-
-    list_fams[[i]] <- data.frame(temp_genus_uri = powo_genus_uri[temp],
-                                 family = powo_codes$family[i],
-                                 genus = NA,
-                                 authors = NA,
-                                 genus_author = NA,
-                                 powo_uri = NA)
-
-    # Filling in each column
-    list_fams[[i]][["temp_genus_uri"]] <- gsub(".*<li><a href[=]\"", "", list_fams[[i]][["temp_genus_uri"]])
-    list_fams[[i]][["powo_uri"]] <- paste("http://www.plantsoftheworldonline.org", gsub("\".+", "", list_fams[[i]][["temp_genus_uri"]]), sep = "")
-
-    list_fams[[i]][["authors"]] <- gsub(".*em>", "", list_fams[[i]][["temp_genus_uri"]])
-    list_fams[[i]][["authors"]] <- gsub("<.*", "", list_fams[[i]][["authors"]])
-    list_fams[[i]][["authors"]] <- gsub("^\\s", "", list_fams[[i]][["authors"]])
-    list_fams[[i]][["genus"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "", list_fams[[i]][["temp_genus_uri"]])
-    list_fams[[i]][["genus_author"]] <- paste(list_fams[[i]][["genus"]], list_fams[[i]][["authors"]])
-
-    # Select specific columns of interest
-    list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "authors", "genus_author", "powo_uri")
-
-  }
-  names(list_fams) <- powo_codes$family
-
-  # Combining all dataframes from the list of each family search
-  if (length(list_fams) == 1) {
-    df <- list_fams[[1]]
-  } else {
-    df <- list_fams[[1]]
-    for (i in 2:length(list_fams)) {
-      df <- rbind(df, list_fams[[i]])
-    }
-  }
-
+  # POWO search for the genus URI in each family using auxiliary function getGenURI
+  df <- getGenURI(powo_codes_fam,
+                  genus = NULL,
+                  verbose = verbose)
 
   # Extract number of species using auxiliary function getNumb
   df <- getNumb(df,
                 verbose = verbose)
 
-
-  # Select specific columns of interest and the megadiverse genera by a treshold
+  # Select specific columns of interest and the megadiverse genera by a threshold
   df$species_number <- as.numeric(df$species_number)
   df <- df %>% select("family",
                       "genus",
                       "authors",
-                      "genus_author",
+                      "scientific_name",
                       "species_number",
+                      "kew_id",
                       "powo_uri") %>%
-    filter(species_number >= treshold)
+    filter(species_number >= thld)
+
+
+  if (save) {
+    # Create a new directory to save the results with current date
+    if (!dir.exists(dir)) {
+      dir.create(dir)
+      todaydate <- format(Sys.time(), "%d %b %Y")
+      folder_name <- paste0(dir, gsub(" ", "", todaydate))
+      print(paste0("Writing '", folder_name, "' on disk."))
+      dir.create(folder_name) # If there is no directory... make one!
+    } else {
+      # If directory was created during a previous search, get its name to save results
+      folder_name <- paste0(dir, gsub(" ", "", format(Sys.time(), "%d %b %Y")))
+    }
+    # Create and save the spreadsheet in .csv format
+    fullname <- paste0(folder_name, "/", filename, ".csv")
+    print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
+    data.table::fwrite(df,
+                       file = fullname,
+                       sep = ",",
+                       row.names = FALSE,
+                       col.names = TRUE)
+  }
 
   return(df)
 }
-
-
