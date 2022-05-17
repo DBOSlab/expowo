@@ -33,11 +33,11 @@ entitled \strong{output}.}
 Table in .csv format that is saved on disk.
 }
 \description{
-It produces a CSV file listing all megadiverse genera
+It produces a CSV file listing all megadiverse genera for
 any angiosperm family at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 A numeric value should define the threshold to be considered a megadiverse genus.
 \href{https://doi.org/10.2307/4135449}{Frodin (2004)} suggests 500 species
-as the threshold for megadiverse genera.
+as the threshold for a megadiverse genus.
 }
 \examples{
 \dontrun{

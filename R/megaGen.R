@@ -2,11 +2,11 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a CSV file listing all megadiverse genera
+#' @description It produces a CSV file listing all megadiverse genera for
 #' any angiosperm family at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #' A numeric value should define the threshold to be considered a megadiverse genus.
 #' [Frodin (2004)](https://doi.org/10.2307/4135449) suggests 500 species
-#' as the threshold for megadiverse genera.
+#' as the threshold for a megadiverse genus.
 #'
 #' @usage
 #' megaGen(family, uri, thld = NULL,

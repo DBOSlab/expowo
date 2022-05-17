@@ -60,7 +60,7 @@
 #'         filename = "toptendiverse_plant_genera")
 #' }
 #'
-#' @importFrom dplyr filter select
+#' @importFrom dplyr arrange filter group_by select slice
 #' @importFrom magrittr "%>%"
 #' @importFrom data.table fwrite
 #'

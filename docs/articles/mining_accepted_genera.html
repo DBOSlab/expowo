@@ -43,6 +43,8 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/mining_accepted_genera.html">Mining genus list for any plant family</a>
     <a class="dropdown-item" href="../articles/mining_accepted_species.html">Mining species list for any plant family</a>
+    <a class="dropdown-item" href="../articles/mining_megadiverse_genera.html">Mining megadiverse genera of flowering plants</a>
+    <a class="dropdown-item" href="../articles/mining_toptenrichest_genera.html">Mining the top ten richest genera of flowering plants</a>
   </div>
 </li>
       </ul>
@@ -551,24 +553,6 @@
            save <span class="op">=</span> <span class="cn">TRUE</span>,
            dir <span class="op">=</span> <span class="st">"results_powoGenera/"</span>,
            filename <span class="op">=</span> <span class="st">"country_constrained_search"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">#&gt; <span style="color: #0000BB;">══</span>  4 queries  <span style="color: #0000BB;">═══════════════</span></span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Retrieving data for taxon 'Aristolochiaceae'</span>
-<span class="co">#&gt; <span style="color: #00BB00;">✔  Found: </span> Aristolochiaceae</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Retrieving data for taxon 'Lecythidaceae'</span>
-<span class="co">#&gt; <span style="color: #00BB00;">✔  Found: </span> Lecythidaceae</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Retrieving data for taxon 'Fagaceae'</span>
-<span class="co">#&gt; <span style="color: #00BB00;">✔  Found: </span> Fagaceae</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Retrieving data for taxon 'Dipterocarpaceae'</span>
-<span class="co">#&gt; <span style="color: #00BB00;">✔  Found: </span> Dipterocarpaceae</span>
-<span class="co">#&gt; <span style="color: #B2B2B2;">══</span>  Results  <span style="color: #B2B2B2;">═════════════════</span></span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; • Total: <span style="color: #00BB00;">4</span> </span>
-<span class="co">#&gt; • Found: <span style="color: #00BB00;">4</span> </span>
-<span class="co">#&gt; • Not Found: <span style="color: #00BB00;">0</span></span></code></pre>
 <table class="table">
 <colgroup>
 <col width="1%">
@@ -743,7 +727,7 @@
 <h2 id="narrowing-down-the-powogenera-search-based-on-a-specified-genus-list">Narrowing down the <code>powoGenera</code> search based on a specified genus list<a class="anchor" aria-label="anchor" href="#narrowing-down-the-powogenera-search-based-on-a-specified-genus-list"></a>
 </h2>
 <p>You may want to retrieve information for just one or a list of accepted genera from a given country (or from a list of countries). Just like before, you only need to define a vector of genus names in the argument  and a vector of country names in the argument . In the example below, see that we have again searched for just the genera <strong><em>Asarum</em></strong> and <strong><em>Bertholletia</em></strong> of the families <strong>Aristolochiaceae</strong> and <strong>Lecythidaceae</strong>, but the function only returned the Lecythidaceae genus <strong><em>Bertholletia</em></strong>, because <strong><em>Asarum</em></strong> does not occur in any of the provided list of countries, i.e. <strong>Argentina</strong>, <strong>Brazil</strong> or <strong>French Guiana</strong>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span>
 <span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Lecythidaceae"</span><span class="op">)</span>
 <span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,

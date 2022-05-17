@@ -21,14 +21,16 @@ taxonomically verified database [Plants of the World Online (POWO)](https://powo
 The package is intended to efficiently mine the content within the source html pages
 for any specific genus and family. It can return a comma-separated values (CSV) 
 file with the number of accepted species and country-level distribution for any genus
-as well as the full checklist of accepted species in any genus or family, their authorship, original publication and global distribution.\
+as well as the full checklist of accepted species in any genus or family, their 
+authorship, original publication and global distribution.\
 
 Here in this article, we show how to use the package's function `powoGenera` for 
 mining all accepted genera for any family of flowering plants.
 
 # Setup
 
-__expowo__ is not on CRAN yet but you can install the latest development version from [GitHub](https://github.com/):
+__expowo__ is not on CRAN yet but you can install the latest development version 
+from [GitHub](https://github.com/):
 
 ``` r
 #install.packages("devtools")
@@ -43,8 +45,9 @@ library(expowo)
 The function `powoGenera` returns a dataframe or saves a CSV file listing all 
 genera with associated number of accepted species and their global geographic 
 distribution at country or botanical level. The global classification of botanical 
-divisions follows the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions, 
-which is already associated with each taxon's distribution in the POWO.
+divisions follows the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/)
+for Recording Plant Distributions, which is already associated with each taxon's 
+distribution in the POWO.
 
 ```{r, eval = FALSE}
 library(taxize)
@@ -77,10 +80,13 @@ knitr::kable(res[-c(7:10)])
 To mine a global genus checklist with associated species number and distribution 
 for all families of flowering plants, we recommend to
 load the dataframe-formatted data object called `POWOcodes` that comes associated with
-the __expowo__ package. Because the `POWOcodes` data object already contains the URI addresses for all angiosperms families recognized in the [POWO](https://powo.science.kew.org) database, you do not need to perform the time-consuming URI search using __taxize__. \
+the __expowo__ package. Because the `POWOcodes` data object already contains the 
+URI addresses for all angiosperms families recognized in the [POWO](https://powo.science.kew.org) 
+database, you do not need to perform the time-consuming URI search using __taxize__. \
 
 The example below shows how to mine a global checklist of all accepted genera of
-flowering plants by using the vector of all angiosperm families and associated URI addresses stored in the `POWOcodes` object.
+flowering plants by using the vector of all angiosperm families and associated URI 
+addresses stored in the `POWOcodes` object.
 
 ```{r, eval = FALSE}
 data(POWOcodes)
@@ -120,7 +126,7 @@ powoGenera(powocodes$family, powocodes$uri,
 ```{r, echo = FALSE, warning = FALSE}
 fam <- c("Aristolochiaceae", "Lecythidaceae", "Fagaceae", "Dipterocarpaceae")
 powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
+                   data.frame(taxize::get_pow(fam, messages = FALSE)))
 res <- powoGenera(powocodes$family, powocodes$uri,
                   country = c("Argentina", "Brazil", "French Guiana"),
                   verbose = FALSE,
