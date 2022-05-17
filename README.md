@@ -188,9 +188,8 @@ toptenGen(powocodes$family, powocodes$uri,
 
 ## Documentation
 
-A detailed description of the **expowo**’s full functionality will soon
-be available in
-[here](https://github.com/deborazuanny/expowo/tree/main/vignettes/).
+A detailed description of the **expowo**’s full functionality is
+available in [here](https://domingoscardoso.github.io/expowo/).
 
 The **expowo** package is being continuously constructed. If you want to
 make suggestions, let us know! We hope it will be helpful for your
