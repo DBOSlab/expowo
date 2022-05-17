@@ -177,18 +177,17 @@ megaGen(dir = "results_megaGen/",
 
 This function is relatively similar to the `megaGen`, but instead of using any 
 specific threshold, it produces a CSV file listing the top ten most diverse genera
-of any target plant family. The following example shows the top ten of two plant 
-families: "Araceae" and "Lecythidaceae"! So, the final output of this search 
-has twenty rows.
+of any target plant family. The following example shows the top ten of the plant 
+family "Lecythidaceae"!
 
 ##### Example of a POWO search with `toptenGen`:
 
 ```{r}
-powocodes <- taxize::get_pow(c("Araceae", "Lecythidaceae"))
+powocodes <- taxize::get_pow("Lecythidaceae")
 powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = c("Araceae", "Lecythidaceae"), powocodes)
+powocodes <- cbind(family = "Lecythidaceae", powocodes)
 toptenGen(dir = "results_toptenGen/",
-          filename = "Araceae_Lecythidaceae",
+          filename = "Lecythidaceae",
           powocodes$family,
           powocodes$uri,
           verbose = TRUE,
