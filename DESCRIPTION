@@ -20,7 +20,11 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
 Depends: 
     R (>= 2.10)
+Suggests:
+    knitr,
+    rmarkdown
 URL: https://github.com/deborazuanny/expowo,
     https://github.com/domingoscardoso/expowo,
     https://domingoscardoso.github.io/expowo/
 BugReports: https://github.com/deborazuanny/expowo/issues
+VignetteBuilder: knitr
