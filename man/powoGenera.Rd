@@ -4,13 +4,22 @@
 \alias{powoGenera}
 \title{Extracts list of genera from POWO}
 \usage{
-powoGenera(family, uri, genus, country)
+powoGenera(dir, filename, family, uri,
+           genus, country,
+           verbose = TRUE, save = TRUE)
 }
 \arguments{
+\item{dir}{Pathway to computer's directory, where the file will be saved if the
+param "save" is set up in \code{TRUE}. Default is to create a directory
+named "results_powoGenera/".}
+
+\item{filename}{Name of the final output file. Default is to create a file
+entitled "output".}
+
 \item{family}{Either a single family name or a vector of multiple families
 that are present in POWO.}
 
-\item{uri}{one or multiple URI addresses for each family to be searched in POWO.}
+\item{uri}{One or multiple URI addresses for each family to be searched in POWO.}
 
 \item{genus}{Either a single genus name or a vector of multiple genera
 that are present in POWO. If you do not provide any genus name, then the function
@@ -22,13 +31,16 @@ with native distribution known to any of the provided country names, as availabl
 in POWO.}
 
 \item{verbose}{Logical, if \code{FALSE}, the search results will not be printed
-in the console in full.}
+in the console in full.Defaults is TRUE.}
+
+\item{save}{Logical, if \code{FALSE}, the search results will not be saved.
+Defaults is TRUE.}
 }
 \value{
-Table in data frame format.
+Table in .csv format and saves the output on disk.
 }
 \description{
-It produces a data frame listing all genera with associated number
+It produces a CSV file listing all genera with associated number
 of accepted species and geographical distribution, from URI addresses of angiosperm
 families at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
@@ -38,18 +50,21 @@ powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
 powocodes <- data.frame(powocodes)
 powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 
-resGenera <- powoGenera(powocodes$family, powocodes$uri,
-                        verbose = TRUE)
+powoGenera(dir = "results_powoGenera/",
+           filename = "Fabaceae_Lecythidaceae",
+           powocodes$family,
+           powocodes$uri,
+           verbose = TRUE,
+           save = TRUE)
 
-write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
 
-This time providing a vector with the genus of interest
-resGenera <- powoGenera(powocodes$family, powocodes$uri,
-                        genus = c("Luetzelburgia", "Bertholletia"),
-                        country = c("Argentina", "Brazil", "French Guiana"),
-                        verbose = TRUE)
-
-write.csv(resGenera, "powo_genera_accepted_number_spp.csv", row.names=FALSE)
+powoGenera(dir = "results_powoGenera/",
+           filename = "Fabaceae_Lecythidaceae",
+           powocodes$family, powocodes$uri,
+           genus = c("Luetzelburgia", "Bertholletia"),
+           country = c("Argentina", "Brazil", "French Guiana"),
+           verbose = TRUE,
+           save = TRUE)
 
 }
 

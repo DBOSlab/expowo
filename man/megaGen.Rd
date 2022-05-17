@@ -4,11 +4,17 @@
 \alias{megaGen}
 \title{Extracts mega-diverse genera from POWO}
 \usage{
-megaGen(family, uri,
-        treshold = NULL,
-        verbose = TRUE)
+megaGen(dir, filename, family, uri,
+        treshold = NULL, verbose = TRUE, save = TRUE)
 }
 \arguments{
+\item{dir}{Pathway to computer's directory, where the file will be saved if the
+param "save" is set up in \code{TRUE}. Default is to create a directory
+named "results_megaGen/".}
+
+\item{filename}{Name of the final output file. Default is to create a file
+entitled "output".}
+
 \item{family}{Either a single family name or a vector of multiple families
 that are present in POWO.}
 
@@ -18,13 +24,16 @@ that are present in POWO.}
 megadiverse.}
 
 \item{verbose}{Logical, if \code{FALSE}, the search results will not be printed
-in the console in full.}
+in the console in full.Defaults is TRUE.}
+
+\item{save}{Logical, if \code{FALSE}, the search results will not be saved.
+Defaults is TRUE.}
 }
 \value{
-Table in data frame format.
+Table in .csv format and saves the output on disk.
 }
 \description{
-It produces a data frame listing all megadiverse genera associated to
+It produces a CSV file listing all megadiverse genera associated to
 the URI addresses of angiosperm families at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 The treshold to be considered a megadiverse genus should be defined by a numeric
 value. \href{https://doi.org/10.2307/4135449}{Frodin (2004)} suggests 500 species
@@ -36,11 +45,13 @@ powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
 powocodes <- data.frame(powocodes)
 powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 
-resMega <- megaGen(powocodes$family, powocodes$uri,
-                   treshold = 500,
-                   verbose = TRUE)
+megaGen(dir = "results_megaGen/",
+        filename = "Fabaceae_Lecythidaceae",
+        powocodes$family, powocodes$uri,
+        treshold = 500,
+        verbose = TRUE,
+        save = TRUE)
 
-write.csv(resMega, "powo_megagenera_accepted_number_spp.csv", row.names=FALSE)
 }
 
 }

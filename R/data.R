@@ -2,10 +2,10 @@
 #'
 #' @docType data
 #'
-#' @title Lista completa das familias de angiospermas e suas respectivas uris
+#' @title Codes of angiosperm families
 #'
-#' @description Lista completa de famílias botanicas baseada na APG e extraida
-#' pela funcao do pacote taxize \code{\link{get_pow}}
+#' @description Complete list of codes from botanical families based on APG and
+#' extracted by taxize function \code{\link{get_pow}}
 #'
 #' @format Table in .csv format
 #'

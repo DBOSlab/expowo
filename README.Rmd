@@ -84,15 +84,15 @@ a list of genera from a list of countries.
 ##### Example of a POWO search with `powoGenera` for a single plant family:
 ``` {r}
 library(expowo)
-powocodes <- taxize::get_pow("Fabaceae")
+powocodes <- taxize::get_pow("Typhaceae")
 powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = "Fabaceae", powocodes)
+powocodes <- cbind(family = "Typhaceae", powocodes)
 powoGenera(dir = "results_powoGenera/",
-           filename = "Fabaceae",
+           filename = "Typhaceae",
            powocodes$family,
            powocodes$uri,
            verbose = TRUE,
-           save = TRUE)
+           save = FALSE)
 ```
 
 Note that you can choose between the names of individual plant families or search 
@@ -101,15 +101,15 @@ for all of them just by adjusting the abovementioned code as follows.
 ##### Example of a POWO search with `powoGenera` using two plant families:
 ```{r}
 library(expowo)
-powocodes <- taxize::get_pow(c("Fabaceae", "Lecythidaceae"))
+powocodes <- taxize::get_pow(c("Typhaceae", "Lecythidaceae"))
 powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
+powocodes <- cbind(family = c("Typhaceae", "Lecythidaceae"), powocodes)
 powoGenera(dir = "results_powoGenera/",
-           filename = "Fabaceae_Lecythidaceae",
+           filename = "Typhaceae_Lecythidaceae",
            powocodes$family,
            powocodes$uri,
            verbose = TRUE,
-           save = TRUE)
+           save = FALSE)
 ```
 
 
@@ -133,7 +133,7 @@ powoSpecies(dir = "results_powoSpecies/",
             powocodes$family, powocodes$uri,
             hybridspp = TRUE,
             country = c("Argentina", "Brazil", "French Guiana"),
-            verbose = TRUE, save = TRUE)
+            verbose = TRUE, save = FALSE)
 ```
 
 Now, compare this result above with the following including only accepted species! 
@@ -149,7 +149,7 @@ powoSpecies(dir = "results_powoSpecies/",
             powocodes$family, powocodes$uri,
             hybridspp = FALSE,
             country = c("Argentina", "Brazil", "French Guiana"),
-            verbose = TRUE, save = TRUE)
+            verbose = TRUE, save = FALSE)
 ```
 
 #### _3. `megaGen`: Extracting a list of mega-diverse genera_
@@ -161,15 +161,15 @@ when it has more than 500 species, as set in the argument threshold.
 
 ##### Example of a POWO search with `megaGen`:
 ``` {r}
-powocodes <- taxize::get_pow("Fabaceae")
+powocodes <- taxize::get_pow("Araceae")
 powocodes <- data.frame(powocodes)
-powocodes <- cbind(family = "Fabaceae", powocodes)
+powocodes <- cbind(family = "Araceae", powocodes)
 megaGen(dir = "results_megaGen/",
-        filename = "Fabaceae",
+        filename = "Araceae",
         powocodes$family, powocodes$uri,
         treshold = 500,
         verbose = TRUE,
-        save = TRUE)
+        save = FALSE)
 ```
 
 
@@ -192,7 +192,7 @@ toptenGen(dir = "results_toptenGen/",
           powocodes$family,
           powocodes$uri,
           verbose = TRUE,
-          save = TRUE)
+          save = FALSE)
 ```
 
 
