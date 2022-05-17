@@ -204,4 +204,4 @@ diversity and distribution data.
 <https://github.com/deborazuanny/expowo> or
 <https://github.com/domingoscardoso/expowo>
 
-<img src="vignettes/articles/figure/DBOSlab_logo.png" style="width:30.0%" />
+<img src="vignettes/figure/DBOSlab_logo.png" style="width:30.0%" />

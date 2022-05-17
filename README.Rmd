@@ -192,4 +192,4 @@ and distribution data. https://github.com/deborazuanny/expowo or
 https://github.com/domingoscardoso/expowo
 
 
-![](vignettes/articles/figure/DBOSlab_logo.png){width=30%}
+![](vignettes/figure/DBOSlab_logo.png){width=30%}
