@@ -2,7 +2,7 @@
 % Please edit documentation in R/megaGen.R
 \name{megaGen}
 \alias{megaGen}
-\title{Extracts megadiverse genera from POWO}
+\title{Get megadiverse genera from POWO}
 \usage{
 megaGen(family, uri, thld = NULL,
         verbose = TRUE, save = TRUE, dir, filename)
@@ -44,6 +44,7 @@ as the threshold for megadiverse genera.
 
 library(expowo)
 library(taxize)
+
 fam <- c("Fabaceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))

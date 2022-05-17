@@ -2,7 +2,7 @@
 % Please edit documentation in R/toptenGen.R
 \name{toptenGen}
 \alias{toptenGen}
-\title{Extracts the top ten genera with highest species diversity}
+\title{Get top ten most species-rich genera}
 \usage{
 toptenGen(family, uri,
           verbose = TRUE, save = TRUE, dir, filename)
@@ -38,6 +38,7 @@ of any target botanical family of flowering plants at
 \dontrun{
 library(expowo)
 library(taxize)
+
 fam <- c("Araceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))

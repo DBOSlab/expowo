@@ -2,7 +2,7 @@
 % Please edit documentation in R/powoSpecies.R
 \name{powoSpecies}
 \alias{powoSpecies}
-\title{Extracts list of species from POWO}
+\title{Get list of species from POWO}
 \usage{
 powoSpecies(family, uri, genus = NULL, hybridspp = FALSE, country = NULL,
             verbose = TRUE, save = TRUE, dir, filename)
@@ -50,6 +50,7 @@ geographical distribution from any target genus or family of flowering plants at
 \dontrun{
 library(expowo)
 library(taxize)
+
 fam <- c("Araceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))

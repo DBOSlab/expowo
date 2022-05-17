@@ -1,4 +1,4 @@
-#' Extracts the top ten genera with highest species diversity
+#' Get top ten most species-rich genera
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'

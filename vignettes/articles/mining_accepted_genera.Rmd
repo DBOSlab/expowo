@@ -1,0 +1,150 @@
+---
+title: "Mining accepted genera for any angiosperm family"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mining accepted genera for any angiosperm family}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+The main goal of the __expowo__ package is to retrieve information about the 
+diversity and distribution of any plant family as publicly available at the 
+taxonomically verified POWO database [Plants of the World Online (POWO)](https://powo.science.kew.org).\
+
+The package is intended to efficiently mine the content within the source html pages
+for any specific genus and family. It can return a comma-separated values (CSV) 
+file with the number of accepted species and country-level distribution for any genus
+as well as the full checklist of accepted species in any genus or family, their authorship, original publication and global distribution.\
+
+Here in this article, we show how to use the package's function `powoGenera` for 
+mining all accepted genera for any family of flowering plants.
+
+# Setup
+
+__expowo__ is not on CRAN yet but you can install the latest development version from [GitHub](https://github.com/):
+
+``` r
+#install.packages("devtools")
+devtools::install_github("deborazuanny/expowo")
+```
+```{r package load}
+library(expowo)
+```
+
+# Mining all accepted genera for any angiosperm family
+
+The function `powoGenera` returns a dataframe or saves a CSV file listing all 
+genera with associated number of accepted species and their global geographic 
+distribution at country or botanical level. The global classification of botanical 
+divisions follows the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions, 
+which is already associated each taxon's distribution in the POWO.
+
+```{r, eval = FALSE}
+library(taxize)
+fam <- c("Aristolochiaceae", "Begoniaceae", "Lecythidaceae", "Martyniaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
+
+powoGenera(powocodes$family, powocodes$uri,
+           verbose = FALSE,
+           save = TRUE,
+           dir = "results_powoGenera/",
+           filename = "Arist_Begon_Lecyt_Martyniaceae_search")
+```
+
+```{r, echo = FALSE, warning = FALSE}
+library(taxize)
+fam <- c("Aristolochiaceae", "Begoniaceae", "Lecythidaceae", "Martyniaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam, messages = FALSE)))
+
+res <- powoGenera(powocodes$family, powocodes$uri,
+                  verbose = FALSE,
+                  save = FALSE)
+
+knitr::kable(res[-c(7:10)])
+```
+
+# Narrowing down the `powoGenera` search based on a specified country list
+
+You can also narrow down the search for all accepted genera of any family with 
+focus on just a particular country or a list of countries. You only need to define 
+a vector of country names in the argument \code{country}. In the example below,
+see that we have originally searched for the genera within the families __Aristolochiaceae__,
+__Lecythidaceae__, __Fagaceae__, and __"Dipterocarpaceae__, but the function 
+only returned a list of genera of __Aristolochiaceae__ and __Lecythidaceae__,
+because the remaining families do not have any genera recorded in the list
+of countries of interest, i.e. __Argentina__, __Brazil__ or __French Guiana__.
+
+```{r, eval = FALSE}
+library(taxize)
+fam <- c("Aristolochiaceae", "Lecythidaceae", "Fagaceae", "Dipterocarpaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
+
+powoGenera(powocodes$family, powocodes$uri,
+           country = c("Argentina", "Brazil", "French Guiana"),
+           verbose = FALSE,
+           save = TRUE,
+           dir = "results_powoGenera/",
+           filename = "country_constrained_search")
+```
+
+```{r, echo = FALSE, warning = FALSE}
+library(taxize)
+fam <- c("Aristolochiaceae", "Lecythidaceae", "Fagaceae", "Dipterocarpaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam, messages = FALSE)))
+
+res <- powoGenera(powocodes$family, powocodes$uri,
+                  country = c("Argentina", "Brazil", "French Guiana"),
+                  verbose = FALSE,
+                  save = FALSE)
+
+knitr::kable(res[-c(7:10)])
+```
+
+
+# Narrowing down the `powoGenera` search based on a specified genus list
+
+You may want to retrieve information for just one or a list of accepted 
+genera from a given country (or from a list of countries). Just like before,
+you only need to define a vector of genus names in the argument \code{genus} and
+a vector of country names in the argument \code{country}. In the example below,
+see that we have again searched for just the genera ***Asarum*** and ***Bertholletia***
+of the families __Aristolochiaceae__ and __Lecythidaceae__, but the function 
+only returned the Lecythidaceae genus ***Bertholletia***, because ***Asarum*** 
+does not occur in any of the provided list of countries, i.e. __Argentina__, __Brazil__ 
+or __French Guiana__.
+
+```{r, eval = FALSE}
+library(taxize)
+fam <- c("Aristolochiaceae", "Lecythidaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
+
+powoGenera(powocodes$family, powocodes$uri,
+           genus = c("Asarum", "Bertholletia"),
+           country = c("Argentina", "Brazil", "French Guiana"),
+           verbose = TRUE,
+           save = TRUE,
+           dir = "results_powoGenera/",
+           filename = "genus_country_constrained_search")
+```
+
+```{r echo=FALSE, warning=FALSE}
+library(taxize)
+fam <- c("Aristolochiaceae", "Lecythidaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam, messages = FALSE)))
+
+res <- powoGenera(powocodes$family, powocodes$uri,
+                  genus = c("Asarum", "Bertholletia"),
+                  country = c("Argentina", "Brazil", "French Guiana"),
+                  verbose = TRUE,
+                  save = FALSE)
+
+knitr::kable(res[-c(7:10)])
+```

@@ -1,4 +1,4 @@
-#' Extracts megadiverse genera from POWO
+#' Get megadiverse genera from POWO
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'

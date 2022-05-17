@@ -2,7 +2,7 @@
 % Please edit documentation in R/powoGenera.R
 \name{powoGenera}
 \alias{powoGenera}
-\title{Extracts list of genera from POWO}
+\title{Get list of genera from POWO}
 \usage{
 powoGenera(family, uri, genus = NULL, country = NULL,
            verbose = TRUE, save = TRUE, dir, filename)
@@ -46,12 +46,12 @@ family at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Onli
 \dontrun{
 library(expowo)
 library(taxize)
+
 fam <- c("Fabaceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
-powoGenera(powocodes$family,
-           powocodes$uri,
+powoGenera(powocodes$family, powocodes$uri,
            verbose = TRUE,
            save = TRUE,
            dir = "results_powoGenera/",

@@ -3,9 +3,9 @@
 
 # expowo
 
-An R package for mining plant checklist, diversity estimates, and
-distribution data from RGB Kew’s [Plants of the World Online
-(POWO)](https://powo.science.kew.org).
+An R package for mining species checklist, diversity estimates, and
+distribution data for any genus or family of flowering plants from RGB
+Kew’s [Plants of the World Online (POWO)](https://powo.science.kew.org).
 
 ## Overview
 
@@ -13,11 +13,12 @@ The main goal of the **expowo** package is to retrieve information about
 the diversity and distribution of any plant family as publicly available
 at the taxonomically verified database [Plants of the World Online
 (POWO)](https://powo.science.kew.org). The package is intended to
-efficiently miner the content on the source html pages for any specific
-genus and family. It can return a comma-separated values (CSV) file with
-the number of accepted species and country-level distribution for any
-genus as well as the full checklist of accepted species in any genus or
-family, their authorship, original publication and global distribution.
+efficiently mine the content within the source html pages for any
+specific genus and family. It can return a comma-separated values (CSV)
+file with the number of accepted species and country-level distribution
+for any genus as well as the full checklist of accepted species in any
+genus or family, their authorship, original publication and global
+distribution.
 
 ## Before using **expowo**
 
@@ -104,8 +105,7 @@ fam <- c("Fabaceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
-powoGenera(powocodes$family,
-           powocodes$uri,
+powoGenera(powocodes$family, powocodes$uri,
            verbose = TRUE,
            save = TRUE,
            dir = "results_powoGenera/",
@@ -201,6 +201,7 @@ botanical research!
 
 Zuanny, D. & Cardoso, D. (2022). expowo: An R package for mining plant
 diversity and distribution data.
-<https://github.com/deborazuanny/expowo>
+<https://github.com/deborazuanny/expowo> or
+<https://github.com/domingoscardoso/expowo>
 
-<img src="vignettes/DBOSlab_logo.png" style="width:10.0%" />
+<img src="vignettes/articles/figure/DBOSlab_logo.png" style="width:30.0%" />
