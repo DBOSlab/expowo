@@ -10,16 +10,17 @@
 #' toptenGen(dir, filename, family, uri,
 #'           verbose = TRUE, save = TRUE)
 #'
-#' @param dir Pathway to computer`s directory, where the file will be saved if the
-#' param "save" is setted up in \code{TRUE}. Default is to create a directory
+#' @param dir Pathway to computer's directory, where the file will be saved if the
+#' param "save" is set up in \code{TRUE}. Default is to create a directory
 #' named "results_toptenGen/".
 #'
-#' @param filename Name of the final output file. Default is to create a file entitled "output".
+#' @param filename Name of the final output file. Default is to create a file
+#' entitled "output".
 #'
 #' @param family Either a single family name or a vector of multiple families
 #' that are present in POWO.
 #'
-#' @param uri one or multiple URI addresses for each family to be searched in POWO.
+#' @param uri One or multiple URI addresses for each family to be searched in POWO.
 #'
 #' @param verbose Logical, if \code{FALSE}, the search results will not be printed
 #' in the console in full. Defaults is TRUE.
@@ -35,13 +36,13 @@
 #' powocodes <- data.frame(powocodes)
 #' powocodes <- cbind(family = c("Araceae", "Lecythidaceae"), powocodes)
 #'
-#'toptenGen(dir = "results_toptenGen/",
+#' toptenGen(dir = "results_toptenGen/",
 #'          filename = "Araceae_Lecythidaceae",
 #'          powocodes$family,
 #'          powocodes$uri,
 #'          verbose = TRUE,
 #'          save = TRUE)
-#'}
+#' }
 #'
 #' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
@@ -127,32 +128,30 @@ toptenGen <- function(dir = "results_toptenGen/",
                       "scientific_name",
                       "species_number",
                       "powo_uri") %>%
-       arrange(desc(species_number))  %>%     # displaying in the decreasing order
-       group_by(family) %>%               # to search for each family
-       slice(1:10)                        # filtering the top ten richest genera
+    arrange(desc(species_number)) %>%  # displaying in the decreasing order
+    group_by(family) %>%               # to search for each family
+    slice(1:10)                        # filtering the top ten richest genera
 
 
-  if(save){
-    #Create a new directory to save the results with current date
-    if(!dir.exists(dir)) {
+  if (save) {
+    # Create a new directory to save the results with current date
+    if (!dir.exists(dir)) {
       dir.create(dir)
       todaydate <- format(Sys.time(), "%d %b %Y")
       folder_name <- paste0(dir, gsub(" ", "", todaydate))
-      message(paste0("Writing `", folder_name, "` on disk."))
+      print(paste0("Writing '", folder_name, "' on disk."))
       dir.create(folder_name) } #if there is no directory... make one!
 
-    # Creating and saving the spreadsheet in .csv format
+    # Create and save the spreadsheet in .csv format
     fullname <- paste0(folder_name, "/", filename, ".csv")
-    message(paste0("Writing the spreadsheet `", fullname, "` on disk."))
-    fwrite(df,
-           file = fullname,
-           sep = ",",
-           row.names = FALSE,
-           col.names = TRUE)
+    print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
+    data.table::fwrite(df,
+                       file = fullname,
+                       sep = ",",
+                       row.names = FALSE,
+                       col.names = TRUE)
   }
 
   return(df)
 }
-
-
 

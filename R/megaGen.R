@@ -2,16 +2,22 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a data frame listing all megadiverse genera associated to
+#' @description It produces a CSV file listing all megadiverse genera associated to
 #' the URI addresses of angiosperm families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #' The treshold to be considered a megadiverse genus should be defined by a numeric
 #' value. [Frodin (2004)](https://doi.org/10.2307/4135449) suggests 500 species
 #' as the treshold for megadiverse genera.
 #'
 #' @usage
-#' megaGen(family, uri,
-#'         treshold = NULL,
-#'         verbose = TRUE)
+#' megaGen(dir, filename, family, uri,
+#'         treshold = NULL, verbose = TRUE, save = TRUE)
+#'
+#' @param dir Pathway to computer's directory, where the file will be saved if the
+#' param "save" is set up in \code{TRUE}. Default is to create a directory
+#' named "results_megaGen/".
+#'
+#' @param filename Name of the final output file. Default is to create a file
+#' entitled "output".
 #'
 #' @param family Either a single family name or a vector of multiple families
 #' that are present in POWO.
@@ -22,9 +28,12 @@
 #' megadiverse.
 #'
 #' @param verbose Logical, if \code{FALSE}, the search results will not be printed
-#' in the console in full.
+#' in the console in full.Defaults is TRUE.
 #'
-#' @return Table in data frame format.
+#' @param save Logical, if \code{FALSE}, the search results will not be saved.
+#' Defaults is TRUE.
+#'
+#' @return Table in .csv format and saves the output on disk.
 #'
 #'
 #' @examples
@@ -33,22 +42,28 @@
 #' powocodes <- data.frame(powocodes)
 #' powocodes <- cbind(family = c("Fabaceae", "Lecythidaceae"), powocodes)
 #'
-#' resMega <- megaGen(powocodes$family, powocodes$uri,
-#'                    treshold = 500,
-#'                    verbose = TRUE)
+#' megaGen(dir = "results_megaGen/",
+#'         filename = "Fabaceae_Lecythidaceae",
+#'         powocodes$family, powocodes$uri,
+#'         treshold = 500,
+#'         verbose = TRUE,
+#'         save = TRUE)
 #'
-#' write.csv(resMega, "powo_megagenera_accepted_number_spp.csv", row.names=FALSE)
 #'}
 #'
 #' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
+#' @importFrom data.table fwrite
 #'
 #' @export
 #'
 
-megaGen <- function(family, uri,
+megaGen <- function(dir = "results_megaGen/",
+                    filename = "output",
+                    family, uri,
                     treshold = NULL,
-                    verbose = TRUE) {
+                    verbose = TRUE,
+                    save = TRUE) {
 
   powo_codes <- data.frame(family = family,
                            uri = uri)
@@ -123,7 +138,23 @@ megaGen <- function(family, uri,
                       "powo_uri") %>%
     filter(species_number >= treshold)
 
+  if (save) {
+    # Create a new directory to save the results with current date
+    if (!dir.exists(dir)) {
+      dir.create(dir)
+      todaydate <- format(Sys.time(), "%d %b %Y")
+      folder_name <- paste0(dir, gsub(" ", "", todaydate))
+      print(paste0("Writing '", folder_name, "' on disk."))
+      dir.create(folder_name) } #if there is no directory... make one!
+
+    # Create and save the spreadsheet in .csv format
+    fullname <- paste0(folder_name, "/", filename, ".csv")
+    print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
+    data.table::fwrite(df,
+                       file = fullname,
+                       sep = ",",
+                       row.names = FALSE,
+                       col.names = TRUE)}
+
   return(df)
 }
-
-

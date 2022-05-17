@@ -2,20 +2,33 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a data frame listing all accepted species and associated
-#' geographical distribution, from URI addresses of genera of angiosperm
-#' families at [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
+#' @description It produces a CSV file listing all accepted species and associated
+#' geographical distribution, from URI addresses of angiosperm families at
+#' [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
 #' @usage
-#' powoSpecies(family, genus, uri)
+#' powoSpecies(dir, filename, family, uri,
+#'             genus, country,
+#'             verbose = TRUE, save = TRUE)
+#'
+#' @param dir Pathway to computer's directory, where the file will be saved if the
+#' param "save" is set up in \code{TRUE}. Default is to create a directory
+#' named "results_powoSpecies/".
+#'
+#' @param filename Name of the final output file. Default is to create a file
+#' entitled "output".
 #'
 #' @param family Either a single family name or a vector of multiple families
 #' that are present in POWO.
 #'
-#' @param genus Either a single genus name or a vector of multiple genera
-#' that are present in POWO.
+#' @param uri One or multiple URI addresses for each genus to be searched in POWO.
 #'
-#' @param uri one or multiple URI addresses for each genus to be searched in POWO.
+#' @param genus Either a single genus name or a vector of multiple genera
+#' that are present in POWO. If you do not provide any genus name, then the function
+#' will search all accepted genera known for the family names provided.
+#'
+#' @param hybridspp Logical, if \code{TRUE}, the search results will include hybrid
+#' species. Defaults is FALSE.
 #'
 #' @param country Either a single country name or a vector of multiple countries.
 #' If you provide any country name, then the function will return only the species
@@ -23,9 +36,12 @@
 #' in POWO.
 #'
 #' @param verbose Logical, if \code{FALSE}, the search results will not be printed
-#' in the console in full.
+#' in the console in full.Defaults is TRUE.
 #'
-#' @return Table in data frame format
+#' @param save Logical, if \code{FALSE}, the search results will not be saved.
+#' Defaults is TRUE.
+#'
+#' @return Table in .csv format and saves the output on disk.
 #'
 #' @seealso \code{\link{powoGenera}}
 #'
@@ -35,31 +51,43 @@
 #' powocodes <- data.frame(powocodes)
 #' powocodes <- cbind(family = c("Araceae", "Lecythidaceae"), powocodes)
 #'
-#' resGenera <- powoGenera(powocodes$family, powocodes$uri,
-#'                         verbose = TRUE)
+#' powoSpecies(dir = "results_powoSpecies/",
+#'             filename = "Araceae_Lecythidaceae",
+#'             powocodes$family, powocodes$uri,
+#'             hybridspp = FALSE,
+#'             country = c("Argentina", "Brazil", "French Guiana"),
+#'             verbose = TRUE, save = TRUE)
 #'
-#' resSpecies <- powoSpecies(resGenera$family, resGenera$genus, resGenera$powo_uri,
-#'                           hybridspp = FALSE,
-#'                           country = c("Argentina", "Brazil", "French Guiana"),
-#'                           verbose = TRUE)
-#'
-#' write.csv(resSpecies, "powo_genera_list_accepted_spp.csv", row.names=FALSE)
 #'}
 #'
 #' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
+#' @importFrom data.table fwrite
 #'
 #' @export
 #'
 
-powoSpecies <- function(family, genus, uri,
+powoSpecies <- function(dir = "results_powoSpecies/",
+                        filename = "output",
+                        family, uri,
+                        genus = NULL,
                         hybridspp = FALSE,
                         country = NULL,
-                        verbose = TRUE) {
+                        verbose = TRUE,
+                        save = TRUE) {
 
-  powo_codes <- data.frame(family = family,
-                           genus = genus,
-                           uri = uri)
+
+  powo_codes_fam <- data.frame(family = family,
+                               uri = uri)
+
+  # POWO search for the genus URI in each family using auxiliary function getGenURI
+  resGenera <- getGenURI(powo_codes_fam,
+                         genus = genus,
+                         verbose = verbose)
+
+  powo_codes <- data.frame(family = resGenera$family,
+                           genus = resGenera$genus,
+                           uri = resGenera$powo_uri)
 
   # POWO search for the number of genera in each family
   powo_genus_uri <- list()
@@ -131,8 +159,10 @@ powoSpecies <- function(family, genus, uri,
 
   # Combining all dataframes from the list of each family search
   df <- list_genus[[1]]
-  for (i in 2:length(list_genus)) {
-    df <- rbind(df, list_genus[[i]])
+  if (length(list_genus) > 1) {
+    for (i in 2:length(list_genus)) {
+      df <- rbind(df, list_genus[[i]])
+    }
   }
 
   # Extract distribution using auxiliary function getDist
@@ -246,6 +276,25 @@ powoSpecies <- function(family, genus, uri,
 
     df <- df[temp, ]
 
+  }
+
+  if (save) {
+    # Create a new directory to save the results with current date
+    if (!dir.exists(dir)) {
+      dir.create(dir)
+      todaydate <- format(Sys.time(), "%d %b %Y")
+      folder_name <- paste0(dir, gsub(" ", "", todaydate))
+      print(paste0("Writing '", folder_name, "' on disk."))
+      dir.create(folder_name) } #if there is no directory... make one!
+
+    # Create and save the spreadsheet in .csv format
+    fullname <- paste0(folder_name, "/", filename, ".csv")
+    print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
+    data.table::fwrite(df,
+                       file = fullname,
+                       sep = ",",
+                       row.names = FALSE,
+                       col.names = TRUE)
   }
 
   return(df)
