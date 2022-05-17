@@ -114,11 +114,10 @@ powoGenera(powocodes$family, powocodes$uri,
 
 #### *2. `powoSpecies`: Mining accepted species for any angiosperm genus or family*
 
-With this function, you will be able to produce a CSV file of each genus
-with the accepted number of species, considering hybrid species or not,
-according to the data available in the POWO’s database. You can also
-narrow down the search to focus on just the species from a particular
-country or a list of countries, as the following example.
+With this function, you will be able to retrieve a list (either a
+dataframe-returned object or a CSV file saved directly in the directory)
+of all accepted species for any genus or family, considering hybrid
+species or not, according to the data available in the POWO’s database.
 
 ##### Example of a POWO search with `powoSpecies`:
 
@@ -204,4 +203,4 @@ diversity and distribution data.
 <https://github.com/deborazuanny/expowo> or
 <https://github.com/domingoscardoso/expowo>
 
-<img src="vignettes/figure/DBOSlab_logo.png" style="width:30.0%" />
+<img src="man/figures/DBOSlab_logo.png" style="width:30.0%" />

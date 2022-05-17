@@ -67,7 +67,7 @@
 #'
 #' data(POWOcodes)
 #'
-#' powoSpecies(powocodes$family, powocodes$uri,
+#' powoSpecies(POWOcodes$family, POWOcodes$uri,
 #'             hybridspp = TRUE,
 #'             verbose = TRUE,
 #'             save = TRUE,

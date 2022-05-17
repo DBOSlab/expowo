@@ -2,5 +2,5 @@ title: expowo
 url: https://domingoscardoso.github.io/expowo/
 template:
   params:
-    bootswatch: flatly
+    bootswatch: minty
     ganalytics: UA-12345678-0

@@ -1,8 +1,8 @@
 ---
-title: "Mining accepted genera for any angiosperm family"
+title: "Mining genus list for any plant family"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Mining accepted genera for any angiosperm family}
+  %\VignetteIndexEntry{Mining genus list for any plant family}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 The main goal of the __expowo__ package is to retrieve information about the 
 diversity and distribution of any plant family as publicly available at the 
-taxonomically verified POWO database [Plants of the World Online (POWO)](https://powo.science.kew.org).\
+taxonomically verified database [Plants of the World Online (POWO)](https://powo.science.kew.org).\
 
 The package is intended to efficiently mine the content within the source html pages
 for any specific genus and family. It can return a comma-separated values (CSV) 
@@ -44,7 +44,7 @@ The function `powoGenera` returns a dataframe or saves a CSV file listing all
 genera with associated number of accepted species and their global geographic 
 distribution at country or botanical level. The global classification of botanical 
 divisions follows the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions, 
-which is already associated each taxon's distribution in the POWO.
+which is already associated with each taxon's distribution in the POWO.
 
 ```{r, eval = FALSE}
 library(taxize)
@@ -72,13 +72,33 @@ res <- powoGenera(powocodes$family, powocodes$uri,
 knitr::kable(res[-c(7:10)])
 ```
 
+# Mining all accepted genera for all angiosperm families
+
+To mine a global genus checklist with associated species number and distribution 
+for all families of flowering plants, we recommend to
+load the dataframe-formatted data object called `POWOcodes` that comes associated with
+the __expowo__ package. Because the `POWOcodes` data object already contains the URI addresses for all angiosperms families recognized in the [POWO](https://powo.science.kew.org) database, you do not need to perform the time-consuming URI search using __taxize__. \
+
+The example below shows how to mine a global checklist of all accepted genera of
+flowering plants by using the vector of all angiosperm families and associated URI addresses stored in the `POWOcodes` object.
+
+```{r, eval = FALSE}
+data(POWOcodes)
+
+powoGenera(POWOcodes$family, POWOcodes$uri,
+           verbose = TRUE,
+           save = TRUE,
+           dir = "results_powoGenera/",
+           filename = "all_angiosperm_genera")
+```
+
 # Narrowing down the `powoGenera` search based on a specified country list
 
-You can also narrow down the search for all accepted genera of any family with 
-focus on just a particular country or a list of countries. You only need to define 
+You can also narrow down the search for all accepted genera of any family so as to 
+focus on just a particular country or a list of countries. You just need to define 
 a vector of country names in the argument \code{country}. In the example below,
 see that we have originally searched for the genera within the families __Aristolochiaceae__,
-__Lecythidaceae__, __Fagaceae__, and __"Dipterocarpaceae__, but the function 
+__Lecythidaceae__, __Fagaceae__, and __Dipterocarpaceae__, but the function 
 only returned a list of genera of __Aristolochiaceae__ and __Lecythidaceae__,
 because the remaining families do not have any genera recorded in the list
 of countries of interest, i.e. __Argentina__, __Brazil__ or __French Guiana__.
@@ -98,11 +118,9 @@ powoGenera(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-library(taxize)
 fam <- c("Aristolochiaceae", "Lecythidaceae", "Fagaceae", "Dipterocarpaceae")
 powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam, messages = FALSE)))
-
+                   data.frame(taxize::get_pow(fam)))
 res <- powoGenera(powocodes$family, powocodes$uri,
                   country = c("Argentina", "Brazil", "French Guiana"),
                   verbose = FALSE,
@@ -140,12 +158,7 @@ powoGenera(powocodes$family, powocodes$uri,
 ```
 
 ```{r echo=FALSE, warning=FALSE}
-library(taxize)
-fam <- c("Aristolochiaceae", "Lecythidaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam, messages = FALSE)))
-
-res <- powoGenera(powocodes$family, powocodes$uri,
+res <- powoGenera(powocodes$family[1:2], powocodes$uri[1:2],
                   genus = c("Asarum", "Bertholletia"),
                   country = c("Argentina", "Brazil", "French Guiana"),
                   verbose = TRUE,

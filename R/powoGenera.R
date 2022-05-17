@@ -66,9 +66,9 @@
 #'            dir = "results_powoGenera/",
 #'            filename = "Fabaceae_Lecythidaceae")
 #'
-#' ## Searching for all genera and associated species number and global distribution
-#' ## in any or all angiosperm families, by using the URI addresses
-#' ## within the POWOcodes data file
+#' ## Searching for all genera and associated species number and
+#' ## global distribution in any or all angiosperm families,
+#' ## by using the URI addresses within the POWOcodes data file
 #'
 #' data(POWOcodes)
 #'
