@@ -3,7 +3,7 @@ pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   mining_accepted_genera: mining_accepted_genera.html
-last_built: 2022-05-17T15:42Z
+last_built: 2022-05-17T16:00Z
 urls:
   reference: https://domingoscardoso.github.io/expowo/reference
   article: https://domingoscardoso.github.io/expowo/articles
