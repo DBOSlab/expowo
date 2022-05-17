@@ -23,8 +23,6 @@ Depends:
 Suggests:
     knitr,
     rmarkdown
-URL: https://github.com/deborazuanny/expowo,
-    https://github.com/domingoscardoso/expowo,
-    https://domingoscardoso.github.io/expowo/
+URL: https://domingoscardoso.github.io/expowo/, https://github.com/deborazuanny/expowo, https://github.com/domingoscardoso/expowo
 BugReports: https://github.com/deborazuanny/expowo/issues
 VignetteBuilder: knitr
