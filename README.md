@@ -92,8 +92,8 @@ number of accepted species and their global geographical distribution at
 country level. You can also narrow down the search to focus on just a
 particular genus from a particular country or a list of genera from a
 list of countries (please check this
-[article](https://github.com/domingoscardoso/expowo) for further
-details)
+[article](https://domingoscardoso.github.io/expowo/articles/mining_accepted_genera.html)
+for further details)
 
 ##### Example of a POWO search with `powoGenera`:
 
