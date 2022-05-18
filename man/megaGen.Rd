@@ -14,7 +14,8 @@ present in POWO.}
 \item{uri}{URI address for each family to be searched in POWO.}
 
 \item{thld}{A defined threshold of species number for a genus to be considered
-megadiverse.}
+megadiverse. If no threshold number is provided, the function will consider a
+value of 500 based on \href{https://doi.org/10.2307/4135449}{Frodin (2004)}.}
 
 \item{verbose}{Logical, if \code{FALSE}, the searched results will not be printed
 in the console in full.}

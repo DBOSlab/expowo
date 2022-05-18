@@ -12,19 +12,25 @@ Authors@R:
              role = c("aut", "ctb"),
              email = "cardosobot@gmail.com",
              comment = c(ORCID = "0000-0001-7072-2656")))
-Description: This package allows to mine information from the Plants of The World Online database.
+Description: This package allows to mine taxonomically vetted plant species and genus list, and associated diversity estimates and global distribution, from the Plants of The World Online database.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5.0)
+Imports:
+    dplyr,
+    magrittr,
+    data.table
 Suggests:
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 URL: https://domingoscardoso.github.io/expowo/,
     https://github.com/deborazuanny/expowo,
     https://github.com/domingoscardoso/expowo
 BugReports: https://github.com/deborazuanny/expowo/issues
 VignetteBuilder: knitr
+Config/testthat/edition: 3

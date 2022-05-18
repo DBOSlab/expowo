@@ -91,6 +91,16 @@ powoSpecies <- function(family, uri,
                         dir = "results_powoSpecies/",
                         filename = "output") {
 
+  if(length(family) != length(uri)) {
+    stop(paste("Any family or URI is missing."))
+  }
+
+  data("POWOcodes")
+  uri_log <- uri %in% POWOcodes$uri
+  uri_log <- which(uri_log == FALSE)
+  if(length(uri_log) >= 1) {
+    stop(paste("Any family's URI address is incomplete or misspelled and cannot open connection with POWO website."))
+  }
 
   powo_codes_fam <- data.frame(family = family,
                                uri = uri)

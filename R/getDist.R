@@ -86,6 +86,7 @@ getDist <- function(df,
     list_spp[unlist(temp)] <- NA
     # Extracting the number of species from the list during the POWO searching
     df$species_number <- unlist(list_spp, use.names = F)
+    df$species_number <- as.numeric(df$species_number)
   }
 
   temp <- lapply(list_dist_nat, is.null)

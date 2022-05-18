@@ -94,6 +94,17 @@ powoGenera <- function(family, uri,
                        dir = "results_powoGenera/",
                        filename = "output") {
 
+  if(length(family) != length(uri)) {
+    stop(paste("Any family or URI is missing."))
+  }
+
+  data("POWOcodes")
+  uri_log <- uri %in% POWOcodes$uri
+  uri_log <- which(uri_log == FALSE)
+  if(length(uri_log) >= 1) {
+    stop(paste("Any family's URI address is incomplete or misspelled and cannot open connection with POWO website."))
+  }
+
   powo_codes_fam <- data.frame(family = family,
                                uri = uri)
 
@@ -102,7 +113,7 @@ powoGenera <- function(family, uri,
                   genus = genus,
                   verbose = verbose)
 
-  # Extract number of species and distribution using auxiliary function getDist
+  # Extract distribution and number of species using auxiliary function getDist
   df <- getDist(df,
                 listspp = TRUE,
                 verbose = verbose)

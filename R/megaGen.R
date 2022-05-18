@@ -18,7 +18,8 @@
 #' @param uri URI address for each family to be searched in POWO.
 #'
 #' @param thld A defined threshold of species number for a genus to be considered
-#' megadiverse.
+#' megadiverse. If no threshold number is provided, the function will consider a
+#' value of 500 based on [Frodin (2004)](https://doi.org/10.2307/4135449).
 #'
 #' @param verbose Logical, if \code{FALSE}, the searched results will not be printed
 #' in the console in full.
@@ -82,6 +83,15 @@ megaGen <- function(family, uri,
                     dir = "results_megaGen/",
                     filename = "output") {
 
+  if(length(family) != length(uri)) {
+    stop(paste("Any family or URI is missing."))
+  }
+  data("POWOcodes")
+  uri_log <- uri %in% POWOcodes$uri
+  uri_log <- which(uri_log == FALSE)
+  if(length(uri_log) >= 1) {
+    stop(paste("Any family's URI address is incomplete or misspelled and cannot open connection with POWO website."))
+  }
 
   powo_codes_fam <- data.frame(family = family,
                                uri = uri)
@@ -96,6 +106,7 @@ megaGen <- function(family, uri,
                 verbose = verbose)
 
   # Select specific columns of interest and the megadiverse genera by a threshold
+  if(is.null(thld)) thld <- 500
   df$species_number <- as.numeric(df$species_number)
   df <- df %>% select("family",
                       "genus",
