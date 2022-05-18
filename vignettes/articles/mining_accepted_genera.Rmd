@@ -51,7 +51,7 @@ distribution in the POWO.
 
 ```{r, eval = FALSE}
 library(taxize)
-fam <- c("Aristolochiaceae", "Begoniaceae", "Lecythidaceae", "Martyniaceae")
+fam <- c("Aristolochiaceae", "Begoniaceae", "Martyniaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
@@ -59,12 +59,12 @@ powoGenera(powocodes$family, powocodes$uri,
            verbose = FALSE,
            save = TRUE,
            dir = "results_powoGenera/",
-           filename = "Arist_Begon_Lecyt_Martyniaceae_search")
+           filename = "Arist_Begon_Martyniaceae_search")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
 library(taxize)
-fam <- c("Aristolochiaceae", "Begoniaceae", "Lecythidaceae", "Martyniaceae")
+fam <- c("Aristolochiaceae", "Begoniaceae", "Martyniaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam, messages = FALSE)))
 
@@ -72,7 +72,9 @@ res <- powoGenera(powocodes$family, powocodes$uri,
                   verbose = FALSE,
                   save = FALSE)
 
-knitr::kable(res[-c(7:10)])
+knitr::kable(res[-c(7:10)],
+             caption = "TABLE 1. A general `powoGenera` search for mining all 
+             accepted genera for some specific angiosperm families.")
 ```
 
 # Mining all accepted genera for all angiosperm families
@@ -98,7 +100,7 @@ powoGenera(POWOcodes$family, POWOcodes$uri,
            filename = "all_angiosperm_genera")
 ```
 
-# Narrowing down the `powoGenera` search based on a specified country list
+# Narrowing down the `powoGenera` search based on a specified country vector
 
 You can also narrow down the search for all accepted genera of any family so as to 
 focus on just a particular country or a list of countries. You just need to define 
@@ -132,11 +134,12 @@ res <- powoGenera(powocodes$family, powocodes$uri,
                   verbose = FALSE,
                   save = FALSE)
 
-knitr::kable(res[-c(7:10)])
+knitr::kable(res[-c(7:10)],
+             caption = "TABLE 2. A `powoGenera` search based on a specified country vector.")
 ```
 
 
-# Narrowing down the `powoGenera` search based on a specified genus list
+# Narrowing down the `powoGenera` search based on a specified genus vector
 
 You may want to retrieve information for just one or a list of accepted 
 genera from a given country (or from a list of countries). Just like before,
@@ -170,5 +173,7 @@ res <- powoGenera(powocodes$family[1:2], powocodes$uri[1:2],
                   verbose = TRUE,
                   save = FALSE)
 
-knitr::kable(res[-c(7:10)])
+knitr::kable(res[-c(7:10)], 
+             caption = "TABLE 3. A `powoGenera` search based on specified genus 
+             and country vectors.")
 ```

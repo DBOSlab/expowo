@@ -75,7 +75,10 @@ res <- megaGen(powocodes$family, powocodes$uri,
                verbose = FALSE,
                save = FALSE)
 
-knitr::kable(res)
+knitr::kable(res,
+             caption = "TABLE 1. A general `megaGen` search to mining the megadiverse 
+             genera for some specific angiosperm families, based on a specified 
+             threshold of 500 species.")
 ```
 
 # Mining megadiverse genera accross all angiosperm families

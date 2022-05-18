@@ -76,7 +76,9 @@ res <- powoSpecies(powocodes$family, powocodes$uri,
                    verbose = FALSE,
                    save = FALSE)
 
-knitr::kable(res[-c(8:11)])
+knitr::kable(res[-c(8:11)],
+             caption = "TABLE 1. A general `powoSpecies` search for mining all 
+             accepted species for some specific angiosperm families.")
 ```
 
 # Mining all accepted species for all angiosperm families
@@ -102,7 +104,7 @@ powoSpecies(POWOcodes$family, POWOcodes$uri,
             filename = "all_angiosperm_species")
 ```
 
-# Narrowing down the `powoSpecies` search based on a specified country list
+# Narrowing down the `powoSpecies` search based on a specified country vector
 
 You can also narrow down the species checklist search of any family by
 focusing on just a particular country or a list of countries. You just need to 
@@ -134,11 +136,12 @@ res <- powoSpecies(powocodes$family, powocodes$uri,
                    verbose = FALSE,
                    save = FALSE)
 
-knitr::kable(res[-c(8:11)])
+knitr::kable(res[-c(8:11)],
+             caption = "TABLE 2. A `powoSpecies` search based on a specified country vector.")
 ```
 
 
-# Narrowing down the `powoSpecies` search based on a specified genus list
+# Narrowing down the `powoSpecies` search based on a specified genus vector
 
 You may want to retrieve information for just one or a list of accepted 
 genera from a given country (or from a list of countries). Just like before,
@@ -174,5 +177,7 @@ res <- powoSpecies(powocodes$family, powocodes$uri,
                    verbose = FALSE,
                    save = FALSE)
 
-knitr::kable(res[-c(8:11)])
+knitr::kable(res[-c(8:11)],
+             caption = "TABLE 3. A `powoSpecies` search based on specified genus 
+             and country vectors.")
 ```

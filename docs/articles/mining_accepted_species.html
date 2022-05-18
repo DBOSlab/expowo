@@ -74,7 +74,7 @@
       <img src="" class="logo" alt=""><h1>Mining species list for any plant family</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/deborazuanny/expowo/blob/HEAD/vignettes/mining_accepted_species.Rmd" class="external-link"><code>vignettes/mining_accepted_species.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/deborazuanny/expowo/blob/HEAD/vignettes/articles/mining_accepted_species.Rmd" class="external-link"><code>vignettes/articles/mining_accepted_species.Rmd</code></a></small>
       <div class="d-none name"><code>mining_accepted_species.Rmd</code></div>
     </div>
 
@@ -111,6 +111,7 @@
             dir <span class="op">=</span> <span class="st">"results_powoSpecies/"</span>,
             filename <span class="op">=</span> <span class="st">"Ambor_Cabom_Martyniaceae_search"</span><span class="op">)</span></code></pre></div>
 <table class="table">
+<caption>TABLE 1. A general <code>powoSpecies</code> search for mining all accepted species for some specific angiosperm families.</caption>
 <colgroup>
 <col width="4%">
 <col width="4%">
@@ -395,7 +396,7 @@
             filename <span class="op">=</span> <span class="st">"all_angiosperm_species"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="narrowing-down-the-powospecies-search-based-on-a-specified-country-list">Narrowing down the <code>powoSpecies</code> search based on a specified country list<a class="anchor" aria-label="anchor" href="#narrowing-down-the-powospecies-search-based-on-a-specified-country-list"></a>
+<h2 id="narrowing-down-the-powospecies-search-based-on-a-specified-country-vector">Narrowing down the <code>powoSpecies</code> search based on a specified country vector<a class="anchor" aria-label="anchor" href="#narrowing-down-the-powospecies-search-based-on-a-specified-country-vector"></a>
 </h2>
 <p>You can also narrow down the species checklist search of any family by focusing on just a particular country or a list of countries. You just need to define a vector of country names in the argument . In the example below, note that we have originally searched for the species within the families <strong>Amborellaceae</strong>, <strong>Cabombaceae</strong>, and <strong>Martyniaceae</strong>, but the function returned a smaller species list, because many species in the searched families are not recorded in any of the specified vector of country, i.e. <strong>Brazil</strong> or <strong>Colombia</strong>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -412,6 +413,7 @@
             dir <span class="op">=</span> <span class="st">"results_powoSpecies/"</span>,
             filename <span class="op">=</span> <span class="st">"country_constrained_search"</span><span class="op">)</span></code></pre></div>
 <table class="table">
+<caption>TABLE 2. A <code>powoSpecies</code> search based on a specified country vector.</caption>
 <colgroup>
 <col width="1%">
 <col width="4%">
@@ -549,7 +551,7 @@
 </table>
 </div>
 <div class="section level2">
-<h2 id="narrowing-down-the-powospecies-search-based-on-a-specified-genus-list">Narrowing down the <code>powoSpecies</code> search based on a specified genus list<a class="anchor" aria-label="anchor" href="#narrowing-down-the-powospecies-search-based-on-a-specified-genus-list"></a>
+<h2 id="narrowing-down-the-powospecies-search-based-on-a-specified-genus-vector">Narrowing down the <code>powoSpecies</code> search based on a specified genus vector<a class="anchor" aria-label="anchor" href="#narrowing-down-the-powospecies-search-based-on-a-specified-genus-vector"></a>
 </h2>
 <p>You may want to retrieve information for just one or a list of accepted genera from a given country (or from a list of countries). Just like before, you only need to define a vector of genus names in the argument  and a vector of country names in the argument . In the example below, see that we have again searched for just the genera <strong><em>Asarum</em></strong> and <strong><em>Bertholletia</em></strong> of the families <strong>Aristolochiaceae</strong> and <strong>Lecythidaceae</strong>, but the function only returned the Lecythidaceae genus <strong><em>Bertholletia</em></strong>, because <strong><em>Asarum</em></strong> does not occur in any of the provided list of countries, i.e. <strong>Argentina</strong>, <strong>Brazil</strong> or <strong>French Guiana</strong>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -567,6 +569,7 @@
             dir <span class="op">=</span> <span class="st">"results_powoSpecies/"</span>,
             filename <span class="op">=</span> <span class="st">"country_constrained_search"</span><span class="op">)</span></code></pre></div>
 <table class="table">
+<caption>TABLE 3. A <code>powoSpecies</code> search based on specified genus and country vectors.</caption>
 <colgroup>
 <col width="1%">
 <col width="5%">

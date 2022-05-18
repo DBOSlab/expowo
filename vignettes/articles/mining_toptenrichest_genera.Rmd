@@ -48,7 +48,7 @@ genera of any target angiosperm family, and their associated number of accepted 
 
 ```{r, eval = FALSE}
 library(taxize)
-fam <- c("Bignoniaceae", "Lecythidaceae", "Sapotaceae", "Solanaceae")
+fam <- c("Bignoniaceae", "Lecythidaceae", "Sapotaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
@@ -56,12 +56,12 @@ toptenGen(powocodes$family, powocodes$uri,
           verbose = TRUE,
           save = TRUE,
           dir = "results_toptenGen/",
-          filename = "Arace_Arist_Begon_Solanaceae_search")
+          filename = "Bigno_Lecyt_Sapotaceae_search")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
 library(taxize)
-fam <- c("Bignoniaceae", "Lecythidaceae", "Sapotaceae", "Solanaceae")
+fam <- c("Bignoniaceae", "Lecythidaceae", "Sapotaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam, messages = FALSE)))
 
@@ -69,7 +69,9 @@ res <- toptenGen(powocodes$family, powocodes$uri,
                  verbose = FALSE,
                  save = FALSE)
 
-knitr::kable(res)
+knitr::kable(res,
+             caption = "TABLE 1. A general `toptenGen` search to mining the top 
+             ten most species rich genera for some specific angiosperm families.")
 ```
 
 # Mining the top ten richest genera accross all angiosperm families

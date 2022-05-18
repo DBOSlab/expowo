@@ -74,7 +74,7 @@
       <img src="" class="logo" alt=""><h1>Mining the top ten richest genera of flowering plants</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/deborazuanny/expowo/blob/HEAD/vignettes/mining_toptenrichest_genera.Rmd" class="external-link"><code>vignettes/mining_toptenrichest_genera.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/deborazuanny/expowo/blob/HEAD/vignettes/articles/mining_toptenrichest_genera.Rmd" class="external-link"><code>vignettes/articles/mining_toptenrichest_genera.Rmd</code></a></small>
       <div class="d-none name"><code>mining_toptenrichest_genera.Rmd</code></div>
     </div>
 
@@ -99,7 +99,7 @@
 <p>The function <code>toptenGen</code> is relatively similar to the <code>megaGen</code>, but instead of using any specific threshold, it saves a CSV file listing the top ten most biodiverse genera of any target angiosperm family, and their associated number of accepted species.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span>
-<span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bignoniaceae"</span>, <span class="st">"Lecythidaceae"</span>, <span class="st">"Sapotaceae"</span>, <span class="st">"Solanaceae"</span><span class="op">)</span>
+<span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bignoniaceae"</span>, <span class="st">"Lecythidaceae"</span>, <span class="st">"Sapotaceae"</span><span class="op">)</span>
 <span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,
                    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/taxize/reference/get_pow.html" class="external-link">get_pow</a></span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
@@ -107,9 +107,9 @@
           verbose <span class="op">=</span> <span class="cn">TRUE</span>,
           save <span class="op">=</span> <span class="cn">TRUE</span>,
           dir <span class="op">=</span> <span class="st">"results_toptenGen/"</span>,
-          filename <span class="op">=</span> <span class="st">"Arace_Arist_Begon_Solanaceae_search"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">#&gt; ERROR: Jaborosa Solanaceae cannot open the connection to 'http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:38397-1'</span></code></pre>
+          filename <span class="op">=</span> <span class="st">"Bigno_Lecyt_Sapotaceae_search"</span><span class="op">)</span></code></pre></div>
 <table class="table">
+<caption>TABLE 1. A general <code>toptenGen</code> search to mining the top ten most species rich genera for some specific angiosperm families.</caption>
 <colgroup>
 <col width="7%">
 <col width="7%">
@@ -399,96 +399,6 @@
 <td align="left">77127143-1</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:77127143-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:77127143-1</a></td>
 </tr>
-<tr class="odd">
-<td align="left">Solanaceae</td>
-<td align="left">Solanum</td>
-<td align="left">L.</td>
-<td align="left">Solanum L.</td>
-<td align="right">1234</td>
-<td align="left">30000630-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:30000630-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:30000630-2</a></td>
-</tr>
-<tr class="even">
-<td align="left">Solanaceae</td>
-<td align="left">Cestrum</td>
-<td align="left">L.</td>
-<td align="left">Cestrum L.</td>
-<td align="right">227</td>
-<td align="left">30000712-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:30000712-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:30000712-2</a></td>
-</tr>
-<tr class="odd">
-<td align="left">Solanaceae</td>
-<td align="left">Lycianthes</td>
-<td align="left">(Dunal) Hassl.</td>
-<td align="left">Lycianthes (Dunal) Hassl.</td>
-<td align="right">154</td>
-<td align="left">296281-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:296281-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:296281-2</a></td>
-</tr>
-<tr class="even">
-<td align="left">Solanaceae</td>
-<td align="left">Lycium</td>
-<td align="left">L.</td>
-<td align="left">Lycium L.</td>
-<td align="right">101</td>
-<td align="left">30001330-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:30001330-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:30001330-2</a></td>
-</tr>
-<tr class="odd">
-<td align="left">Solanaceae</td>
-<td align="left">Physalis</td>
-<td align="left">L.</td>
-<td align="left">Physalis L.</td>
-<td align="right">95</td>
-<td align="left">329952-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:329952-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:329952-2</a></td>
-</tr>
-<tr class="even">
-<td align="left">Solanaceae</td>
-<td align="left">Nicotiana</td>
-<td align="left">L.</td>
-<td align="left">Nicotiana L.</td>
-<td align="right">80</td>
-<td align="left">325974-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:325974-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:325974-2</a></td>
-</tr>
-<tr class="odd">
-<td align="left">Solanaceae</td>
-<td align="left">Jaltomata</td>
-<td align="left">Schltdl.</td>
-<td align="left">Jaltomata Schltdl.</td>
-<td align="right">71</td>
-<td align="left">38399-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:38399-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:38399-1</a></td>
-</tr>
-<tr class="even">
-<td align="left">Solanaceae</td>
-<td align="left">Nolana</td>
-<td align="left">L.</td>
-<td align="left">Nolana L.</td>
-<td align="right">66</td>
-<td align="left">30003554-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:30003554-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:30003554-2</a></td>
-</tr>
-<tr class="odd">
-<td align="left">Solanaceae</td>
-<td align="left">Deprea</td>
-<td align="left">Raf.</td>
-<td align="left">Deprea Raf.</td>
-<td align="right">53</td>
-<td align="left">38338-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:38338-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:38338-1</a></td>
-</tr>
-<tr class="even">
-<td align="left">Solanaceae</td>
-<td align="left">Brunfelsia</td>
-<td align="left">Plum. ex L.</td>
-<td align="left">Brunfelsia Plum. ex L.</td>
-<td align="right">49</td>
-<td align="left">328954-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:328954-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:328954-2</a></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -497,7 +407,7 @@
 </h2>
 <p>To mine a global checklist of the top ten species-richest genera for all families of flowering plants, including their associated species number, we recommend to load the dataframe-formatted data object called <code>POWOcodes</code> that comes associated with the <strong>expowo</strong> package. Because the <code>POWOcodes</code> data object already contains the URI addresses for all angiosperms families recognized in the <a href="https://powo.science.kew.org" class="external-link">POWO</a> database, you do not need to perform the time-consuming URI search using <strong>taxize</strong>.<br></p>
 <p>The example below shows how to mine all top ten most species-rich genera of flowering plants by using the vector of all angiosperm families and associated URI addresses stored in the <code>POWOcodes</code> object.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/toptenGen.html">toptenGen</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">POWOcodes</span><span class="op">$</span><span class="va">uri</span>,
