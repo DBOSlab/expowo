@@ -60,10 +60,10 @@ toptenGen(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-library(taxize)
+data("POWOcodes")
 fam <- c("Bignoniaceae", "Lecythidaceae", "Sapotaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam, messages = FALSE)))
+powocodes <- data.frame(family = fam,
+                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
 
 res <- toptenGen(powocodes$family, powocodes$uri,
                  verbose = FALSE,

@@ -63,10 +63,10 @@ powoGenera(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-library(taxize)
+data("POWOcodes")
 fam <- c("Aristolochiaceae", "Begoniaceae", "Martyniaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam, messages = FALSE)))
+powocodes <- data.frame(family = fam,
+                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
 
 res <- powoGenera(powocodes$family, powocodes$uri,
                   verbose = FALSE,
@@ -113,7 +113,7 @@ of countries of interest, i.e. __Argentina__, __Brazil__ or __French Guiana__.
 
 ```{r, eval = FALSE}
 library(taxize)
-fam <- c("Aristolochiaceae", "Lecythidaceae", "Fagaceae", "Dipterocarpaceae")
+fam <- c("Aristolochiaceae", "Dipterocarpaceae", "Fagaceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
@@ -126,9 +126,10 @@ powoGenera(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-fam <- c("Aristolochiaceae", "Lecythidaceae", "Fagaceae", "Dipterocarpaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam, messages = FALSE)))
+fam <- c("Aristolochiaceae", "Dipterocarpaceae", "Fagaceae", "Lecythidaceae")
+powocodes <- data.frame(family = fam,
+                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
+
 res <- powoGenera(powocodes$family, powocodes$uri,
                   country = c("Argentina", "Brazil", "French Guiana"),
                   verbose = FALSE,
@@ -167,7 +168,7 @@ powoGenera(powocodes$family, powocodes$uri,
 ```
 
 ```{r echo=FALSE, warning=FALSE}
-res <- powoGenera(powocodes$family[1:2], powocodes$uri[1:2],
+res <- powoGenera(powocodes$family[c(1,4)], powocodes$uri[c(1,4)],
                   genus = c("Asarum", "Bertholletia"),
                   country = c("Argentina", "Brazil", "French Guiana"),
                   verbose = TRUE,

@@ -66,10 +66,10 @@ res <- powoSpecies(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-library(taxize)
+data("POWOcodes")
 fam <- c("Amborellaceae", "Cabombaceae", "Martyniaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam, messages = FALSE)))
+powocodes <- data.frame(family = fam,
+                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
 
 res <- powoSpecies(powocodes$family, powocodes$uri,
                    hybridspp = FALSE,

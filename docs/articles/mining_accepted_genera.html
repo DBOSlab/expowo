@@ -304,7 +304,7 @@
 <p>You can also narrow down the search for all accepted genera of any family so as to focus on just a particular country or a list of countries. You just need to define a vector of country names in the argument . In the example below, see that we have originally searched for the genera within the families <strong>Aristolochiaceae</strong>, <strong>Lecythidaceae</strong>, <strong>Fagaceae</strong>, and <strong>Dipterocarpaceae</strong>, but the function only returned a list of genera of <strong>Aristolochiaceae</strong> and <strong>Lecythidaceae</strong>, because the remaining families do not have any genera recorded in the list of countries of interest, i.e. <strong>Argentina</strong>, <strong>Brazil</strong> or <strong>French Guiana</strong>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span>
-<span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Lecythidaceae"</span>, <span class="st">"Fagaceae"</span>, <span class="st">"Dipterocarpaceae"</span><span class="op">)</span>
+<span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Dipterocarpaceae"</span>, <span class="st">"Fagaceae"</span>, <span class="st">"Lecythidaceae"</span><span class="op">)</span>
 <span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,
                    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/taxize/reference/get_pow.html" class="external-link">get_pow</a></span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
@@ -373,7 +373,7 @@
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:14132-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:14132-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">9</td>
+<td align="left">33</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Allantoma</td>
 <td align="left">Miers</td>
@@ -384,7 +384,7 @@
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27400-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27400-1</a></td>
 </tr>
 <tr class="odd">
-<td align="left">10</td>
+<td align="left">34</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Asteranthos</td>
 <td align="left">Desf.</td>
@@ -395,7 +395,7 @@
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27417-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27417-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">12</td>
+<td align="left">36</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Bertholletia</td>
 <td align="left">Bonpl.</td>
@@ -406,7 +406,7 @@
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27438-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27438-1</a></td>
 </tr>
 <tr class="odd">
-<td align="left">15</td>
+<td align="left">39</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Cariniana</td>
 <td align="left">Casar.</td>
@@ -417,7 +417,7 @@
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27473-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27473-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">17</td>
+<td align="left">41</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Corythophora</td>
 <td align="left">R.Knuth</td>
@@ -428,7 +428,7 @@
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:296913-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:296913-2</a></td>
 </tr>
 <tr class="odd">
-<td align="left">18</td>
+<td align="left">42</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Couratari</td>
 <td align="left">Aubl.</td>
@@ -439,7 +439,7 @@
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27498-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27498-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">19</td>
+<td align="left">43</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Couroupita</td>
 <td align="left">Aubl.</td>
@@ -450,7 +450,7 @@
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27499-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27499-1</a></td>
 </tr>
 <tr class="odd">
-<td align="left">21</td>
+<td align="left">45</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Eschweilera</td>
 <td align="left">Mart. ex DC.</td>
@@ -461,7 +461,7 @@
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:326987-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:326987-2</a></td>
 </tr>
 <tr class="even">
-<td align="left">24</td>
+<td align="left">48</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Gustavia</td>
 <td align="left">L.</td>
@@ -472,7 +472,7 @@
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:331637-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:331637-2</a></td>
 </tr>
 <tr class="odd">
-<td align="left">25</td>
+<td align="left">49</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Lecythis</td>
 <td align="left">Loefl.</td>
