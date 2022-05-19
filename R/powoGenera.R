@@ -86,7 +86,9 @@
 #' @export
 #'
 
-powoGenera <- function(family, uri,
+powoGenera <- function(dir = "results_powoGenera/",
+                       filename = "output",
+                       family, uri,
                        genus = NULL,
                        country = NULL,
                        verbose = TRUE,

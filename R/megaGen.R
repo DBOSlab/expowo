@@ -140,5 +140,23 @@ megaGen <- function(family, uri,
                        col.names = TRUE)
   }
 
+  if (save) {
+    # Create a new directory to save the results with current date
+    if (!dir.exists(dir)) {
+      dir.create(dir)
+      todaydate <- format(Sys.time(), "%d %b %Y")
+      folder_name <- paste0(dir, gsub(" ", "", todaydate))
+      print(paste0("Writing '", folder_name, "' on disk."))
+      dir.create(folder_name) } #if there is no directory... make one!
+
+    # Create and save the spreadsheet in .csv format
+    fullname <- paste0(folder_name, "/", filename, ".csv")
+    print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
+    data.table::fwrite(df,
+                       file = fullname,
+                       sep = ",",
+                       row.names = FALSE,
+                       col.names = TRUE)}
+
   return(df)
 }

@@ -8,6 +8,13 @@ powoSpecies(family, uri, genus = NULL, hybridspp = FALSE, country = NULL,
             verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
+\item{dir}{Pathway to computer's directory, where the file will be saved if the
+param "save" is set up in \code{TRUE}. Default is to create a directory
+named "results_powoSpecies/".}
+
+\item{filename}{Name of the final output file. Default is to create a file
+entitled "output".}
+
 \item{family}{Either a single family name or a vector of multiple families
 that are present in POWO.}
 
