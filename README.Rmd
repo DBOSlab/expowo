@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "30%"
 )
 ```
 
@@ -189,4 +189,4 @@ Zuanny, D. & Cardoso, D. (2022). expowo: An R package for mining plant diversity
 and distribution data. https://github.com/DBOSlab/expowo
 
 
-![](man/figures/DBOSlab_logo.png){width=25%}
+![](man/figures/DBOSlab_logo.png){width=30%}

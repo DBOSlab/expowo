@@ -200,4 +200,4 @@ botanical research!
 Zuanny, D. & Cardoso, D. (2022). expowo: An R package for mining plant
 diversity and distribution data. <https://github.com/DBOSlab/expowo>
 
-<img src="man/figures/DBOSlab_logo.png" style="width:25.0%" />
+<img src="man/figures/DBOSlab_logo.png" style="width:30.0%" />
