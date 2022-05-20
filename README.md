@@ -13,7 +13,7 @@ The main goal of the **expowo** package is to retrieve information about
 the diversity and distribution of any plant family as publicly available
 at the taxonomically verified database [Plants of the World Online
 (POWO)](https://powo.science.kew.org). The package is intended to
-efficiently mine the content within the source html pages for any
+efficiently mine the content within the source HTML pages for any
 specific genus and family. It can return a comma-separated values (CSV)
 file with the number of accepted species and country-level distribution
 for any genus as well as the full checklist of accepted species in any
@@ -41,7 +41,7 @@ R code:
 
 ``` coffee
 install.packages("devtools")
-devtools::install_github("deborazuanny/expowo")
+devtools::install_github("DBOSlab/expowo")
 ```
 
 ``` r
@@ -69,16 +69,16 @@ library(expowo)
 The package’s four major functions (`powoGenera`, `powoSpecies`,
 `megaGen`, and `toptenGen`) require only the name of the target family
 (or a vector with multiple family names) and the associated specific URI
-(Uniform Resource Identifier) that identifies the html page for each
+(Uniform Resource Identifier) that identifies the HTML page for each
 family in POWO. These four major functions work with other three
 auxiliary functions (`getGenURI`, `getNumb`, and `getDist`) to mine the
 plant data. Respectively, `getGenURI` mines the URI for each genus,
 `getNumb` mines the total number of species within any genus, and
 `getDist` does a complete search for native and introduced country-level
-distribution any genus and species. To get the POWO URI for any accepted
-plant family, you can either look at the data frame object `POWOcodes`
-that come together with the installed **expowo** package, or you can use
-the function `get_pow` from the package
+distribution for any genus and species. To get the POWO URI for any
+accepted plant family, you can either look at the data frame object
+`POWOcodes` that come together with the installed **expowo** package, or
+you can use the function `get_pow` from the package
 [**taxize**](https://github.com/ropensci/taxize). So, the vector of URI
 codes is the main input file to everything you can do with expowo
 package. See below examples on how to use the **expowo**’s major
@@ -92,7 +92,7 @@ number of accepted species and their global geographical distribution at
 country level. You can also narrow down the search to focus on just a
 particular genus from a particular country or a list of genera from a
 list of countries (please check this
-[article](https://domingoscardoso.github.io/expowo/articles/mining_accepted_genera.html)
+[article](https://DBOSlab.github.io/expowo/articles/mining_accepted_genera.html)
 for further details)
 
 ##### Example of a POWO search with `powoGenera`:
@@ -112,7 +112,7 @@ powoGenera(powocodes$family, powocodes$uri,
            filename = "Fabaceae_Lecythidaceae")
 ```
 
-#### *2. `powoSpecies`: Mining accepted species for any angiosperm genus or family*
+#### *2. `powoSpecies`: Mining species for any angiosperm genus or family*
 
 With this function, you will be able to retrieve a list (either a
 dataframe-returned object or a CSV file saved directly in the directory)
@@ -163,11 +163,11 @@ megaGen(powocodes$family, powocodes$uri,
         filename = "Fabaceae_Lecythidaceae")
 ```
 
-#### *4. `toptenGen`: Mining the top ten most species-rich genera for any angiosperm family*
+#### *4. `toptenGen`: Mining the top ten most diverse genera for any APG family*
 
 This function is relatively similar to the `megaGen`, but instead of
 using any specific threshold, it saves a CSV file listing the top ten
-most diverse genera of any target angiosperm family.
+most species-rich genera of any target angiosperm family.
 
 ##### Example of a POWO search with `toptenGen`:
 
@@ -189,7 +189,7 @@ toptenGen(powocodes$family, powocodes$uri,
 ## Documentation
 
 A detailed description of the **expowo**’s full functionality is
-available in [here](https://domingoscardoso.github.io/expowo/).
+available in [here](https://DBOSlab.github.io/expowo/).
 
 The **expowo** package is being continuously constructed. If you want to
 make suggestions, let us know! We hope it will be helpful for your
