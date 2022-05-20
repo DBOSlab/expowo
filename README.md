@@ -39,7 +39,7 @@ You can install the latest development version of **expowo** from
 [devtools](https://github.com/r-lib/devtools) package with the following
 R code:
 
-``` r
+``` coffee
 install.packages("devtools")
 devtools::install_github("deborazuanny/expowo")
 ```
@@ -198,8 +198,6 @@ botanical research!
 ## Citation
 
 Zuanny, D. & Cardoso, D. (2022). expowo: An R package for mining plant
-diversity and distribution data.
-<https://github.com/deborazuanny/expowo> or
-<https://github.com/domingoscardoso/expowo>
+diversity and distribution data. <https://github.com/DBOSlab/expowo>
 
 <img src="man/figures/DBOSlab_logo.png" style="width:30.0%" />
