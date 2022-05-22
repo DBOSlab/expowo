@@ -4,9 +4,11 @@
 #'
 #' @title Complete list of angiosperm families and associated URI addresses
 #'
-#' @description Complete list of the [APG](https://doi.org/10.1111/boj.12385)-based
-#' families of flowering plants and associated URI addresses as retrieved with the
-#' function \code{\link{get_pow}} of the package [taxize](https://taxize.dev)
+#' @description Complete list of the
+#' [APG](https://doi.org/10.1111/boj.12385)-based
+#' families of flowering plants and associated URI addresses as retrieved with
+#' the function \code{\link{get_pow}} of the package
+#' [taxize](https://taxize.dev)
 #'
 #' @format Table in .csv format
 #'

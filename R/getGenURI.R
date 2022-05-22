@@ -15,21 +15,26 @@ getGenURI <- function(powo_codes,
     # Adding a counter to identify each running search
     if (verbose) {
       print(paste0("Searching... ",
-                   powo_codes$family[i], " ", i, "/", length(powo_codes$family)))
+                   powo_codes$family[i], " ", i, "/",
+                   length(powo_codes$family)))
     }
 
     # Visiting the POWO source page for each entry family
-    powo_fams_uri[[i]] <- readLines(powo_codes$uri[i], encoding = "UTF-8", warn = F)
+    powo_fams_uri[[i]] <- readLines(powo_codes$uri[i], encoding = "UTF-8",
+                                    warn = F)
 
-    # Find whether the family exists by searching a pattern for constituent accepted genera
+    # Find whether the family exists by searching a pattern for constituent
+    # accepted genera
     tt <- grepl("\\s{2,}This is a synonym of", powo_fams_uri[[i]])
     temp <- powo_fams_uri[[i]][tt]
 
     if (length(temp) != 0) {
 
-      tt <- grepl("<a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]", powo_fams_uri[[i]])
+      tt <- grepl("<a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
+                  powo_fams_uri[[i]])
 
-      powo_fams_uri[[i]][tt] <- gsub(".*org[:]names[:]", "", powo_fams_uri[[i]][tt])
+      powo_fams_uri[[i]][tt] <- gsub(".*org[:]names[:]", "",
+                                     powo_fams_uri[[i]][tt])
       new_powo_fam_uri <- gsub("\".*", "", powo_fams_uri[[i]][tt])
       new_fam_name <- gsub(".*[=]", "", powo_fams_uri[[i]][tt])
       new_fam_name <- gsub("<.*", "", new_fam_name)
@@ -38,11 +43,14 @@ getGenURI <- function(powo_codes,
 
       if (any(!new_fam_name %in% powo_codes$family)) {
         print(paste("Searching genera now under", paste0(new_fam_name, "...")))
-        new_powo_fam_uri <- paste("http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:", new_powo_fam_uri, sep = "")
+        new_powo_fam_uri <-
+          paste("http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:",
+                new_powo_fam_uri, sep = "")
 
-        # Visiting POWO source page again for the accepted family name of an originally
-        # entered family that is under synonym
-        powo_fams_uri[[i]] <- readLines(new_powo_fam_uri, encoding = "UTF-8", warn = F)
+        # Visiting POWO source page again for the accepted family name of an
+        # originally entered family that is under synonym
+        powo_fams_uri[[i]] <- readLines(new_powo_fam_uri, encoding = "UTF-8",
+                                        warn = F)
 
         tt <- grepl("\\s{2,}This is a synonym of", powo_fams_uri[[i]])
         temp <- powo_fams_uri[[i]][tt]
@@ -57,11 +65,15 @@ getGenURI <- function(powo_codes,
 
     if (length(temp) == 0) {
       # The temp vector get the URI for each genus within the family
-      temp <- grepl("<li><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]", powo_fams_uri[[i]])
+      temp <-
+        grepl("<li><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
+              powo_fams_uri[[i]])
       powo_genus_uri <- powo_fams_uri[[i]][temp]
-      # The following subset within the retrieved genus uri within the temp vector
-      # is to exclude any possible IRI of family-level synonyms
-      temp <- !grepl("aceae|oideae|meta\\sproperty|meta\\sname|Compositae|Cruciferae|Gramineae|Guttiferae|Labiatae|Leguminosae|Palmae|Umbelliferae", powo_genus_uri)
+      # The following subset within the retrieved genus uri within the temp
+      # vector is to exclude any possible IRI of family-level synonyms
+      temp <- !grepl("aceae|oideae|meta\\sproperty|meta\\sname|Compositae|
+                     Cruciferae|Gramineae|Guttiferae|Labiatae|Leguminosae|
+                     Palmae|Umbelliferae", powo_genus_uri)
 
       list_fams[[i]] <- data.frame(temp_genus_uri = powo_genus_uri[temp],
                                    family = powo_codes$family[i],
@@ -72,18 +84,29 @@ getGenURI <- function(powo_codes,
                                    powo_uri = NA)
 
       # Filling retrieved information in each column
-      list_fams[[i]][["temp_genus_uri"]] <- gsub(".*<li><a href[=]\"", "", list_fams[[i]][["temp_genus_uri"]])
-      list_fams[[i]][["powo_uri"]] <- paste("http://www.plantsoftheworldonline.org", gsub("\".+", "", list_fams[[i]][["temp_genus_uri"]]), sep = "")
-      list_fams[[i]][["kew_id"]] <- gsub(".+[:]", "", list_fams[[i]][["powo_uri"]])
+      list_fams[[i]][["temp_genus_uri"]] <-
+        gsub(".*<li><a href[=]\"", "", list_fams[[i]][["temp_genus_uri"]])
+      list_fams[[i]][["powo_uri"]] <-
+        paste("http://www.plantsoftheworldonline.org",
+              gsub("\".+", "", list_fams[[i]][["temp_genus_uri"]]), sep = "")
+      list_fams[[i]][["kew_id"]] <- gsub(".+[:]", "",
+                                         list_fams[[i]][["powo_uri"]])
 
-      list_fams[[i]][["authors"]] <- gsub(".*em>", "", list_fams[[i]][["temp_genus_uri"]])
-      list_fams[[i]][["authors"]] <- gsub("<.*", "", list_fams[[i]][["authors"]])
-      list_fams[[i]][["authors"]] <- gsub("^\\s", "", list_fams[[i]][["authors"]])
-      list_fams[[i]][["genus"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "", list_fams[[i]][["temp_genus_uri"]])
-      list_fams[[i]][["scientific_name"]] <- paste(list_fams[[i]][["genus"]], list_fams[[i]][["authors"]])
+      list_fams[[i]][["authors"]] <- gsub(".*em>", "",
+                                          list_fams[[i]][["temp_genus_uri"]])
+      list_fams[[i]][["authors"]] <- gsub("<.*", "",
+                                          list_fams[[i]][["authors"]])
+      list_fams[[i]][["authors"]] <- gsub("^\\s", "",
+                                          list_fams[[i]][["authors"]])
+      list_fams[[i]][["genus"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "",
+                                        list_fams[[i]][["temp_genus_uri"]])
+      list_fams[[i]][["scientific_name"]] <- paste(list_fams[[i]][["genus"]],
+                                                   list_fams[[i]][["authors"]])
 
       # Select specific columns of interest
-      list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "authors", "scientific_name", "kew_id", "powo_uri")
+      list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "authors",
+                                                  "scientific_name", "kew_id",
+                                                  "powo_uri")
     }
 
     # ending the main for loop
@@ -113,10 +136,13 @@ getGenURI <- function(powo_codes,
 
     } else {
 
-      stop(paste("Any genus in the provided genus vector might have a typo or is not present in POWO.\n",
-                 "Please correct the following names in your genus vector according to POWO:\n", "\n",
+      stop(paste("Any genus in the provided genus vector might have a typo or is
+                 not present in POWO.\n",
+                 "Please correct the following names in your genus vector
+                 according to POWO:\n", "\n",
 
-                 paste(genus[!genus %in% df$genus], collapse = ", "), "\n", "\n",
+                 paste(genus[!genus %in% df$genus], collapse = ", "), "\n",
+                 "\n",
 
                  "Find help also at DBOSLab-UFBA:\n",
                  "Debora Zuanny, deborazuanny@gmail.com\n",

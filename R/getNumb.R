@@ -22,21 +22,27 @@ getNumb <- function(df,
       if (verbose) {
         print(paste0("Searching spp number of... ",
                      df$genus[df$powo_uri == df$powo_uri[i]], " ",
-                     df$family[df$powo_uri == df$powo_uri[i]], " ", i, "/", length(list_spp)))
+                     df$family[df$powo_uri == df$powo_uri[i]], " ", i, "/",
+                     length(list_spp)))
       }
 
       list_grepl[[i]] <- grepl("<p>Includes\\s", list_html[[i]])
-      list_spp[[i]] <- gsub(".*<p>Includes\\s", "", list_html[[i]][list_grepl[[i]]])
-      list_spp[[i]] <- gsub("\\sAccepted.+", "", list_spp[[i]][grepl("\\sAccepted\\s", list_spp[[i]])])
+      list_spp[[i]] <- gsub(".*<p>Includes\\s", "",
+                            list_html[[i]][list_grepl[[i]]])
+      list_spp[[i]] <- gsub("\\sAccepted.+", "",
+                            list_spp[[i]][grepl("\\sAccepted\\s",
+                                                list_spp[[i]])])
 
       # The function below will print any search error (e.g. site address of a
       # specific genus is not opening for some reason)
-    }, error = function(e) {cat(paste("ERROR:", df$genus[df$powo_uri == df$powo_uri[i]],
+    }, error = function(e) {cat(paste("ERROR:",
+                                      df$genus[df$powo_uri == df$powo_uri[i]],
                                       df$family[df$powo_uri == df$powo_uri[i]]),
                                 conditionMessage(e), "\n")})
   }
 
-  # Filling in with "NA" those genera for which the search failed to open the POWO site
+  # Filling in with "NA" those genera for which the search failed to open the
+  # POWO site
   temp <- lapply(list_spp, is.null)
   list_spp[unlist(temp)] <- NA
   temp <- lapply(list_spp, function(x) length(x) == 0)

@@ -8,36 +8,39 @@ megaGen(family, uri, thld = NULL,
         verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
-\item{family}{Either one family name or a vector of multiple families that are
-present in POWO.}
+\item{family}{Either one family name or a vector of multiple families that
+are present in POWO.}
 
 \item{uri}{URI address for each family to be searched in POWO.}
 
-\item{thld}{A defined threshold of species number for a genus to be considered
-megadiverse. If no threshold number is provided, the function will consider a
-value of 500 based on \href{https://doi.org/10.2307/4135449}{Frodin (2004)}.}
+\item{thld}{A defined threshold of species number for a genus to be
+considered megadiverse. If no threshold number is provided, the function will
+consider a value of 500 based on
+\href{https://doi.org/10.2307/4135449}{Frodin (2004)}.}
 
-\item{verbose}{Logical, if \code{FALSE}, the searched results will not be printed
-in the console in full.}
+\item{verbose}{Logical, if \code{FALSE}, the searched results will not be
+printed in the console in full.}
 
-\item{save}{Logical, if \code{FALSE}, the searched results will not be saved on disk.}
+\item{save}{Logical, if \code{FALSE}, the searched results will not be saved
+on disk.}
 
 \item{dir}{Pathway to the computer's directory, where the file will be saved
 provided that the argument \code{save} is set up in \code{TRUE}. The default
 is to create a directory named \strong{results_megaGen} and the searched results
 will be saved within a subfolder named by the current date.}
 
-\item{filename}{Name of the output file to be saved. Default is to create a file
-entitled \strong{output}.}
+\item{filename}{Name of the output file to be saved. Default is to create a
+file entitled \strong{output}.}
 }
 \value{
 Table in .csv format that is saved on disk.
 }
 \description{
 It produces a CSV file listing all megadiverse genera for
-any angiosperm family at \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
-A numeric value should define the threshold to be considered a megadiverse genus.
-\href{https://doi.org/10.2307/4135449}{Frodin (2004)} suggests 500 species
+any angiosperm family at
+\href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
+A numeric value should define the threshold to be considered a megadiverse
+genus.\href{https://doi.org/10.2307/4135449}{Frodin (2004)} suggests 500 species
 as the threshold for a megadiverse genus.
 }
 \examples{

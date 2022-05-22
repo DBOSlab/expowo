@@ -8,13 +8,13 @@ toptenGen(family, uri,
           verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
-\item{family}{Either one family name or a vector of multiple families that are
-present in POWO.}
+\item{family}{Either one family name or a vector of multiple families that
+are present in POWO.}
 
 \item{uri}{URI address for each family to be searched in POWO.}
 
-\item{verbose}{Logical, if \code{FALSE}, the search results will not be printed
-in the console in full.}
+\item{verbose}{Logical, if \code{FALSE}, the search results will not be
+printed in the console in full.}
 
 \item{save}{Logical, if \code{FALSE}, the search results will not be saved.}
 
@@ -23,8 +23,8 @@ provided that the argument \code{save} is set up in \code{TRUE}. The default
 is to create a directory named \strong{results_toptenGen} and the searched results
 will be saved within a subfolder named by the current date.}
 
-\item{filename}{Name of the output file to be saved. Default is to create a file
-entitled \strong{output}.}
+\item{filename}{Name of the output file to be saved. Default is to create a
+file entitled \strong{output}.}
 }
 \value{
 Table in .csv format that is saved on disk.

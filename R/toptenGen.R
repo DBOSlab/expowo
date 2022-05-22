@@ -120,7 +120,8 @@ toptenGen <- function(family, uri,
       print(paste0("Writing '", folder_name, "' on disk."))
       dir.create(folder_name) # If there is no directory... make one!
     } else {
-      # If directory was created during a previous search, get its name to save results
+      # If directory was created during a previous search, get its name to save
+      # results
       folder_name <- paste0(dir, gsub(" ", "", format(Sys.time(), "%d %b %Y")))
     }
     # Create and save the spreadsheet in .csv format

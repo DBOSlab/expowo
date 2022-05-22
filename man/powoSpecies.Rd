@@ -8,13 +8,6 @@ powoSpecies(family, uri, genus = NULL, hybridspp = FALSE, country = NULL,
             verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
-\item{dir}{Pathway to computer's directory, where the file will be saved if the
-param "save" is set up in \code{TRUE}. Default is to create a directory
-named "results_powoSpecies/".}
-
-\item{filename}{Name of the final output file. Default is to create a file
-entitled "output".}
-
 \item{family}{Either a single family name or a vector of multiple families
 that are present in POWO.}
 
@@ -22,35 +15,38 @@ that are present in POWO.}
 searched in POWO.}
 
 \item{genus}{Either one genus name or a vector of multiple genera
-that are present in POWO. If any genus name is not provided, then the function
-will search any species from all accepted genera known for the target family.}
+that are present in POWO. If any genus name is not provided, then the
+function will search any species from all accepted genera known for the
+target family.}
 
-\item{hybridspp}{Logical, if \code{TRUE}, the search results will include hybrid
-species.}
+\item{hybridspp}{Logical, if \code{TRUE}, the search results will include
+hybrid species.}
 
 \item{country}{Either one country name or a vector of multiple countries.
 If country names are provided, then the function will return only the species
 that are native to such countries, according to POWO.}
 
-\item{verbose}{Logical, if \code{FALSE}, the searched results will not be printed
-in the console in full.}
+\item{verbose}{Logical, if \code{FALSE}, the search results will not be
+printed in the console in full.}
 
-\item{save}{Logical, if \code{FALSE}, the searched results will not be saved on disk.}
+\item{save}{Logical, if \code{FALSE}, the search results will not be saved
+on disk.}
 
 \item{dir}{Pathway to the computer's directory, where the file will be saved
 provided that the argument \code{save} is set up in \code{TRUE}. The default
-is to create a directory named \strong{results_powoSpecies} and the searched results
-will be saved within a subfolder named by the current date.}
+is to create a directory named \strong{results_powoSpecies} and the search
+results will be saved within a subfolder named by the current date.}
 
-\item{filename}{Name of the output file to be saved. Default is to create a file
-entitled \strong{output}.}
+\item{filename}{Name of the output file to be saved. Default is to create a
+file entitled \strong{output}.}
 }
 \value{
 Table in .csv format and saves the output on disk.
 }
 \description{
-It produces a CSV file listing all accepted species and associated
-geographical distribution from any target genus or family of flowering plants at
+It produces a CSV file listing all accepted species and
+associated geographical distribution from any target genus or family of
+flowering plants at
 \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
