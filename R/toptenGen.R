@@ -10,13 +10,13 @@
 #' toptenGen(family, uri,
 #'           verbose = TRUE, save = TRUE, dir, filename)
 #'
-#' @param family Either one family name or a vector of multiple families that are
-#' present in POWO.
+#' @param family Either one family name or a vector of multiple families that
+#' are present in POWO.
 #'
 #' @param uri URI address for each family to be searched in POWO.
 #'
-#' @param verbose Logical, if \code{FALSE}, the search results will not be printed
-#' in the console in full.
+#' @param verbose Logical, if \code{FALSE}, the search results will not be
+#' printed in the console in full.
 #'
 #' @param save Logical, if \code{FALSE}, the search results will not be saved.
 #'
@@ -25,8 +25,8 @@
 #' is to create a directory named **results_toptenGen** and the searched results
 #' will be saved within a subfolder named by the current date.
 #'
-#' @param filename Name of the output file to be saved. Default is to create a file
-#' entitled **output**.
+#' @param filename Name of the output file to be saved. Default is to create a
+#' file entitled **output**.
 #'
 #' @return Table in .csv format that is saved on disk.
 #'
@@ -80,13 +80,15 @@ toptenGen <- function(family, uri,
   uri_log <- uri %in% POWOcodes$uri
   uri_log <- which(uri_log == FALSE)
   if(length(uri_log) >= 1) {
-    stop(paste("Any family's URI address is incomplete or misspelled and cannot open connection with POWO website."))
+    stop(paste("Any family's URI address is incomplete or misspelled and cannot
+               open connection with POWO website."))
   }
 
   powo_codes_fam <- data.frame(family = family,
                                uri = uri)
 
-  # POWO search for the genus URI in each family using auxiliary function getGenURI
+  # POWO search for the genus URI in each family using auxiliary function
+  # getGenURI
   df <- getGenURI(powo_codes_fam,
                   genus = NULL,
                   verbose = verbose)
