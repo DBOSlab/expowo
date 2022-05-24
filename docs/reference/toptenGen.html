@@ -38,7 +38,7 @@ Plants of the World Online (POWO)."><!-- mathjax --><script src="https://cdnjs.c
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/deborazuanny/expowo/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/DBOSlab/expowo/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -51,7 +51,7 @@ Plants of the World Online (POWO)."><!-- mathjax --><script src="https://cdnjs.c
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Get top ten most species-rich genera</h1>
-      <small class="dont-index">Source: <a href="https://github.com/deborazuanny/expowo/blob/HEAD/R/toptenGen.R" class="external-link"><code>R/toptenGen.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/DBOSlab/expowo/blob/HEAD/R/toptenGen.R" class="external-link"><code>R/toptenGen.R</code></a></small>
       <div class="d-none name"><code>toptenGen.Rd</code></div>
     </div>
 
@@ -70,13 +70,13 @@ of any target botanical family of flowering plants at
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>family</dt>
-<dd><p>Either one family name or a vector of multiple families that are
-present in POWO.</p></dd>
+<dd><p>Either one family name or a vector of multiple families that
+are present in POWO.</p></dd>
 <dt>uri</dt>
 <dd><p>URI address for each family to be searched in POWO.</p></dd>
 <dt>verbose</dt>
-<dd><p>Logical, if <code>FALSE</code>, the search results will not be printed
-in the console in full.</p></dd>
+<dd><p>Logical, if <code>FALSE</code>, the search results will not be
+printed in the console in full.</p></dd>
 <dt>save</dt>
 <dd><p>Logical, if <code>FALSE</code>, the search results will not be saved.</p></dd>
 <dt>dir</dt>
@@ -85,8 +85,8 @@ provided that the argument <code>save</code> is set up in <code>TRUE</code>. The
 is to create a directory named <strong>results_toptenGen</strong> and the searched results
 will be saved within a subfolder named by the current date.</p></dd>
 <dt>filename</dt>
-<dd><p>Name of the output file to be saved. Default is to create a file
-entitled <strong>output</strong>.</p></dd>
+<dd><p>Name of the output file to be saved. Default is to create a
+file entitled <strong>output</strong>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -104,7 +104,7 @@ entitled <strong>output</strong>.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://domingoscardoso.github.io/expowo/">expowo</a></span><span class="op">)</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/" class="external-link">expowo</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Araceae"</span>, <span class="st">"Lecythidaceae"</span><span class="op">)</span></span>

@@ -54,7 +54,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/deborazuanny/expowo/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/DBOSlab/expowo/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -74,14 +74,14 @@
       <img src="" class="logo" alt=""><h1>Mining species list for any plant family</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/deborazuanny/expowo/blob/HEAD/vignettes/articles/mining_accepted_species.Rmd" class="external-link"><code>vignettes/articles/mining_accepted_species.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/DBOSlab/expowo/blob/HEAD/vignettes/articles/mining_accepted_species.Rmd" class="external-link"><code>vignettes/articles/mining_accepted_species.Rmd</code></a></small>
       <div class="d-none name"><code>mining_accepted_species.Rmd</code></div>
     </div>
 
     
     
 <p>The main goal of the <strong>expowo</strong> package is to retrieve information about the diversity and distribution of any plant family as publicly available at the taxonomically verified database <a href="https://powo.science.kew.org" class="external-link">Plants of the World Online (POWO)</a>.<br></p>
-<p>The package is intended to efficiently mine the content within the source html pages for any specific genus and family. It can return a comma-separated values (CSV) file with the number of accepted species and country-level distribution for any genus as well as the full checklist of accepted species in any genus or family, their authorship, original publication and global distribution.<br></p>
+<p>The package is intended to efficiently mine the content within the source HTML pages for any specific genus and family. It can return a comma-separated values (CSV) file with the number of accepted species and country-level distribution for any genus as well as the full checklist of accepted species in any genus or family, their authorship, original publication and global distribution.<br></p>
 <p>Here in this article, we show how to use the package’s function <code>powoSpecies</code> for mining all accepted species for any genus or family of flowering plants.</p>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
@@ -89,9 +89,9 @@
 <p><strong>expowo</strong> is not on CRAN yet but you can install the latest development version from <a href="https://github.com/" class="external-link">GitHub</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"deborazuanny/expowo"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"DBOSlab/expowo"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://domingoscardoso.github.io/expowo/">expowo</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/" class="external-link">expowo</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="mining-all-accepted-species-for-any-angiosperm-family">Mining all accepted species for any angiosperm family<a class="anchor" aria-label="anchor" href="#mining-all-accepted-species-for-any-angiosperm-family"></a>

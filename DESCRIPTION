@@ -28,9 +28,8 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
-URL: https://domingoscardoso.github.io/expowo/,
-    https://github.com/deborazuanny/expowo,
-    https://github.com/domingoscardoso/expowo
-BugReports: https://github.com/deborazuanny/expowo/issues
+URL: https://dboslab.github.io/expowo/,
+    https://github.com/DBOSlab/expowo,
+BugReports: https://github.com/DBOSlab/expowo/issues
 VignetteBuilder: knitr
 Config/testthat/edition: 3
