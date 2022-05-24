@@ -29,7 +29,7 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 URL: https://dboslab.github.io/expowo/,
-    https://github.com/dboslab/expowo,
+    https://github.com/dboslab/expowo
 BugReports: https://github.com/DBOSlab/expowo/issues
 VignetteBuilder: knitr
 Config/testthat/edition: 3
