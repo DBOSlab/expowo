@@ -123,30 +123,7 @@ megaGen <- function(family, uri,
                       "powo_uri") %>%
     filter(species_number >= thld)
 
-
-  if (save) {
-    # Create a new directory to save the results with current date
-    if (!dir.exists(dir)) {
-      dir.create(dir)
-      todaydate <- format(Sys.time(), "%d %b %Y")
-      folder_name <- paste0(dir, gsub(" ", "", todaydate))
-      print(paste0("Writing '", folder_name, "' on disk."))
-      dir.create(folder_name) # If there is no directory... make one!
-    } else {
-      # If directory was created during a previous search, get its name to save
-      # results
-      folder_name <- paste0(dir, gsub(" ", "", format(Sys.time(), "%d %b %Y")))
-    }
-    # Create and save the spreadsheet in .csv format
-    fullname <- paste0(folder_name, "/", filename, ".csv")
-    print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
-    data.table::fwrite(df,
-                       file = fullname,
-                       sep = ",",
-                       row.names = FALSE,
-                       col.names = TRUE)
-  }
-
+  # Saving the dataframe if param save is TRUE
   if (save) {
     # Create a new directory to save the results with current date
     if (!dir.exists(dir)) {
