@@ -28,7 +28,6 @@ family, their authorship, original publication and global distribution.\
 Here in this article, we show how to use the package's function `powoGenera` for 
 mining all accepted genera for any family of flowering plants.
 
-
 # Setup
 
 __expowo__ is not on CRAN yet but you can install the latest development version 
