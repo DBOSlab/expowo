@@ -131,8 +131,12 @@ megaGen <- function(family, uri,
       todaydate <- format(Sys.time(), "%d %b %Y")
       folder_name <- paste0(dir, gsub(" ", "", todaydate))
       print(paste0("Writing '", folder_name, "' on disk."))
-      dir.create(folder_name) } #if there is no directory... make one!
-
+      dir.create(folder_name) # If there is no directory... make one!
+    } else {
+      # If directory was created during a previous search, get its name to save
+      # results
+      folder_name <- paste0(dir, gsub(" ", "", format(Sys.time(), "%d %b %Y")))
+    }
     # Create and save the spreadsheet in .csv format
     fullname <- paste0(folder_name, "/", filename, ".csv")
     print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
