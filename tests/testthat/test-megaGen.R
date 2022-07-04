@@ -91,7 +91,7 @@ test_that("megaGen works for one family with any genus larger than a specified t
   expect_equal(class(res_ex), "data.frame")
   expect_equal(is.character(res_ex[,2]), TRUE)
   expect_equal(is.character(res_ex[,4]), TRUE)
-  expect_equal(res_ex$species_number, 1931)
+  expect_equal(res_ex$species_number, 1930)
   expect_equal(nrow(res_ex), 1)
 })
 
