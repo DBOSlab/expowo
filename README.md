@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# expowo
+# expowo <img src="man/figures/expowo.png" align="right" alt="" width="120" />
 
 An R package for mining species checklist, diversity estimates, and
 distribution data for any genus or family of flowering plants from RGB
@@ -100,11 +100,9 @@ for further details)
 ``` r
 library(expowo)
 library(taxize)
-
 fam <- c("Fabaceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
-
 powoGenera(powocodes$family, powocodes$uri,
            verbose = TRUE,
            save = TRUE,
@@ -124,7 +122,6 @@ species or not, according to the data available in the POWO’s database.
 ``` r
 library(expowo)
 library(taxize)
-
 fam <- c("Araceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
@@ -150,11 +147,9 @@ species for a megadiverse genus, as set in the argument .
 ``` r
 library(expowo)
 library(taxize)
-
 fam <- c("Fabaceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
-
 megaGen(powocodes$family, powocodes$uri,
         thld = 500,
         verbose = TRUE,
@@ -174,11 +169,9 @@ most species-rich genera of any target angiosperm family.
 ``` r
 library(expowo)
 library(taxize)
-
 fam <- c("Araceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
-
 toptenGen(powocodes$family, powocodes$uri,
           verbose = TRUE,
           save = TRUE,
@@ -200,4 +193,4 @@ botanical research!
 Zuanny, D. & Cardoso, D. (2022). expowo: An R package for mining plant
 diversity and distribution data. <https://github.com/DBOSlab/expowo>
 
-<img src="man/figures/DBOSlab_logo.png" style="width:30.0%" />
+<img src="man/figures/DBOSlab_logo.png" align="left" alt="" width="120" />
