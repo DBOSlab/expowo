@@ -4,12 +4,6 @@
     <loc>https://domingoscardoso.github.io/expowo/404.html</loc>
   </url>
   <url>
-    <loc>https://domingoscardoso.github.io/expowo/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://domingoscardoso.github.io/expowo/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>https://domingoscardoso.github.io/expowo/articles/articles/mining_accepted_genera.html</loc>
   </url>
   <url>
@@ -43,7 +37,10 @@
     <loc>https://domingoscardoso.github.io/expowo/index.html</loc>
   </url>
   <url>
-    <loc>https://domingoscardoso.github.io/expowo/reference/POWOcodes.html</loc>
+    <loc>https://domingoscardoso.github.io/expowo/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://domingoscardoso.github.io/expowo/LICENSE.html</loc>
   </url>
   <url>
     <loc>https://domingoscardoso.github.io/expowo/reference/botregions.html</loc>
@@ -53,6 +50,9 @@
   </url>
   <url>
     <loc>https://domingoscardoso.github.io/expowo/reference/megaGen.html</loc>
+  </url>
+  <url>
+    <loc>https://domingoscardoso.github.io/expowo/reference/POWOcodes.html</loc>
   </url>
   <url>
     <loc>https://domingoscardoso.github.io/expowo/reference/powoGenera.html</loc>
