@@ -188,7 +188,7 @@ powoSpecies <- function(family, uri,
                                                   "scientific_name","hybrid",
                                                   "kew_id", "powo_uri")
 
-    # Remove any possible generic synomym from  the retrieved list
+    # Remove any possible generic synonym from the retrieved list
     list_genus[[i]] <- list_genus[[i]][grepl("\\s",
                                              list_genus[[i]]$taxon_name), ]
 
