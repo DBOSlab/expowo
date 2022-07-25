@@ -192,7 +192,12 @@ powoSpecies <- function(family, uri,
     list_genus[[i]] <- list_genus[[i]][grepl("\\s",
                                              list_genus[[i]]$taxon_name), ]
 
-    tf <- grepl("[+]|\\s×\\s", list_genus[[i]]$taxon_name)
+    # Replace hybrid symbol
+    list_genus[[i]]$taxon_name <- gsub("\u00D7", "x",
+                                       list_genus[[i]]$taxon_name)
+
+    # Identify hybrid species
+    tf <- grepl("[+]|\\sx\\s", list_genus[[i]]$taxon_name)
     list_genus[[i]]$hybrid[tf] <- "yes"
     list_genus[[i]]$hybrid[!tf] <- "no"
 
