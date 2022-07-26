@@ -123,17 +123,42 @@ getDist <- function(df,
   df$introduced_to_botanical_countries <- unlist(list_dist_intr_bot,
                                                  use.names = F)
 
+  # Removing any non ASCII chars from the distribution list
+  df$native_to_country <- iconv(df$native_to_country,
+                                from = "UTF-8", to = "ASCII//TRANSLIT")
+
+  df$native_to_botanical_countries <- iconv(df$native_to_botanical_countries,
+                                            from = "UTF-8",
+                                            to = "ASCII//TRANSLIT")
+
+  df$introduced_to_country <- iconv(df$introduced_to_country,
+                                    from = "UTF-8", to = "ASCII//TRANSLIT")
+  df$introduced_to_botanical_countries <-
+    iconv(df$introduced_to_botanical_countries, from = "UTF-8",
+          to = "ASCII//TRANSLIT")
+
   return(df)
 }
 
-# secondary function to find related country for each botanical subdivision
+# Secondary function to find related country for each botanical subdivision
 botdiv_to_countries <- function(x, i) {
 
+  # Read data of botanical subdivisions and convert non ASCII chars
+  # botregions <- read.csv("dataraw/botanical_country_subdivisions.csv")
+  # botregions$country <- iconv(botregions$country,
+  #                             from = "UTF-8",
+  #                             to = "ASCII//TRANSLIT")
+  # botregions$botanical_division <- iconv(botregions$botanical_division,
+  #                                        from = "UTF-8",
+  #                                        to = "ASCII//TRANSLIT")
+  # write.csv(botregions, "dataraw/botanical_country_subdivisions.csv",
+  #           row.names=FALSE)
+
   # Read data of botanical subdivisions
-  #botregions <- read.csv("data/botanical_country_subdivisions.csv")
   data("botregions")
-  # find duplicated botanical regions
-  #botregions$botanical_division[duplicated(botregions$botanical_division)]
+
+  # Find duplicated botanical regions
+  # botregions$botanical_division[duplicated(botregions$botanical_division)]
 
   temp <- strsplit(x[[i]], ", ")[[1]]
 
