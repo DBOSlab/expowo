@@ -23,7 +23,8 @@ Depends:
 Imports:
     dplyr,
     magrittr,
-    data.table
+    data.table,
+    utils
 Suggests:
     knitr,
     rmarkdown,

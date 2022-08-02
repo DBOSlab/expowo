@@ -75,6 +75,7 @@
 #' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
 #' @importFrom data.table fwrite
+#' @importFrom utils data
 #'
 #' @export
 #'
@@ -89,7 +90,7 @@ megaGen <- function(family, uri,
   if(length(family) != length(uri)) {
     stop(paste("Any family or URI is missing."))
   }
-  data("POWOcodes")
+  utils::data("POWOcodes")
   uri_log <- uri %in% POWOcodes$uri
   uri_log <- which(uri_log == FALSE)
   if(length(uri_log) >= 1) {
