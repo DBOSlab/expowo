@@ -90,7 +90,7 @@ megaGen <- function(family, uri,
   if(length(family) != length(uri)) {
     stop(paste("Any family or URI is missing."))
   }
-  utils::data("POWOcodes")
+  data("POWOcodes")
   uri_log <- uri %in% POWOcodes$uri
   uri_log <- which(uri_log == FALSE)
   if(length(uri_log) >= 1) {
