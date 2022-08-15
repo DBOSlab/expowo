@@ -1,5 +1,5 @@
 Package: expowo
-Title: An R package for mining plant diversity and distribution data
+Title: An R package for Mining Plant Diversity and Distribution Data
 Version: 1.0
 Authors@R:
     c(person(given = "Debora",
