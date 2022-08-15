@@ -122,7 +122,7 @@ megaGen <- function(family, uri,
                       "species_number",
                       "kew_id",
                       "powo_uri") %>%
-    filter(species_number >= thld)
+    filter(df$species_number >= thld)
 
   # Saving the dataframe if param save is TRUE
   if (save) {

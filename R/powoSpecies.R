@@ -203,8 +203,9 @@ powoSpecies <- function(family, uri,
     list_genus[[i]]$hybrid[!tf] <- "no"
 
     if (hybridspp == FALSE) {
-      list_genus[[i]] <- list_genus[[i]] %>% filter(hybrid == "no") %>%
-        select(-"hybrid")
+      list_genus[[i]] <- list_genus[[i]] %>%
+                         filter(list_genus[[i]]$hybrid == "no") %>%
+                         select(-"hybrid")
     }
 
   }

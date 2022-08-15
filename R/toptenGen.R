@@ -60,7 +60,7 @@
 #'         filename = "toptendiverse_plant_genera")
 #' }
 #'
-#' @importFrom dplyr arrange filter group_by select slice
+#' @importFrom dplyr arrange desc filter group_by select slice
 #' @importFrom magrittr "%>%"
 #' @importFrom data.table fwrite
 #' @importFrom utils data
@@ -107,9 +107,9 @@ toptenGen <- function(family, uri,
                       "species_number",
                       "kew_id",
                       "powo_uri") %>%
-    arrange(desc(species_number)) %>%  # Displaying in the decreasing order
-    group_by(family) %>%               # to filter in each family
-    slice(1:10)                        # the top ten richest genera
+    arrange(desc(df$species_number)) %>%  # Displaying in the descending order
+    group_by(family) %>%                  # to filter in each family
+    slice(1:10)                           # the top ten richest genera
 
 
   if (save) {
