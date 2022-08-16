@@ -8,23 +8,23 @@ getGenURI <- function(powo_codes,
   list_fams <- list()
   for (i in seq_along(powo_codes$uri)) {
     # Adding a pause of 300 seconds at every 500th search,
-    # because POWO website cannot permit constant search
+    # because POWO website cannot permit constant search.
     if (i%%500 == 0) {
       Sys.sleep(300)
     }
-    # Adding a counter to identify each running search
+    # Adding a counter to identify each running search.
     if (verbose) {
       print(paste0("Searching... ",
                    powo_codes$family[i], " ", i, "/",
                    length(powo_codes$family)))
     }
 
-    # Visiting the POWO source page for each entry family
+    # Visiting the POWO source page for each entry family.
     powo_fams_uri[[i]] <- readLines(powo_codes$uri[i], encoding = "UTF-8",
                                     warn = F)
 
     # Find whether the family exists by searching a pattern for constituent
-    # accepted genera
+    # accepted genera.
     tt <- grepl("\\s{2,}This is a synonym of", powo_fams_uri[[i]])
     temp <- powo_fams_uri[[i]][tt]
 
@@ -48,7 +48,7 @@ getGenURI <- function(powo_codes,
                 new_powo_fam_uri, sep = "")
 
         # Visiting POWO source page again for the accepted family name of an
-        # originally entered family that is under synonym
+        # originally entered family that is under synonym.
         powo_fams_uri[[i]] <- readLines(new_powo_fam_uri, encoding = "UTF-8",
                                         warn = F)
 
@@ -64,13 +64,13 @@ getGenURI <- function(powo_codes,
     }
 
     if (length(temp) == 0) {
-      # The temp vector get the URI for each genus within the family
+      # The temp vector get the URI for each genus within the family.
       temp <-
         grepl("<li><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
               powo_fams_uri[[i]])
       powo_genus_uri <- powo_fams_uri[[i]][temp]
       # The following subset within the retrieved genus uri within the temp
-      # vector is to exclude any possible IRI of family-level synonyms
+      # vector is to exclude any possible IRI of family-level synonyms.
       temp <- !grepl("aceae|oideae|meta\\sproperty|meta\\sname|Compositae|
                      Cruciferae|Gramineae|Guttiferae|Labiatae|Leguminosae|
                      Palmae|Umbelliferae", powo_genus_uri)
@@ -83,7 +83,7 @@ getGenURI <- function(powo_codes,
                                    kew_id = NA,
                                    powo_uri = NA)
 
-      # Filling retrieved information in each column
+      # Filling retrieved information in each column.
       list_fams[[i]][["temp_genus_uri"]] <-
         gsub(".*<li><a href[=]\"", "", list_fams[[i]][["temp_genus_uri"]])
       list_fams[[i]][["powo_uri"]] <-
@@ -103,18 +103,18 @@ getGenURI <- function(powo_codes,
       list_fams[[i]][["scientific_name"]] <- paste(list_fams[[i]][["genus"]],
                                                    list_fams[[i]][["authors"]])
 
-      # Select specific columns of interest
+      # Select specific columns of interest.
       list_fams[[i]] <- list_fams[[i]] %>% select("family", "genus", "authors",
                                                   "scientific_name", "kew_id",
                                                   "powo_uri")
     }
 
-    # ending the main for loop
+    # Ending the main for loop.
   }
   names(list_fams) <- powo_codes$family
 
-  # Combining all dataframes from the list of each family search
-  # Each dataframe includes the retrieved genus URI for each searched family
+  # Combining all dataframes from the list of each family search.
+  # Each dataframe includes the retrieved genus URI for each searched family.
   if (length(list_fams) == 1) {
     df <- list_fams[[1]]
   } else {
@@ -125,15 +125,11 @@ getGenURI <- function(powo_codes,
   }
 
   # If a vector of genus names is provided, then remove all other genera in the
-  # family during the subsequent search steps
+  # family during the subsequent search steps.
   if (!is.null(genus)) {
-
     temp <- df$genus %in% genus
-
     if (length(which(temp == TRUE)) == length(genus)) {
-
       df <- df[temp, ]
-
     } else {
 
       stop(paste("Any genus in the provided genus vector might have a typo or is
