@@ -90,7 +90,7 @@ megaGen <- function(family, uri,
   if(length(family) != length(uri)) {
     stop(paste("Any family or URI is missing."))
   }
-  data("POWOcodes")
+  utils::data("POWOcodes")
   uri_log <- uri %in% POWOcodes$uri
   uri_log <- which(uri_log == FALSE)
   if(length(uri_log) >= 1) {
@@ -102,17 +102,17 @@ megaGen <- function(family, uri,
                                uri = uri)
 
   # POWO search for the genus URI in each family using auxiliary function
-  # getGenURI
+  # getGenURI.
   df <- getGenURI(powo_codes_fam,
                   genus = NULL,
                   verbose = verbose)
 
-  # Extract number of species using auxiliary function getNumb
+  # Extract number of species using auxiliary function getNumb.
   df <- getNumb(df,
                 verbose = verbose)
 
   # Select specific columns of interest and the megadiverse genera by a
-  # threshold
+  # threshold.
   if(is.null(thld)) thld <- 500
   df$species_number <- as.numeric(df$species_number)
   df <- df %>% select("family",
@@ -124,19 +124,19 @@ megaGen <- function(family, uri,
                       "powo_uri") %>%
     filter(df$species_number >= thld)
 
-  # Saving the dataframe if param save is TRUE
+  # Saving the dataframe if param save is TRUE.
   if (save) {
-    # Create a new directory to save the results with current date
+    # Create a new directory to save the results with current date.
     if (!dir.exists(dir)) {
       dir.create(dir)
-      todaydate <- format(Sys.time(), "%d %b %Y")
-      folder_name <- paste0(dir, gsub(" ", "", todaydate))
+      todaydate <- format(Sys.time(), "%d%b%Y")
+      folder_name <- paste0(dir, todaydate)
       print(paste0("Writing '", folder_name, "' on disk."))
       dir.create(folder_name) # If there is no directory... make one!
     } else {
       # If directory was created during a previous search, get its name to save
-      # results
-      folder_name <- paste0(dir, gsub(" ", "", format(Sys.time(), "%d %b %Y")))
+      # results.
+      folder_name <- paste0(dir, format(Sys.time(), "%d%b%Y"))
     }
     # Create and save the spreadsheet in .csv format
     fullname <- paste0(folder_name, "/", filename, ".csv")
