@@ -99,7 +99,7 @@ powoSpecies <- function(family, uri,
     stop(paste("Any family or URI is missing."))
   }
 
-  data("POWOcodes")
+  utils::data("POWOcodes")
   uri_log <- uri %in% POWOcodes$uri
   uri_log <- which(uri_log == FALSE)
   if(length(uri_log) >= 1) {
@@ -111,7 +111,7 @@ powoSpecies <- function(family, uri,
                                uri = uri)
 
   # POWO search for the genus URI in each family using auxiliary function
-  # getGenURI
+  # getGenURI.
   resGenera <- getGenURI(powo_codes_fam,
                          genus = genus,
                          verbose = verbose)
@@ -119,18 +119,17 @@ powoSpecies <- function(family, uri,
   powo_codes <- data.frame(family = resGenera$family,
                            genus = resGenera$genus,
                            uri = resGenera$powo_uri)
-
   # POWO search for the list of accepted species in each genus of flowering
-  # plants
+  # plants.
   powo_genus_uri <- list()
   list_genus <- list()
   for (i in seq_along(powo_codes$uri)) {
     # Adding a pause 300 seconds of um pause every 500th search,
-    # because POWO website may crash when searching uninterruptedly
+    # because POWO website may crash when searching uninterruptedly.
     if (i%%500 == 0) {
       Sys.sleep(300)
     }
-    # Adding a counter to identify each running search
+    # Adding a counter to identify each running search.
     if (verbose) {
       print(paste0("Searching spp list of... ",
                    powo_codes$genus[i], " ",
@@ -141,9 +140,14 @@ powoSpecies <- function(family, uri,
     powo_genus_uri[[i]] <- readLines(powo_codes$uri[i], encoding = "UTF-8",
                                      warn = F)
 
-    temp<-grepl("<li><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
-                powo_genus_uri[[i]])
+    temp <-
+      grepl("<li><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
+                  powo_genus_uri[[i]])
     powo_spp_uri <- powo_genus_uri[[i]][temp]
+
+    if (length(powo_spp_uri) == 0) {
+      powo_spp_uri = "unknown"
+    }
 
     list_genus[[i]] <- data.frame(temp_spp_uri = powo_spp_uri,
                                   family = powo_codes$family[i],
@@ -156,62 +160,67 @@ powoSpecies <- function(family, uri,
                                   kew_id = NA,
                                   powo_uri = NA)
 
-    # Filling in each column
-    list_genus[[i]][["temp_spp_uri"]] <- gsub(".*<li><a href[=]\"", "",
+    if (!"unknown" %in% powo_spp_uri) {
+
+      # Filling in each column.
+      list_genus[[i]][["temp_spp_uri"]] <-
+        gsub(".*<li><a href[=]\"", "", list_genus[[i]][["temp_spp_uri"]])
+      list_genus[[i]][["powo_uri"]] <-
+        paste("http://www.plantsoftheworldonline.org",
+              gsub("\".+", "", list_genus[[i]][["temp_spp_uri"]]), sep = "")
+      list_genus[[i]][["kew_id"]] <-
+        gsub(".+[:]", "", list_genus[[i]][["powo_uri"]])
+
+      list_genus[[i]][["species"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "",
+                                           list_genus[[i]][["temp_spp_uri"]])
+      list_genus[[i]][["species"]] <- gsub(".*\\s", "",
+                                           list_genus[[i]][["species"]])
+
+      list_genus[[i]][["authors"]] <- gsub(".*em>", "",
+                                           list_genus[[i]][["temp_spp_uri"]])
+      list_genus[[i]][["authors"]] <- gsub("<.*", "",
+                                           list_genus[[i]][["authors"]])
+      list_genus[[i]][["authors"]] <- gsub("^\\s", "",
+                                           list_genus[[i]][["authors"]])
+      list_genus[[i]][["taxon_name"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "",
                                               list_genus[[i]][["temp_spp_uri"]])
-    list_genus[[i]][["powo_uri"]] <-
-      paste("http://www.plantsoftheworldonline.org",
-            gsub("\".+", "", list_genus[[i]][["temp_spp_uri"]]), sep = "")
-    list_genus[[i]][["kew_id"]] <-
-      gsub(".+[:]", "", list_genus[[i]][["powo_uri"]])
+      list_genus[[i]][["taxon_name"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "",
+                                              list_genus[[i]][["temp_spp_uri"]])
+      list_genus[[i]][["scientific_name"]] <-
+        paste(list_genus[[i]][["taxon_name"]], list_genus[[i]][["authors"]])
 
-    list_genus[[i]][["species"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "",
-                                         list_genus[[i]][["temp_spp_uri"]])
-    list_genus[[i]][["species"]] <- gsub(".*\\s", "",
-                                         list_genus[[i]][["species"]])
 
-    list_genus[[i]][["authors"]] <- gsub(".*em>", "",
-                                         list_genus[[i]][["temp_spp_uri"]])
-    list_genus[[i]][["authors"]] <- gsub("<.*", "",
-                                         list_genus[[i]][["authors"]])
-    list_genus[[i]][["authors"]] <- gsub("^\\s", "",
-                                         list_genus[[i]][["authors"]])
-    list_genus[[i]][["taxon_name"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "",
-                                            list_genus[[i]][["temp_spp_uri"]])
-    list_genus[[i]][["taxon_name"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "",
-                                            list_genus[[i]][["temp_spp_uri"]])
-    list_genus[[i]][["scientific_name"]] <-
-      paste(list_genus[[i]][["taxon_name"]], list_genus[[i]][["authors"]])
 
-    # Select specific columns of interest
+      # Remove any possible generic synonym from  the retrieved list.
+      list_genus[[i]] <- list_genus[[i]][grepl("\\s",
+                                               list_genus[[i]]$taxon_name), ]
+    }
+
+    # Select specific columns of interest.
     list_genus[[i]] <- list_genus[[i]] %>% select("family", "genus", "species",
                                                   "taxon_name","authors",
                                                   "scientific_name","hybrid",
                                                   "kew_id", "powo_uri")
 
-    # Remove any possible generic synonym from the retrieved list
-    list_genus[[i]] <- list_genus[[i]][grepl("\\s",
-                                             list_genus[[i]]$taxon_name), ]
-
-    # Replace hybrid symbol
+    # Replace hybrid symbol.
     list_genus[[i]]$taxon_name <- gsub("\u00D7", "x",
                                        list_genus[[i]]$taxon_name)
 
-    # Identify hybrid species
+    # Identify hybrid species.
     tf <- grepl("[+]|\\sx\\s", list_genus[[i]]$taxon_name)
     list_genus[[i]]$hybrid[tf] <- "yes"
     list_genus[[i]]$hybrid[!tf] <- "no"
 
     if (hybridspp == FALSE) {
       list_genus[[i]] <- list_genus[[i]] %>%
-                         filter(list_genus[[i]]$hybrid == "no") %>%
-                         select(-"hybrid")
+        filter(list_genus[[i]]$hybrid == "no") %>%
+        select(-"hybrid")
     }
 
   }
   names(list_genus) <- powo_codes$genus
 
-  # Combining all dataframes from the list of each family/genus search
+  # Combining all dataframes from the list of each family/genus search.
   df <- list_genus[[1]]
   if (length(list_genus) > 1) {
     for (i in 2:length(list_genus)) {
@@ -219,13 +228,13 @@ powoSpecies <- function(family, uri,
     }
   }
 
-  # Extract distribution using auxiliary function getDist
+  # Extract distribution using auxiliary function getDist.
   df <- getDist(df,
                 listspp = FALSE,
                 verbose = verbose)
 
 
-  # Select specific columns of interest
+  # Select specific columns of interest.
   if (hybridspp == FALSE) {
     df <- df %>% select("family",
                         "genus",
@@ -261,16 +270,12 @@ powoSpecies <- function(family, uri,
   # If a vector of country names is provided, then remove any species that do
   # not occur in the given country. The temp vector is logical (TRUE or FALSE)
   # and shows which species/row should be kept in the search given the provided
-  # country vector
+  # country vector.
   if (!is.null(country)) {
-
     temp <- vector()
-
     for (i in seq_along(df$native_to_country)) {
-
       tt <- gsub("^\\s", "",
                  strsplit(df$native_to_country[i], ",")[[1]]) %in% country
-
       if (any(tt)) {
         temp[i] <- TRUE
       } else {
@@ -280,7 +285,7 @@ powoSpecies <- function(family, uri,
     }
 
     # The following conditions is just to show/print how the df will be
-    # subsetted according to the provided country vector
+    # subsetted according to the provided country vector.
     if (verbose) {
       if (any(temp)) {
         tl <- list()
@@ -335,7 +340,7 @@ powoSpecies <- function(family, uri,
       }
     }
 
-    # Subset the searched genera according to the country vector
+    # Subset the searched genera according to the country vector.
     if (verbose) {
       if(length(df$genus[temp]) != length(temp)) {
         cat(paste("Genera listed below were removed from the original search
@@ -349,19 +354,19 @@ powoSpecies <- function(family, uri,
   }
 
   if (save) {
-    # Create a new directory to save the results with current date
+    # Create a new directory to save the results with current date.
     if (!dir.exists(dir)) {
       dir.create(dir)
-      todaydate <- format(Sys.time(), "%d %b %Y")
-      folder_name <- paste0(dir, gsub(" ", "", todaydate))
+      todaydate <- format(Sys.time(), "%d%b%Y")
+      folder_name <- paste0(dir, todaydate)
       print(paste0("Writing '", folder_name, "' on disk."))
       dir.create(folder_name) # If there is no directory... make one!
     } else {
       # If directory was created during a previous search, get its name to save
-      # results
-      folder_name <- paste0(dir, gsub(" ", "", format(Sys.time(), "%d %b %Y")))
+      # results.
+      folder_name <- paste0(dir, format(Sys.time(), "%d%b%Y"))
     }
-    # Create and save the spreadsheet in .csv format
+    # Create and save the spreadsheet in .csv format.
     fullname <- paste0(folder_name, "/", filename, ".csv")
     print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
     data.table::fwrite(df,
