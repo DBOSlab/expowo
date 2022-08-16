@@ -81,108 +81,15 @@ accepted plant family, you can either look at the data frame object
 you can use the function `get_pow` from the package
 [**taxize**](https://github.com/ropensci/taxize). So, the vector of URI
 codes is the main input file to everything you can do with expowo
-package. See below examples on how to use the **expowo**’s major
-functions for mining basic information on the global plant diversity and
-distribution.
-
-#### *1. `powoGenera`: Mining all accepted genera for any angiosperm family*
-
-This function produces a CSV file listing all genera with associated
-number of accepted species and their global geographical distribution at
-country level. You can also narrow down the search to focus on just a
-particular genus from a particular country or a list of genera from a
-list of countries (please check this
-[article](https://DBOSlab.github.io/expowo/articles/mining_accepted_genera.html)
-for further details)
-
-##### Example of a POWO search with `powoGenera`:
-
-``` r
-library(expowo)
-library(taxize)
-fam <- c("Fabaceae", "Lecythidaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
-powoGenera(powocodes$family, powocodes$uri,
-           verbose = TRUE,
-           save = TRUE,
-           dir = "results_powoGenera/",
-           filename = "Fabaceae_Lecythidaceae")
-```
-
-#### *2. `powoSpecies`: Mining species for any angiosperm genus or family*
-
-With this function, you will be able to retrieve a list (either a
-dataframe-returned object or a CSV file saved directly in the directory)
-of all accepted species for any genus or family, considering hybrid
-species or not, according to the data available in the POWO’s database.
-
-##### Example of a POWO search with `powoSpecies`:
-
-``` r
-library(expowo)
-library(taxize)
-fam <- c("Araceae", "Lecythidaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
-                   
-powoSpecies(powocodes$family, powocodes$uri,
-            hybridspp = FALSE,
-            verbose = TRUE,
-            save = TRUE,
-            dir = "results_powoSpecies/",
-            filename = "Araceae_Lecythidaceae")
-```
-
-#### *3. `megaGen`: Mining megadiverse genera for any angiosperm family*
-
-This function is intended to produce a CSV file with the most diverse
-genera of any flowering plant family, based on a specified threshold
-number. In the following example, we choose the plant families
-“Fabaceae” and “Lecythidaceae”, and considered a threshold of 500
-species for a megadiverse genus, as set in the argument .
-
-##### Example of a POWO search with `megaGen`:
-
-``` r
-library(expowo)
-library(taxize)
-fam <- c("Fabaceae", "Lecythidaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
-megaGen(powocodes$family, powocodes$uri,
-        thld = 500,
-        verbose = TRUE,
-        save = TRUE,
-        dir = "results_megaGen/",
-        filename = "Fabaceae_Lecythidaceae")
-```
-
-#### *4. `toptenGen`: Mining the top ten most diverse genera for any APG family*
-
-This function is relatively similar to the `megaGen`, but instead of
-using any specific threshold, it saves a CSV file listing the top ten
-most species-rich genera of any target angiosperm family.
-
-##### Example of a POWO search with `toptenGen`:
-
-``` r
-library(expowo)
-library(taxize)
-fam <- c("Araceae", "Lecythidaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
-toptenGen(powocodes$family, powocodes$uri,
-          verbose = TRUE,
-          save = TRUE,
-          dir = "results_toptenGen/",
-          filename = "Araceae_Lecythidaceae")
-```
+package. See the examples on how to use the **expowo**’s major functions
+for mining basic information on the global plant diversity and
+distribution in the ‘Articles’ section in our
+[site](https://DBOSlab.github.io/expowo/).
 
 ## Documentation
 
 A detailed description of the **expowo**’s full functionality is
-available in [here](https://DBOSlab.github.io/expowo/).
+available [here](https://DBOSlab.github.io/expowo/).
 
 The **expowo** package is being continuously constructed. If you want to
 make suggestions, let us know! We hope it will be helpful for your
