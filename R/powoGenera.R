@@ -101,7 +101,7 @@ powoGenera <- function(family, uri,
     stop(paste("Any family or URI is missing."))
   }
 
-  data("POWOcodes")
+  utils::data("POWOcodes")
   uri_log <- uri %in% POWOcodes$uri
   uri_log <- which(uri_log == FALSE)
   if(length(uri_log) >= 1) {
@@ -113,17 +113,17 @@ powoGenera <- function(family, uri,
                                uri = uri)
 
   # POWO search for the genus URI in each family using auxiliary function
-  # getGenURI
+  # getGenURI.
   df <- getGenURI(powo_codes_fam,
                   genus = genus,
                   verbose = verbose)
 
-  # Extract distribution and number of species using auxiliary function getDist
+  # Extract distribution and number of species using auxiliary function getDist.
   df <- getDist(df,
                 listspp = TRUE,
                 verbose = verbose)
 
-  # Select specific columns of interest
+  # Select specific columns of interest.
   df <- df %>% select("family",
                       "genus",
                       "authors",
@@ -141,16 +141,12 @@ powoGenera <- function(family, uri,
   # If a vector of country names is provided, then remove any genera that do not
   # occur in the given country. The temp vector is logical (TRUE or FALSE) and
   # shows which genus/row should be kept in the search given the provided
-  # country vector
+  # country vector.
   if (!is.null(country)) {
-
     temp <- vector()
-
     for (i in seq_along(df$native_to_country)) {
-
       tt <- gsub("^\\s", "",
                  strsplit(df$native_to_country[i], ",")[[1]]) %in% country
-
       if (any(tt)) {
         temp[i] <- TRUE
       } else {
@@ -160,7 +156,7 @@ powoGenera <- function(family, uri,
     }
 
     # The following conditions is just to show/print how the df will be
-    # subsetted according to the provided country vector
+    # subsetted according to the provided country vector.
     if (verbose) {
       if (any(temp)) {
         tl <- list()
@@ -214,7 +210,7 @@ powoGenera <- function(family, uri,
       }
     }
 
-    # Subset the searched genera according to the country vector
+    # Subset the searched genera according to the country vector.
     if (verbose) {
       if(length(df$genus[temp]) != length(temp)) {
         cat(paste("Genera listed below were removed from the original search
@@ -229,19 +225,19 @@ powoGenera <- function(family, uri,
   }
 
   if (save) {
-    # Create a new directory to save the results with current date
+    # Create a new directory to save the results with current date.
     if (!dir.exists(dir)) {
       dir.create(dir)
-      todaydate <- format(Sys.time(), "%d %b %Y")
-      folder_name <- paste0(dir, gsub(" ", "", todaydate))
+      todaydate <- format(Sys.time(), "%d%b%Y")
+      folder_name <- paste0(dir, todaydate)
       print(paste0("Writing '", folder_name, "' on disk."))
       dir.create(folder_name) # If there is no directory... make one!
     } else {
       # If directory was created during a previous search, get its name to save
-      # results
-      folder_name <- paste0(dir, gsub(" ", "", format(Sys.time(), "%d %b %Y")))
+      # results.
+      folder_name <- paste0(dir, format(Sys.time(), "%d%b%Y"))
     }
-    # Create and save the spreadsheet in .csv format
+    # Create and save the spreadsheet in .csv format.
     fullname <- paste0(folder_name, "/", filename, ".csv")
     print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
     data.table::fwrite(df,
