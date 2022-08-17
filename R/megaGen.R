@@ -6,8 +6,8 @@
 #' any angiosperm family at
 #' [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #' A numeric value should define the threshold to be considered a megadiverse
-#' genus.[Frodin (2004)](https://doi.org/10.2307/4135449) suggests 500 species
-#' as the threshold for a megadiverse genus.
+#' genus. Frodin, D.G.(2004) in Taxon suggests 500 species as the threshold for
+#' a megadiverse genus.
 #'
 #' @usage
 #' megaGen(family, uri, thld = NULL,
@@ -20,8 +20,7 @@
 #'
 #' @param thld A defined threshold of species number for a genus to be
 #' considered megadiverse. If no threshold number is provided, the function will
-#' consider a value of 500 based on
-#' [Frodin (2004)](https://doi.org/10.2307/4135449).
+#' consider a value of 500 based on Frodin, D.G.(2004) in Taxon.
 #'
 #' @param verbose Logical, if \code{FALSE}, the searched results will not be
 #' printed in the console in full.
