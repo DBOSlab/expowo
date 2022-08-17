@@ -11,8 +11,7 @@ Table in .csv format
 data(POWOcodes)
 }
 \description{
-Complete list of the
-\href{https://doi.org/10.1111/boj.12385}{APG}-based
-families of flowering plants and associated URI addresses as retrieved with
-the function get_pow of the package \href{https://taxize.dev}{taxize}
+Complete list of the APG IV-based families of flowering plants
+and associated URI addresses as retrieved with the function get_pow of the
+package \href{https://docs.ropensci.org/taxize/index.html}{taxize}
 }

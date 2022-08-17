@@ -15,8 +15,7 @@ are present in POWO.}
 
 \item{thld}{A defined threshold of species number for a genus to be
 considered megadiverse. If no threshold number is provided, the function will
-consider a value of 500 based on
-\href{https://doi.org/10.2307/4135449}{Frodin (2004)}.}
+consider a value of 500 based on Frodin, D.G.(2004) in Taxon.}
 
 \item{verbose}{Logical, if \code{FALSE}, the searched results will not be
 printed in the console in full.}
@@ -40,8 +39,8 @@ It produces a CSV file listing all megadiverse genera for
 any angiosperm family at
 \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 A numeric value should define the threshold to be considered a megadiverse
-genus.\href{https://doi.org/10.2307/4135449}{Frodin (2004)} suggests 500 species
-as the threshold for a megadiverse genus.
+genus. Frodin, D.G.(2004) in Taxon suggests 500 species as the threshold for
+a megadiverse genus.
 }
 \examples{
 \dontrun{
