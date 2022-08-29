@@ -65,9 +65,8 @@ getGenURI <- function(powo_codes,
 
     if (length(temp) == 0) {
       # The temp vector get the URI for each genus within the family.
-      temp <-
-        grepl("><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
-              powo_fams_uri[[i]])
+      url_xx <- "><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]"
+      temp <- grepl(url_xx, powo_fams_uri[[i]])
       powo_genus_uri <- powo_fams_uri[[i]][temp]
       # The following subset within the retrieved genus uri within the temp
       # vector is to exclude any possible IRI of family-level synonyms.
