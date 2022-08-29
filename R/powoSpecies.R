@@ -141,7 +141,7 @@ powoSpecies <- function(family, uri,
                                      warn = F)
 
     temp <-
-      grepl("<li><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
+      grepl("><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
                   powo_genus_uri[[i]])
     powo_spp_uri <- powo_genus_uri[[i]][temp]
 
@@ -164,7 +164,7 @@ powoSpecies <- function(family, uri,
 
       # Filling in each column.
       list_genus[[i]][["temp_spp_uri"]] <-
-        gsub(".*<li><a href[=]\"", "", list_genus[[i]][["temp_spp_uri"]])
+        gsub(".*><a href[=]\"", "", list_genus[[i]][["temp_spp_uri"]])
       list_genus[[i]][["powo_uri"]] <-
         paste("http://www.plantsoftheworldonline.org",
               gsub("\".+", "", list_genus[[i]][["temp_spp_uri"]]), sep = "")

@@ -30,7 +30,7 @@ getGenURI <- function(powo_codes,
 
     if (length(temp) != 0) {
 
-      tt <- grepl("<a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
+      tt <- grepl("><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
                   powo_fams_uri[[i]])
 
       powo_fams_uri[[i]][tt] <- gsub(".*org[:]names[:]", "",
@@ -66,7 +66,7 @@ getGenURI <- function(powo_codes,
     if (length(temp) == 0) {
       # The temp vector get the URI for each genus within the family.
       temp <-
-        grepl("<li><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
+        grepl("><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
               powo_fams_uri[[i]])
       powo_genus_uri <- powo_fams_uri[[i]][temp]
       # The following subset within the retrieved genus uri within the temp
@@ -85,7 +85,7 @@ getGenURI <- function(powo_codes,
 
       # Filling retrieved information in each column.
       list_fams[[i]][["temp_genus_uri"]] <-
-        gsub(".*<li><a href[=]\"", "", list_fams[[i]][["temp_genus_uri"]])
+        gsub(".*><a href[=]\"", "", list_fams[[i]][["temp_genus_uri"]])
       list_fams[[i]][["powo_uri"]] <-
         paste("http://www.plantsoftheworldonline.org",
               gsub("\".+", "", list_fams[[i]][["temp_genus_uri"]]), sep = "")

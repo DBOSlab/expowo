@@ -52,25 +52,28 @@ getDist <- function(df,
         }
 
         if (listspp) {
-          list_grepl[[i]] <- grepl("<p>Includes\\s", list_html[[i]])
-          list_spp[[i]] <- gsub(".*<p>Includes\\s", "",
+          list_grepl[[i]] <- grepl(">Includes\\s", list_html[[i]])
+          list_spp[[i]] <- gsub(".*>Includes\\s", "",
                                 list_html[[i]][list_grepl[[i]]])
           list_spp[[i]] <- gsub("\\sAccepted.+", "",
                                 list_spp[[i]][grepl("\\sAccepted\\s",
                                                     list_spp[[i]])])
         }
-        list_dist_nat[[i]] <- gsub(".*h3>Native\\sto[:]<[/]h3>\\s+<p>\\s+", "",
+
+        list_dist_nat[[i]] <-
+          gsub(".*Native\\sto[:]<[/]h3>\\s+<p\\sclass[=]\"p\">\\s+", "",
                                    paste0(list_html[[i]], collapse = ""))
         list_dist_nat[[i]] <- gsub("\\s+<.+", "", list_dist_nat[[i]])
         list_dist_nat[[i]] <- gsub("\\s{2,}", " ", list_dist_nat[[i]])
+
         list_dist_intr[[i]] <-
-          gsub(".*h3>Introduced\\sinto[:]<[/]h3>\\s+<p>\\s+", "",
+          gsub(".*Introduced\\sinto[:]<[/]h3>\\s+<p\\sclass[=]\"p\">\\s+", "",
                paste0(list_html[[i]], collapse = ""))
         list_dist_intr[[i]] <- gsub("\\s+<.+", "", list_dist_intr[[i]])
         list_dist_intr[[i]] <- gsub("\\s{2,}", " ", list_dist_intr[[i]])
-        list_publ[[i]] <- gsub(".*h3>First\\spublished\\sin\\s+", "",
+        list_publ[[i]] <- gsub(".*First\\spublished\\sin\\s+", "",
                                paste0(list_html[[i]], collapse = ""))
-        list_publ[[i]] <- gsub("<[/]h3>.+", "", list_publ[[i]])
+        list_publ[[i]] <- gsub("\\s+<[/]div>.+", "", list_publ[[i]])
 
         list_dist_nat_bot[[i]] <- list_dist_nat[[i]]
         tf <- grepl("<", list_dist_nat_bot[[i]])

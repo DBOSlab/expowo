@@ -26,8 +26,8 @@ getNumb <- function(df,
                      length(list_spp)))
       }
 
-      list_grepl[[i]] <- grepl("<p>Includes\\s", list_html[[i]])
-      list_spp[[i]] <- gsub(".*<p>Includes\\s", "",
+      list_grepl[[i]] <- grepl(">Includes\\s", list_html[[i]])
+      list_spp[[i]] <- gsub(".*>Includes\\s", "",
                             list_html[[i]][list_grepl[[i]]])
       list_spp[[i]] <- gsub("\\sAccepted.+", "",
                             list_spp[[i]][grepl("\\sAccepted\\s",
