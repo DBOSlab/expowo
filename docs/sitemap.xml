@@ -28,6 +28,9 @@
     <loc>https://dboslab.github.io/expowo/articles/mining_megadiverse_genera.html</loc>
   </url>
   <url>
+    <loc>https://dboslab.github.io/expowo/articles/mining_species_distribution.html</loc>
+  </url>
+  <url>
     <loc>https://dboslab.github.io/expowo/articles/mining_toptenrichest_genera.html</loc>
   </url>
   <url>
@@ -55,7 +58,13 @@
     <loc>https://dboslab.github.io/expowo/reference/POWOcodes.html</loc>
   </url>
   <url>
+    <loc>https://dboslab.github.io/expowo/reference/powoFam.html</loc>
+  </url>
+  <url>
     <loc>https://dboslab.github.io/expowo/reference/powoGenera.html</loc>
+  </url>
+  <url>
+    <loc>https://dboslab.github.io/expowo/reference/powoSpDist.html</loc>
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/powoSpecies.html</loc>

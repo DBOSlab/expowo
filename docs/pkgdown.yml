@@ -5,8 +5,9 @@ articles:
   mining_accepted_genera: mining_accepted_genera.html
   mining_accepted_species: mining_accepted_species.html
   mining_megadiverse_genera: mining_megadiverse_genera.html
+  mining_species_distribution: mining_species_distribution.html
   mining_toptenrichest_genera: mining_toptenrichest_genera.html
-last_built: 2022-08-16T15:00Z
+last_built: 2022-08-31T13:08Z
 urls:
   reference: https://dboslab.github.io/expowo/reference
   article: https://dboslab.github.io/expowo/articles

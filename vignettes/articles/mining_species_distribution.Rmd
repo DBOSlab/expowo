@@ -1,0 +1,123 @@
+---
+title: "Mining distribution for any plant species"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mining distribution for any plant species}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The main goal of the __expowo__ package is to retrieve information about the 
+diversity and distribution of any plant family as publicly available at the 
+taxonomically verified database 
+[Plants of the World Online (POWO)](https://powo.science.kew.org).\
+
+The package is intended to efficiently mine the content within the source HTML 
+pages for any specific genus and family. It can return a comma-separated values 
+(CSV) file with the number of accepted species and country-level distribution 
+for any genus as well as the full checklist of accepted species in any genus or 
+family, their authorship, original publication and global distribution.\
+
+Here in this article, we show how to use the package's function `powoSpDist` 
+for mining the entire distribution for any species of flowering plants. The 
+`powoSpDist` uses the argument `species` to set the name or list of species 
+names, and then the function access the auxiliary functions `getGenURI` and 
+`getDist` to catch their respective distribution. 
+
+
+# Setup
+
+__expowo__ is not on CRAN yet but you can install the latest development version 
+from [GitHub](https://github.com/):
+
+``` r
+#install.packages("devtools")
+devtools::install_github("DBOSlab/expowo")
+```
+```{r package load}
+library(expowo)
+```
+
+# Mining the distribution for any angiosperm species
+
+The function `powoSpDist` returns a dataframe or saves a CSV file listing the 
+entire global distribution at country or botanical level for any of the given 
+species scientific name(s) (excluding hybrid species), their genus, publication 
+and authorship. The global classification of botanical divisions follows the 
+[World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for 
+Recording Plant Distributions, which is already associated with each taxon's 
+distribution in the POWO.\
+
+The example below shows how to mine the distribution for a specified vector of 
+two species. The output shown here (a table) is simplified by removing the 
+family and distribution according to botanical subdivision columns.
+
+```{r, eval = FALSE}
+library(taxize)
+fam <- c("Araceae", "Lecythidaceae")
+powocodes <- cbind(family = fam,
+                   data.frame(taxize::get_pow(fam)))
+
+res <- (powocodes$family, powocodes$uri,
+        species = c("Anthurium longicaudatum", "Lecythis pisonis"),
+        verbose = TRUE,
+        save = TRUE,
+        dir = "results_powoSpDist/",
+        filename = "Araceae_Lecythidaceae")
+```
+
+```{r, echo = FALSE, warning = FALSE}
+data("POWOcodes")
+fam <- c("Araceae", "Lecythidaceae")
+powocodes <- data.frame(family = fam,
+                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
+
+res <- powoSpDist(powocodes$family, powocodes$uri,
+                  species = c("Anthurium longicaudatum", "Lecythis pisonis"),
+                  verbose = FALSE,
+                  save = FALSE)
+
+knitr::kable(res[-c(1, 3, 6, 9, 11, 13)],
+             align = 'c',
+             caption = "TABLE 1. A general `powoSpDist` search for mining 
+             distribution for two angiosperm species.")
+```
+
+# Mining distribution for all angiosperm species
+
+To mine the distribution checklist for all accepted species of flowering plants, 
+you can load the dataframe-formatted data object called `POWOcodes` 
+that comes associated with the __expowo__ package. Because the `POWOcodes` data 
+object already contains the URI addresses for all angiosperms families 
+recognized in the [POWO](https://powo.science.kew.org) database, you do not need 
+to perform the time-consuming URI search using __taxize__. Otherwise, we 
+strictly suggest you to perform this task in parallel. The parallelization 
+strategy used in the further example is multissesion (recommended if you are
+using a computer with Windows OS).\
+
+The example below shows how to mine the global distribution of all accepted non
+hybrid species of flowering plants by using the vector of all angiosperm 
+families and associated URI addresses stored in the `POWOcodes` object.
+
+```{r, eval = FALSE}
+library(future)
+library(future.apply)
+
+plan(multisession)
+data(POWOcodes)
+
+resSpDist %<-% powoSpDist(POWOcodes$family, POWOcodes$uri,
+                          verbose = TRUE,
+                          save = TRUE,
+                          dir = "results_powoSpDist/",
+                          filename = "all_angiosperm_distribution")
+resSpDist
+plan(sequential)
+```

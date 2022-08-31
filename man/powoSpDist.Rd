@@ -55,11 +55,10 @@ powoSpDist(powocodes$family, powocodes$uri,
            verbose = TRUE,
            save = TRUE,
            dir = "results_powoSpDist/",
-           filename = "Araceae_Lecythidaceae")
+           filename = "A_longicaudatum_L_pisonis")
 
-## Searching for all species and associated global distribution
-## in any or all flowering plant family, by using the URI addresses
-## within the POWOcodes data file.
+## Searching for global distribution in any or all flowering plant family,
+## by using the URI addresses within the POWOcodes data file.
 
 data(POWOcodes)
 
