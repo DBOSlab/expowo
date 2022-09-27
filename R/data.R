@@ -8,7 +8,7 @@
 #' and associated URI addresses as retrieved with the function get_pow of the
 #' package [taxize](https://docs.ropensci.org/taxize/index.html)
 #'
-#' @format Table in .csv format
+#' @format A table in .csv format.
 #'
 #' @usage data(POWOcodes)
 
