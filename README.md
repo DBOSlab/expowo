@@ -52,9 +52,8 @@ library(expowo)
 ```
 
 OBS.: To download the development version, you will need to have the
-[Git](http://git-scm.com/) software installed. And if your operating
-system is Microsoft Windows, you will also need to download the
-[Rtools](http://cran.r-project.org/bin/windows/Rtools/).
+[Git](https://git-scm.com/) software installed. And if your operating
+system is Microsoft Windows, you will also need to download the Rtools.
 
 Otherwise, you will be able to install **expowo** more easily when it is
 available on CRAN, by just running the following R code:
