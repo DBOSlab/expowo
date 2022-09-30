@@ -1,13 +1,15 @@
 pandoc: 2.7.3
-pkgdown: 2.0.3
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   mining_accepted_genera: mining_accepted_genera.html
   mining_accepted_species: mining_accepted_species.html
+  mining_family_species_number: mining_family_species_number.html
   mining_megadiverse_genera: mining_megadiverse_genera.html
+  mining_species_distribution: mining_species_distribution.html
   mining_toptenrichest_genera: mining_toptenrichest_genera.html
-last_built: 2022-05-19T03:32Z
+last_built: 2022-09-30T17:50Z
 urls:
-  reference: https://domingoscardoso.github.io/expowo/reference
-  article: https://domingoscardoso.github.io/expowo/articles
+  reference: https://dboslab.github.io/expowo/reference
+  article: https://dboslab.github.io/expowo/articles
 

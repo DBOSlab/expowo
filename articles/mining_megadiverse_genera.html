@@ -8,8 +8,8 @@
 <meta name="description" content="expowo">
 <title>Mining megadiverse genera of flowering plants • expowo</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Mining megadiverse genera of flowering plants">
 <meta property="og:description" content="expowo">
@@ -43,7 +43,9 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/mining_accepted_genera.html">Mining genus list for any plant family</a>
     <a class="dropdown-item" href="../articles/mining_accepted_species.html">Mining species list for any plant family</a>
+    <a class="dropdown-item" href="../articles/mining_family_species_number.html">Mining species number of any plant family</a>
     <a class="dropdown-item" href="../articles/mining_megadiverse_genera.html">Mining megadiverse genera of flowering plants</a>
+    <a class="dropdown-item" href="../articles/mining_species_distribution.html">Mining distribution for any plant species</a>
     <a class="dropdown-item" href="../articles/mining_toptenrichest_genera.html">Mining the top ten richest genera of flowering plants</a>
   </div>
 </li>
@@ -54,7 +56,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/deborazuanny/expowo/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/DBOSlab/expowo/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -69,45 +71,45 @@
 
 
 <script src="mining_megadiverse_genera_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Mining megadiverse genera of flowering plants</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/deborazuanny/expowo/blob/HEAD/vignettes/articles/mining_megadiverse_genera.Rmd" class="external-link"><code>vignettes/articles/mining_megadiverse_genera.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/DBOSlab/expowo/blob/HEAD/vignettes/articles/mining_megadiverse_genera.Rmd" class="external-link"><code>vignettes/articles/mining_megadiverse_genera.Rmd</code></a></small>
       <div class="d-none name"><code>mining_megadiverse_genera.Rmd</code></div>
     </div>
 
     
     
 <p>The main goal of the <strong>expowo</strong> package is to retrieve information about the diversity and distribution of any plant family as publicly available at the taxonomically verified database <a href="https://powo.science.kew.org" class="external-link">Plants of the World Online (POWO)</a>.<br></p>
-<p>The package is intended to efficiently mine the content within the source html pages for any specific genus and family. It can return a comma-separated values (CSV) file with the number of accepted species and country-level distribution for any genus as well as the full checklist of accepted species in any genus or family, their authorship, original publication and global distribution.<br></p>
-<p>Here in this article, we show how to use the package’s function <code>megaGen</code> for mining the megadiverse genera for any family of flowering plants. <a href="https://doi.org/10.2307/4135449" class="external-link">Frodin (2004)</a> suggests 500 species as the threshold for a genus to be considered megadiverse. The function <code>megaGen</code> uses any numeric value in the argument <code>thld</code> to define the threshold for a megadiverse genus</p>
+<p>The package is intended to efficiently mine the content within the source HTML pages for any specific genus and family. It can return a comma-separated values (CSV) file with the number of accepted species and country-level distribution for any genus as well as the full checklist of accepted species in any genus or family, their authorship, original publication and global distribution.<br></p>
+<p>Here in this article, we show how to use the package’s function <code>megaGen</code> for mining the megadiverse genera for any family of flowering plants. <a href="https://doi.org/10.2307/4135449" class="external-link">Frodin (2004)</a> suggests 500 species as the threshold for a genus to be considered megadiverse. The function <code>megaGen</code> uses any integer numeric value in the argument <code>thld</code> to define the threshold for a megadiverse genus.</p>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h2>
 <p><strong>expowo</strong> is not on CRAN yet but you can install the latest development version from <a href="https://github.com/" class="external-link">GitHub</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"deborazuanny/expowo"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"DBOSlab/expowo"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://domingoscardoso.github.io/expowo/">expowo</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="mining-megadiverse-genera-for-any-angiosperm-family">Mining megadiverse genera for any angiosperm family<a class="anchor" aria-label="anchor" href="#mining-megadiverse-genera-for-any-angiosperm-family"></a>
 </h2>
-<p>The function <code>megaGen</code> uses a specified threshold number to return a dataframe or save a CSV file listing all most speciose or megadiverse genera for any family of flowering plants, and their associated number of accepted species.</p>
+<p>The function <code>megaGen</code> uses a specified threshold number to return a dataframe or save a CSV file listing all megadiverse genera for any family of flowering plants and their associated number of accepted species.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span>
-<span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Begoniaceae"</span>, <span class="st">"Piperaceae"</span>, <span class="st">"Solanaceae"</span><span class="op">)</span>
-<span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,
-                   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu">get_pow</span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/megaGen.html">megaGen</a></span><span class="op">(</span><span class="va">powocodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">powocodes</span><span class="op">$</span><span class="va">uri</span>,
-        thld <span class="op">=</span> <span class="fl">500</span>,
-        verbose <span class="op">=</span> <span class="cn">TRUE</span>,
-        save <span class="op">=</span> <span class="cn">TRUE</span>,
-        dir <span class="op">=</span> <span class="st">"results_megaGen/"</span>,
-        filename <span class="op">=</span> <span class="st">"Arist_Begon_Piper_Solanaceae_search"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
+<span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Begoniaceae"</span>, <span class="st">"Piperaceae"</span>, <span class="st">"Solanaceae"</span><span class="op">)</span></span>
+<span><span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,</span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu">get_pow</span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/megaGen.html">megaGen</a></span><span class="op">(</span><span class="va">powocodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">powocodes</span><span class="op">$</span><span class="va">uri</span>,</span>
+<span>        thld <span class="op">=</span> <span class="fl">500</span>,</span>
+<span>        verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        dir <span class="op">=</span> <span class="st">"results_megaGen/"</span>,</span>
+<span>        filename <span class="op">=</span> <span class="st">"Arist_Begon_Piper_Solanaceae_search"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>TABLE 1. A general <code>megaGen</code> search to mining the megadiverse genera for some specific angiosperm families, based on a specified threshold of 500 species.</caption>
 <colgroup>
@@ -134,7 +136,7 @@
 <td align="left">Aristolochia</td>
 <td align="left">L.</td>
 <td align="left">Aristolochia L.</td>
-<td align="right">529</td>
+<td align="right">535</td>
 <td align="left">330834-2</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:330834-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:330834-2</a></td>
 </tr>
@@ -143,7 +145,7 @@
 <td align="left">Begonia</td>
 <td align="left">L.</td>
 <td align="left">Begonia L.</td>
-<td align="right">1931</td>
+<td align="right">1993</td>
 <td align="left">327437-2</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:327437-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:327437-2</a></td>
 </tr>
@@ -152,7 +154,7 @@
 <td align="left">Peperomia</td>
 <td align="left">Ruiz &amp; Pav.</td>
 <td align="left">Peperomia Ruiz &amp; Pav.</td>
-<td align="right">1411</td>
+<td align="right">1416</td>
 <td align="left">329746-2</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:329746-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:329746-2</a></td>
 </tr>
@@ -161,7 +163,7 @@
 <td align="left">Piper</td>
 <td align="left">L.</td>
 <td align="left">Piper L.</td>
-<td align="right">2400</td>
+<td align="right">2405</td>
 <td align="left">326982-2</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:326982-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:326982-2</a></td>
 </tr>
@@ -170,7 +172,7 @@
 <td align="left">Solanum</td>
 <td align="left">L.</td>
 <td align="left">Solanum L.</td>
-<td align="right">1234</td>
+<td align="right">1235</td>
 <td align="left">30000630-2</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:30000630-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:30000630-2</a></td>
 </tr>
@@ -183,14 +185,14 @@
 <p>To mine a global checklist of megadiverse genera for all families of flowering plants, including their associated species number, we recommend to load the dataframe-formatted data object called <code>POWOcodes</code> that comes associated with the <strong>expowo</strong> package. Because the <code>POWOcodes</code> data object already contains the URI addresses for all angiosperms families recognized in the <a href="https://powo.science.kew.org" class="external-link">POWO</a> database, you do not need to perform the time-consuming URI search using <strong>taxize</strong>.<br></p>
 <p>The example below shows how to mine a global checklist of all most speciose genera of flowering plants by using the vector of all angiosperm families and associated URI addresses stored in the <code>POWOcodes</code> object.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/megaGen.html">megaGen</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">POWOcodes</span><span class="op">$</span><span class="va">uri</span>,
-        thld <span class="op">=</span> <span class="fl">500</span>,
-        verbose <span class="op">=</span> <span class="cn">TRUE</span>,
-        save <span class="op">=</span> <span class="cn">TRUE</span>,
-        dir <span class="op">=</span> <span class="st">"results_megaGen/"</span>,
-        filename <span class="op">=</span> <span class="st">"all_megadiverse_angiosperm_genera"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/megaGen.html">megaGen</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">POWOcodes</span><span class="op">$</span><span class="va">uri</span>,</span>
+<span>        thld <span class="op">=</span> <span class="fl">500</span>,</span>
+<span>        verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        dir <span class="op">=</span> <span class="st">"results_megaGen/"</span>,</span>
+<span>        filename <span class="op">=</span> <span class="st">"all_megadiverse_angiosperm_genera"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -205,7 +207,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
