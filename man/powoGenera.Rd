@@ -88,6 +88,8 @@ powoGenera(POWOcodes$family, POWOcodes$uri,
 
 \code{\link{powoSpecies}}
 
+\code{\link{powoFam}}
+
 \code{\link{POWOcodes}}
 }
 \author{

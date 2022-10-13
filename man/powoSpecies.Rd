@@ -82,6 +82,14 @@ powoSpecies(POWOcodes$family, POWOcodes$uri,
 
 }
 \seealso{
+\code{\link{megaGen}}
+
+\code{\link{toptenGen}}
+
+\code{\link{powoFam}}
+
+\code{\link{powoGenera}}
+
 \code{\link{POWOcodes}}
 }
 \author{

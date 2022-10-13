@@ -58,11 +58,19 @@ powoFam(POWOcodes$family, POWOcodes$uri,
         verbose = TRUE,
         save = TRUE,
         dir = "results_powoFam/",
-        filename = "angiosperms_species_number")
+        filename = "all_angiosperms_species_number")
 }
 
 }
 \seealso{
+\code{\link{megaGen}}
+
+\code{\link{toptenGen}}
+
+\code{\link{powoGenera}}
+
+\code{\link{powoSpecies}}
+
 \code{\link{POWOcodes}}
 }
 \author{
