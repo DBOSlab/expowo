@@ -4,44 +4,45 @@ getDist <- function(df,
                     listspp = NULL,
                     verbose = verbose) {
 
-  # Creating empty lists to save data of interest during all search.
+  # Creating empty lists to save data of interest during all search
+
+  l_uri <- length(df$powo_uri)
+
   if (listspp) {
-    list_spp <- vector("list", length = length(df$powo_uri))
+    list_spp <- vector("list", length = l_uri)
   }
-  list_dist_nat <- vector("list", length = length(df$powo_uri))
-  list_dist_nat_bot <- vector("list", length = length(df$powo_uri))
-  list_dist_intr <- vector("list", length = length(df$powo_uri))
-  list_dist_intr_bot <- vector("list", length = length(df$powo_uri))
-  list_html <- vector("list", length = length(df$powo_uri))
-  list_grepl <- vector("list", length = length(df$powo_uri))
-  list_publ <- vector("list", length = length(df$powo_uri))
+  list_dist_nat <- list_dist_nat_bot <- list_dist_intr <- list_dist_intr_bot <-
+    list_html <- list_grepl <- list_publ <- vector("list", length = l_uri)
 
   for (i in seq_along(df$powo_uri)) {
-    # The tryCatch function helps skipping error in for-loop.
+    # The tryCatch function helps skipping error in for-loop
     tryCatch({
       # Adding a pause 300 seconds of um pause every 500th search,
       # because POWO website cannot permit constant search.
-      if (i%%500 == 0) {
+      if (i %% 500 == 0) {
         Sys.sleep(300)
       }
 
+      tf <- df$powo_uri == df$powo_uri[i]
+      gen <- df$genus[tf]
+      fam <- df$family[tf]
       if (!is.na(df$powo_uri[i])) {
         list_html[[i]] <- readLines(paste(df$powo_uri[i]), warn = F)
         # Adding a counter to identify each running search.
         if (listspp) {
           if (verbose) {
             print(paste0("Searching distribution and spp number of... ",
-                         df$genus[df$powo_uri == df$powo_uri[i]], " ",
-                         df$family[df$powo_uri == df$powo_uri[i]], " ", i, "/",
+                         gen, " ",
+                         fam, " ", i, "/",
                          length(list_spp)))
           }
         } else {
           if (verbose) {
-            ng <- df$genus[df$powo_uri == df$powo_uri[i]]
+            ng <- gen
             ng <- ng[!is.na(ng)]
-            ns <- df$species[df$powo_uri == df$powo_uri[i]]
+            ns <- df$species[tf]
             ns <- ns[!is.na(ns)]
-            nf <- df$family[df$powo_uri == df$powo_uri[i]]
+            nf <- fam
             nf <- nf[!is.na(nf)]
             print(paste0("Searching distribution of... ",
                          ng, " ",
@@ -50,7 +51,7 @@ getDist <- function(df,
                          length(df$species[!is.na(df$species)])))
           }
         }
-
+        # Extracting species
         if (listspp) {
           list_grepl[[i]] <- grepl(">Includes\\s", list_html[[i]])
           list_spp[[i]] <- gsub(".*>Includes\\s", "",
@@ -59,10 +60,10 @@ getDist <- function(df,
                                 list_spp[[i]][grepl("\\sAccepted\\s",
                                                     list_spp[[i]])])
         }
-
+        # Extracting native and introduced distribution
         list_dist_nat[[i]] <-
           gsub(".*Native\\sto[:]<[/]h3>\\s+<p\\sclass[=]\"p\">\\s+", "",
-                                   paste0(list_html[[i]], collapse = ""))
+               paste0(list_html[[i]], collapse = ""))
         list_dist_nat[[i]] <- gsub("\\s+<.+", "", list_dist_nat[[i]])
         list_dist_nat[[i]] <- gsub("\\s{2,}", " ", list_dist_nat[[i]])
 
@@ -71,6 +72,8 @@ getDist <- function(df,
                paste0(list_html[[i]], collapse = ""))
         list_dist_intr[[i]] <- gsub("\\s+<.+", "", list_dist_intr[[i]])
         list_dist_intr[[i]] <- gsub("\\s{2,}", " ", list_dist_intr[[i]])
+
+        # Extracting the protologue
         list_publ[[i]] <- gsub(".*First\\spublished\\sin\\s+", "",
                                paste0(list_html[[i]], collapse = ""))
         list_publ[[i]] <- gsub("\\s+<[/]div>.+", "", list_publ[[i]])
@@ -87,53 +90,32 @@ getDist <- function(df,
         }
 
         # Correcting list of countries that come with different regions.
-        list_dist_nat[[i]] <- botdiv_to_countries(list_dist_nat, i)
-        list_dist_intr[[i]] <- botdiv_to_countries(list_dist_intr, i)
+        list_dist_nat[[i]] <- .botdiv_to_countries(list_dist_nat, i)
+        list_dist_intr[[i]] <- .botdiv_to_countries(list_dist_intr, i)
       }
       # The function below will print any search error (e.g. site address of a
       # specific genus is not opening for some reason).
     }, error = function(e) {cat(paste("ERROR:",
-                                      df$genus[df$powo_uri == df$powo_uri[i]],
-                                      df$family[df$powo_uri == df$powo_uri[i]]),
+                                      df$genus[tf],
+                                      df$family[tf]),
                                 conditionMessage(e), "\n")})
   }
 
   # Filling in with "NA" those genera for which the search failed to open the
   # POWO site.
   if (listspp) {
-    temp <- lapply(list_spp, is.null)
-    list_spp[unlist(temp)] <- NA
-    temp <- lapply(list_spp, function(x) length(x) == 0)
-    list_spp[unlist(temp)] <- NA
+    list_spp <- .fill_NA(list_spp)
+
     # Extracting the number of species from the list during the POWO searching.
-    df$species_number <- unlist(list_spp, use.names = F)
-    df$species_number <- as.numeric(df$species_number)
+    df$species_number <- as.numeric(unlist(list_spp, use.names = F))
   }
 
-  temp <- lapply(list_dist_nat, is.null)
-  list_dist_nat[unlist(temp)] <- NA
-  temp <- lapply(list_dist_nat, function(x) length(x) == 0)
-  list_dist_nat[unlist(temp)] <- NA
-
-  temp <- lapply(list_dist_nat_bot, is.null)
-  list_dist_nat_bot[unlist(temp)] <- NA
-  temp <- lapply(list_dist_nat_bot, function(x) length(x) == 0)
-  list_dist_nat_bot[unlist(temp)] <- NA
-
-  temp <- lapply(list_publ, is.null)
-  list_publ[unlist(temp)] <- NA
-  temp <- lapply(list_publ, function(x) length(x) == 0)
-  list_publ[unlist(temp)] <- NA
-
-  temp <- lapply(list_dist_intr, is.null)
-  list_dist_intr[unlist(temp)] <- NA
-  temp <- lapply(list_dist_intr, function(x) length(x) == 0)
-  list_dist_intr[unlist(temp)] <- NA
-
-  temp <- lapply(list_dist_intr_bot, is.null)
-  list_dist_intr_bot[unlist(temp)] <- NA
-  temp <- lapply(list_dist_intr_bot, function(x) length(x) == 0)
-  list_dist_intr_bot[unlist(temp)] <- NA
+  # Filling with NA each list that has returned species with NULL results
+  list_dist_nat <- .fill_NA(list_dist_nat)
+  list_dist_nat_bot <- .fill_NA(list_dist_nat_bot)
+  list_publ <- .fill_NA(list_publ)
+  list_dist_intr <- .fill_NA(list_dist_intr)
+  list_dist_intr_bot <- .fill_NA(list_dist_intr_bot)
 
   # Extracting the publication where the name was first published.
   df$publication <- NA
@@ -227,4 +209,3 @@ botdiv_to_countries <- function(x, i) {
 
   return(x[[i]])
 }
-

@@ -74,17 +74,13 @@ toptenGen <- function(family, uri,
                       dir = "results_toptenGen/",
                       filename = "output") {
 
-  if(length(family) != length(uri)) {
-    stop(paste("Any family or URI is missing."))
-  }
-  utils::data("POWOcodes")
-  uri_log <- uri %in% POWOcodes$uri
-  uri_log <- which(uri_log == FALSE)
-  if(length(uri_log) >= 1) {
-    stop(paste("Any family's URI address is incomplete or misspelled and cannot
-               open connection with POWO website."))
-  }
+  # family and URI check.
+  .arg_check_fam_uri(family, uri)
 
+  # dir check.
+  dir <- .arg_check_dir(dir)
+
+  # Placing input data into dataframe.
   powo_codes_fam <- data.frame(family = family,
                                uri = uri)
 
@@ -109,30 +105,14 @@ toptenGen <- function(family, uri,
                       "powo_uri") %>%
     arrange(desc(df$species_number)) %>%  # Displaying in the descending order
     group_by(family) %>%                  # to filter in each family
-    slice(1:10)                           # the top ten richest genera
+    slice(1:10)                           # the top ten richest genera.
 
 
+  # Saving the dataframe if param save is TRUE.
   if (save) {
-    # Create a new directory to save the results with current date.
-    if (!dir.exists(dir)) {
-      dir.create(dir)
-      todaydate <- format(Sys.time(), "%d%b%Y")
-      folder_name <- paste0(dir, todaydate)
-      print(paste0("Writing '", folder_name, "' on disk."))
-      dir.create(folder_name) # If there is no directory... make one!
-    } else {
-      # If directory was created during a previous search, get its name to save
-      # results.
-      folder_name <- paste0(dir, format(Sys.time(), "%d%b%Y"))
-    }
-    # Create and save the spreadsheet in .csv format
-    fullname <- paste0(folder_name, "/", filename, ".csv")
-    print(paste0("Writing the spreadsheet '", filename, ".csv' on disk."))
-    data.table::fwrite(df,
-                       file = fullname,
-                       sep = ",",
-                       row.names = FALSE,
-                       col.names = TRUE)
+    # Create a new directory to save the results (spreadsheet in .csv format)
+    # with current date.
+    .save_df(dir, filename, df)
   }
 
   return(df)

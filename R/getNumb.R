@@ -3,26 +3,28 @@
 getNumb <- function(df,
                     verbose = verbose) {
 
+  l_uri <- length(df$powo_uri)
   # Creating empty lists to save data of interest during all search.
-  list_spp <- vector("list", length = length(df$powo_uri))
-  list_html <- vector("list", length = length(df$powo_uri))
-  list_grepl <- vector("list", length = length(df$powo_uri))
+  list_spp <- list_html <- list_grepl <- vector("list", length = l_uri)
 
   for (i in seq_along(df$powo_uri)) {
     # The tryCatch function helps skipping error in for-loop.
     tryCatch({
       # Adding a pause 300 seconds of um pause every 500th search,
       # because POWO website cannot permit constant search.
-      if (i%%500 == 0) {
+      if (i %% 500 == 0) {
         Sys.sleep(300)
       }
 
       list_html[[i]] <- readLines(paste(df$powo_uri[i]), warn = F)
       # Adding a counter to identify each running search.
+      tf <- df$powo_uri == df$powo_uri[i]
       if (verbose) {
+        gen <- df$genus[tf]
+        fam <- df$family[tf]
         print(paste0("Searching spp number of... ",
-                     df$genus[df$powo_uri == df$powo_uri[i]], " ",
-                     df$family[df$powo_uri == df$powo_uri[i]], " ", i, "/",
+                     gen, " ",
+                     fam, " ", i, "/",
                      length(list_spp)))
       }
 
@@ -35,9 +37,7 @@ getNumb <- function(df,
 
       # The function below will print any search error (e.g. site address of a
       # specific genus is not opening for some reason).
-    }, error = function(e) {cat(paste("ERROR:",
-                                      df$genus[df$powo_uri == df$powo_uri[i]],
-                                      df$family[df$powo_uri == df$powo_uri[i]]),
+    }, error = function(e) {cat(paste("ERROR:", df$genus[tf], df$family[tf]),
                                 conditionMessage(e), "\n")})
   }
 
