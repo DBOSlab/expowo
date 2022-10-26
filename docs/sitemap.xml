@@ -13,16 +13,25 @@
     <loc>https://dboslab.github.io/expowo/articles/articles/mining_megadiverse_genera.html</loc>
   </url>
   <url>
+    <loc>https://dboslab.github.io/expowo/articles/articles/mining_species_distribution.html</loc>
+  </url>
+  <url>
     <loc>https://dboslab.github.io/expowo/articles/articles/mining_toptenrichest_genera.html</loc>
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://dboslab.github.io/expowo/articles/mapping_distribution.html</loc>
+  </url>
+  <url>
     <loc>https://dboslab.github.io/expowo/articles/mining_accepted_genera.html</loc>
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/articles/mining_accepted_species.html</loc>
+  </url>
+  <url>
+    <loc>https://dboslab.github.io/expowo/articles/mining_family_species_number.html</loc>
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/articles/mining_megadiverse_genera.html</loc>
@@ -46,6 +55,9 @@
     <loc>https://dboslab.github.io/expowo/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://dboslab.github.io/expowo/reference/botdivmap.html</loc>
+  </url>
+  <url>
     <loc>https://dboslab.github.io/expowo/reference/botregions.html</loc>
   </url>
   <url>
@@ -62,6 +74,9 @@
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/powoGenera.html</loc>
+  </url>
+  <url>
+    <loc>https://dboslab.github.io/expowo/reference/powoMap.html</loc>
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/powoSpDist.html</loc>

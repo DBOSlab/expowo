@@ -12,7 +12,7 @@ Authors@R:
              role = c("aut", "ctb"),
              email = "cardosobot@gmail.com",
              comment = c(ORCID = "0000-0001-7072-2656")))
-Description: Allows to mine taxonomically vetted plant species and genus list, associated diversity estimates and global distribution, from the Plants of The World Online database.
+Description: Allows to mine taxonomically vetted plant species and genus list, associated diversity estimates and global distribution, also creates maps with the data available at Plants of The World Online database.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -21,9 +21,13 @@ RoxygenNote: 7.2.1
 Depends: 
     R (>= 3.5.0)
 Imports:
+    RColorBrewer,
     dplyr,
     magrittr,
     data.table,
+    ggplot2,
+    rnaturalearth,
+    sp,
     utils
 Suggests:
     knitr,

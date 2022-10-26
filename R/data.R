@@ -30,3 +30,20 @@ NULL
 #' @usage data(botregions)
 
 NULL
+
+#' @name botdivmap
+#'
+#' @docType data
+#'
+#' @title Global map of botanical subdivision at country level
+#'
+#' @description Global-scale map of botanical countries (level 3) according
+#' to the World Geographical Scheme for Recording Plant Distributions (WGSRPD)
+#'
+#' @format Sf Dataframe
+#'
+#' @source <https://www.tdwg.org/standards/wgsrpd/>
+#'
+#' @usage data(botdivmap)
+
+NULL
