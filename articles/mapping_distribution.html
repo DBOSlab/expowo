@@ -142,7 +142,7 @@
 <p>As generated in the example above, one of the columns from the <code>mapspdist</code> object related to the global distribution by political countries of <em>Bertholletia</em> will be used in <code>map_div</code> argument inside <code>powoMap</code> function. The columns selected is “native_to_country”, associated to political country.<br></p>
 <p>The example below shows how to create a global distribution map according to political division of the World (see argument <code>map_div</code>), colored by species richness using Viridis package (see argument <code>vir_color</code> set up with one scale colors called viridis and the argumten <code>bre_color</code>set up as ).<br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">powoMap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">mapspdist</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/powoMap.html">powoMap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mapspdist</span>,</span>
 <span>        botctrs <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>        map_div <span class="op">=</span> <span class="st">"native_to_country"</span>,</span>
 <span>        multigen <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -163,7 +163,7 @@
 <p>The example below show how to create a global distribution map according to botanical subdivision of the World (see argument <code>map_div</code>), colored by species richness using Viridis package (see argument <code>vir_color</code> set up with one scale colors called viridis and the argumten <code>bre_color</code>set up as ).<br></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">botdivmap</span><span class="op">)</span></span>
-<span><span class="fu">powoMap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">mapspdist</span>,</span>
+<span><span class="fu"><a href="../reference/powoMap.html">powoMap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mapspdist</span>,</span>
 <span>        botctrs <span class="op">=</span> <span class="va">botdivmap</span>,</span>
 <span>        map_div <span class="op">=</span> <span class="st">"native_to_botanical_countries"</span>,</span>
 <span>        multigen <span class="op">=</span> <span class="cn">TRUE</span>,</span>
