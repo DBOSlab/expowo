@@ -2,7 +2,7 @@
 % Please edit documentation in R/powoMap.R
 \name{powoMap}
 \alias{powoMap}
-\title{Mapping species distribution}
+\title{Mapping species distribution from POWO}
 \usage{
 powoMap(data = NULL,
         map_div = "native_to_country",
