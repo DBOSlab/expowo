@@ -73,7 +73,7 @@ fam <- "Lecythidaceae"
 powocodes <- data.frame(family = fam,
                         uri = POWOcodes$uri[POWOcodes$family %in% fam])
 
-res <- powoSpecies(powocodes$family, powocodes$uri,
+mapspdist <- powoSpecies(powocodes$family, powocodes$uri,
                          hybridspp = FALSE,
                          country = NULL,
                          genus = "Bertholletia",
@@ -82,7 +82,7 @@ res <- powoSpecies(powocodes$family, powocodes$uri,
                          dir = "results_powoSpecies/",
                          filename = "Lecythidaceae_Bertholletia")
 
-knitr::kable(res[-c(1, 3, 5, 6, 7, 10, 11, 12, 13)],
+knitr::kable(mapspdist[-c(1, 3, 5, 6, 7, 10, 11, 12, 13)],
              align = 'c',
              caption = "TABLE 1. A general `powoSpecies` search for mining 
              distribution for _Bertholletia_, a Lecythidaceae genus.")
@@ -91,7 +91,7 @@ knitr::kable(res[-c(1, 3, 5, 6, 7, 10, 11, 12, 13)],
 
 # 2. Creating global-scale map divided by political country for one genus
 
-As generated in the example above, one of the columns from the `mapspdist` object related to the global distribution by political countries of _Bertholletia_ will be used in `map_div` argument inside `powoMap` function. The columns selected is "native_to_country", associated to political country.\
+As generated in the example above, one of the columns from the `mapspdist` object related to the global distribution by political countries of _Bertholletia_ will be used in `map_div` argument inside `powoMap` function. The column selected is "native_to_country", associated to political country.\
 
 The example below shows how to create a global distribution map according to political division of the World (see argument `map_div`), colored by species richness using Viridis package (see argument `vir_color` set up with one scale colors called viridis and the argumten `bre_color`set up as \code{NULL}).\
 
@@ -112,8 +112,9 @@ powoMap(data = mapspdist,
 ```
 
 \
-![](man/figures/global_richness_country_map_SR_Bertholletia_viridis.jpg){width=30%}
-
+```{r, echo = FALSE, out.width = "600px"}
+knitr::include_graphics("figures/global_richness_country_map_SR_Bertholletia_viridis.png", dpi = 300)
+```
 
 # 3. Creating global-scale map divided by botanical country for one genus
 
@@ -139,5 +140,6 @@ powoMap(data = mapspdist,
 ```
 
 \
-![](man/figures/global_richness_botcountry_map_SR_Bertholletia_viridis.jpg){width=30%}
-
+```{r, echo = FALSE, out.width = "600px"}
+knitr::include_graphics("figures/global_richness_botcountry_map_SR_Bertholletia_viridis.png", dpi = 300)
+```
