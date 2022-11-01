@@ -48,43 +48,61 @@ library(expowo)
 # Mining the total species number for any angiosperm family
 
 The function `powoFam` returns a dataframe or saves a CSV file listing the total
-species number for any of the given family name(s),  (excluding hybrid species), their genus, publication 
-and authorship. The global classification of botanical divisions follows the 
+species number for any family, excluding hybrid species from the count, their genus, publication and authorship. The global classification of botanical divisions follows the 
 [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for 
 Recording Plant Distributions, which is already associated with each taxon's 
 distribution in the POWO.\
 
 The example below shows how to mine the distribution for a specified vector of 
-two species. The output shown here (a table) is simplified by removing the 
-family and distribution according to botanical subdivision columns.
-
+two plant families, Araceae and Sapotaceae.\
+ 
 ```{r, eval = FALSE}
 library(taxize)
-fam <- c("Araceae", "Lecythidaceae")
+fam <- c("Araceae", "Sapotaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
-res <- (powocodes$family, powocodes$uri,
-        species = c("Anthurium longicaudatum", "Lecythis pisonis"),
+powoFam(powocodes$family, powocodes$uri,
         verbose = TRUE,
         save = TRUE,
-        dir = "results_powoSpDist/",
-        filename = "Araceae_Lecythidaceae")
+        dir = "results_powoFam/",
+        filename = "Araceae_Sapotaceae")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
 data("POWOcodes")
-fam <- c("Araceae", "Lecythidaceae")
+fam <- c("Araceae", "Sapotaceae")
 powocodes <- data.frame(family = fam,
                         uri = POWOcodes$uri[POWOcodes$family %in% fam])
 
-res <- powoSpDist(powocodes$family, powocodes$uri,
-                  species = c("Anthurium longicaudatum", "Lecythis pisonis"),
-                  verbose = FALSE,
-                  save = FALSE)
-
-knitr::kable(res[-c(1, 3, 6, 9, 11, 13)],
+res <- powoFam(powocodes$family, powocodes$uri,
+               verbose = FALSE,
+               save = FALSE,
+               dir = "results_powoFam/",
+               filename = "Araceae_Sapotaceae")
+knitr::kable(res,
              align = 'c',
-             caption = "TABLE 1. A general `powoSpDist` search for mining 
-             distribution for two angiosperm species.")
+             caption = "TABLE 1. A general `powoFam` search for mining 
+             species number of the Araceae and Sapotaceae families.")
+```
+# Mining species number accross all angiosperm families
+
+To mine the species number of all families of flowering 
+plants, we recommend to load the 
+data frame-formatted object called `POWOcodes` that comes associated with
+the __expowo__ package. Because the `POWOcodes` data object already contains the
+URI addresses for all angiosperms families recognized in the 
+[POWO](https://powo.science.kew.org) database, you do not need to perform the 
+time-consuming URI search using __taxize__. \
+
+The example below shows how to mine the species number of all plant families by using the vector of all angiosperm families and associated URI addresses stored in the `POWOcodes` object.
+
+```{r, eval = FALSE}
+data(POWOcodes)
+
+powoFam(POWOcodes$family, POWOcodes$uri,
+        verbose = TRUE,
+        save = TRUE,
+        dir = "results_powoFam/",
+        filename = "all_angiosperms_species_number")
 ```

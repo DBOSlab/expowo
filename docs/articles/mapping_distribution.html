@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="expowo">
-<title>Mapping global distribution for any genus • expowo</title>
+<title>Mapping global distribution for any plant genus or family • expowo</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Mapping global distribution for any genus">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Mapping global distribution for any plant genus or family">
 <meta property="og:description" content="expowo">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -41,7 +41,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/mapping_distribution.html">Mapping global distribution for any genus</a>
+    <a class="dropdown-item" href="../articles/mapping_distribution.html">Mapping global distribution for any plant genus or family</a>
     <a class="dropdown-item" href="../articles/mining_accepted_genera.html">Mining genus list for any plant family</a>
     <a class="dropdown-item" href="../articles/mining_accepted_species.html">Mining species list for any plant family</a>
     <a class="dropdown-item" href="../articles/mining_family_species_number.html">Mining species number of any plant family</a>
@@ -74,7 +74,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Mapping global distribution for any genus</h1>
+      <img src="" class="logo" alt=""><h1>Mapping global distribution for any plant genus or family</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/DBOSlab/expowo/blob/HEAD/vignettes/articles/mapping_distribution.Rmd" class="external-link"><code>vignettes/articles/mapping_distribution.Rmd</code></a></small>
@@ -95,13 +95,15 @@ checklist of accepted species in any genus or family, their authorship,
 original publication and global distribution.<br></p>
 <p>Here in this article, we show how to use the package’s function
 <code>powoMap</code> for mapping the global distribution for any genus
-of flowering plants either at political country or botanical country
-level. The <code>powoMap</code> uses the argument <code>data</code> to
-set the input data, which has to be a data frame originated from
-<code>powoSpecies</code> function. Then, this function create global
-distribution maps to each genus provided in the previous search results,
-colored according to species richness using either <a href="https://CRAN.R-project.org/package=viridis" class="external-link">Viridis</a> color
-paletts or <a href="https://CRAN.R-project.org/package=RColorBrewer" class="external-link">RColorBrewer</a>.</p>
+or family of flowering plants either at political country or botanical
+country level, following the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">WGSRPD</a>. The
+<code>powoMap</code> uses as input data the data frame-formatted
+resulting query from <code>powoSpecies</code> function. Then,
+<code>powoMap</code> can automatically create a single global
+distribution map for the entire family or multiple maps for each genus
+within input data. The map is colored according to the species richness
+using either <a href="https://CRAN.R-project.org/package=viridis" class="external-link">Viridis</a> or <a href="https://CRAN.R-project.org/package=RColorBrewer" class="external-link">RColorBrewer</a>
+color palettes.</p>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h2>
@@ -117,20 +119,21 @@ latest development version from <a href="https://github.com/" class="external-li
 <h2 id="mining-species-distribution-from-powo-to-use-as-input-data-in-powomap">1. Mining species distribution from POWO to use as input data in
 powoMap<a class="anchor" aria-label="anchor" href="#mining-species-distribution-from-powo-to-use-as-input-data-in-powomap"></a>
 </h2>
-<p>To create global distribution maps, first we need to extract the
-data. To do so, we use the package function <code>powoSpecies</code> to
-return a data frame listing the entire global distribution at country or
-botanical level for any species of the given family. It is also possible
-to adjust one of the arguments in <code>powoSpecies</code> function to
-extract data only from a genus or list of genera.<br></p>
-<p>The example below shows how to mine the distribution for
-Lecythidaceae family with genus constriction. It means that the function
-will search for Bertholletia genus within this family and their
-associated data. Note that we create an object called
-<code>mapspdist</code> to be used in the next step as input to create
-the maps. The output shown here (a table) is simplified by removing some
-columns and display the data for only one species (<em>B.
-excelsa</em>).<br></p>
+<p>To create global distribution maps using <code>powoMap</code>
+function, use first the package’s associated <code>powoSpecies</code>
+function to get distribution information for the species of the target
+family or genus. It is also possible to adjust one of the arguments in
+<code>powoSpecies</code> function to extract data only from a genus or
+list of genera. See further details on how to do so in another article
+<a href="https://dboslab.github.io/expowo/articles/mining_accepted_species.html">here</a>.<br></p>
+<p>The example below shows how to mine the distribution for an specific
+genus of Lecythidaceae. By defining a vector within the argument
+<code>genus</code>, here the function will search for all species and
+associated distribution data for just the genus <em>Cariniana</em>. Note
+that we create an object called <code>mapspdist</code>, which is the
+data frame-formatted input data to create the map. The output shown here
+(TABLE 1) is a simplified version, where we have removed some columns so
+as to focus on the display of just the distribution data.<br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
 <span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="st">"Lecythidaceae"</span></span>
@@ -138,53 +141,109 @@ excelsa</em>).<br></p>
 <span>                   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/taxize/reference/get_pow.html" class="external-link">get_pow</a></span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mapspdist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/powoSpecies.html">powoSpecies</a></span><span class="op">(</span><span class="va">powocodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">powocodes</span><span class="op">$</span><span class="va">uri</span>,</span>
+<span>                         genus <span class="op">=</span> <span class="st">"Cariniana"</span>,</span>
 <span>                         hybridspp <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                         country <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                         genus <span class="op">=</span> <span class="st">"Bertholletia"</span>,</span>
 <span>                         verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                         save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                         dir <span class="op">=</span> <span class="st">"results_powoSpecies/"</span>,</span>
-<span>                         filename <span class="op">=</span> <span class="st">"Lecythidaceae_Bertholletia"</span><span class="op">)</span></span></code></pre></div>
+<span>                         filename <span class="op">=</span> <span class="st">"Lecythidaceae_Cariniana"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>TABLE 1. A general <code>powoSpecies</code> search for mining
-distribution for <em>Bertholletia</em>, a Lecythidaceae genus.</caption>
+distribution of the Lecythidaceae genus <em>Cariniana</em>.</caption>
 <colgroup>
-<col width="6%">
-<col width="10%">
-<col width="34%">
-<col width="47%">
+<col width="7%">
+<col width="8%">
+<col width="17%">
+<col width="66%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">genus</th>
-<th align="center">taxon_name</th>
+<th align="center">species</th>
 <th align="center">native_to_country</th>
 <th align="center">native_to_botanical_countries</th>
 </tr></thead>
-<tbody><tr class="odd">
-<td align="center">Bertholletia</td>
-<td align="center">Bertholletia excelsa</td>
-<td align="center">Bolivia, Brazil, Colombia, French Guiana, Guyana,
-Suriname, Venezuela</td>
-<td align="center">Bolivia, Brazil North, Brazil West-Central, Colombia,
-French Guiana, Guyana, Suriname, Venezuela</td>
-</tr></tbody>
+<tbody>
+<tr class="odd">
+<td align="center">Cariniana</td>
+<td align="center">domestica</td>
+<td align="center">Bolivia, Brazil</td>
+<td align="center">Bolivia, Brazil North, Brazil West-Central</td>
+</tr>
+<tr class="even">
+<td align="center">Cariniana</td>
+<td align="center">estrellensis</td>
+<td align="center">Bolivia, Brazil, Paraguay</td>
+<td align="center">Bolivia, Brazil North, Brazil Northeast, Brazil
+South, Brazil Southeast, Brazil West-Central, Paraguay</td>
+</tr>
+<tr class="odd">
+<td align="center">Cariniana</td>
+<td align="center">ianeirensis</td>
+<td align="center">Bolivia, Brazil</td>
+<td align="center">Bolivia, Brazil Southeast</td>
+</tr>
+<tr class="even">
+<td align="center">Cariniana</td>
+<td align="center">legalis</td>
+<td align="center">Brazil</td>
+<td align="center">Brazil Northeast, Brazil Southeast</td>
+</tr>
+<tr class="odd">
+<td align="center">Cariniana</td>
+<td align="center">micrantha</td>
+<td align="center">Bolivia, Brazil</td>
+<td align="center">Bolivia, Brazil North, Brazil West-Central</td>
+</tr>
+<tr class="even">
+<td align="center">Cariniana</td>
+<td align="center">parvifolia</td>
+<td align="center">Brazil</td>
+<td align="center">Brazil Southeast</td>
+</tr>
+<tr class="odd">
+<td align="center">Cariniana</td>
+<td align="center">penduliflora</td>
+<td align="center">Brazil</td>
+<td align="center">Brazil North</td>
+</tr>
+<tr class="even">
+<td align="center">Cariniana</td>
+<td align="center">pyriformis</td>
+<td align="center">Colombia, Venezuela</td>
+<td align="center">Colombia, Venezuela</td>
+</tr>
+<tr class="odd">
+<td align="center">Cariniana</td>
+<td align="center">rubra</td>
+<td align="center">Brazil</td>
+<td align="center">Brazil North, Brazil Southeast, Brazil
+West-Central</td>
+</tr>
+</tbody>
 </table>
 </div>
 <div class="section level2">
-<h2 id="creating-global-scale-map-divided-by-political-country-for-one-genus">2. Creating global-scale map divided by political country for one
-genus<a class="anchor" aria-label="anchor" href="#creating-global-scale-map-divided-by-political-country-for-one-genus"></a>
+<h2 id="creating-global-scale-map-for-one-genus-to-show-species-richness-at-political-country-level">2. Creating global-scale map for one genus to show species richness
+at political country level<a class="anchor" aria-label="anchor" href="#creating-global-scale-map-for-one-genus-to-show-species-richness-at-political-country-level"></a>
 </h2>
-<p>As generated in the example above, one of the columns from the
-<code>mapspdist</code> object related to the global distribution by
-political countries of <em>Bertholletia</em> will be used in
-<code>map_div</code> argument inside <code>powoMap</code> function. The
-column selected is “native_to_country”, associated to political
-country.<br></p>
-<p>The example below shows how to create a global distribution map
-according to political division of the World (see argument
-<code>map_div</code>), colored by species richness using Viridis package
-(see argument <code>vir_color</code> set up with one scale colors called
-viridis and the argumten <code>bre_color</code>set up as ).<br></p>
+<p>To generate a global distribution map for one genus that show species
+richness at political country level, use the previously generated
+<code>mapspdist</code> object as input data of the <code>powoMap</code>
+function and set the <code>map_div</code> argument as
+“native_to_country”. This is the very column of the dataframe-formatted
+<code>mapspdist</code> object that is associated to species distribution
+at political country.<br></p>
+<p>The example below shows how to create the global distribution map of
+<em>Cariniana</em>’s species richness as colored by the
+<code>viridis</code> palette of the <code>Viridis</code> package. If you
+set up both the arguments <code>vir_color</code> and
+<code>bre_color</code> with any of the <code>Viridis</code> and
+<code>RColorBrewer</code> color palettes, then two maps colored
+respectively by these color vectors will be automatically generated.
+Different file formats and resolutions (e.g. JPG, PDF, PNG, TIFF) are
+also supported by setting the arguments <code>format</code> and
+<code>dpi</code>.<br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/powoMap.html">powoMap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mapspdist</span>,</span>
 <span>        botctrs <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -198,23 +257,34 @@ viridis and the argumten <code>bre_color</code>set up as ).<br></p>
 <span>        dir <span class="op">=</span> <span class="st">"results_powoMap/"</span>,</span>
 <span>        filename <span class="op">=</span> <span class="st">"global_richness_country_map"</span>,</span>
 <span>        format <span class="op">=</span> <span class="st">"jpg"</span><span class="op">)</span> </span></code></pre></div>
-<p><br><img src="../../../../../Debora%20Msc/Debora_Msc/expowo/articles/articles/figures/global_richness_country_map_SR_Bertholletia_viridis.png" width="600px"></p>
+<br><div class="figure">
+<img src="../../../../../Debora%20Msc/Debora_Msc/expowo/articles/articles/figures/global_richness_country_map_SR_Cariniana_viridis.png" alt="FIGURE 1. Global country map of species richness in _Cariniana_ genus colored with Viridis scale." width="600px"><p class="caption">
+FIGURE 1. Global country map of species richness in <em>Cariniana</em>
+genus colored with Viridis scale.
+</p>
+</div>
 </div>
 <div class="section level2">
-<h2 id="creating-global-scale-map-divided-by-botanical-country-for-one-genus">3. Creating global-scale map divided by botanical country for one
-genus<a class="anchor" aria-label="anchor" href="#creating-global-scale-map-divided-by-botanical-country-for-one-genus"></a>
+<h2 id="creating-global-scale-map-for-one-genus-to-show-species-richness-at-botanical-country-level">3. Creating global-scale map for one genus to show species richness
+at botanical country level<a class="anchor" aria-label="anchor" href="#creating-global-scale-map-for-one-genus-to-show-species-richness-at-botanical-country-level"></a>
 </h2>
-<p>As shown in the first topic of this article, one of the columns from
-the <code>mapspdist</code> object related to distribution of
-<em>Bertholletia</em> will be used in <code>map_div</code> argument
-inside <code>powoMap</code> function. In this topic, the aim is to show
-the distribution according to botanical subdivision of the world
-(“native_to_botanical_countries” column).<br></p>
-<p>The example below show how to create a global distribution map
-according to botanical subdivision of the World (see argument
-<code>map_div</code>), colored by species richness using Viridis package
-(see argument <code>vir_color</code> set up with one scale colors called
-viridis and the argumten <code>bre_color</code>set up as ).<br></p>
+<p>To generate a global distribution map for one genus that show species
+richness at botanical country level, use the previously generated
+<code>mapspdist</code> object as input data of the <code>powoMap</code>
+function and set the <code>map_div</code> argument as
+“native_to_botanical_countries”. This is the very column of the
+dataframe-formatted <code>mapspdist</code> object that is associated to
+species distribution at botanical countries.<br></p>
+<p>The example below shows how to create the global distribution map of
+<em>Cariniana</em>’s species richness as colored by the
+<code>viridis</code> palette of the <code>Viridis</code> package. If you
+set up both the arguments <code>vir_color</code> and
+<code>bre_color</code> with any of the <code>Viridis</code> and
+<code>RColorBrewer</code> color palettes, then two maps colored
+respectively by these color vectors will be automatically generated.
+Different file formats and resolutions (e.g. JPG, PDF, PNG, TIFF) are
+also supported by setting the arguments <code>format</code> and
+<code>dpi</code>.<br></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">botdivmap</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/powoMap.html">powoMap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mapspdist</span>,</span>
@@ -229,7 +299,119 @@ viridis and the argumten <code>bre_color</code>set up as ).<br></p>
 <span>        dir <span class="op">=</span> <span class="st">"results_powoMap/"</span>,</span>
 <span>        filename <span class="op">=</span> <span class="st">"global_richness_botcountry_map"</span>,</span>
 <span>        format <span class="op">=</span> <span class="st">"jpg"</span><span class="op">)</span></span></code></pre></div>
-<p><br><img src="../../../../../Debora%20Msc/Debora_Msc/expowo/articles/articles/figures/global_richness_botcountry_map_SR_Bertholletia_viridis.png" width="600px"></p>
+<br><div class="figure">
+<img src="../../../../../Debora%20Msc/Debora_Msc/expowo/articles/articles/figures/global_richness_botcountry_map_SR_Cariniana_viridis.png" alt="FIGURE 2. Global distribution map according to botanical subdivisions of _Cariniana_'s species colored with Viridis scale." width="600px"><p class="caption">
+FIGURE 2. Global distribution map according to botanical subdivisions of
+<em>Cariniana</em>’s species colored with Viridis scale.
+</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="creating-global-scale-map-of-species-richness-for-an-entire-family">4. Creating global-scale map of species richness for an entire
+family<a class="anchor" aria-label="anchor" href="#creating-global-scale-map-of-species-richness-for-an-entire-family"></a>
+</h2>
+<p>To generate a family-level global distribution map of species
+richness, use <code>powoSpecies</code> function without any genus
+constraint so as to query a full species list of the entire family and
+the associated distribution data. Then, the resulting query object
+should be used as input data of the <code>powoMap</code> function.<br></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"POWOcodes"</span><span class="op">)</span></span>
+<span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="st">"Lecythidaceae"</span></span>
+<span><span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,</span>
+<span>                        uri <span class="op">=</span> <span class="va">POWOcodes</span><span class="op">$</span><span class="va">uri</span><span class="op">[</span><span class="va">POWOcodes</span><span class="op">$</span><span class="va">family</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">fam</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mapspdist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/powoSpecies.html">powoSpecies</a></span><span class="op">(</span><span class="va">powocodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">powocodes</span><span class="op">$</span><span class="va">uri</span>,</span>
+<span>                         genus <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                         hybridspp <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                         country <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                         verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                         save <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                         dir <span class="op">=</span> <span class="st">"results_powoSpecies/"</span>,</span>
+<span>                         filename <span class="op">=</span> <span class="st">"Lecythidaceae"</span><span class="op">)</span></span></code></pre></div>
+<p><br>
+The example below uses the previously generated data frame-formatted
+<code>mapspdist</code> object as input data to <code>powoMap</code>
+function, with the <code>map_div</code> argument set as
+“native_to_country”, the <code>multigen</code> argument set as
+<code>FALSE</code>, the <code>vir_color</code> argument set as
+“viridis”, and the <code>bre_color</code> argument set as “Spectral”, so
+as to automatically produce two <strong>global distribution
+maps</strong> of Lecythidaceae’s species richness at <strong>country
+level</strong>, which are distinctly colored by <code>Viridis</code> and
+<code>RColorBrewer</code> color palettes.<br></p>
+<p>Note that if you had set here the <code>multigen</code> as
+<code>TRUE</code>, then the <code>powoMap</code> function would have
+produced individual distribution maps of species richness for every
+single genus within Lecythidaceae, all of which being stored in the
+desired directory at <code>dir</code> argument.<br></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">botdivmap</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/powoMap.html">powoMap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mapspdist</span>,</span>
+<span>        botctrs <span class="op">=</span> <span class="va">botdivmap</span>,</span>
+<span>        map_div <span class="op">=</span> <span class="st">"native_to_country"</span>,</span>
+<span>        multigen <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>        verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>        vir_color <span class="op">=</span> <span class="st">"viridis"</span>,</span>
+<span>        bre_color <span class="op">=</span> <span class="st">"Spectral"</span>,</span>
+<span>        leg_title <span class="op">=</span> <span class="st">"SR"</span>,</span>
+<span>        dpi <span class="op">=</span> <span class="fl">600</span>,</span>
+<span>        dir <span class="op">=</span> <span class="st">"results_powoMap/"</span>,</span>
+<span>        filename <span class="op">=</span> <span class="st">"global_richness_botcountry_map"</span>,</span>
+<span>        format <span class="op">=</span> <span class="st">"jpg"</span><span class="op">)</span></span></code></pre></div>
+<br><div class="figure">
+<img src="../../../../../Debora%20Msc/Debora_Msc/expowo/articles/articles/figures/global_richness_country_map_SR_Lecythidaceae_viridis.png" alt="FIGURE 3. Global distribution map of all Lecythidaceae's species according to political countries and colored with Viridis scale." width="600px"><p class="caption">
+FIGURE 3. Global distribution map of all Lecythidaceae’s species
+according to political countries and colored with Viridis scale.
+</p>
+</div>
+<br><div class="figure">
+<img src="../../../../../Debora%20Msc/Debora_Msc/expowo/articles/articles/figures/global_richness_country_map_SR_Lecythidaceae_Spectral.png" alt="FIGURE 4. Global distribution map of all Lecythidaceae's species according to political countries and colored with Spectral scale." width="600px"><p class="caption">
+FIGURE 4. Global distribution map of all Lecythidaceae’s species
+according to political countries and colored with Spectral scale.
+</p>
+</div>
+<p><br><br>
+The example below uses the previously generated data frame-formatted
+<code>mapspdist</code> object as input data to <code>powoMap</code>
+function, with the <code>map_div</code> argument set as
+“native_to_botanical_countries”, the <code>vir_color</code> argument set
+as “viridis”, and the <code>bre_color</code> argument set as “Spectral”,
+so as to automatically produce two <strong>global distribution
+maps</strong> of Lecythidaceae’s species richness at <strong>botanical
+countrylevel</strong>, which are distinctly colored by
+<code>Viridis</code> and <code>RColorBrewer</code> color palettes.<br></p>
+<p>Note that if you had set here the <code>multigen</code> as
+<code>TRUE</code>, then the <code>powoMap</code> function would have
+produced individual distribution maps of species richness for every
+single genus within Lecythidaceae, all of which being stored in the
+desired directory at <code>dir</code> argument.<br></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">botdivmap</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/powoMap.html">powoMap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mapspdist</span>,</span>
+<span>        botctrs <span class="op">=</span> <span class="va">botdivmap</span>,</span>
+<span>        map_div <span class="op">=</span> <span class="st">"native_to_botanical_countries"</span>,</span>
+<span>        multigen <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>        verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>        vir_color <span class="op">=</span> <span class="st">"viridis"</span>,</span>
+<span>        bre_color <span class="op">=</span> <span class="st">"Spectral"</span>,</span>
+<span>        leg_title <span class="op">=</span> <span class="st">"SR"</span>,</span>
+<span>        dpi <span class="op">=</span> <span class="fl">600</span>,</span>
+<span>        dir <span class="op">=</span> <span class="st">"results_powoMap/"</span>,</span>
+<span>        filename <span class="op">=</span> <span class="st">"global_richness_botcountry_map"</span>,</span>
+<span>        format <span class="op">=</span> <span class="st">"jpg"</span><span class="op">)</span></span></code></pre></div>
+<br><div class="figure">
+<img src="../../../../../Debora%20Msc/Debora_Msc/expowo/articles/articles/figures/global_richness_botcountry_map_SR_Lecythidaceae_viridis.png" alt="FIGURE 5. Global distribution map of all Lecythidaceae's species according to botanical subdivisions and colored with viridis scale." width="600px"><p class="caption">
+FIGURE 5. Global distribution map of all Lecythidaceae’s species
+according to botanical subdivisions and colored with viridis scale.
+</p>
+</div>
+<br><div class="figure">
+<img src="../../../../../Debora%20Msc/Debora_Msc/expowo/articles/articles/figures/global_richness_botcountry_map_SR_Lecythidaceae_Spectral.png" alt="FIGURE 6. Global distribution map of all Lecythidaceae's species according to botanical subdivisions and colored with Spectral scale." width="600px"><p class="caption">
+FIGURE 6. Global distribution map of all Lecythidaceae’s species
+according to botanical subdivisions and colored with Spectral scale.
+</p>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

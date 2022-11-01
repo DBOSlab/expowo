@@ -1,1 +1,1 @@
-utils::globalVariables(c("POWOcodes", "botregions"))
+utils::globalVariables(c("POWOcodes", "botregions", "botdivmap"))

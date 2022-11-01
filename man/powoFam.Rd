@@ -71,6 +71,8 @@ powoFam(POWOcodes$family, POWOcodes$uri,
 
 \code{\link{powoSpecies}}
 
+\code{\link{powoMap}}
+
 \code{\link{POWOcodes}}
 }
 \author{

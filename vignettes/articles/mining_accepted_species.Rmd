@@ -52,7 +52,7 @@ for Recording Plant Distributions, which is already associated with each taxon's
 distribution in the POWO.\
 
 The example below shows how to mine all accepted species for a specified vector 
-of families. 
+of families. The output shown here (TABLE 1) is a simplified version, where we have removed some columns so as to focus on the display of just the distribution data.
 
 ```{r, eval = FALSE}
 library(taxize)

@@ -2,9 +2,10 @@
 % Please edit documentation in R/powoMap.R
 \name{powoMap}
 \alias{powoMap}
-\title{Mapping species distribution from POWO}
+\title{Mapping species distribution from POWO data}
 \usage{
 powoMap(data = NULL,
+        botctrs = NULL,
         map_div = "native_to_country",
         multigen = FALSE,
         verbose = TRUE,
@@ -14,29 +15,30 @@ powoMap(data = NULL,
         dpi = 600,
         dir = "results_powoMap/",
         filename = "global_richness_map",
-        format = "pdf")
+        format = "jpg")
 }
 \arguments{
-\item{data}{A data frame created using the function \code{powoSpecies} with
-species' global distribution.}
+\item{data}{Data frame of species' global distribution at country or
+botanical country level as created with the function \code{powoSpecies}.}
 
-\item{map_div}{One of two columns of native distribution from the input data
-created using \code{powoSpecies} function. It has to be "native_to_country"
-associated to political country, and "native_to_botanical_countries"
-according to the level 3 of botanical subdivision of the World, from
-\link{World Geographical Scheme for Recording Plant Distributions}
-(https://www.tdwg.org/standards/wgsrpd/).}
+\item{botctrs}{Sf data frame of botanical subdivision of the World.}
 
-\item{multigen}{Logical, if \code{TRUE}, the map results will include
-more than one genus.}
+\item{map_div}{Any of the two columns of native distribution from the input
+data created with \code{powoSpecies}. It has to be "native_to_country"
+associated to political country, or "native_to_botanical_countries" according
+to the level 3 of botanical subdivision of the
+\href{https://www.tdwg.org/standards/wgsrpd/}{WGSRPD}.}
+
+\item{multigen}{Logical, if \code{TRUE}, the function will produce multiple
+global maps for every single genus within the input data.}
 
 \item{verbose}{Logical, if \code{FALSE}, the map creation steps will not be
 printed in the console in full.}
 
-\item{vir_color}{A character vector with the name or code of one of the color
+\item{vir_color}{A character vector with the name or code of any of the color
 palettes from \href{https://CRAN.R-project.org/package=viridis}{Viridis} package.}
 
-\item{bre_color}{A character vector with the name or code of one of the color
+\item{bre_color}{A character vector with the name or code of any of the color
 palettes from \href{https://CRAN.R-project.org/package=RColorBrewer}{RColorBrewer}
 package.}
 
@@ -57,7 +59,7 @@ results will be saved within a subfolder named by the current date.}
 file entitled \strong{global_richness_map}.}
 
 \item{format}{A character vector related to the file format that the global
-map will be saved, which can be, e.g., a Portable Document Format (.pdf),
+map will be saved, which can be, e.g. a Portable Document Format (.pdf),
 Tag Image File Format (.tiff), or Joint Photographic Experts Group (.jpeg).
 Default is to save the output in \strong{jpg} format.}
 }
@@ -65,9 +67,9 @@ Default is to save the output in \strong{jpg} format.}
 Global map in .pdf format and saves the output on disk.
 }
 \description{
-It produces a global-scale map associated with all accepted
-species and their geographical distribution from any target genus or family
-of flowering plants at
+It produces global-scale maps of species richness at political
+country and botanical country levels for any genus or family of flowering
+plants with associated species distribution data at
 \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
 \examples{

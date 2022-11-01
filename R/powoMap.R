@@ -1,14 +1,15 @@
-#' Mapping species distribution from POWO
+#' Mapping species distribution from POWO data
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a global-scale map associated with all accepted
-#' species and their geographical distribution from any target genus or family
-#' of flowering plants at
+#' @description It produces global-scale maps of species richness at political
+#' country and botanical country levels for any genus or family of flowering
+#' plants with associated species distribution data at
 #' [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
 #'
 #' @usage
 #' powoMap(data = NULL,
+#'         botctrs = NULL,
 #'         map_div = "native_to_country",
 #'         multigen = FALSE,
 #'         verbose = TRUE,
@@ -18,28 +19,29 @@
 #'         dpi = 600,
 #'         dir = "results_powoMap/",
 #'         filename = "global_richness_map",
-#'         format = "pdf")
+#'         format = "jpg")
 #'
-#' @param data A data frame created using the function \code{powoSpecies} with
-#' species' global distribution.
+#' @param data Data frame of species' global distribution at country or
+#' botanical country level as created with the function \code{powoSpecies}.
 #'
-#' @param map_div One of two columns of native distribution from the input data
-#' created using \code{powoSpecies} function. It has to be "native_to_country"
-#' associated to political country, and "native_to_botanical_countries"
-#' according to the level 3 of botanical subdivision of the World, from
-#' [World Geographical Scheme for Recording Plant Distributions]
-#' (https://www.tdwg.org/standards/wgsrpd/).
+#' @param botctrs Sf data frame of botanical subdivision of the World.
 #'
-#' @param multigen Logical, if \code{TRUE}, the map results will include
-#' more than one genus.
+#' @param map_div Any of the two columns of native distribution from the input
+#' data created with \code{powoSpecies}. It has to be "native_to_country"
+#' associated to political country, or "native_to_botanical_countries" according
+#' to the level 3 of botanical subdivision of the
+#' [WGSRPD](https://www.tdwg.org/standards/wgsrpd/).
+#'
+#' @param multigen Logical, if \code{TRUE}, the function will produce multiple
+#' global maps for every single genus within the input data.
 #'
 #' @param verbose Logical, if \code{FALSE}, the map creation steps will not be
 #' printed in the console in full.
 #'
-#' @param vir_color A character vector with the name or code of one of the color
+#' @param vir_color A character vector with the name or code of any of the color
 #' palettes from [Viridis](https://CRAN.R-project.org/package=viridis) package.
 #'
-#' @param bre_color A character vector with the name or code of one of the color
+#' @param bre_color A character vector with the name or code of any of the color
 #' palettes from [RColorBrewer](https://CRAN.R-project.org/package=RColorBrewer)
 #' package.
 #'
@@ -60,7 +62,7 @@
 #' file entitled **global_richness_map**.
 #'
 #' @param format A character vector related to the file format that the global
-#' map will be saved, which can be, e.g., a Portable Document Format (.pdf),
+#' map will be saved, which can be, e.g. a Portable Document Format (.pdf),
 #' Tag Image File Format (.tiff), or Joint Photographic Experts Group (.jpeg).
 #' Default is to save the output in **jpg** format.
 #'
@@ -88,7 +90,7 @@
 #'                          dir = "results_powoSpecies/",
 #'                          filename = "Lecythidaceae")
 #'
-#'# To create a map according to political countries
+#' # To create a map according to political countries
 #' powoMap(data = mapspdist,
 #'         botctrs = NULL,
 #'         map_div = "native_to_country",
@@ -102,7 +104,7 @@
 #'         filename = "global_richness_country_map",
 #'         format = "jpg")
 #'
-#'# To create a map according to botanical countries subdivision
+#' # To create a map according to botanical countries subdivision
 #' data(botdivmap)
 #' powoMap(data = mapspdist,
 #'         botctrs = botdivmap,
@@ -141,7 +143,6 @@ powoMap <- function(data = NULL,
                     dir = "results_powoMap/",
                     filename = "global_richness_map",
                     format = "jpg") {
-  #
 
   # Load global map
   if (map_div == "native_to_country") {
@@ -149,12 +150,15 @@ powoMap <- function(data = NULL,
     # Remove Antarctica
     world <- world[!world$admin %in% "Antarctica", ]
 
+    # Replacing the the non-ASCII char in the world$admin column
+    world$admin <- gsub("\u00e7", "c", world$admin)
+
     # Harmonize country names between the species list and World sf dataframe
     # Crosscheck according to rnaturalearth site - Tuvalu, Bonaire
     ctr <- c("Bahamas", "United States Minor Outlying Islands",
              "Bonaire, Saint Eustatius and Saba", "Bouvet Island",
              "Christmas Island", "Clipperton Island", "Cocos Islands",
-             "Curacao", "Cote d'Ivoire",
+             "Cote d'Ivoire",
              "French Southern Territories",
              "Micronesia", "French Guiana", "Palestina",
              "Gibraltar", "Guadeloupe", "Guinea-Bissau",
@@ -169,7 +173,7 @@ powoMap <- function(data = NULL,
     ctr_change <- c("The Bahamas", "United States of America",
                     "Netherlands", "Norway",
                     "Australia", "France", "Australia",
-                    "Curaçao", "Ivory Coast",
+                    "Ivory Coast",
                     "French Southern and Antarctic Lands",
                     "Federated States of Micronesia", "France", "Palestine",
                     "United Kingdom", "France", "Guinea Bissau",
@@ -232,7 +236,7 @@ powoMap <- function(data = NULL,
     gen <- unique(data$genus)
 
     for (i in seq_along(gen)) {
-      temp_data <- data %>% filter(genus == gen[i])
+      temp_data <- data %>% filter(data$genus == gen[i])
 
       # Making world map with species richness across countries/botanical
       # subdivisions.
@@ -298,7 +302,8 @@ powoMap <- function(data = NULL,
                       format) {
 
   p <- ggplot2::ggplot(data = world_plant) +
-    ggplot2::geom_sf(ggplot2::aes(fill = Freq), colour = "gray60", size = 0.1) +
+    ggplot2::geom_sf(ggplot2::aes(fill = world_plant$Freq),
+                     colour = "gray60", size = 0.1) +
     ggplot2::theme_void() +
     ggplot2::theme(legend.position = c(0.2, 0.3),
                    legend.title = ggplot2::element_text(size = 6,
@@ -316,46 +321,46 @@ powoMap <- function(data = NULL,
       ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_",
                                                        vir_color, ".",
                                                        format), fullname),
-                      p, dpi=dpi, bg="white")
+                      p, dpi = dpi, bg = "white")
     }
     if (!is.null(bre_color)) {
-      color1 <- rev(RColorBrewer::brewer.pal(9, bre_color))
+      bre_col <- rev(RColorBrewer::brewer.pal(9, bre_color))
       p <- p +
         ggplot2::scale_fill_gradientn(name = leg_title,
-                                      colours = color1,
+                                      colours = bre_col,
                                       limits = c(0, max(world_plant$Freq)),
                                       na.value =  "white")
         ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_",
                                                          bre_color, ".",
                                                          format), fullname),
-                        p, dpi=dpi, bg="white")
+                        p, dpi = dpi, bg = "white")
     }
   }
 
   # Create the leg title of scale bar and modify gen name to italic and bold
-  name1 <- eval(bquote(expression(bolditalic(.(gen)) ~ bold(.(leg_title)))))
   if (multigen == TRUE) {
+    gen_name <- eval(bquote(expression(bolditalic(.(gen))~bold(.(leg_title)))))
     if (!is.null(vir_color)) {
       p <- p +
-        ggplot2::scale_fill_viridis_c(name = name1,
+        ggplot2::scale_fill_viridis_c(name = gen_name,
                                       option = vir_color,
                                       limits = c(0, max(world_plant$Freq)))
         ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_", gen,
                                                          "_", vir_color, ".",
                                                          format), fullname),
-                        p, dpi=dpi, bg="white")
+                        p, dpi = dpi, bg = "white")
     }
     if (!is.null(bre_color)) {
-      color1 <- rev(RColorBrewer::brewer.pal(9, bre_color))
+      bre_col <- rev(RColorBrewer::brewer.pal(9, bre_color))
       p <- p +
-        ggplot2::scale_fill_gradientn(name = name1,
-                                      colours = color1,
+        ggplot2::scale_fill_gradientn(name = gen_name,
+                                      colours = bre_col,
                                       limits = c(0, max(world_plant$Freq)),
                                       na.value = "white")
         ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_", gen,
                                                          "_", bre_color, ".",
                                                          format), fullname),
-                        p, dpi=dpi, bg="white")
+                        p, dpi = dpi, bg = "white")
     }
   }
 }

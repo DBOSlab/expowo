@@ -41,7 +41,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/mapping_distribution.html">Mapping global distribution for any genus</a>
+    <a class="dropdown-item" href="../articles/mapping_distribution.html">Mapping global distribution for any plant genus or family</a>
     <a class="dropdown-item" href="../articles/mining_accepted_genera.html">Mining genus list for any plant family</a>
     <a class="dropdown-item" href="../articles/mining_accepted_species.html">Mining species list for any plant family</a>
     <a class="dropdown-item" href="../articles/mining_family_species_number.html">Mining species number of any plant family</a>
@@ -114,74 +114,77 @@ latest development version from <a href="https://github.com/" class="external-li
 <h2 id="mining-the-total-species-number-for-any-angiosperm-family">Mining the total species number for any angiosperm family<a class="anchor" aria-label="anchor" href="#mining-the-total-species-number-for-any-angiosperm-family"></a>
 </h2>
 <p>The function <code>powoFam</code> returns a dataframe or saves a CSV
-file listing the total species number for any of the given family
-name(s), (excluding hybrid species), their genus, publication and
-authorship. The global classification of botanical divisions follows the
-<a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
+file listing the total species number for any family, excluding hybrid
+species from the count, their genus, publication and authorship. The
+global classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
 Scheme</a> for Recording Plant Distributions, which is already
 associated with each taxon’s distribution in the POWO.<br></p>
 <p>The example below shows how to mine the distribution for a specified
-vector of two species. The output shown here (a table) is simplified by
-removing the family and distribution according to botanical subdivision
-columns.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(taxize)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fam <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Araceae"</span>, <span class="st">"Lecythidaceae"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>powocodes <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">family =</span> fam,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">data.frame</span>(taxize<span class="sc">::</span><span class="fu">get_pow</span>(fam)))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> (powocodes<span class="sc">$</span>family, powocodes<span class="sc">$</span>uri,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Anthurium longicaudatum"</span>, <span class="st">"Lecythis pisonis"</span>),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">save =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">dir =</span> <span class="st">"results_powoSpDist/"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">filename =</span> <span class="st">"Araceae_Lecythidaceae"</span>)</span></code></pre></div>
-<table style="width:100%;" class="table">
-<caption>TABLE 1. A general <code>powoSpDist</code> search for mining
-distribution for two angiosperm species.</caption>
+vector of two plant families, Araceae and Sapotaceae.<br></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
+<span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Araceae"</span>, <span class="st">"Sapotaceae"</span><span class="op">)</span></span>
+<span><span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,</span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/taxize/reference/get_pow.html" class="external-link">get_pow</a></span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/powoFam.html">powoFam</a></span><span class="op">(</span><span class="va">powocodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">powocodes</span><span class="op">$</span><span class="va">uri</span>,</span>
+<span>        verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        dir <span class="op">=</span> <span class="st">"results_powoFam/"</span>,</span>
+<span>        filename <span class="op">=</span> <span class="st">"Araceae_Sapotaceae"</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<caption>TABLE 1. A general <code>powoFam</code> search for mining
+species number of the Araceae and Sapotaceae families.</caption>
 <colgroup>
-<col width="2%">
-<col width="6%">
+<col width="10%">
 <col width="14%">
-<col width="5%">
-<col width="38%">
-<col width="13%">
-<col width="13%">
-<col width="5%">
+<col width="10%">
+<col width="63%">
 </colgroup>
 <thead><tr class="header">
-<th align="left"></th>
-<th align="center">genus</th>
-<th align="center">taxon_name</th>
-<th align="center">authors</th>
-<th align="center">publication</th>
-<th align="center">native_to_country</th>
-<th align="center">introduced_to_country</th>
+<th align="center">family</th>
+<th align="center">species_number</th>
 <th align="center">kew_id</th>
+<th align="center">powo_uri</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">585</td>
-<td align="center">Anthurium</td>
-<td align="center">Anthurium longicaudatum</td>
-<td align="center">Engl.</td>
-<td align="center">Bot. Jahrb. Syst. 25: 388 (1898)</td>
-<td align="center">Colombia, Ecuador</td>
-<td align="center">unknown</td>
-<td align="center">15417-2</td>
+<td align="center">Araceae</td>
+<td align="center">4177</td>
+<td align="center">30000216-2</td>
+<td align="center"><a href="http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000216-2" class="external-link uri">http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000216-2</a></td>
 </tr>
 <tr class="even">
-<td align="left">2210</td>
-<td align="center">Lecythis</td>
-<td align="center">Lecythis pisonis</td>
-<td align="center">Cambess.</td>
-<td align="center">A.F.C.P.de Saint-Hilaire &amp; al., Fl. Bras. Merid.
-2: 377 (1833)</td>
-<td align="center">Brazil, Colombia, Peru</td>
-<td align="center">Trinidad-Tobago</td>
-<td align="center">597315-1</td>
+<td align="center">Sapotaceae</td>
+<td align="center">1337</td>
+<td align="center">30000114-2</td>
+<td align="center"><a href="http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000114-2" class="external-link uri">http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000114-2</a></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section level2">
+<h2 id="mining-species-number-accross-all-angiosperm-families">Mining species number accross all angiosperm families<a class="anchor" aria-label="anchor" href="#mining-species-number-accross-all-angiosperm-families"></a>
+</h2>
+<p>To mine the species number of all families of flowering plants, we
+recommend to load the data frame-formatted object called
+<code>POWOcodes</code> that comes associated with the
+<strong>expowo</strong> package. Because the <code>POWOcodes</code> data
+object already contains the URI addresses for all angiosperms families
+recognized in the <a href="https://powo.science.kew.org" class="external-link">POWO</a>
+database, you do not need to perform the time-consuming URI search using
+<strong>taxize</strong>.<br></p>
+<p>The example below shows how to mine the species number of all plant
+families by using the vector of all angiosperm families and associated
+URI addresses stored in the <code>POWOcodes</code> object.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/powoFam.html">powoFam</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">POWOcodes</span><span class="op">$</span><span class="va">uri</span>,</span>
+<span>        verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>        dir <span class="op">=</span> <span class="st">"results_powoFam/"</span>,</span>
+<span>        filename <span class="op">=</span> <span class="st">"all_angiosperms_species_number"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

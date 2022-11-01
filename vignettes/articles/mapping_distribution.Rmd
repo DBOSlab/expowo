@@ -1,8 +1,8 @@
 ---
-title: "Mapping global distribution for any genus"
+title: "Mapping global distribution for any plant genus or family"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Mapping global distribution for any genus}
+  %\VignetteIndexEntry{Mapping global distribution for any plant genus or family}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -26,10 +26,9 @@ for any genus as well as the full checklist of accepted species in any genus or
 family, their authorship, original publication and global distribution.\
 
 Here in this article, we show how to use the package's function `powoMap` 
-for mapping the global distribution for any genus of flowering plants either at political country or botanical country level. The 
-`powoMap` uses the argument `data` to set the input data, which has to be
-a data frame originated from `powoSpecies` function. Then, this function create
-global distribution maps to each genus provided in the previous search results, colored according to species richness using either [Viridis](https://CRAN.R-project.org/package=viridis) color paletts or [RColorBrewer](https://CRAN.R-project.org/package=RColorBrewer).
+for mapping the global distribution for any genus or family of flowering plants 
+either at political country or botanical country level, following the 
+[WGSRPD](https://www.tdwg.org/standards/wgsrpd/). The `powoMap` uses as input data the data frame-formatted resulting query from `powoSpecies` function. Then, `powoMap` can automatically create a single global distribution map for the entire family or multiple maps for each genus within input data. The map is colored according to the species richness using either [Viridis](https://CRAN.R-project.org/package=viridis) or [RColorBrewer](https://CRAN.R-project.org/package=RColorBrewer) color palettes.
 
 # Setup
 
@@ -44,12 +43,18 @@ devtools::install_github("DBOSlab/expowo")
 library(expowo)
 ```
 
+
 # 1. Mining species distribution from POWO to use as input data in powoMap
 
-To create global distribution maps, first we need to extract the data. To do so, we use the package function `powoSpecies` to return a data frame listing the 
-entire global distribution at country or botanical level for any species of the given family. It is also possible to adjust one of the arguments in `powoSpecies` function to extract data only from a genus or list of genera.\
+To create global distribution maps using `powoMap` function, use first the package's associated `powoSpecies` function to get distribution information for the species of the target family or genus. It is also possible to adjust one of the arguments in `powoSpecies` function to extract data only from a genus or list of genera. 
+See further details on how to do so in another article [here](https://dboslab.github.io/expowo/articles/mining_accepted_species.html).\
 
-The example below shows how to mine the distribution for Lecythidaceae family with genus constriction. It means that the function will search for Bertholletia genus within this family and their associated data. Note that we create an object called `mapspdist` to be used in the next step as input to create the maps. The output shown here (a table) is simplified by removing some columns and display the data for only one species (_B. excelsa_).\
+The example below shows how to mine the distribution for an specific genus of
+Lecythidaceae. By defining a vector within the argument `genus`, here the function 
+will search for all species and associated distribution data for just the genus
+_Cariniana_. Note that we create an object called `mapspdist`, which is the
+data frame-formatted input data to create the map. The output shown here (TABLE 1) 
+is a simplified version, where we have removed some columns so as to focus on the display of just the distribution data.\
 
 ```{r, eval = FALSE}
 library(taxize)
@@ -58,13 +63,13 @@ powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
 mapspdist <- powoSpecies(powocodes$family, powocodes$uri,
+                         genus = "Cariniana",
                          hybridspp = FALSE,
                          country = NULL,
-                         genus = "Bertholletia",
                          verbose = TRUE,
                          save = TRUE,
                          dir = "results_powoSpecies/",
-                         filename = "Lecythidaceae_Bertholletia")
+                         filename = "Lecythidaceae_Cariniana")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
@@ -74,27 +79,38 @@ powocodes <- data.frame(family = fam,
                         uri = POWOcodes$uri[POWOcodes$family %in% fam])
 
 mapspdist <- powoSpecies(powocodes$family, powocodes$uri,
+                         genus = "Cariniana",
                          hybridspp = FALSE,
                          country = NULL,
-                         genus = "Bertholletia",
                          verbose = FALSE,
                          save = FALSE,
                          dir = "results_powoSpecies/",
-                         filename = "Lecythidaceae_Bertholletia")
+                         filename = "Lecythidaceae_Cariniana")
+```
 
-knitr::kable(mapspdist[-c(1, 3, 5, 6, 7, 10, 11, 12, 13)],
+```{r, echo = FALSE, warning = FALSE}
+knitr::kable(mapspdist[-c(1, 4, 5, 6, 7, 10, 11, 12, 13)],
              align = 'c',
              caption = "TABLE 1. A general `powoSpecies` search for mining 
-             distribution for _Bertholletia_, a Lecythidaceae genus.")
+             distribution of the Lecythidaceae genus _Cariniana_.")
 ```
 
 
-# 2. Creating global-scale map divided by political country for one genus
+# 2. Creating global-scale map for one genus to show species richness at political country level
 
-As generated in the example above, one of the columns from the `mapspdist` object related to the global distribution by political countries of _Bertholletia_ will be used in `map_div` argument inside `powoMap` function. The column selected is "native_to_country", associated to political country.\
+To generate a global distribution map for one genus that show species richness 
+at political country level, use the previously generated `mapspdist` object as input
+data of the `powoMap` function and set the `map_div` argument as "native_to_country".
+This is the very column of the dataframe-formatted `mapspdist` object that is
+associated to species distribution at political country.\
 
-The example below shows how to create a global distribution map according to political division of the World (see argument `map_div`), colored by species richness using Viridis package (see argument `vir_color` set up with one scale colors called viridis and the argumten `bre_color`set up as \code{NULL}).\
-
+The example below shows how to create the global distribution map of _Cariniana_'s
+species richness as colored by the `viridis` palette of the `Viridis` package. If 
+you set up both the arguments `vir_color` and `bre_color` with any of the `Viridis`
+and `RColorBrewer` color palettes, then two maps colored respectively by these 
+color vectors will be automatically generated. Different file formats and resolutions
+(e.g. JPG, PDF, PNG, TIFF) are also supported by setting the arguments `format` 
+and `dpi`.\
 
 ```{r, eval = FALSE}
 powoMap(data = mapspdist,
@@ -112,15 +128,26 @@ powoMap(data = mapspdist,
 ```
 
 \
-```{r, echo = FALSE, out.width = "600px"}
-knitr::include_graphics("figures/global_richness_country_map_SR_Bertholletia_viridis.png", dpi = 300)
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 1. Global country map of species richness in _Cariniana_ genus colored with Viridis scale."}
+knitr::include_graphics("figures/global_richness_country_map_SR_Cariniana_viridis.png", dpi = 300)
 ```
 
-# 3. Creating global-scale map divided by botanical country for one genus
 
-As shown in the first topic of this article, one of the columns from the `mapspdist` object related to distribution of _Bertholletia_ will be used in `map_div` argument inside `powoMap` function. In this topic, the aim is to show the distribution according to botanical subdivision of the world ("native_to_botanical_countries" column).\
+# 3. Creating global-scale map for one genus to show species richness at botanical country level
 
-The example below show how to create a global distribution map according to botanical subdivision of the World (see argument `map_div`), colored by species richness using Viridis package (see argument `vir_color` set up with one scale colors called viridis and the argumten `bre_color`set up as \code{NULL}).\
+To generate a global distribution map for one genus that show species richness 
+at botanical country level, use the previously generated `mapspdist` object as input
+data of the `powoMap` function and set the `map_div` argument as "native_to_botanical_countries".
+This is the very column of the dataframe-formatted `mapspdist` object that is
+associated to species distribution at botanical countries.\
+
+The example below shows how to create the global distribution map of _Cariniana_'s
+species richness as colored by the `viridis` palette of the `Viridis` package. If 
+you set up both the arguments `vir_color` and `bre_color` with any of the `Viridis`
+and `RColorBrewer` color palettes, then two maps colored respectively by these 
+color vectors will be automatically generated. Different file formats and resolutions
+(e.g. JPG, PDF, PNG, TIFF) are also supported by setting the arguments `format` 
+and `dpi`.\
 
 
 ```{r, eval = FALSE}
@@ -140,6 +167,102 @@ powoMap(data = mapspdist,
 ```
 
 \
-```{r, echo = FALSE, out.width = "600px"}
-knitr::include_graphics("figures/global_richness_botcountry_map_SR_Bertholletia_viridis.png", dpi = 300)
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 2. Global distribution map according to botanical subdivisions of _Cariniana_'s species colored with Viridis scale."}
+knitr::include_graphics("figures/global_richness_botcountry_map_SR_Cariniana_viridis.png", dpi = 300)
+```
+
+
+# 4. Creating global-scale map of species richness for an entire family
+
+To generate a family-level global distribution map of species richness, use `powoSpecies`
+function without any genus constraint so as to query a full species list of the 
+entire family and the associated distribution data. Then, the resulting query object
+should be used as input data of the `powoMap` function.\
+
+```{r, eval = FALSE}
+data("POWOcodes")
+fam <- "Lecythidaceae"
+powocodes <- data.frame(family = fam,
+                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
+
+mapspdist <- powoSpecies(powocodes$family, powocodes$uri,
+                         genus = NULL,
+                         hybridspp = FALSE,
+                         country = NULL,
+                         verbose = FALSE,
+                         save = FALSE,
+                         dir = "results_powoSpecies/",
+                         filename = "Lecythidaceae")
+```
+
+\
+The example below uses the previously generated data frame-formatted `mapspdist`
+object as input data to `powoMap` function, with the `map_div` argument set as 
+"native_to_country", the `multigen` argument set as `FALSE`, the `vir_color` argument set as "viridis", and the `bre_color` argument set as "Spectral", 
+so as to automatically produce two __global distribution maps__ of Lecythidaceae's species richness at __country level__, which are distinctly colored by `Viridis` and `RColorBrewer` color palettes.\
+
+Note that if you had set here the `multigen` as `TRUE`, then the `powoMap` function would have produced individual distribution maps of species richness for every single genus within Lecythidaceae, all of which being stored in the desired directory at `dir` argument.\
+
+```{r, eval = FALSE}
+data(botdivmap)
+powoMap(data = mapspdist,
+        botctrs = botdivmap,
+        map_div = "native_to_country",
+        multigen = FALSE,
+        verbose = FALSE,
+        vir_color = "viridis",
+        bre_color = "Spectral",
+        leg_title = "SR",
+        dpi = 600,
+        dir = "results_powoMap/",
+        filename = "global_richness_botcountry_map",
+        format = "jpg")
+```
+
+\
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 3. Global distribution map of all Lecythidaceae's species according to political countries and colored with Viridis scale."}
+knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_viridis.png", dpi = 300)
+```
+
+\
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 4. Global distribution map of all Lecythidaceae's species according to political countries and colored with Spectral scale."}
+knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_Spectral.png", dpi = 300)
+```
+
+\
+\
+The example below uses the previously generated data frame-formatted `mapspdist`
+object as input data to `powoMap` function, with the `map_div` argument set as 
+"native_to_botanical_countries", the `vir_color` argument set as "viridis", and 
+the `bre_color` argument set as "Spectral", so as to automatically produce two 
+__global distribution  maps__ of Lecythidaceae's species richness at __botanical countrylevel__, 
+which are distinctly colored by `Viridis` and `RColorBrewer` color palettes.\
+
+Note that if you had set here the `multigen` as `TRUE`, then the `powoMap` function
+would have produced individual distribution maps of species richness for every single genus within Lecythidaceae, all of which being stored in the desired directory at `dir` argument.\
+
+```{r, eval = FALSE}
+data(botdivmap)
+powoMap(data = mapspdist,
+        botctrs = botdivmap,
+        map_div = "native_to_botanical_countries",
+        multigen = FALSE,
+        verbose = FALSE,
+        vir_color = "viridis",
+        bre_color = "Spectral",
+        leg_title = "SR",
+        dpi = 600,
+        dir = "results_powoMap/",
+        filename = "global_richness_botcountry_map",
+        format = "jpg")
+```
+
+\
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 5. Global distribution map of all Lecythidaceae's species according to botanical subdivisions and colored with viridis scale."}
+knitr::include_graphics("figures/global_richness_botcountry_map_SR_Lecythidaceae_viridis.png", dpi = 300)
+```
+
+\
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 6. Global distribution map of all Lecythidaceae's species according to botanical subdivisions and colored with Spectral scale."}
+knitr::include_graphics("figures/global_richness_botcountry_map_SR_Lecythidaceae_Spectral.png", dpi = 300)
 ```

@@ -34,6 +34,7 @@
 #' @seealso \code{\link{toptenGen}}
 #' @seealso \code{\link{powoGenera}}
 #' @seealso \code{\link{powoSpecies}}
+#' @seealso \code{\link{powoMap}}
 #' @seealso \code{\link{POWOcodes}}
 #'
 #' @examples
