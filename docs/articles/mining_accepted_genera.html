@@ -83,6 +83,15 @@
 
     
     
+<style type="text/css">
+.table{
+  width: auto;
+  font-size: 14px;
+}
+.table caption {
+  font-size: 1em;
+}
+</style>
 <p>The main goal of the <strong>expowo</strong> package is to retrieve
 information about the diversity and distribution of any plant family as
 publicly available at the taxonomically verified database <a href="https://powo.science.kew.org" class="external-link">Plants of the World Online
@@ -95,7 +104,8 @@ checklist of accepted species in any genus or family, their authorship,
 original publication and global distribution.<br></p>
 <p>Here in this article, we show how to use the package’s function
 <code>powoGenera</code> for mining all accepted genera for any family of
-flowering plants.</p>
+flowering plants.<br></p>
+<p><br></p>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h2>
@@ -106,6 +116,7 @@ latest development version from <a href="https://github.com/" class="external-li
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"DBOSlab/expowo"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="mining-all-accepted-genera-for-any-angiosperm-family">Mining all accepted genera for any angiosperm family<a class="anchor" aria-label="anchor" href="#mining-all-accepted-genera-for-any-angiosperm-family"></a>
@@ -115,7 +126,7 @@ CSV file listing all genera with associated number of accepted species
 and their global geographic distribution at country or botanical level.
 The global classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
 Scheme</a> for Recording Plant Distributions, which is already
-associated with each taxon’s distribution in the POWO.</p>
+associated with each taxon’s distribution in the POWO.<br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
 <span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Begoniaceae"</span>, <span class="st">"Martyniaceae"</span><span class="op">)</span></span>
@@ -305,6 +316,7 @@ all accepted genera for some specific angiosperm families.</caption>
 </tr>
 </tbody>
 </table>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="mining-all-accepted-genera-for-all-angiosperm-families">Mining all accepted genera for all angiosperm families<a class="anchor" aria-label="anchor" href="#mining-all-accepted-genera-for-all-angiosperm-families"></a>
@@ -320,7 +332,7 @@ to perform the time-consuming URI search using
 <p>The example below shows how to mine a global checklist of all
 accepted genera of flowering plants by using the vector of all
 angiosperm families and associated URI addresses stored in the
-<code>POWOcodes</code> object.</p>
+<code>POWOcodes</code> object.<br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">)</span></span>
 <span></span>
@@ -329,6 +341,7 @@ angiosperm families and associated URI addresses stored in the
 <span>           save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>           dir <span class="op">=</span> <span class="st">"results_powoGenera/"</span>,</span>
 <span>           filename <span class="op">=</span> <span class="st">"all_angiosperm_genera"</span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="narrowing-down-the-powogenera-search-based-on-a-specified-country-vector">Narrowing down the <code>powoGenera</code> search based on a
@@ -345,9 +358,10 @@ of genera of <strong>Aristolochiaceae</strong> and
 <strong>Lecythidaceae</strong>, because the remaining families do not
 have any genera recorded in the list of countries of interest,
 i.e. <strong>Argentina</strong>, <strong>Brazil</strong> or
-<strong>French Guiana</strong>.</p>
+<strong>French Guiana</strong>.<br></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Dipterocarpaceae"</span>, <span class="st">"Fagaceae"</span>, <span class="st">"Lecythidaceae"</span><span class="op">)</span></span>
 <span><span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,</span>
 <span>                   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/taxize/reference/get_pow.html" class="external-link">get_pow</a></span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -362,7 +376,6 @@ i.e. <strong>Argentina</strong>, <strong>Brazil</strong> or
 <caption>TABLE 2. A <code>powoGenera</code> search based on a specified
 country vector.</caption>
 <colgroup>
-<col width="1%">
 <col width="6%">
 <col width="5%">
 <col width="6%">
@@ -373,7 +386,6 @@ country vector.</caption>
 <col width="31%">
 </colgroup>
 <thead><tr class="header">
-<th align="left"></th>
 <th align="left">family</th>
 <th align="left">genus</th>
 <th align="left">authors</th>
@@ -385,7 +397,6 @@ country vector.</caption>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">1</td>
 <td align="left">Aristolochiaceae</td>
 <td align="left">Aristolochia</td>
 <td align="left">L.</td>
@@ -396,7 +407,6 @@ country vector.</caption>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:330834-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:330834-2</a></td>
 </tr>
 <tr class="even">
-<td align="left">3</td>
 <td align="left">Aristolochiaceae</td>
 <td align="left">Euglypha</td>
 <td align="left">Chodat &amp; Hassl.</td>
@@ -407,7 +417,6 @@ country vector.</caption>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:295147-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:295147-2</a></td>
 </tr>
 <tr class="odd">
-<td align="left">6</td>
 <td align="left">Aristolochiaceae</td>
 <td align="left">Prosopanche</td>
 <td align="left">de Bary</td>
@@ -418,7 +427,6 @@ country vector.</caption>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:14132-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:14132-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">33</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Allantoma</td>
 <td align="left">Miers</td>
@@ -429,7 +437,6 @@ country vector.</caption>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27400-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27400-1</a></td>
 </tr>
 <tr class="odd">
-<td align="left">34</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Asteranthos</td>
 <td align="left">Desf.</td>
@@ -440,7 +447,6 @@ country vector.</caption>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27417-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27417-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">36</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Bertholletia</td>
 <td align="left">Bonpl.</td>
@@ -452,7 +458,6 @@ Aequinoct. 1: 122 (1808)</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27438-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27438-1</a></td>
 </tr>
 <tr class="odd">
-<td align="left">39</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Cariniana</td>
 <td align="left">Casar.</td>
@@ -463,7 +468,6 @@ Aequinoct. 1: 122 (1808)</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27473-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27473-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">41</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Corythophora</td>
 <td align="left">R.Knuth</td>
@@ -475,7 +479,6 @@ Aequinoct. 1: 122 (1808)</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:296913-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:296913-2</a></td>
 </tr>
 <tr class="odd">
-<td align="left">42</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Couratari</td>
 <td align="left">Aubl.</td>
@@ -486,7 +489,6 @@ Aequinoct. 1: 122 (1808)</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27498-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27498-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">43</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Couroupita</td>
 <td align="left">Aubl.</td>
@@ -497,7 +499,6 @@ Aequinoct. 1: 122 (1808)</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27499-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27499-1</a></td>
 </tr>
 <tr class="odd">
-<td align="left">45</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Eschweilera</td>
 <td align="left">Mart. ex DC.</td>
@@ -508,7 +509,6 @@ Aequinoct. 1: 122 (1808)</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:326987-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:326987-2</a></td>
 </tr>
 <tr class="even">
-<td align="left">48</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Gustavia</td>
 <td align="left">L.</td>
@@ -519,7 +519,6 @@ Aequinoct. 1: 122 (1808)</td>
 <td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:331637-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:331637-2</a></td>
 </tr>
 <tr class="odd">
-<td align="left">49</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Lecythis</td>
 <td align="left">Loefl.</td>
@@ -531,6 +530,7 @@ Aequinoct. 1: 122 (1808)</td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="narrowing-down-the-powogenera-search-based-on-a-specified-genus-vector">Narrowing down the <code>powoGenera</code> search based on a
@@ -548,7 +548,7 @@ but the function only returned the Lecythidaceae genus
 <strong><em>Bertholletia</em></strong>, because
 <strong><em>Asarum</em></strong> does not occur in any of the provided
 list of countries, i.e. <strong>Argentina</strong>,
-<strong>Brazil</strong> or <strong>French Guiana</strong>.</p>
+<strong>Brazil</strong> or <strong>French Guiana</strong>.<br></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
 <span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Lecythidaceae"</span><span class="op">)</span></span>
@@ -592,7 +592,6 @@ list of countries, i.e. <strong>Argentina</strong>,
 <caption>TABLE 3. A <code>powoGenera</code> search based on specified
 genus and country vectors.</caption>
 <colgroup>
-<col width="1%">
 <col width="6%">
 <col width="5%">
 <col width="3%">
@@ -603,7 +602,6 @@ genus and country vectors.</caption>
 <col width="33%">
 </colgroup>
 <thead><tr class="header">
-<th align="left"></th>
 <th align="left">family</th>
 <th align="left">genus</th>
 <th align="left">authors</th>
@@ -614,7 +612,6 @@ genus and country vectors.</caption>
 <th align="left">powo_uri</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="left">12</td>
 <td align="left">Lecythidaceae</td>
 <td align="left">Bertholletia</td>
 <td align="left">Bonpl.</td>

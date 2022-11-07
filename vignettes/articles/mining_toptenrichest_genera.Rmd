@@ -14,6 +14,16 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{css, echo=FALSE}
+.table{
+  width: auto;
+  font-size: 14px;
+}
+.table caption {
+  font-size: 1em;
+}
+```
+
 The main goal of the __expowo__ package is to retrieve information about the 
 diversity and distribution of any plant family as publicly available at the 
 taxonomically verified database 
@@ -26,7 +36,9 @@ for any genus as well as the full checklist of accepted species in any genus or
 family, their authorship, original publication and global distribution.\
 
 Here in this article, we show how to use the package's function `toptenGen` for 
-mining the top ten most species rich genera for any family of flowering plants. 
+mining the top ten most species rich genera for any family of flowering plants.\
+
+\
 
 # Setup
 
@@ -41,15 +53,18 @@ devtools::install_github("DBOSlab/expowo")
 library(expowo)
 ```
 
+\
+
 # Mining the top ten richest genera for any angiosperm family
 
 The function `toptenGen` is relatively similar to the `megaGen`, but instead of 
 using any specific threshold, it saves a CSV file listing the top ten most 
 biodiverse genera of any target angiosperm family, and their associated number 
-of accepted species.
+of accepted species.\
 
 ```{r, eval = FALSE}
 library(taxize)
+
 fam <- c("Bignoniaceae", "Lecythidaceae", "Sapotaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
@@ -62,7 +77,7 @@ toptenGen(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-data("POWOcodes")
+utils::data("POWOcodes")
 fam <- c("Bignoniaceae", "Lecythidaceae", "Sapotaceae")
 powocodes <- data.frame(family = fam,
                         uri = POWOcodes$uri[POWOcodes$family %in% fam])
@@ -72,10 +87,13 @@ res <- toptenGen(powocodes$family, powocodes$uri,
                  save = FALSE)
 
 knitr::kable(res,
+             row.names = FALSE,
              caption = "TABLE 1. A general `toptenGen` search to mining the top 
              ten most species rich genera for some specific angiosperm 
              families.")
 ```
+
+\
 
 # Mining the top ten richest genera accross all angiosperm families
 
@@ -85,11 +103,11 @@ recommend to load the dataframe-formatted data object called `POWOcodes` that
 comes associated with the __expowo__ package. Because the `POWOcodes` data 
 object already contains the URI addresses for all angiosperms families 
 recognized in the [POWO](https://powo.science.kew.org) database, you do not need
-to perform the time-consuming URI search using __taxize__. \
+to perform the time-consuming URI search using __taxize__.\
 
 The example below shows how to mine all top ten most species-rich genera of
 flowering plants by using the vector of all angiosperm families and associated 
-URI addresses stored in the `POWOcodes` object.
+URI addresses stored in the `POWOcodes` object.\
 
 ```{r, eval = FALSE}
 data(POWOcodes)

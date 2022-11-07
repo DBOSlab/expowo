@@ -83,6 +83,15 @@
 
     
     
+<style type="text/css">
+.table{
+  width: auto;
+  font-size: 14px;
+}
+.table caption {
+  font-size: 1em;
+}
+</style>
 <p>The main goal of the <strong>expowo</strong> package is to retrieve
 information about the diversity and distribution of any plant family as
 publicly available at the taxonomically verified database <a href="https://powo.science.kew.org" class="external-link">Plants of the World Online
@@ -99,7 +108,8 @@ flowering plants. <a href="https://doi.org/10.2307/4135449" class="external-link
 (2004)</a> suggests 500 species as the threshold for a genus to be
 considered megadiverse. The function <code>megaGen</code> uses any
 integer numeric value in the argument <code>thld</code> to define the
-threshold for a megadiverse genus.</p>
+threshold for a megadiverse genus.<br></p>
+<p><br></p>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h2>
@@ -110,6 +120,7 @@ latest development version from <a href="https://github.com/" class="external-li
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"DBOSlab/expowo"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="mining-megadiverse-genera-for-any-angiosperm-family">Mining megadiverse genera for any angiosperm family<a class="anchor" aria-label="anchor" href="#mining-megadiverse-genera-for-any-angiosperm-family"></a>
@@ -117,9 +128,10 @@ latest development version from <a href="https://github.com/" class="external-li
 <p>The function <code>megaGen</code> uses a specified threshold number
 to return a dataframe or save a CSV file listing all megadiverse genera
 for any family of flowering plants and their associated number of
-accepted species.</p>
+accepted species.<br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Begoniaceae"</span>, <span class="st">"Piperaceae"</span>, <span class="st">"Solanaceae"</span><span class="op">)</span></span>
 <span><span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,</span>
 <span>                   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/taxize/reference/get_pow.html" class="external-link">get_pow</a></span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -200,6 +212,7 @@ specified threshold of 500 species.</caption>
 </tr>
 </tbody>
 </table>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="mining-megadiverse-genera-accross-all-angiosperm-families">Mining megadiverse genera accross all angiosperm families<a class="anchor" aria-label="anchor" href="#mining-megadiverse-genera-accross-all-angiosperm-families"></a>
@@ -216,7 +229,7 @@ database, you do not need to perform the time-consuming URI search using
 <p>The example below shows how to mine a global checklist of all most
 speciose genera of flowering plants by using the vector of all
 angiosperm families and associated URI addresses stored in the
-<code>POWOcodes</code> object.</p>
+<code>POWOcodes</code> object.<br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">)</span></span>
 <span></span>

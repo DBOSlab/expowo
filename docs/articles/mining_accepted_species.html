@@ -83,6 +83,15 @@
 
     
     
+<style type="text/css">
+.table{
+  width: auto;
+  font-size: 14px;
+}
+.table caption {
+  font-size: 1em;
+}
+</style>
 <p>The main goal of the <strong>expowo</strong> package is to retrieve
 information about the diversity and distribution of any plant family as
 publicly available at the taxonomically verified database <a href="https://powo.science.kew.org" class="external-link">Plants of the World Online
@@ -95,7 +104,8 @@ checklist of accepted species in any genus or family, their authorship,
 original publication and global distribution.<br></p>
 <p>Here in this article, we show how to use the package’s function
 <code>powoSpecies</code> for mining all accepted species for any genus
-or family of flowering plants.</p>
+or family of flowering plants.<br></p>
+<p><br></p>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h2>
@@ -106,6 +116,7 @@ latest development version from <a href="https://github.com/" class="external-li
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"DBOSlab/expowo"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="mining-all-accepted-species-for-any-angiosperm-family">Mining all accepted species for any angiosperm family<a class="anchor" aria-label="anchor" href="#mining-all-accepted-species-for-any-angiosperm-family"></a>
@@ -119,318 +130,283 @@ Scheme</a> for Recording Plant Distributions, which is already
 associated with each taxon’s distribution in the POWO.<br></p>
 <p>The example below shows how to mine all accepted species for a
 specified vector of families. The output shown here (TABLE 1) is a
-simplified version, where we have removed some columns so as to focus on
-the display of just the distribution data.</p>
+simplified version, where we have removed some columns (genus, epithet
+and authors) so as to focus on the display of the taxonomic and
+distribution data.<br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Amborellaceae"</span>, <span class="st">"Cabombaceae"</span>, <span class="st">"Martyniaceae"</span><span class="op">)</span></span>
 <span><span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,</span>
 <span>                   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/taxize/reference/get_pow.html" class="external-link">get_pow</a></span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/powoSpecies.html">powoSpecies</a></span><span class="op">(</span><span class="va">powocodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">powocodes</span><span class="op">$</span><span class="va">uri</span>,</span>
-<span>            hybridspp <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>            verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>            save <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>            dir <span class="op">=</span> <span class="st">"results_powoSpecies/"</span>,</span>
-<span>            filename <span class="op">=</span> <span class="st">"Ambor_Cabom_Martyniaceae_search"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<span>                   hybridspp <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                   verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                   save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                   dir <span class="op">=</span> <span class="st">"results_powoSpecies/"</span>,</span>
+<span>                   filename <span class="op">=</span> <span class="st">"Ambor_Cabom_Martyniaceae_search"</span><span class="op">)</span></span></code></pre></div>
+<table style="width:100%;" class="table">
 <caption>TABLE 1. A general <code>powoSpecies</code> search for mining
 all accepted species for some specific angiosperm families.</caption>
 <colgroup>
-<col width="4%">
-<col width="4%">
-<col width="4%">
-<col width="8%">
-<col width="9%">
-<col width="17%">
-<col width="21%">
+<col width="0%">
 <col width="3%">
-<col width="26%">
+<col width="4%">
+<col width="24%">
+<col width="65%">
+<col width="0%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">family</th>
-<th align="left">genus</th>
-<th align="left">species</th>
-<th align="left">taxon_name</th>
-<th align="left">authors</th>
 <th align="left">scientific_name</th>
 <th align="left">publication</th>
+<th align="left">native_to_country</th>
+<th align="left">native_to_botanical_countries</th>
 <th align="left">kew_id</th>
-<th align="left">powo_uri</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">Amborellaceae</td>
-<td align="left">Amborella</td>
-<td align="left">trichopoda</td>
-<td align="left">Amborella trichopoda</td>
-<td align="left">Baill.</td>
 <td align="left">Amborella trichopoda Baill.</td>
 <td align="left">Adansonia 10: 354 (1873)</td>
+<td align="left">New Caledonia</td>
+<td align="left">New Caledonia</td>
 <td align="left">581745-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:581745-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:581745-1</a></td>
 </tr>
 <tr class="even">
 <td align="left">Cabombaceae</td>
-<td align="left">Brasenia</td>
-<td align="left">schreberi</td>
-<td align="left">Brasenia schreberi</td>
-<td align="left">J.F.Gmel.</td>
 <td align="left">Brasenia schreberi J.F.Gmel.</td>
 <td align="left">Syst. Nat. ed. 13[bis].: 853 (1791)</td>
+<td align="left">Angola, Australia, Bangladesh, Belize, Botswana,
+Burundi, Cameroon, Canada, China, Cuba, District of Columbia, Dominican
+Republic, El Salvador, Ethiopia, Guatemala, Guyana, India, Jamaica,
+Japan, Kenya, Mexico, Nigeria, North Korea, South Korea, Quebec, Rhode
+I., Russia, South Africa, Taiwan, Tanzania, Uganda, United States,
+Venezuela, Zaire, Zambia, Zimbabwe</td>
+<td align="left">Alabama, Alaska, Alberta, Amur, Angola, Arkansas,
+Assam, Bangladesh, Belize, Botswana, British Columbia, Burundi,
+California, Cameroon, China South-Central, China Southeast, Connecticut,
+Cuba, Delaware, District of Columbia, Dominican Republic, El Salvador,
+Ethiopia, Florida, Georgia, Guatemala, Guyana, Idaho, Illinois, India,
+Indiana, Iowa, Jamaica, Japan, Kansas, Kentucky, Kenya, Korea,
+Louisiana, Maine, Manitoba, Maryland, Massachusetts, Mexico Gulf, Mexico
+Northeast, Mexico Southeast, Mexico Southwest, Michigan, Minnesota,
+Mississippi, Missouri, Montana, New Brunswick, New Hampshire, New
+Jersey, New South Wales, New York, Newfoundland, Nigeria, North
+Carolina, Northern Provinces, Nova Scotia, Ohio, Oklahoma, Ontario,
+Oregon, Pennsylvania, Primorye, Queensland, Quebec, Rhode I., South
+Carolina, Taiwan, Tanzania, Tennessee, Texas, Uganda, Venezuela,
+Vermont, Victoria, Virginia, Washington, West Virginia, Wisconsin,
+Zambia, Zaire, Zimbabwe</td>
 <td align="left">605270-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:605270-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:605270-1</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">aquatica</td>
-<td align="left">Cabomba aquatica</td>
-<td align="left">Aubl.</td>
 <td align="left">Cabomba aquatica Aubl.</td>
 <td align="left">Hist. Pl. Guiane 1: 321 (1775)</td>
+<td align="left">Bolivia, Brazil, Colombia, French Guiana, Guyana, Peru,
+Suriname, Venezuela</td>
+<td align="left">Bolivia, Brazil North, Brazil Northeast, Brazil
+Southeast, Brazil West-Central, Colombia, French Guiana, Guyana, Peru,
+Suriname, Venezuela</td>
 <td align="left">605272-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:605272-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:605272-1</a></td>
 </tr>
 <tr class="even">
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">caroliniana</td>
-<td align="left">Cabomba caroliniana</td>
-<td align="left">A.Gray</td>
 <td align="left">Cabomba caroliniana A.Gray</td>
 <td align="left">Ann. Lyceum Nat. Hist. New York 4: 47 (1837)</td>
+<td align="left">Argentina, Bolivia, Brazil, District of Columbia,
+Mexico, Paraguay, Rhode I., United States, Uruguay</td>
+<td align="left">Alabama, Argentina Northeast, Argentina South,
+Arkansas, Bolivia, Brazil South, Brazil Southeast, Connecticut,
+Delaware, District of Columbia, Florida, Georgia, Illinois, Indiana,
+Kentucky, Louisiana, Maryland, Massachusetts, Mexico Northeast,
+Michigan, Mississippi, Missouri, New Hampshire, New Jersey, New York,
+North Carolina, Ohio, Oklahoma, Paraguay, Pennsylvania, Rhode I., South
+Carolina, Tennessee, Texas, Uruguay, Virginia</td>
 <td align="left">273581-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273581-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273581-2</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">furcata</td>
-<td align="left">Cabomba furcata</td>
-<td align="left">Schult. &amp; Schult.f.</td>
 <td align="left">Cabomba furcata Schult. &amp; Schult.f.</td>
 <td align="left">Syst. Veg. 7: 1379 (1830)</td>
+<td align="left">Bolivia, Brazil, Colombia, Costa Rica, Cuba, Ecuador,
+Guyana, Honduras, Panama, Peru, Suriname, Trinidad-Tobago,
+Venezuela</td>
+<td align="left">Bolivia, Brazil North, Brazil Northeast, Brazil
+Southeast, Brazil West-Central, Colombia, Costa Rica, Cuba, Ecuador,
+Guyana, Honduras, Panama, Peru, Suriname, Trinidad-Tobago,
+Venezuela</td>
 <td align="left">273584-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273584-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273584-2</a></td>
 </tr>
 <tr class="even">
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">haynesii</td>
-<td align="left">Cabomba haynesii</td>
-<td align="left">Wiersema</td>
 <td align="left">Cabomba haynesii Wiersema</td>
 <td align="left">Ann. Missouri Bot. Gard. 76: 1167 (1989)</td>
+<td align="left">Brazil, Colombia, Costa Rica, Cuba, Dominican Republic,
+Ecuador, El Salvador, Honduras, Jamaica, Nicaragua, Panama, Puerto Rico,
+Trinidad-Tobago, Venezuela</td>
+<td align="left">Brazil West-Central, Colombia, Costa Rica, Cuba,
+Dominican Republic, Ecuador, El Salvador, Honduras, Jamaica, Nicaragua,
+Panama, Puerto Rico, Trinidad-Tobago, Venezuela</td>
 <td align="left">273585-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273585-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273585-2</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">palaeformis</td>
-<td align="left">Cabomba palaeformis</td>
-<td align="left">Fassett</td>
 <td align="left">Cabomba palaeformis Fassett</td>
 <td align="left">Castanea 18: 127 (1953)</td>
+<td align="left">Belize, Costa Rica, Guatemala, Mexico, Nicaragua</td>
+<td align="left">Belize, Costa Rica, Guatemala, Mexico Central, Mexico
+Gulf, Mexico Northeast, Mexico Southeast, Mexico Southwest,
+Nicaragua</td>
 <td align="left">39039-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:39039-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:39039-2</a></td>
 </tr>
 <tr class="even">
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">schwartzii</td>
-<td align="left">Cabomba schwartzii</td>
-<td align="left">Rataj</td>
 <td align="left">Cabomba schwartzii Rataj</td>
 <td align="left">Acta Amazonica 7: 143 (1977)</td>
+<td align="left">Brazil</td>
+<td align="left">Brazil North</td>
 <td align="left">128749-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:128749-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:128749-1</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Martyniaceae</td>
-<td align="left">Craniolaria</td>
-<td align="left">annua</td>
-<td align="left">Craniolaria annua</td>
-<td align="left">L.</td>
 <td align="left">Craniolaria annua L.</td>
 <td align="left">Sp. Pl.: 618 (1753)</td>
+<td align="left">Colombia, Dominican Republic, Guyana, Venezuela,
+Venezuelan Antilles</td>
+<td align="left">Colombia, Dominican Republic, Guyana, Venezuela,
+Venezuelan Antilles</td>
 <td align="left">675800-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675800-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675800-1</a></td>
 </tr>
 <tr class="even">
 <td align="left">Martyniaceae</td>
-<td align="left">Craniolaria</td>
-<td align="left">integrifolia</td>
-<td align="left">Craniolaria integrifolia</td>
-<td align="left">Cham.</td>
 <td align="left">Craniolaria integrifolia Cham.</td>
 <td align="left">Linnaea 7: 725 (1832)</td>
+<td align="left">Argentina, Bolivia, Brazil, Paraguay, Uruguay</td>
+<td align="left">Argentina Northeast, Argentina Northwest, Bolivia,
+Brazil Northeast, Brazil South, Brazil Southeast, Brazil West-Central,
+Paraguay, Uruguay</td>
 <td align="left">675805-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675805-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675805-1</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Martyniaceae</td>
-<td align="left">Holoregmia</td>
-<td align="left">viscida</td>
-<td align="left">Holoregmia viscida</td>
-<td align="left">Nees</td>
 <td align="left">Holoregmia viscida Nees</td>
 <td align="left">Flora 4: 300 (1821)</td>
+<td align="left">Brazil</td>
+<td align="left">Brazil Northeast</td>
 <td align="left">327210-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:327210-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:327210-2</a></td>
 </tr>
 <tr class="even">
 <td align="left">Martyniaceae</td>
-<td align="left">Ibicella</td>
-<td align="left">lutea</td>
-<td align="left">Ibicella lutea</td>
-<td align="left">(Lindl.) Van Eselt.</td>
 <td align="left">Ibicella lutea (Lindl.) Van Eselt.</td>
 <td align="left">Techn. Bull. New York Agric. Exp. Sta., Geneva 149: 34
 (1929)</td>
+<td align="left">Argentina, Brazil, Paraguay, Uruguay</td>
+<td align="left">Argentina Northeast, Argentina Northwest, Brazil
+Northeast, Brazil South, Brazil Southeast, Paraguay, Uruguay</td>
 <td align="left">565368-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:565368-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:565368-1</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Martyniaceae</td>
-<td align="left">Ibicella</td>
-<td align="left">parodii</td>
-<td align="left">Ibicella parodii</td>
-<td align="left">Abbiatti</td>
 <td align="left">Ibicella parodii Abbiatti</td>
 <td align="left">Notas Mus. La Plata, Bot. 4: 458 (1939)</td>
+<td align="left">Argentina, Bolivia</td>
+<td align="left">Argentina Northeast, Argentina Northwest, Bolivia</td>
 <td align="left">127285-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:127285-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:127285-2</a></td>
 </tr>
 <tr class="even">
 <td align="left">Martyniaceae</td>
-<td align="left">Martynia</td>
-<td align="left">annua</td>
-<td align="left">Martynia annua</td>
-<td align="left">L.</td>
 <td align="left">Martynia annua L.</td>
 <td align="left">Sp. Pl.: 618 (1753)</td>
+<td align="left">Bahamas, Belize, Costa Rica, Cuba, Dominican Republic,
+El Salvador, Guatemala, Haiti, Honduras, Leeward Is., Mexico, Nicaragua,
+Puerto Rico, Trinidad-Tobago, Windward Is.</td>
+<td align="left">Bahamas, Belize, Costa Rica, Cuba, Dominican Republic,
+El Salvador, Guatemala, Haiti, Honduras, Leeward Is., Mexico Central,
+Mexico Gulf, Mexico Northeast, Mexico Northwest, Mexico Southeast,
+Mexico Southwest, Nicaragua, Puerto Rico, Trinidad-Tobago, Windward
+Is.</td>
 <td align="left">675840-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675840-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675840-1</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Martyniaceae</td>
-<td align="left">Martynia</td>
-<td align="left">palmeri</td>
-<td align="left">Martynia palmeri</td>
-<td align="left">S.Watson</td>
 <td align="left">Martynia palmeri S.Watson</td>
 <td align="left">Proc. Amer. Acad. Arts 24: 66 (1889)</td>
+<td align="left">Mexico</td>
+<td align="left">Mexico Northwest</td>
 <td align="left">153752-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:153752-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:153752-2</a></td>
 </tr>
 <tr class="even">
 <td align="left">Martyniaceae</td>
-<td align="left">Proboscidea</td>
-<td align="left">althaeifolia</td>
-<td align="left">Proboscidea althaeifolia</td>
-<td align="left">(Benth.) Decne.</td>
 <td align="left">Proboscidea althaeifolia (Benth.) Decne.</td>
 <td align="left">Ann. Sci. Nat., Bot., sÃ©r. 5, 3: 324 (1865)</td>
+<td align="left">Mexico, Peru, United States</td>
+<td align="left">Arizona, California, Mexico Northeast, Mexico
+Northwest, New Mexico, Peru, Texas</td>
 <td align="left">675893-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675893-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675893-1</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Martyniaceae</td>
-<td align="left">Proboscidea</td>
-<td align="left">diversifolia</td>
-<td align="left">Proboscidea diversifolia</td>
-<td align="left">Hevly</td>
 <td align="left">Proboscidea diversifolia Hevly</td>
 <td align="left">Brittonia 21: 311 (1970)</td>
+<td align="left">Mexico</td>
+<td align="left">Mexico Southwest</td>
 <td align="left">283779-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:283779-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:283779-2</a></td>
 </tr>
 <tr class="even">
 <td align="left">Martyniaceae</td>
-<td align="left">Proboscidea</td>
-<td align="left">louisianica</td>
-<td align="left">Proboscidea louisianica</td>
-<td align="left">(Mill.) Thell.</td>
 <td align="left">Proboscidea louisianica (Mill.) Thell.</td>
 <td align="left">MÃ©m. Soc. Sci. Nat. Math. Cherbourg 38: 480
 (1912)</td>
+<td align="left">Mexico, United States</td>
+<td align="left">California, Colorado, Florida, Georgia, Kansas,
+Kentucky, Louisiana, Mexico Central, Mexico Gulf, Mexico Northeast,
+Mexico Northwest, Mexico Southwest, Mississippi, Missouri, Nebraska, New
+Jersey, New Mexico, North Carolina, Oregon, Pennsylvania, South
+Carolina, South Dakota, Texas, Vermont, Virginia, Washington,
+Wyoming</td>
 <td align="left">210335-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:210335-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:210335-2</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Martyniaceae</td>
-<td align="left">Proboscidea</td>
-<td align="left">parviflora</td>
-<td align="left">Proboscidea parviflora</td>
-<td align="left">(Wooton) Wooton &amp; Standl.</td>
 <td align="left">Proboscidea parviflora (Wooton) Wooton &amp;
 Standl.</td>
 <td align="left">Contr. U.S. Natl. Herb. 19: 602 (1915)</td>
+<td align="left">Mexico, United States</td>
+<td align="left">Arizona, California, Mexico Central, Mexico Northeast,
+Mexico Northwest, Nevada, New Mexico, Texas, Utah</td>
 <td align="left">210338-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:210338-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:210338-2</a></td>
 </tr>
 <tr class="even">
 <td align="left">Martyniaceae</td>
-<td align="left">Proboscidea</td>
-<td align="left">sabulosa</td>
-<td align="left">Proboscidea sabulosa</td>
-<td align="left">Correll</td>
 <td align="left">Proboscidea sabulosa Correll</td>
 <td align="left">Rhodora 68: 426 (1966)</td>
+<td align="left">United States</td>
+<td align="left">New Mexico, Texas</td>
 <td align="left">210340-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:210340-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:210340-2</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Martyniaceae</td>
-<td align="left">Proboscidea</td>
-<td align="left">spicata</td>
-<td align="left">Proboscidea spicata</td>
-<td align="left">Correll</td>
 <td align="left">Proboscidea spicata Correll</td>
 <td align="left">Wrightia 4: 77 (1968)</td>
+<td align="left">Mexico</td>
+<td align="left">Mexico Northeast</td>
 <td align="left">210342-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:210342-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:210342-2</a></td>
 </tr>
 <tr class="even">
 <td align="left">Martyniaceae</td>
-<td align="left">Proboscidea</td>
-<td align="left">triloba</td>
-<td align="left">Proboscidea triloba</td>
-<td align="left">(Schltdl. &amp; Cham.) Decne.</td>
 <td align="left">Proboscidea triloba (Schltdl. &amp; Cham.) Decne.</td>
 <td align="left">Ann. Sci. Nat., Bot., sÃ©r. 5, 3: 326 (1865)</td>
+<td align="left">Guatemala, Mexico</td>
+<td align="left">Guatemala, Mexico Central, Mexico Gulf, Mexico
+Northeast, Mexico Southeast, Mexico Southwest</td>
 <td align="left">675906-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675906-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675906-1</a></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section level2">
-<h2 id="mining-all-accepted-species-for-all-angiosperm-families">Mining all accepted species for all angiosperm families<a class="anchor" aria-label="anchor" href="#mining-all-accepted-species-for-all-angiosperm-families"></a>
-</h2>
-<p>To mine a species checklist for all families of flowering plants, you
-recommend to load the dataframe-formatted data object called
-<code>POWOcodes</code> that comes associated with the
-<strong>expowo</strong> package. Because the <code>POWOcodes</code> data
-object already contains the URI addresses for all angiosperms families
-recognized in the <a href="https://powo.science.kew.org" class="external-link">POWO</a>
-database, you do not need to perform the time-consuming URI search using
-<strong>taxize</strong>.<br></p>
-<p>The example below shows how to mine a global checklist of all
-accepted species of flowering plants by using the vector of all
-angiosperm families and associated URI addresses stored in the
-<code>POWOcodes</code> object.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/powoSpecies.html">powoSpecies</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">POWOcodes</span><span class="op">$</span><span class="va">uri</span>,</span>
-<span>            hybridspp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>            verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>            save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>            dir <span class="op">=</span> <span class="st">"results_powoSpecies/"</span>,</span>
-<span>            filename <span class="op">=</span> <span class="st">"all_angiosperm_species"</span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="narrowing-down-the-powospecies-search-based-on-a-specified-country-vector">Narrowing down the <code>powoSpecies</code> search based on a
@@ -444,9 +420,11 @@ within the families <strong>Amborellaceae</strong>,
 <strong>Cabombaceae</strong>, and <strong>Martyniaceae</strong>, but the
 function returned a smaller species list, because many species in the
 searched families are not recorded in any of the specified vector of
-country, i.e. <strong>Brazil</strong> or <strong>Colombia</strong>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+country, i.e. <strong>Brazil</strong> or
+<strong>Colombia</strong>.<br></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Amborellaceae"</span>, <span class="st">"Cabombaceae"</span>, <span class="st">"Martyniaceae"</span><span class="op">)</span></span>
 <span><span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,</span>
 <span>                   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/taxize/reference/get_pow.html" class="external-link">get_pow</a></span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -463,140 +441,121 @@ country, i.e. <strong>Brazil</strong> or <strong>Colombia</strong>.</p>
 country vector.</caption>
 <colgroup>
 <col width="1%">
-<col width="4%">
-<col width="4%">
-<col width="4%">
-<col width="9%">
-<col width="7%">
-<col width="13%">
+<col width="5%">
+<col width="8%">
 <col width="22%">
-<col width="3%">
-<col width="28%">
+<col width="61%">
+<col width="1%">
 </colgroup>
 <thead><tr class="header">
-<th align="left"></th>
 <th align="left">family</th>
-<th align="left">genus</th>
-<th align="left">species</th>
-<th align="left">taxon_name</th>
-<th align="left">authors</th>
 <th align="left">scientific_name</th>
 <th align="left">publication</th>
+<th align="left">native_to_country</th>
+<th align="left">native_to_botanical_countries</th>
 <th align="left">kew_id</th>
-<th align="left">powo_uri</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">3</td>
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">aquatica</td>
-<td align="left">Cabomba aquatica</td>
-<td align="left">Aubl.</td>
 <td align="left">Cabomba aquatica Aubl.</td>
 <td align="left">Hist. Pl. Guiane 1: 321 (1775)</td>
+<td align="left">Bolivia, Brazil, Colombia, French Guiana, Guyana, Peru,
+Suriname, Venezuela</td>
+<td align="left">Bolivia, Brazil North, Brazil Northeast, Brazil
+Southeast, Brazil West-Central, Colombia, French Guiana, Guyana, Peru,
+Suriname, Venezuela</td>
 <td align="left">605272-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:605272-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:605272-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">4</td>
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">caroliniana</td>
-<td align="left">Cabomba caroliniana</td>
-<td align="left">A.Gray</td>
 <td align="left">Cabomba caroliniana A.Gray</td>
 <td align="left">Ann. Lyceum Nat. Hist. New York 4: 47 (1837)</td>
+<td align="left">Argentina, Bolivia, Brazil, District of Columbia,
+Mexico, Paraguay, Rhode I., United States, Uruguay</td>
+<td align="left">Alabama, Argentina Northeast, Argentina South,
+Arkansas, Bolivia, Brazil South, Brazil Southeast, Connecticut,
+Delaware, District of Columbia, Florida, Georgia, Illinois, Indiana,
+Kentucky, Louisiana, Maryland, Massachusetts, Mexico Northeast,
+Michigan, Mississippi, Missouri, New Hampshire, New Jersey, New York,
+North Carolina, Ohio, Oklahoma, Paraguay, Pennsylvania, Rhode I., South
+Carolina, Tennessee, Texas, Uruguay, Virginia</td>
 <td align="left">273581-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273581-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273581-2</a></td>
 </tr>
 <tr class="odd">
-<td align="left">5</td>
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">furcata</td>
-<td align="left">Cabomba furcata</td>
-<td align="left">Schult. &amp; Schult.f.</td>
 <td align="left">Cabomba furcata Schult. &amp; Schult.f.</td>
 <td align="left">Syst. Veg. 7: 1379 (1830)</td>
+<td align="left">Bolivia, Brazil, Colombia, Costa Rica, Cuba, Ecuador,
+Guyana, Honduras, Panama, Peru, Suriname, Trinidad-Tobago,
+Venezuela</td>
+<td align="left">Bolivia, Brazil North, Brazil Northeast, Brazil
+Southeast, Brazil West-Central, Colombia, Costa Rica, Cuba, Ecuador,
+Guyana, Honduras, Panama, Peru, Suriname, Trinidad-Tobago,
+Venezuela</td>
 <td align="left">273584-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273584-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273584-2</a></td>
 </tr>
 <tr class="even">
-<td align="left">6</td>
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">haynesii</td>
-<td align="left">Cabomba haynesii</td>
-<td align="left">Wiersema</td>
 <td align="left">Cabomba haynesii Wiersema</td>
 <td align="left">Ann. Missouri Bot. Gard. 76: 1167 (1989)</td>
+<td align="left">Brazil, Colombia, Costa Rica, Cuba, Dominican Republic,
+Ecuador, El Salvador, Honduras, Jamaica, Nicaragua, Panama, Puerto Rico,
+Trinidad-Tobago, Venezuela</td>
+<td align="left">Brazil West-Central, Colombia, Costa Rica, Cuba,
+Dominican Republic, Ecuador, El Salvador, Honduras, Jamaica, Nicaragua,
+Panama, Puerto Rico, Trinidad-Tobago, Venezuela</td>
 <td align="left">273585-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273585-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273585-2</a></td>
 </tr>
 <tr class="odd">
-<td align="left">8</td>
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">schwartzii</td>
-<td align="left">Cabomba schwartzii</td>
-<td align="left">Rataj</td>
 <td align="left">Cabomba schwartzii Rataj</td>
 <td align="left">Acta Amazonica 7: 143 (1977)</td>
+<td align="left">Brazil</td>
+<td align="left">Brazil North</td>
 <td align="left">128749-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:128749-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:128749-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">9</td>
 <td align="left">Martyniaceae</td>
-<td align="left">Craniolaria</td>
-<td align="left">annua</td>
-<td align="left">Craniolaria annua</td>
-<td align="left">L.</td>
 <td align="left">Craniolaria annua L.</td>
 <td align="left">Sp. Pl.: 618 (1753)</td>
+<td align="left">Colombia, Dominican Republic, Guyana, Venezuela,
+Venezuelan Antilles</td>
+<td align="left">Colombia, Dominican Republic, Guyana, Venezuela,
+Venezuelan Antilles</td>
 <td align="left">675800-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675800-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675800-1</a></td>
 </tr>
 <tr class="odd">
-<td align="left">10</td>
 <td align="left">Martyniaceae</td>
-<td align="left">Craniolaria</td>
-<td align="left">integrifolia</td>
-<td align="left">Craniolaria integrifolia</td>
-<td align="left">Cham.</td>
 <td align="left">Craniolaria integrifolia Cham.</td>
 <td align="left">Linnaea 7: 725 (1832)</td>
+<td align="left">Argentina, Bolivia, Brazil, Paraguay, Uruguay</td>
+<td align="left">Argentina Northeast, Argentina Northwest, Bolivia,
+Brazil Northeast, Brazil South, Brazil Southeast, Brazil West-Central,
+Paraguay, Uruguay</td>
 <td align="left">675805-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675805-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:675805-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">11</td>
 <td align="left">Martyniaceae</td>
-<td align="left">Holoregmia</td>
-<td align="left">viscida</td>
-<td align="left">Holoregmia viscida</td>
-<td align="left">Nees</td>
 <td align="left">Holoregmia viscida Nees</td>
 <td align="left">Flora 4: 300 (1821)</td>
+<td align="left">Brazil</td>
+<td align="left">Brazil Northeast</td>
 <td align="left">327210-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:327210-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:327210-2</a></td>
 </tr>
 <tr class="odd">
-<td align="left">12</td>
 <td align="left">Martyniaceae</td>
-<td align="left">Ibicella</td>
-<td align="left">lutea</td>
-<td align="left">Ibicella lutea</td>
-<td align="left">(Lindl.) Van Eselt.</td>
 <td align="left">Ibicella lutea (Lindl.) Van Eselt.</td>
 <td align="left">Techn. Bull. New York Agric. Exp. Sta., Geneva 149: 34
 (1929)</td>
+<td align="left">Argentina, Brazil, Paraguay, Uruguay</td>
+<td align="left">Argentina Northeast, Argentina Northwest, Brazil
+Northeast, Brazil South, Brazil Southeast, Paraguay, Uruguay</td>
 <td align="left">565368-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:565368-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:565368-1</a></td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="narrowing-down-the-powospecies-search-based-on-a-specified-genus-vector">Narrowing down the <code>powoSpecies</code> search based on a
@@ -606,131 +565,137 @@ specified genus vector<a class="anchor" aria-label="anchor" href="#narrowing-dow
 accepted genera from a given country (or from a list of countries). Just
 like before, you only need to define a vector of genus names in the
 argument and a vector of country names in the argument . In the example
-below, see that we have again searched for just the genera
-<strong><em>Asarum</em></strong> and
-<strong><em>Bertholletia</em></strong> of the families
-<strong>Aristolochiaceae</strong> and <strong>Lecythidaceae</strong>,
-but the function only returned the Lecythidaceae genus
-<strong><em>Bertholletia</em></strong>, because
-<strong><em>Asarum</em></strong> does not occur in any of the provided
-list of countries, i.e. <strong>Argentina</strong>,
-<strong>Brazil</strong> or <strong>French Guiana</strong>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+below, see that we have searched for just the genera
+<strong><em>Amborella</em></strong> and
+<strong><em>Cabomba</em></strong> of the families
+<strong>Amborellaceae</strong> and <strong>Cabombaceae</strong>, but the
+function only returned the <strong>Cabombaceae</strong> genus
+<strong><em>Cabomba</em></strong>, because
+<strong><em>Amborella</em></strong> does not occur in any of the
+provided list of countries, i.e. <strong>Argentina</strong>,
+<strong>French Guiana</strong>, or <strong>Brazil</strong>.<br></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
-<span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Amborellaceae"</span>, <span class="st">"Cabombaceae"</span>, <span class="st">"Martyniaceae"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Amborellaceae"</span>, <span class="st">"Cabombaceae"</span><span class="op">)</span></span>
 <span><span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,</span>
 <span>                   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/taxize/reference/get_pow.html" class="external-link">get_pow</a></span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/powoSpecies.html">powoSpecies</a></span><span class="op">(</span><span class="va">powocodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">powocodes</span><span class="op">$</span><span class="va">uri</span>,</span>
-<span>            genus <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cabomba"</span>, <span class="st">"Holoregmia"</span><span class="op">)</span>,</span>
+<span>            genus <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Amborella"</span>, <span class="st">"Cabomba"</span><span class="op">)</span>,</span>
 <span>            hybridspp <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>            country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Brazil"</span>, <span class="st">"Colombia"</span><span class="op">)</span>,</span>
+<span>            country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Argentina"</span>, <span class="st">"French Guiana"</span>, <span class="st">"Brazil"</span><span class="op">)</span>,</span>
 <span>            verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>            save <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>            dir <span class="op">=</span> <span class="st">"results_powoSpecies/"</span>,</span>
-<span>            filename <span class="op">=</span> <span class="st">"country_constrained_search"</span><span class="op">)</span></span></code></pre></div>
+<span>            filename <span class="op">=</span> <span class="st">"country_and_genus_constrained_search"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>TABLE 3. A <code>powoSpecies</code> search based on specified
 genus and country vectors.</caption>
 <colgroup>
 <col width="1%">
 <col width="5%">
-<col width="4%">
-<col width="4%">
-<col width="8%">
-<col width="8%">
-<col width="14%">
-<col width="18%">
-<col width="3%">
-<col width="31%">
+<col width="6%">
+<col width="22%">
+<col width="62%">
+<col width="1%">
 </colgroup>
 <thead><tr class="header">
-<th align="left"></th>
 <th align="left">family</th>
-<th align="left">genus</th>
-<th align="left">species</th>
-<th align="left">taxon_name</th>
-<th align="left">authors</th>
 <th align="left">scientific_name</th>
 <th align="left">publication</th>
+<th align="left">native_to_country</th>
+<th align="left">native_to_botanical_countries</th>
 <th align="left">kew_id</th>
-<th align="left">powo_uri</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">1</td>
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">aquatica</td>
-<td align="left">Cabomba aquatica</td>
-<td align="left">Aubl.</td>
 <td align="left">Cabomba aquatica Aubl.</td>
 <td align="left">Hist. Pl. Guiane 1: 321 (1775)</td>
+<td align="left">Bolivia, Brazil, Colombia, French Guiana, Guyana, Peru,
+Suriname, Venezuela</td>
+<td align="left">Bolivia, Brazil North, Brazil Northeast, Brazil
+Southeast, Brazil West-Central, Colombia, French Guiana, Guyana, Peru,
+Suriname, Venezuela</td>
 <td align="left">605272-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:605272-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:605272-1</a></td>
 </tr>
 <tr class="even">
-<td align="left">2</td>
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">caroliniana</td>
-<td align="left">Cabomba caroliniana</td>
-<td align="left">A.Gray</td>
 <td align="left">Cabomba caroliniana A.Gray</td>
 <td align="left">Ann. Lyceum Nat. Hist. New York 4: 47 (1837)</td>
+<td align="left">Argentina, Bolivia, Brazil, District of Columbia,
+Mexico, Paraguay, Rhode I., United States, Uruguay</td>
+<td align="left">Alabama, Argentina Northeast, Argentina South,
+Arkansas, Bolivia, Brazil South, Brazil Southeast, Connecticut,
+Delaware, District of Columbia, Florida, Georgia, Illinois, Indiana,
+Kentucky, Louisiana, Maryland, Massachusetts, Mexico Northeast,
+Michigan, Mississippi, Missouri, New Hampshire, New Jersey, New York,
+North Carolina, Ohio, Oklahoma, Paraguay, Pennsylvania, Rhode I., South
+Carolina, Tennessee, Texas, Uruguay, Virginia</td>
 <td align="left">273581-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273581-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273581-2</a></td>
 </tr>
 <tr class="odd">
-<td align="left">3</td>
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">furcata</td>
-<td align="left">Cabomba furcata</td>
-<td align="left">Schult. &amp; Schult.f.</td>
 <td align="left">Cabomba furcata Schult. &amp; Schult.f.</td>
 <td align="left">Syst. Veg. 7: 1379 (1830)</td>
+<td align="left">Bolivia, Brazil, Colombia, Costa Rica, Cuba, Ecuador,
+Guyana, Honduras, Panama, Peru, Suriname, Trinidad-Tobago,
+Venezuela</td>
+<td align="left">Bolivia, Brazil North, Brazil Northeast, Brazil
+Southeast, Brazil West-Central, Colombia, Costa Rica, Cuba, Ecuador,
+Guyana, Honduras, Panama, Peru, Suriname, Trinidad-Tobago,
+Venezuela</td>
 <td align="left">273584-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273584-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273584-2</a></td>
 </tr>
 <tr class="even">
-<td align="left">4</td>
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">haynesii</td>
-<td align="left">Cabomba haynesii</td>
-<td align="left">Wiersema</td>
 <td align="left">Cabomba haynesii Wiersema</td>
 <td align="left">Ann. Missouri Bot. Gard. 76: 1167 (1989)</td>
+<td align="left">Brazil, Colombia, Costa Rica, Cuba, Dominican Republic,
+Ecuador, El Salvador, Honduras, Jamaica, Nicaragua, Panama, Puerto Rico,
+Trinidad-Tobago, Venezuela</td>
+<td align="left">Brazil West-Central, Colombia, Costa Rica, Cuba,
+Dominican Republic, Ecuador, El Salvador, Honduras, Jamaica, Nicaragua,
+Panama, Puerto Rico, Trinidad-Tobago, Venezuela</td>
 <td align="left">273585-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273585-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:273585-2</a></td>
 </tr>
 <tr class="odd">
-<td align="left">6</td>
 <td align="left">Cabombaceae</td>
-<td align="left">Cabomba</td>
-<td align="left">schwartzii</td>
-<td align="left">Cabomba schwartzii</td>
-<td align="left">Rataj</td>
 <td align="left">Cabomba schwartzii Rataj</td>
 <td align="left">Acta Amazonica 7: 143 (1977)</td>
+<td align="left">Brazil</td>
+<td align="left">Brazil North</td>
 <td align="left">128749-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:128749-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:128749-1</a></td>
-</tr>
-<tr class="even">
-<td align="left">7</td>
-<td align="left">Martyniaceae</td>
-<td align="left">Holoregmia</td>
-<td align="left">viscida</td>
-<td align="left">Holoregmia viscida</td>
-<td align="left">Nees</td>
-<td align="left">Holoregmia viscida Nees</td>
-<td align="left">Flora 4: 300 (1821)</td>
-<td align="left">327210-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:327210-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:327210-2</a></td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
+</div>
+<div class="section level2">
+<h2 id="mining-all-accepted-species-for-all-angiosperm-families">Mining all accepted species for all angiosperm families<a class="anchor" aria-label="anchor" href="#mining-all-accepted-species-for-all-angiosperm-families"></a>
+</h2>
+<p>To mine a species checklist for all families of flowering plants, you
+recommend to load the dataframe-formatted data object called
+<code>POWOcodes</code> that comes associated with the
+<strong>expowo</strong> package. Because the <code>POWOcodes</code> data
+object already contains the URI addresses for all angiosperms families
+recognized in the <a href="https://powo.science.kew.org" class="external-link">POWO</a>
+database, you do not need to perform the time-consuming URI search using
+<strong>taxize</strong>.<br></p>
+<p>The example below shows how to mine a global checklist of all
+accepted species of flowering plants by using the vector of all
+angiosperm families and associated URI addresses stored in the
+<code>POWOcodes</code> object.<br></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"POWOcodes"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/powoSpecies.html">powoSpecies</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">POWOcodes</span><span class="op">$</span><span class="va">uri</span>,</span>
+<span>            hybridspp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>            verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>            save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>            dir <span class="op">=</span> <span class="st">"results_powoSpecies/"</span>,</span>
+<span>            filename <span class="op">=</span> <span class="st">"all_angiosperm_species"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

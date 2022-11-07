@@ -14,6 +14,16 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{css, echo=FALSE}
+.table{
+  width: auto;
+  font-size: 14px;
+}
+.table caption {
+  font-size: 1em;
+}
+```
+
 The main goal of the __expowo__ package is to retrieve information about the 
 diversity and distribution of any plant family as publicly available at the 
 taxonomically verified database 
@@ -29,8 +39,9 @@ Here in this article, we show how to use the package's function `powoSpDist`
 for mining the entire distribution for any species of flowering plants. The 
 `powoSpDist` uses the argument `species` to set the name or list of species 
 names, and then the function access the auxiliary functions `getGenURI` and 
-`getDist` to catch their respective distribution. 
+`getDist` to catch their respective distribution.\
 
+\
 
 # Setup
 
@@ -45,6 +56,8 @@ devtools::install_github("DBOSlab/expowo")
 library(expowo)
 ```
 
+\
+
 # Mining the distribution for any angiosperm species
 
 The function `powoSpDist` returns a dataframe or saves a CSV file listing the 
@@ -57,38 +70,42 @@ distribution in the POWO.\
 
 The example below shows how to mine the distribution for a specified vector of 
 two species. The output shown here (a table) is simplified by removing the 
-family and distribution according to botanical subdivision columns.
+family and distribution according to botanical subdivision columns.\
 
 ```{r, eval = FALSE}
 library(taxize)
+
 fam <- c("Araceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
-res <- (powocodes$family, powocodes$uri,
-        species = c("Anthurium longicaudatum", "Lecythis pisonis"),
-        verbose = TRUE,
-        save = TRUE,
-        dir = "results_powoSpDist/",
-        filename = "Araceae_Lecythidaceae")
+powoSpDist(powocodes$family, powocodes$uri,
+           species = c("Anthurium longicaudatum", "Lecythis pisonis"),
+           verbose = TRUE,
+           save = TRUE,
+           dir = "results_powoSpDist/",
+           filename = "Araceae_Lecythidaceae")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-data("POWOcodes")
+utils::data("POWOcodes")
 fam <- c("Araceae", "Lecythidaceae")
 powocodes <- data.frame(family = fam,
                         uri = POWOcodes$uri[POWOcodes$family %in% fam])
 
-res <- powoSpDist(powocodes$family, powocodes$uri,
-                  species = c("Anthurium longicaudatum", "Lecythis pisonis"),
-                  verbose = FALSE,
-                  save = FALSE)
+resSpDist <- powoSpDist(powocodes$family, powocodes$uri,
+                        species = c("Anthurium longicaudatum", "Lecythis pisonis"),
+                        verbose = FALSE,
+                        save = FALSE)
 
-knitr::kable(res[-c(1, 3, 6, 9, 11, 13)],
+knitr::kable(resSpDist[-c(3, 6, 9, 11)],
+             row.names = FALSE,
              align = 'c',
              caption = "TABLE 1. A general `powoSpDist` search for mining 
-             distribution for two angiosperm species.")
+             distribution of two angiosperm species.")
 ```
+
+\
 
 # Mining distribution for all angiosperm species
 
@@ -97,27 +114,22 @@ you can load the dataframe-formatted data object called `POWOcodes`
 that comes associated with the __expowo__ package. Because the `POWOcodes` data 
 object already contains the URI addresses for all angiosperms families 
 recognized in the [POWO](https://powo.science.kew.org) database, you do not need 
-to perform the time-consuming URI search using __taxize__. Otherwise, we 
-strictly suggest you to perform this task in parallel. The parallelization 
-strategy used in the further example is multissesion (recommended if you are
-using a computer with Windows OS).\
+to perform the time-consuming URI search using __taxize__.\
 
 The example below shows how to mine the global distribution of all accepted non
 hybrid species of flowering plants by using the vector of all angiosperm 
-families and associated URI addresses stored in the `POWOcodes` object.
+families and associated URI addresses stored in the `POWOcodes` object. Note that
+the argument `species` should be as `NULL`, so that the search is not constrained
+to any particular species, i.e. the function will return global distribution for
+all species in all queried families.\
 
 ```{r, eval = FALSE}
-library(future)
-library(future.apply)
-
-plan(multisession)
 data(POWOcodes)
 
-resSpDist %<-% powoSpDist(POWOcodes$family, POWOcodes$uri,
-                          verbose = TRUE,
-                          save = TRUE,
-                          dir = "results_powoSpDist/",
-                          filename = "all_angiosperm_distribution")
-resSpDist
-plan(sequential)
+powoSpDist(POWOcodes$family, POWOcodes$uri,
+           species = NULL,
+           verbose = TRUE,
+           save = TRUE,
+           dir = "results_powoSpDist/",
+           filename = "all_angiosperm_distribution")
 ```

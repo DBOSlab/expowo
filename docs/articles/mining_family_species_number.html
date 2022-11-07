@@ -83,6 +83,15 @@
 
     
     
+<style type="text/css">
+.table{
+  width: auto;
+  font-size: 14px;
+}
+.table caption {
+  font-size: 1em;
+}
+</style>
 <p>The main goal of the <strong>expowo</strong> package is to retrieve
 information about the diversity and distribution of any plant family as
 publicly available at the taxonomically verified database <a href="https://powo.science.kew.org" class="external-link">Plants of the World Online
@@ -95,10 +104,12 @@ checklist of accepted species in any genus or family, their authorship,
 original publication and global distribution.<br></p>
 <p>Here in this article, we show how to use the package’s function
 <code>powoFam</code> for mining the species number for any family of
-flowering plants. To a provided family name or list of names, the
-<code>powoFam</code> visit each one of the genus pages at POWO’ website,
-extracts the accepted species number and then sum these values to
-deliver the total of species within each plant family.<br></p>
+flowering plants. By providing a family name or a vector of family
+names, the <code>powoFam</code> function visits each POWO page of the
+genera within the queried family(ies) to extract the accepted species
+number. Then, it sums these values to deliver the total species number
+within each plant family.<br></p>
+<p><br></p>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h2>
@@ -109,21 +120,24 @@ latest development version from <a href="https://github.com/" class="external-li
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"DBOSlab/expowo"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="mining-the-total-species-number-for-any-angiosperm-family">Mining the total species number for any angiosperm family<a class="anchor" aria-label="anchor" href="#mining-the-total-species-number-for-any-angiosperm-family"></a>
 </h2>
 <p>The function <code>powoFam</code> returns a dataframe or saves a CSV
-file listing the total species number for any family, excluding hybrid
-species from the count, their genus, publication and authorship. The
-global classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
-Scheme</a> for Recording Plant Distributions, which is already
-associated with each taxon’s distribution in the POWO.<br></p>
-<p>The example below shows how to mine the distribution for a specified
-vector of two plant families, Araceae and Sapotaceae.<br></p>
+file listing the total species number (excluding hybrid species) for the
+queried plant families.<br></p>
+<p>The example below shows how to mine the total species number by
+defining a vector of four families: <strong>Amborellaceae</strong>,
+<strong>Cabombaceae</strong>, <strong>Lecythidaceae</strong>, and
+<strong>Martyniaceae</strong>. The resulting output (TABLE 1) is also
+saved directly in the specified directory
+<strong>results_powoFam</strong>.<br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
-<span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Araceae"</span>, <span class="st">"Sapotaceae"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Amborellaceae"</span>, <span class="st">"Cabombaceae"</span>, <span class="st">"Lecythidaceae"</span>, <span class="st">"Martyniaceae"</span><span class="op">)</span></span>
 <span><span class="va">powocodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>family <span class="op">=</span> <span class="va">fam</span>,</span>
 <span>                   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">taxize</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/taxize/reference/get_pow.html" class="external-link">get_pow</a></span><span class="op">(</span><span class="va">fam</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -131,15 +145,15 @@ vector of two plant families, Araceae and Sapotaceae.<br></p>
 <span>        verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        dir <span class="op">=</span> <span class="st">"results_powoFam/"</span>,</span>
-<span>        filename <span class="op">=</span> <span class="st">"Araceae_Sapotaceae"</span><span class="op">)</span></span></code></pre></div>
+<span>        filename <span class="op">=</span> <span class="st">"Ambo_Camb_Lecy_Martyniaceae_diversity"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>TABLE 1. A general <code>powoFam</code> search for mining
-species number of the Araceae and Sapotaceae families.</caption>
+<caption>TABLE 1. A general <code>powoFam</code> search for mining the
+total species number of four angiosperm families.</caption>
 <colgroup>
-<col width="10%">
+<col width="13%">
 <col width="14%">
 <col width="10%">
-<col width="63%">
+<col width="61%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">family</th>
@@ -149,19 +163,32 @@ species number of the Araceae and Sapotaceae families.</caption>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">Araceae</td>
-<td align="center">4177</td>
-<td align="center">30000216-2</td>
-<td align="center"><a href="http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000216-2" class="external-link uri">http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000216-2</a></td>
+<td align="center">Amborellaceae</td>
+<td align="center">1</td>
+<td align="center">77126703-1</td>
+<td align="center"><a href="http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:77126703-1" class="external-link uri">http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:77126703-1</a></td>
 </tr>
 <tr class="even">
-<td align="center">Sapotaceae</td>
-<td align="center">1337</td>
-<td align="center">30000114-2</td>
-<td align="center"><a href="http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000114-2" class="external-link uri">http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000114-2</a></td>
+<td align="center">Cabombaceae</td>
+<td align="center">7</td>
+<td align="center">77126578-1</td>
+<td align="center"><a href="http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:77126578-1" class="external-link uri">http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:77126578-1</a></td>
+</tr>
+<tr class="odd">
+<td align="center">Lecythidaceae</td>
+<td align="center">381</td>
+<td align="center">30000348-2</td>
+<td align="center"><a href="http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000348-2" class="external-link uri">http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000348-2</a></td>
+</tr>
+<tr class="even">
+<td align="center">Martyniaceae</td>
+<td align="center">14</td>
+<td align="center">77126797-1</td>
+<td align="center"><a href="http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:77126797-1" class="external-link uri">http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:77126797-1</a></td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="mining-species-number-accross-all-angiosperm-families">Mining species number accross all angiosperm families<a class="anchor" aria-label="anchor" href="#mining-species-number-accross-all-angiosperm-families"></a>
@@ -176,9 +203,9 @@ database, you do not need to perform the time-consuming URI search using
 <strong>taxize</strong>.<br></p>
 <p>The example below shows how to mine the species number of all plant
 families by using the vector of all angiosperm families and associated
-URI addresses stored in the <code>POWOcodes</code> object.</p>
+URI addresses stored in the <code>POWOcodes</code> object.<br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/powoFam.html">powoFam</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">POWOcodes</span><span class="op">$</span><span class="va">uri</span>,</span>
 <span>        verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
