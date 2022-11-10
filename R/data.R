@@ -8,7 +8,7 @@
 #' and associated URI addresses as retrieved with the function get_pow of the
 #' package [taxize](https://docs.ropensci.org/taxize/index.html)
 #'
-#' @format Table in .csv format
+#' @format Dataframe
 #'
 #' @usage data(POWOcodes)
 
@@ -35,7 +35,7 @@ NULL
 #'
 #' @docType data
 #'
-#' @title Global map of botanical subdivision at country level
+#' @title Global map of botanical country subdivisions
 #'
 #' @description Global-scale map of botanical countries (level 3) according
 #' to the World Geographical Scheme for Recording Plant Distributions (WGSRPD)
@@ -45,5 +45,21 @@ NULL
 #' @source <https://www.tdwg.org/standards/wgsrpd/>
 #'
 #' @usage data(botdivmap)
+
+NULL
+
+#' @name begoniaceaeData
+#'
+#' @docType data
+#'
+#' @title Complete list of Begoniaceae's species
+#'
+#' @description Complete list of the Begoniaceae's species 
+#' and associated data as retrieved from POWO database with the function 
+#' powoSpecies of this package.
+#'
+#' @format Dataframe
+#'
+#' @usage data(begoniaceaeData)
 
 NULL

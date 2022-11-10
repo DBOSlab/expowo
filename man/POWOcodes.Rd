@@ -5,7 +5,7 @@
 \alias{POWOcodes}
 \title{Complete list of angiosperm families and associated URI addresses}
 \format{
-Table in .csv format
+Dataframe
 }
 \usage{
 data(POWOcodes)

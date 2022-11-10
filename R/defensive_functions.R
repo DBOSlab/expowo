@@ -50,3 +50,58 @@
 }
 
 
+#_______________________________________________________________________________
+# Function to check if the input data for powoMap is a dataframe-formatted
+# object generated from powoSpecies.
+
+.arg_check_data_map <- function (data) {
+  col_names <- c("family", "genus", "species", "taxon_name", "authors",
+                 "native_to_country", "native_to_botanical_countries",
+                 "kew_id", "powo_uri")
+  tf <- col_names %in% names(data)
+  if(any(!tf)) {
+    stop(paste0("Make sure you have used an input data generated from
+                powoSpecies.\n\n",
+               paste0("The input data must have at least the following
+                      columns:\n\n"),
+                paste0(col_names[c(1,2, 3, 6, 7)], collapse = ", ")))
+  }
+}
+
+
+#_______________________________________________________________________________
+# Function to check if the botctrs argument of powoMap is a
+# Sf-dataframe-formatted object just like the one from the botdivmap associated
+# data package
+
+.arg_check_data_map <- function (botctrs, map_div) {
+  utils::data("botdivmap")
+  tf <- class(botctrs) == class(botdivmap)
+  map_div_check <- "native_to_botanical_countries"
+  tf <- append(tf, map_div_check == map_div)
+
+  if(any(!tf)) {
+    stop(paste0("Make sure the botctrs argument has an object of class
+                sf data.frame
+                which shows the botanical country subdivision
+                like the botdivmap associated data package...\n\n",
+                "...and the map_div argument must be defined as
+                       'native_to_botanical_countries')"))
+  }
+}
+
+
+#_______________________________________________________________________________
+# Function to check if the format argument for powoMap is any of jpg, pdf, tiff,
+# or png
+
+.arg_check_format <- function (format) {
+  format_supported <- c("jpg", "jpeg", "pdf", "tif", "tiff", "png")
+  format_supported <- append(format_supported, toupper(format_supported))
+  tf <- format %in% format_supported
+  if(any(!tf)) {
+    stop(paste0("Make sure the format argument has any of the
+                following format names:\n\n",
+                paste0(format_supported, collapse = ", ")))
+  }
+}

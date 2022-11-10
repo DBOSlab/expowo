@@ -3,7 +3,7 @@
 \docType{data}
 \name{botdivmap}
 \alias{botdivmap}
-\title{Global map of botanical subdivision at country level}
+\title{Global map of botanical country subdivisions}
 \format{
 Sf Dataframe
 }
