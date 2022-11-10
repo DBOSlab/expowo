@@ -18,16 +18,23 @@ powoMap(data = NULL,
         format = "jpg")
 }
 \arguments{
-\item{data}{Data frame of species' global distribution at country or
+\item{data}{A data frame of species' global distribution at country or
 botanical country level as created with the function \code{powoSpecies}.}
 
-\item{botctrs}{Sf data frame of botanical subdivision of the World.}
+\item{botctrs}{An object of class \code{sf data.frame} with botanical country
+division of the World. This object comes as the expowo's data package
+\code{\link{botdivmap}}.}
 
-\item{map_div}{Any of the two columns of native distribution from the input
-data created with \code{powoSpecies}. It has to be "native_to_country"
-associated to political country, or "native_to_botanical_countries" according
-to the level 3 of botanical subdivision of the
-\href{https://www.tdwg.org/standards/wgsrpd/}{WGSRPD}.}
+\item{map_div}{One of the two column names of native distribution from the
+input data created with \code{powoSpecies}. The default is
+"native_to_country"
+to generate global species richness maps at country level. By choosing
+"native_to_botanical_countries" the global species richness maps will be
+colored according to the level 3 of botanical subdivision of the
+\link{World Geographical Scheme for Recording Plant Distributions}
+(https://www.tdwg.org/standards/wgsrpd/). But then make sure to provided in
+the argument \code{botctrs} the World's botanical country divisions from
+\code{\link{botdivmap}}.}
 
 \item{multigen}{Logical, if \code{TRUE}, the function will produce multiple
 global maps for every single genus within the input data.}
@@ -58,18 +65,19 @@ results will be saved within a subfolder named by the current date.}
 \item{filename}{Name of the output file to be saved. Default is to create a
 file entitled \strong{global_richness_map}.}
 
-\item{format}{A character vector related to the file format that the global
-map will be saved, which can be, e.g. a Portable Document Format (.pdf),
-Tag Image File Format (.tiff), or Joint Photographic Experts Group (.jpeg).
-Default is to save the output in \strong{jpg} format.}
+\item{format}{A character vector related to the file format of the global
+map to be saved. The default is "jpg" to save the output in Joint
+Photographic Experts Group (.jpg), but you can also choose "pdf" to save in
+Portable Document Format (.pdf), "tiff" to save in Tag Image File Format
+(.tiff) or "png" to save in Portable Network Graphics (.png).}
 }
 \value{
 Global map in .pdf format and saves the output on disk.
 }
 \description{
-It produces global-scale maps of species richness at political
-country and botanical country levels for any genus or family of flowering
-plants with associated species distribution data at
+It produces global-scale maps of species richness at country and
+botanical country levels for any genus or family of flowering plants with
+associated species distribution data at
 \href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
@@ -116,7 +124,6 @@ powoMap(data = mapspdist,
         dir = "results_powoMap/",
         filename = "global_richness_botcountry_map",
         format = "jpg")
-
 }
 
 }
@@ -130,6 +137,8 @@ powoMap(data = mapspdist,
 \code{\link{powoFam}}
 
 \code{\link{powoGenera}}
+
+\code{\link{botdivmap}}
 }
 \author{
 Debora Zuanny & Domingos Cardoso

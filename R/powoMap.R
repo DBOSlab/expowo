@@ -19,7 +19,7 @@
 #'         dpi = 600,
 #'         dir = "results_powoMap/",
 #'         filename = "global_richness_map",
-#'         format = "pdf")
+#'         format = "jpg")
 #'
 #' @param data A data frame of species' global distribution at country or
 #' botanical country level as created with the function \code{powoSpecies}.
@@ -29,7 +29,8 @@
 #' \code{\link{botdivmap}}.
 #'
 #' @param map_div One of the two column names of native distribution from the
-#' input data created with \code{powoSpecies}. The default is "native_to_country"
+#' input data created with \code{powoSpecies}. The default is
+#' "native_to_country"
 #' to generate global species richness maps at country level. By choosing
 #' "native_to_botanical_countries" the global species richness maps will be
 #' colored according to the level 3 of botanical subdivision of the
@@ -68,10 +69,10 @@
 #' file entitled **global_richness_map**.
 #'
 #' @param format A character vector related to the file format of the global
-#' map to be saved. The default is "jpg" to save the output in Joint Photographic
-#' Experts Group (.jpg), but you can also choose "pdf" to save in Portable
-#' Document Format (.pdf), "tiff" to save in Tag Image File Format (.tiff) or
-#' "png" to save in Portable Network Graphics (.png).
+#' map to be saved. The default is "jpg" to save the output in Joint
+#' Photographic Experts Group (.jpg), but you can also choose "pdf" to save in
+#' Portable Document Format (.pdf), "tiff" to save in Tag Image File Format
+#' (.tiff) or "png" to save in Portable Network Graphics (.png).
 #'
 #' @return Global map in .pdf format and saves the output on disk.
 #'
@@ -254,7 +255,7 @@ powoMap <- function(data = NULL,
     gen <- unique(data$genus)
 
     for (i in seq_along(gen)) {
-      temp_data <- data %>% filter(genus == gen[i])
+      temp_data <- data %>% filter(data$genus == gen[i])
 
       # Making world map with species richness across countries/botanical
       # subdivisions.
@@ -320,7 +321,7 @@ powoMap <- function(data = NULL,
                       format) {
 
   p <- ggplot2::ggplot(data = world_plant) +
-    ggplot2::geom_sf(ggplot2::aes(fill = Freq), colour = "gray60", size = 0.1) +
+    ggplot2::geom_sf(ggplot2::aes(fill = world_plant$Freq), colour = "gray60", size = 0.1) +
     ggplot2::theme_void() +
     ggplot2::theme(legend.position = c(0.2, 0.3),
                    legend.title = ggplot2::element_text(size = 6,
