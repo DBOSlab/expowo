@@ -21,13 +21,9 @@ RoxygenNote: 7.2.1
 Depends: 
     R (>= 3.5.0)
 Imports:
-    RColorBrewer,
     dplyr,
     magrittr,
     data.table,
-    ggplot2,
-    rnaturalearth,
-    sp,
     utils
 Suggests:
     knitr,
