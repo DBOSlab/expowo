@@ -34,8 +34,8 @@
 #' to generate global species richness maps at country level. By choosing
 #' "native_to_botanical_countries" the global species richness maps will be
 #' colored according to the level 3 of botanical subdivision of the
-#' [World Geographical Scheme for Recording Plant Distributions]
-#' (https://www.tdwg.org/standards/wgsrpd/). But then make sure to provided in
+#' [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/)
+#' for Recording Plant Distributions. But then make sure to provided in
 #' the argument \code{botctrs} the World's botanical country divisions from
 #' \code{\link{botdivmap}}.
 #'
