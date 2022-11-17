@@ -48,18 +48,18 @@ NULL
 
 NULL
 
-#' @name begoniaceaeData
+#' @name angiospermsData
 #'
 #' @docType data
 #'
-#' @title Complete list of Begoniaceae's species
+#' @title Complete list of Angiosperms species
 #'
-#' @description Complete list of the Begoniaceae's species 
-#' and associated data as retrieved from POWO database with the function 
-#' powoSpecies of this package.
+#' @description Complete list of all Angiosperms non-hybrid species
+#' and associated data as retrieved from POWO database with the function
+#' \code{powoSpecies} of this package gathered at 11.2022.
 #'
 #' @format Dataframe
 #'
-#' @usage data(begoniaceaeData)
+#' @usage data(angiospermsData)
 
 NULL
