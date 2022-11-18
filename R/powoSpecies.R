@@ -105,7 +105,31 @@ powoSpecies <- function(family, uri,
   # dir check
   dir <- .arg_check_dir(dir)
 
-  # Placing input data into dataframe.
+  # Read Angiosperm data and filter for any queried family and genus
+  utils::data("angioData", package = "expowo")
+
+  uri <- uri[which(family %in% angioData$family == FALSE)]
+  genus_angioData <- genus[which(genus %in% angioData$genus == TRUE)]
+  genus <- genus[which(genus %in% angioData$genus == FALSE)]
+  if (length(genus) == 0) {
+    genus = NULL
+  }
+  family_angioData <- family[which(family %in% angioData$family == TRUE)]
+  df_angioData <- angioData[angioData$family %in% family_angioData, ]
+  if (length(genus_angioData) != 0) {
+    df_angioData <- df_angioData[df_angioData$genus %in% genus_angioData, ]
+  }
+
+  family <- family[which(family %in% angioData$family == FALSE)]
+
+  if (verbose) {
+    for (i in seq_along(family_angioData)) {
+      print(paste0("Complete data for ",
+                   family_angioData[i], " already searched!"))
+    }
+  }
+
+  # Placing input data into dataframe
   powo_codes_fam <- data.frame(family = family,
                                uri = uri)
 
@@ -128,7 +152,7 @@ powoSpecies <- function(family, uri,
     if (i%%500 == 0) {
       Sys.sleep(300)
     }
-    # Adding a counter to identify each running search.
+    # Adding a counter to identify each running search
     if (verbose) {
       print(paste0("Searching spp list of... ",
                    powo_codes$genus[i], " ",
@@ -161,7 +185,7 @@ powoSpecies <- function(family, uri,
 
     if (!"unknown" %in% powo_spp_uri) {
 
-      # Filling in each column.
+      # Filling in each column
       list_genus[[i]][["temp_spp_uri"]] <-
         gsub(".*><a href[=]\"", "", list_genus[[i]][["temp_spp_uri"]])
       list_genus[[i]][["powo_uri"]] <-
@@ -190,22 +214,22 @@ powoSpecies <- function(family, uri,
 
 
 
-      # Remove any possible generic synonym from the retrieved list.
+      # Remove any possible generic synonym from the retrieved list
       list_genus[[i]] <- list_genus[[i]][grepl("\\s",
                                                list_genus[[i]]$taxon_name), ]
     }
 
-    # Select specific columns of interest.
+    # Select specific columns of interest
     list_genus[[i]] <- list_genus[[i]] %>% select("family", "genus", "species",
                                                   "taxon_name","authors",
                                                   "scientific_name","hybrid",
                                                   "kew_id", "powo_uri")
 
-    # Replace hybrid symbol.
+    # Replace hybrid symbol
     list_genus[[i]]$taxon_name <- gsub("\u00D7", "x",
                                        list_genus[[i]]$taxon_name)
 
-    # Identify hybrid species.
+    # Identify hybrid species
     tf <- grepl("[+]|\\sx\\s", list_genus[[i]]$taxon_name)
     list_genus[[i]]$hybrid[tf] <- "yes"
     list_genus[[i]]$hybrid[!tf] <- "no"
@@ -219,7 +243,7 @@ powoSpecies <- function(family, uri,
   }
   names(list_genus) <- powo_codes$genus
 
-  # Combining all dataframes from the list of each family/genus search.
+  # Combining all dataframes from the list of each family/genus search
   df <- list_genus[[1]]
   if (length(list_genus) > 1) {
     for (i in 2:length(list_genus)) {
@@ -227,13 +251,13 @@ powoSpecies <- function(family, uri,
     }
   }
 
-  # Extract distribution using auxiliary function getDist.
+  # Extract distribution using auxiliary function getDist
   df <- getDist(df,
                 listspp = FALSE,
                 verbose = verbose)
 
 
-  # Select specific columns of interest.
+  # Select specific columns of interest
   if (hybridspp == FALSE) {
     df <- df %>% select("family",
                         "genus",
@@ -265,6 +289,9 @@ powoSpecies <- function(family, uri,
                         "powo_uri")
 
   }
+
+  # Combined data retrieved from angioData and the current POWO search
+  df <- rbind(df, df_angioData)
 
   # If a vector of country names is provided, then remove any species that do
   # not occur in the given country. The temp vector is logical (TRUE or FALSE)

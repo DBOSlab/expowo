@@ -48,18 +48,18 @@ NULL
 
 NULL
 
-#' @name angiospermsData
+#' @name angioData
 #'
 #' @docType data
 #'
-#' @title Complete list of Angiosperms species
+#' @title Complete list of Angiosperm species
 #'
-#' @description Complete list of all Angiosperms non-hybrid species
-#' and associated data as retrieved from POWO database with the function
-#' \code{powoSpecies} of this package gathered at 11.2022.
+#' @description Complete list of all Angiosperm non-hybrid species and
+#' associated data as retrieved from POWO database with the function
+#' \code{powoSpecies} of this package gathered at Nov 2022
 #'
 #' @format Dataframe
 #'
-#' @usage data(angiospermsData)
+#' @usage data(angioData)
 
 NULL
