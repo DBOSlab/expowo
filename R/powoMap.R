@@ -155,9 +155,6 @@ powoMap <- function(data = NULL,
   # data check
   .arg_check_data_map(data)
 
-  # botctrs check
-  .arg_check_data_map(botctrs, map_div)
-
   # format check
   .arg_check_format(format)
 

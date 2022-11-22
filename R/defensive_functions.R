@@ -68,29 +68,6 @@
   }
 }
 
-
-#_______________________________________________________________________________
-# Function to check if the botctrs argument of powoMap is a
-# Sf-dataframe-formatted object just like the one from the botdivmap associated
-# data package
-
-.arg_check_data_map <- function (botctrs, map_div) {
-  utils::data("botdivmap")
-  tf <- class(botctrs) == class(botdivmap)
-  map_div_check <- "native_to_botanical_countries"
-  tf <- append(tf, map_div_check == map_div)
-
-  if(any(!tf)) {
-    stop(paste0("Make sure the botctrs argument has an object of class
-                sf data.frame
-                which shows the botanical country subdivision
-                like the botdivmap associated data package...\n\n",
-                "...and the map_div argument must be defined as
-                       'native_to_botanical_countries')"))
-  }
-}
-
-
 #_______________________________________________________________________________
 # Function to check if the format argument for powoMap is any of jpg, pdf, tiff,
 # or png
