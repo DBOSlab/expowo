@@ -127,7 +127,7 @@ CSV file listing all genera with associated number of accepted species
 and their global geographic distribution at country or botanical level.
 The global classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
 Scheme</a> for Recording Plant Distributions, which is already
-associated with each taxon’s distribution in the POWO.<br></p>
+associated with each taxon’s distribution in POWO.<br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
 <span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Begoniaceae"</span>, <span class="st">"Martyniaceae"</span><span class="op">)</span></span>
@@ -377,14 +377,12 @@ i.e. <strong>Argentina</strong>, <strong>Brazil</strong> or
 <caption>TABLE 2. A <code>powoGenera</code> search based on a specified
 country vector.</caption>
 <colgroup>
-<col width="6%">
-<col width="5%">
-<col width="6%">
 <col width="10%">
-<col width="29%">
-<col width="6%">
-<col width="3%">
-<col width="31%">
+<col width="8%">
+<col width="10%">
+<col width="15%">
+<col width="45%">
+<col width="9%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">family</th>
@@ -393,8 +391,6 @@ country vector.</caption>
 <th align="left">scientific_name</th>
 <th align="left">publication</th>
 <th align="right">species_number</th>
-<th align="left">kew_id</th>
-<th align="left">powo_uri</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -404,8 +400,6 @@ country vector.</caption>
 <td align="left">Aristolochia L.</td>
 <td align="left">Sp. Pl.: 960 (1753)</td>
 <td align="right">535</td>
-<td align="left">330834-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:330834-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:330834-2</a></td>
 </tr>
 <tr class="even">
 <td align="left">Aristolochiaceae</td>
@@ -414,8 +408,6 @@ country vector.</caption>
 <td align="left">Euglypha Chodat &amp; Hassl.</td>
 <td align="left">Bull. Herb. Boissier, sÃ©r. 2, 6: 138 (1906)</td>
 <td align="right">1</td>
-<td align="left">295147-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:295147-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:295147-2</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Aristolochiaceae</td>
@@ -424,8 +416,6 @@ country vector.</caption>
 <td align="left">Prosopanche de Bary</td>
 <td align="left">Abh. Naturf. Ges. Halle 10: 267 (1868)</td>
 <td align="right">7</td>
-<td align="left">14132-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:14132-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:14132-1</a></td>
 </tr>
 <tr class="even">
 <td align="left">Lecythidaceae</td>
@@ -434,8 +424,6 @@ country vector.</caption>
 <td align="left">Allantoma Miers</td>
 <td align="left">Trans. Linn. Soc. London 30: 291 (1874)</td>
 <td align="right">8</td>
-<td align="left">27400-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27400-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27400-1</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Lecythidaceae</td>
@@ -444,8 +432,6 @@ country vector.</caption>
 <td align="left">Asteranthos Desf.</td>
 <td align="left">MÃ©m. Mus. Hist. Nat. 6: 9 (1820)</td>
 <td align="right">1</td>
-<td align="left">27417-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27417-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27417-1</a></td>
 </tr>
 <tr class="even">
 <td align="left">Lecythidaceae</td>
@@ -455,8 +441,6 @@ country vector.</caption>
 <td align="left">F.W.H.A.von Humboldt &amp; A.J.A.Bonpland, Pl.
 Aequinoct. 1: 122 (1807)</td>
 <td align="right">1</td>
-<td align="left">27438-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27438-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27438-1</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Lecythidaceae</td>
@@ -465,8 +449,6 @@ Aequinoct. 1: 122 (1807)</td>
 <td align="left">Cariniana Casar.</td>
 <td align="left">Nov. Stirp. Bras. 4: 35 (1842)</td>
 <td align="right">9</td>
-<td align="left">27473-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27473-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27473-1</a></td>
 </tr>
 <tr class="even">
 <td align="left">Lecythidaceae</td>
@@ -476,8 +458,6 @@ Aequinoct. 1: 122 (1807)</td>
 <td align="left">H.G.A.Engler (ed.), Pflanzenr., IV, 219a: 50
 (1939)</td>
 <td align="right">4</td>
-<td align="left">296913-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:296913-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:296913-2</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Lecythidaceae</td>
@@ -486,8 +466,6 @@ Aequinoct. 1: 122 (1807)</td>
 <td align="left">Couratari Aubl.</td>
 <td align="left">Hist. Pl. Guiane 2: 723 (1775)</td>
 <td align="right">19</td>
-<td align="left">27498-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27498-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27498-1</a></td>
 </tr>
 <tr class="even">
 <td align="left">Lecythidaceae</td>
@@ -496,8 +474,6 @@ Aequinoct. 1: 122 (1807)</td>
 <td align="left">Couroupita Aubl.</td>
 <td align="left">Hist. Pl. Guiane 2: 708 (1775)</td>
 <td align="right">3</td>
-<td align="left">27499-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27499-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27499-1</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Lecythidaceae</td>
@@ -506,8 +482,6 @@ Aequinoct. 1: 122 (1807)</td>
 <td align="left">Eschweilera Mart. ex DC.</td>
 <td align="left">Prodr. 3: 293 (1828)</td>
 <td align="right">99</td>
-<td align="left">326987-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:326987-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:326987-2</a></td>
 </tr>
 <tr class="even">
 <td align="left">Lecythidaceae</td>
@@ -516,8 +490,6 @@ Aequinoct. 1: 122 (1807)</td>
 <td align="left">Gustavia L.</td>
 <td align="left">Pl. Surin. 12: 17 (1775), nom. cons.</td>
 <td align="right">46</td>
-<td align="left">331637-2</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:331637-2" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:331637-2</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Lecythidaceae</td>
@@ -526,8 +498,6 @@ Aequinoct. 1: 122 (1807)</td>
 <td align="left">Lecythis Loefl.</td>
 <td align="left">Iter Hispan.: 189 (1758)</td>
 <td align="right">30</td>
-<td align="left">27598-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27598-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27598-1</a></td>
 </tr>
 </tbody>
 </table>
@@ -548,8 +518,8 @@ below, see that we have again searched for just the genera
 but the function only returned the Lecythidaceae genus
 <strong><em>Bertholletia</em></strong>, because
 <strong><em>Asarum</em></strong> does not occur in any of the provided
-list of countries, i.e. <strong>Argentina</strong>,
-<strong>Brazil</strong> or <strong>French Guiana</strong>.<br></p>
+list of countries, i.e. <strong>Brazil</strong> or <strong>French
+Guiana</strong>.<br></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/taxize/" class="external-link">taxize</a></span><span class="op">)</span></span>
 <span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Aristolochiaceae"</span>, <span class="st">"Lecythidaceae"</span><span class="op">)</span></span>
@@ -558,48 +528,21 @@ list of countries, i.e. <strong>Argentina</strong>,
 <span></span>
 <span><span class="fu"><a href="../reference/powoGenera.html">powoGenera</a></span><span class="op">(</span><span class="va">powocodes</span><span class="op">$</span><span class="va">family</span>, <span class="va">powocodes</span><span class="op">$</span><span class="va">uri</span>,</span>
 <span>           genus <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Asarum"</span>, <span class="st">"Bertholletia"</span><span class="op">)</span>,</span>
-<span>           country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Argentina"</span>, <span class="st">"Brazil"</span>, <span class="st">"French Guiana"</span><span class="op">)</span>,</span>
+<span>           country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Brazil"</span>, <span class="st">"French Guiana"</span><span class="op">)</span>,</span>
 <span>           verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>           save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>           dir <span class="op">=</span> <span class="st">"results_powoGenera/"</span>,</span>
 <span>           filename <span class="op">=</span> <span class="st">"genus_country_constrained_search"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; [1] "Searching... Aristolochiaceae 1/2"</span></span>
-<span><span class="co">#&gt; [1] "Searching... Lecythidaceae 2/2"</span></span>
-<span><span class="co">#&gt; [1] "Searching distribution and spp number of... Asarum Aristolochiaceae 1/2"</span></span>
-<span><span class="co">#&gt; [1] "Searching distribution and spp number of... Bertholletia Lecythidaceae 2/2"</span></span>
-<span><span class="co">#&gt; Your search returned genera with distribution only in the</span></span>
-<span><span class="co">#&gt;                     following countries:</span></span>
-<span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt;  Brazil, French Guiana </span></span>
-<span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt;  There is no genus occurring in the countries below:</span></span>
-<span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt;  Argentina </span></span>
-<span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt;  Check whether any genus does not occur in the countries</span></span>
-<span><span class="co">#&gt;                     above either because:</span></span>
-<span><span class="co">#&gt;  1. The genus indeed does not occur in the provided country</span></span>
-<span><span class="co">#&gt;                     vector;</span></span>
-<span><span class="co">#&gt;  2. The country name is written with any typo;</span></span>
-<span><span class="co">#&gt;  3. Any country name in the country vector is not written in</span></span>
-<span><span class="co">#&gt;                     English language.</span></span>
-<span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt; Genera listed below were removed from the original search</span></span>
-<span><span class="co">#&gt;                   because they are not native to any of the given country</span></span>
-<span><span class="co">#&gt;                   vector:</span></span>
-<span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt;  Asarum</span></span></code></pre>
 <table class="table">
 <caption>TABLE 3. A <code>powoGenera</code> search based on specified
 genus and country vectors.</caption>
 <colgroup>
 <col width="6%">
-<col width="5%">
-<col width="3%">
-<col width="8%">
-<col width="31%">
 <col width="6%">
 <col width="3%">
+<col width="9%">
+<col width="33%">
+<col width="7%">
 <col width="33%">
 </colgroup>
 <thead><tr class="header">
@@ -609,8 +552,7 @@ genus and country vectors.</caption>
 <th align="left">scientific_name</th>
 <th align="left">publication</th>
 <th align="right">species_number</th>
-<th align="left">kew_id</th>
-<th align="left">powo_uri</th>
+<th align="left">native_to_country</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="left">Lecythidaceae</td>
@@ -620,8 +562,8 @@ genus and country vectors.</caption>
 <td align="left">F.W.H.A.von Humboldt &amp; A.J.A.Bonpland, Pl.
 Aequinoct. 1: 122 (1807)</td>
 <td align="right">1</td>
-<td align="left">27438-1</td>
-<td align="left"><a href="http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27438-1" class="external-link uri">http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:27438-1</a></td>
+<td align="left">Bolivia, Brazil, Colombia, French Guiana, Guyana,
+Suriname, Venezuela</td>
 </tr></tbody>
 </table>
 </div>
