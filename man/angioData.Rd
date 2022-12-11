@@ -3,7 +3,7 @@
 \docType{data}
 \name{angioData}
 \alias{angioData}
-\title{Complete list of Angiosperm species}
+\title{List of Angiosperm species}
 \format{
 Dataframe
 }
@@ -11,7 +11,9 @@ Dataframe
 data(angioData)
 }
 \description{
-Complete list of all Angiosperm non-hybrid species and
-associated data as retrieved from POWO database with the function
-\code{powoSpecies} of this package gathered at Nov 2022
+Complete list of all non-hybrid species and
+associated data of Lecythidaceae, Aristolochiaceae, Begoniaceae,
+Martyniaceae, Dipterocarpaceae, Fagaceae, Amborellaceae, Cabombaceae,
+Piperaceae, Solanaceae and Araceae as retrieved from POWO database with the
+function \code{powoSpecies} of this package gathered at Nov 2022
 }

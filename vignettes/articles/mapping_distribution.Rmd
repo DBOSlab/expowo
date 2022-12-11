@@ -100,23 +100,18 @@ mapspdist <- powoSpecies(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-utils::data("POWOcodes")
-fam <- "Lecythidaceae"
-powocodes <- data.frame(family = fam,
-                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
+utils::data("angioData")
 
-mapspdist <- powoSpecies(powocodes$family, powocodes$uri,
-                         genus = "Cariniana",
-                         hybridspp = FALSE,
-                         country = NULL,
-                         verbose = FALSE,
-                         save = FALSE,
-                         dir = "results_powoSpecies/",
-                         filename = "Lecythidaceae_Cariniana")
+fam <- "Lecythidaceae"
+genus <- "Cariniana"
+genus_angioData <- genus[which(genus %in% angioData$genus == TRUE)]
+df <- angioData[angioData$family %in% fam, ]
+df <- df[df$genus %in% genus_angioData, ]
+                               
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-knitr::kable(mapspdist[-c(1, 4, 5, 6, 7, 10, 11, 12, 13)],
+knitr::kable(df[-c( 2, 3, 5, 6, 7, 10, 11, 13)],
              row.names = FALSE,
              align = 'c',
              caption = "TABLE 1. A general `powoSpecies` search for mining 

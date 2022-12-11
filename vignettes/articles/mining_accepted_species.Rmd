@@ -84,17 +84,11 @@ res <- powoSpecies(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-utils::data("POWOcodes")
 fam <- c("Amborellaceae", "Cabombaceae", "Martyniaceae")
-powocodes <- data.frame(family = fam,
-                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
+utils::data("angioData")
+df <- angioData[angioData$family %in% fam, ]
 
-res <- powoSpecies(powocodes$family, powocodes$uri,
-                   hybridspp = FALSE,
-                   verbose = FALSE,
-                   save = FALSE)
-
-knitr::kable(res[-c(2, 3, 4, 5, 10, 11, 13)],
+knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
              row.names = FALSE,
              caption = "TABLE 1. A general `powoSpecies` search for mining all 
              accepted species for some specific angiosperm families.")
@@ -130,13 +124,13 @@ powoSpecies(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-res <- powoSpecies(powocodes$family, powocodes$uri,
-                   hybridspp = FALSE,
-                   country = c("Brazil", "Colombia"),
-                   verbose = FALSE,
-                   save = FALSE)
+utils::data("angioData")
+fam <- c("Amborellaceae", "Cabombaceae", "Martyniaceae")
+df <- angioData[angioData$family %in% fam, ]
+country <- c("Brazil", "Colombia")
+df <- df[df$native_to_country %in% country, ]
 
-knitr::kable(res[-c(2, 3, 4, 5, 10, 11, 13)],
+knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 12, 13)],
              row.names = FALSE,
              caption = "TABLE 2. A `powoSpecies` search based on a specified 
              country vector.")
@@ -144,7 +138,7 @@ knitr::kable(res[-c(2, 3, 4, 5, 10, 11, 13)],
 
 \
 
-# Narrowing down the `powoSpecies` search based on a specified genus vector
+# Narrowing down the `powoSpecies` search based on a specified genus and country vector
 
 You may want to retrieve information for just one or a list of accepted 
 genera from a given country (or from a list of countries). Just like before,
@@ -174,14 +168,13 @@ powoSpecies(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-res <- powoSpecies(powocodes$family, powocodes$uri,
-                   genus = c("Amborella", "Cabomba"),
-                   hybridspp = FALSE,
-                   country = c("Argentina", "French Guiana", "Brazil"),
-                   verbose = FALSE,
-                   save = FALSE)
+utils::data("angioData")
+genus <- c("Amborella", "Cabomba")
+country <- c("Argentina", "French Guiana", "Brazil")
+df <- angioData[angioData$genus %in% genus, ]
+df <- df[df$native_to_country %in% country, ]
 
-knitr::kable(res[-c(2, 3, 4, 5, 10, 11, 13)],
+knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
              row.names = FALSE,
              caption = "TABLE 3. A `powoSpecies` search based on specified genus
              and country vectors.")

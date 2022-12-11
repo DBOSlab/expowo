@@ -63,7 +63,7 @@ distribution at country or botanical level. The global classification of
 botanical divisions follows the 
 [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/)
 for Recording Plant Distributions, which is already associated with each taxon's
-distribution in the POWO.\
+distribution in POWO.\
 
 ```{r, eval = FALSE}
 library(taxize)
@@ -159,7 +159,7 @@ res <- powoGenera(powocodes$family, powocodes$uri,
                   verbose = FALSE,
                   save = FALSE)
 
-knitr::kable(res[-c(7:10)],
+knitr::kable(res[-c(7:12)],
              row.names = FALSE,
              caption = "TABLE 2. A `powoGenera` search based on a specified 
              country vector.")
@@ -177,7 +177,7 @@ see that we have again searched for just the genera ***Asarum*** and
 ***Bertholletia*** of the families __Aristolochiaceae__ and __Lecythidaceae__, 
 but the function only returned the Lecythidaceae genus ***Bertholletia***, 
 because ***Asarum*** does not occur in any of the provided list of countries, 
-i.e. __Argentina__, __Brazil__ or __French Guiana__.\
+i.e. __Brazil__ or __French Guiana__.\
 
 ```{r, eval = FALSE}
 library(taxize)
@@ -187,7 +187,7 @@ powocodes <- cbind(family = fam,
 
 powoGenera(powocodes$family, powocodes$uri,
            genus = c("Asarum", "Bertholletia"),
-           country = c("Argentina", "Brazil", "French Guiana"),
+           country = c("Brazil", "French Guiana"),
            verbose = TRUE,
            save = TRUE,
            dir = "results_powoGenera/",
@@ -197,11 +197,11 @@ powoGenera(powocodes$family, powocodes$uri,
 ```{r, echo = FALSE, warning = FALSE}
 res <- powoGenera(powocodes$family[c(1,4)], powocodes$uri[c(1,4)],
                   genus = c("Asarum", "Bertholletia"),
-                  country = c("Argentina", "Brazil", "French Guiana"),
-                  verbose = TRUE,
+                  country = c("Brazil", "French Guiana"),
+                  verbose = FALSE,
                   save = FALSE)
 
-knitr::kable(res[-c(7:10)],
+knitr::kable(res[-c(8:12)],
              row.names = FALSE,
              caption = "TABLE 3. A `powoGenera` search based on specified genus 
              and country vectors.")

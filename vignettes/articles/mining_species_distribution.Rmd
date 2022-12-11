@@ -88,17 +88,13 @@ powoSpDist(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-utils::data("POWOcodes")
+utils::data("angioData")
 fam <- c("Araceae", "Lecythidaceae")
-powocodes <- data.frame(family = fam,
-                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
+df <- angioData[angioData$family %in% fam, ]
+species <- c("Anthurium longicaudatum", "Lecythis pisonis")
+df <- df[df$taxon_name %in% species, ]
 
-resSpDist <- powoSpDist(powocodes$family, powocodes$uri,
-                        species = c("Anthurium longicaudatum", "Lecythis pisonis"),
-                        verbose = FALSE,
-                        save = FALSE)
-
-knitr::kable(resSpDist[-c(3, 6, 9, 11)],
+knitr::kable(df[-c(2, 3, 6, 9, 11, 13)],
              row.names = FALSE,
              align = 'c',
              caption = "TABLE 1. A general `powoSpDist` search for mining 

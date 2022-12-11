@@ -49,67 +49,30 @@ utils::data("POWOcodes")
 
 \
 
-# `angioData` - A complete dataframe of Angiosperm species
+# `angioData` - A dataframe of Angiosperm species
 
-The data `angioData` is retrieved from POWO database regularly to maintain information up-to-date about the families of flowering plants. For publication purposes and package size limitation, we selected some families to include in this associated data and let the information easily available. Currently, there are 66 plant families as listed in Table 1 and it is gathered by using \code{powoSpecies}. The last update of this data was at Nov 2022.\
+The data `angioData` is retrieved from POWO database and comprises the species
+of some families of flowering plants and associated data. For publication purposes and package size limitation, we selected some families to include in this associated data and let the information easily available. Currently, there are 11 plant families as listed in Table 1 and it is gathered by using \code{powoSpecies}. The last update of this data was at Nov 2022.\
 
 | Family | Species number | Family | Species number |
 |:---:|:---:|:---:|:---:|
-| Acanthaceae | 5411 | Iridaceae | 2543 |
-| Aizoaceae | 1797 | Lamiaceae | 7662 |
-| Amaranthaceae | 2326 | Lauraceae | 3353 |
-| Amaryllidaceae | 2317 | Loranthaceae | 1067 |
+| Amborellaceae | 1 | Araceae | 4177 |
+| Aristolochiaceae | 727 | Begoniaceae | 1993 |
+| Cabombaceae | 7 | Dipterocarpaceae | 539 |
+| Fagaceae | 975 | Lecythidaceae | 381 |
 | Annonaceae | 2485 | Malpighiaceae | 1461 |
-| Apiaceae | 3865 | Malvaceae | 5441 |
-| Apocynaceae | 6490 | Melastomataceae | 5845 |
-| Araceae | 4177 | Moraceae | 1297 |
-| Araliaceae | 1660 | Myrtaceae | 6186 |
-| Arecaceae | 2529 | Orchidaceae | 29867 |
-| Asparagaceae | 3334 | Orobanchaceae | 2412 |
-| Asphodelaceae | 1213 | Papaveraceae | 1026 |
-| Asteraceae | 33996 | Passifloraceae | 1029 |
-| Balsaminaceae | 1094 | Poaceae | 1964 |
-| Begoniaceae | 1993 | Polygalaceae | 1329 |
-| Boraginaceae | 3398 | Polygonaceae | 1425 |
-| Brassicaceae | 4104 | Primulaceae | 3262 |
-| Bromeliaceae | 3574 | Proteaceae | 1847 |
-| Cactaceae | 1794 | Ranunculaceae | 3783 |
-| Campanulaceae | 2461 | Rhamnaceae | 1170 |
-| Caprifoliaceae | 1072 | Rosaceae | 5149 |
-| Caryophyllaceae | 3246 | Rubiaceae | 14083 |
-| Celastraceae | 1353 | Rutaceae  | 2185 |
-| Convolvulaceae | 1955 | Salicaceae | 1358 |
-| Crassulaceae | 1621 | Santalaceae | 1115 |
-| Cucurbitaceae | 1051 | Sapindaceae | 1975 |
-| Cyperaceae | 5644 | Sapotaceae | 1337 |
-| Ericaceae | 4470 | Scrophulariaceae | 2028 |
-| Eriocaulaceae | 1210 | Solanaceae | 2813 |
-| Euphorbiaceae | 6530 | Urticaceae | 2074 |
-| Fabaceae | 22186 | Violaceae | 1077 |
-| Gentianaceae | 1838 | Vitaceae | 1022 |
-| Gesneriaceae | 3792 | Zingiberaceae | 1926 |
+| Martyniaceae | 14 | Piperaceae | 3831 |
+| Solanaceae | 2813 |  |  |
 
 \
 Using the function `data`, it returns a dataframe listing all 
 accepted species (excluding hybrid species), their publication, 
-authorship, and global geographic distribution at country or botanical level. The global classification of botanical divisions follows the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions, which is already associated with each taxon's distribution in the POWO.\
+authorship, and global geographic distribution at country or botanical level. The global classification of botanical divisions follows the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions, which is already associated with each taxon's distribution in POWO.\
 
-The example below shows how to call `angioData`. The plant families Fabaceae and Cactaceae are included in the associated data, so the function \code{powoSpecies} quickly reaches the results. \
+The example below shows how to call `angioData`: \
 
 ```{r, eval = FALSE}
-library(taxize)
 utils::data("angioData")
-
-fam <- c("Fabaceae", "Cactaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
-
-powoSpecies(powocodes$family, powocodes$uri,
-            hybridspp = FALSE,
-            verbose = TRUE,
-            save = TRUE,
-            dir = "results_powoSpecies/",
-            filename = "Fabaceae_Cactaceae_search")
 ```
 \
 
