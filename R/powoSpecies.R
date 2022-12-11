@@ -105,30 +105,6 @@ powoSpecies <- function(family, uri,
   # dir check
   dir <- .arg_check_dir(dir)
 
-  # Read Angiosperm data and filter for any queried family and genus
-  utils::data("angioData", package = "expowo")
-
-  uri <- uri[which(family %in% angioData$family == FALSE)]
-  genus_angioData <- genus[which(genus %in% angioData$genus == TRUE)]
-  genus <- genus[which(genus %in% angioData$genus == FALSE)]
-  if (length(genus) == 0) {
-    genus = NULL
-  }
-  family_angioData <- family[which(family %in% angioData$family == TRUE)]
-  df_angioData <- angioData[angioData$family %in% family_angioData, ]
-  if (length(genus_angioData) != 0) {
-    df_angioData <- df_angioData[df_angioData$genus %in% genus_angioData, ]
-  }
-
-  family <- family[which(family %in% angioData$family == FALSE)]
-
-  if (verbose) {
-    for (i in seq_along(family_angioData)) {
-      print(paste0("Complete data for ",
-                   family_angioData[i], " already searched!"))
-    }
-  }
-
   # Placing input data into dataframe
   powo_codes_fam <- data.frame(family = family,
                                uri = uri)
@@ -289,9 +265,6 @@ powoSpecies <- function(family, uri,
                         "powo_uri")
 
   }
-
-  # Combined data retrieved from angioData and the current POWO search
-  df <- rbind(df, df_angioData)
 
   # If a vector of country names is provided, then remove any species that do
   # not occur in the given country. The temp vector is logical (TRUE or FALSE)
