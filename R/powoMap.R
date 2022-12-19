@@ -330,6 +330,7 @@ powoMap <- function(data = NULL,
   if (multigen == FALSE) {
     if (!is.null(vir_color)) {
       p <- p + ggplot2::scale_fill_viridis_c(name = leg_title,
+                                             direction = -1,
                                              option = vir_color,
                                              limits = c(0,
                                                         max(world_plant$Freq)))
@@ -358,6 +359,7 @@ powoMap <- function(data = NULL,
     if (!is.null(vir_color)) {
       p <- p +
         ggplot2::scale_fill_viridis_c(name = gen_name,
+                                      direction = -1,
                                       option = vir_color,
                                       limits = c(0, max(world_plant$Freq)))
       ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_", gen,
