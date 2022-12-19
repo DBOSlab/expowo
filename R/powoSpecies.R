@@ -5,7 +5,7 @@
 #' @description It produces a CSV file listing all accepted species and
 #' associated geographical distribution from any target genus or family of
 #' flowering plants at
-#' [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
+#' [Plants of the World Online (POWO)](https://www.plantsoftheworldonline.org/).
 #'
 #' @usage
 #' powoSpecies(family, uri, genus = NULL, hybridspp = FALSE, country = NULL,

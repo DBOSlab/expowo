@@ -114,14 +114,15 @@ associated URI addresses<a class="anchor" aria-label="anchor" href="#powocodes--
 </h2>
 <p>The data <code>POWOcodes</code> is a dataframe containing a list of
 families of flowering plants according to APG IV and was retrieved from
-POWO database using the functions and of the package <a href="https://docs.ropensci.org/taxize/index.html" class="external-link">taxize</a>. It is
+POWO database using the functions <code>apgFamilies</code> and
+<code>get_pow</code> of the package <a href="https://docs.ropensci.org/taxize/index.html" class="external-link">taxize</a>. It is
 very useful to use this data when the purpose is to query many plant
 families or all of them. Despite the names of plant families, which will
 be used in the arguments of all expowo’s functions, it has the URI, the
 main way of accessing each family page at Plants of The World
 Online.</p>
 <p>To call this associated data to your R environment, use the function
-.<br></p>
+<code>data</code>.<br></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"POWOcodes"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
@@ -135,8 +136,8 @@ comprises the species of some families of flowering plants and
 associated data. For publication purposes and package size limitation,
 we selected some families to include in this associated data and let the
 information easily available. Currently, there are 11 plant families as
-listed in Table 1 and it is gathered by using . The last update of this
-data was at Nov 2022.<br></p>
+listed in Table 1 and it is gathered by using <code>powoSpecies</code>.
+The last update of this data was at Nov 2022.<br></p>
 <table class="table">
 <thead><tr class="header">
 <th align="center">Family</th>
@@ -210,14 +211,15 @@ botanical divisions<a class="anchor" aria-label="anchor" href="#botregions---cou
 countries of the World and associated classification of botanical
 divisions according to the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
 Scheme</a> for Recording Plant Distributions. It was retrieved using the
-packages rgdal, ggplot2, broom, sf and raster.</p>
+packages <code>rgdal</code>, <code>ggplot2</code>, <code>broom</code>,
+<code>sf</code> and <code>raster</code>.</p>
 <p>It is very useful to use this data when the purpose is to query many
 plant families or all of them. Despite the names of plant families,
 which will be used in the arguments of all expowo’s functions, it has
 the URI, the main way of accessing each family page at Plants of The
 World Online database.</p>
 <p>To call this associated data to your R environment, use the function
-.<br></p>
+<code>data</code>.<br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"botregions"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
@@ -231,10 +233,11 @@ subdivisions<a class="anchor" aria-label="anchor" href="#botdivmap---a-global-ma
 global-scale map of botanical countries (level 3) according to the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
 Scheme</a> for Recording Plant Distributions.</p>
 <p>It was retrieved using the packages rgdal, ggplot2 and sf. This data
-is very useful to be used within the function of this package while the
-purpose is to plot the native distribution of a species or genus
-according to botanical countries. To call this associated data to your R
-environment, use the function .<br></p>
+is very useful to be used within the <code>powoMap</code> function of
+this package while the purpose is to plot the native distribution of a
+species or genus according to botanical countries. To call this
+associated data to your R environment, use the function
+<code>data</code>.<br></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"botdivmap"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -251,7 +254,7 @@ environment, use the function .<br></p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer>

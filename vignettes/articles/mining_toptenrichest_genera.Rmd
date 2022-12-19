@@ -58,14 +58,12 @@ library(expowo)
 # Mining the top ten richest genera for any angiosperm family
 
 The function `toptenGen` is relatively similar to the `megaGen`, but instead of 
-using any specific threshold, it saves a CSV file listing the top ten most 
-biodiverse genera of any target angiosperm family, and their associated number 
-of accepted species.\
+using any specific threshold, it saves a CSV file listing the top ten most species-rich genera of any target angiosperm family, and their associated number of accepted species. In the example below, some columns were omitted, but the rows show the top ten of the three chosen families: Bignoniaceae, Solanaceae and Lecythidaceae. Note that the table does not have 30 rows, what would be expected if we multiply each family (n = 3) by ten. It is not an error, since some plant families do not have many genera, which is the case of Begoniaceae.\
 
 ```{r, eval = FALSE}
 library(taxize)
 
-fam <- c("Bignoniaceae", "Lecythidaceae", "Sapotaceae")
+fam <- c("Bignoniaceae", "Solanaceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
@@ -73,21 +71,31 @@ toptenGen(powocodes$family, powocodes$uri,
           verbose = TRUE,
           save = TRUE,
           dir = "results_toptenGen/",
-          filename = "Bigno_Lecyt_Sapotaceae_search")
+          filename = "Bigno_Lecyt_Solanaceae_search")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-utils::data("POWOcodes")
-fam <- c("Bignoniaceae", "Lecythidaceae", "Sapotaceae")
-powocodes <- data.frame(family = fam,
-                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
-
-res <- toptenGen(powocodes$family, powocodes$uri,
-                 verbose = FALSE,
-                 save = FALSE)
+library(magrittr)
+library(dplyr, warn.conflicts = FALSE)
+utils::data("angioData")
+fams <- c("Begoniaceae", "Solanaceae", "Lecythidaceae")
+gens <- angioData$genus[angioData$family %in% fams]
+species_number <- table(gens)
+species_number <- as.data.frame(species_number)
+family <- angioData$family[angioData$family %in% fams]
+table <- data.frame(family, gens)
+teste <- merge(species_number, table, by = "gens")
+teste <- unique(teste)
+test <- teste %>% arrange(desc(teste$Freq)) %>% group_by(family) %>% 
+  slice(1:10)
+species_number <- test$Freq
+family <- test$family
+genus <- test$gens
+res <- data.frame(family, genus, species_number)
 
 knitr::kable(res,
              row.names = FALSE,
+             align = 'c',
              caption = "TABLE 1. A general `toptenGen` search to mining the top 
              ten most species rich genera for some specific angiosperm 
              families.")

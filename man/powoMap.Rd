@@ -78,7 +78,7 @@ Global map in .pdf format and saves the output on disk.
 It produces global-scale maps of species richness at country and
 botanical country levels for any genus or family of flowering plants with
 associated species distribution data at
-\href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
+\href{https://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
 \dontrun{

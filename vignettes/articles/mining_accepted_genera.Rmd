@@ -126,13 +126,12 @@ powoGenera(POWOcodes$family, POWOcodes$uri,
 
 You can also narrow down the search for all accepted genera of any family so as 
 to focus on just a particular country or a list of countries. You just need to 
-define a vector of country names in the argument \code{country}. In the example 
-below, see that we have originally searched for the genera within the families 
-__Aristolochiaceae__, __Lecythidaceae__, __Fagaceae__, and __Dipterocarpaceae__, 
-but the function only returned a list of genera of __Aristolochiaceae__ and 
-__Lecythidaceae__, because the remaining families do not have any genera 
-recorded in the list of countries of interest, i.e. __Argentina__, __Brazil__ 
-or __French Guiana__.\
+define a vector of country names in the argument `country`. In the example 
+below, see that we have originally searched for the genera within the families Aristolochiaceae, Lecythidaceae, Fagaceae, and Dipterocarpaceae, 
+but the function only returned a list of genera of Aristolochiaceae and 
+Lecythidaceae, because the remaining families do not have any genera 
+recorded in the list of countries of interest, i.e. Argentina, Brazil 
+or French Guiana.\
 
 ```{r, eval = FALSE}
 library(taxize)
@@ -171,13 +170,13 @@ knitr::kable(res[-c(7:12)],
 
 You may want to retrieve information for just one or a list of accepted 
 genera from a given country (or from a list of countries). Just like before,
-you only need to define a vector of genus names in the argument \code{genus} and
-a vector of country names in the argument \code{country}. In the example below,
+you only need to define a vector of genus names in the argument `genus` and
+a vector of country names in the argument `country`. In the example below,
 see that we have again searched for just the genera ***Asarum*** and 
-***Bertholletia*** of the families __Aristolochiaceae__ and __Lecythidaceae__, 
+***Bertholletia*** of the families Aristolochiaceae and Lecythidaceae, 
 but the function only returned the Lecythidaceae genus ***Bertholletia***, 
 because ***Asarum*** does not occur in any of the provided list of countries, 
-i.e. __Brazil__ or __French Guiana__.\
+i.e. Brazil or French Guiana.\
 
 ```{r, eval = FALSE}
 library(taxize)

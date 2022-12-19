@@ -32,7 +32,7 @@ Table in .csv format that is saved on disk.
 \description{
 It produces a CSV file listing the number of species within the
 target botanical families of flowering plants available at
-\href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
+\href{https://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
 \dontrun{

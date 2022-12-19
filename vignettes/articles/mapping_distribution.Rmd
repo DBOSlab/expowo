@@ -128,7 +128,7 @@ at political country level, use the previously generated `mapspdist` object as
 input data of the `powoMap` function and set the `map_div` argument as
 "native_to_country". This is the very column of the dataframe-formatted `mapspdist` object that is associated to species distribution at political country.\
 
-The example below shows how to create the global distribution map of _Cariniana_'s species richness as colored by the `viridis` palette of the `Viridis` package. If you set up both the arguments `vir_color` and `bre_color` with any of the `Viridis` and `RColorBrewer` color palettes, then two maps colored respectively by these  color vectors will be automatically generated. Different file formats and resolutions (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the arguments `format` and `dpi`.\
+The example below shows how to create the global distribution map of _Cariniana_'s species richness as colored by the `viridis` palette of the __Viridis__ package. If you set up both the arguments `vir_color` and `bre_color` with any of the __Viridis__ and __RColorBrewer__ color palettes, then two maps colored respectively by these  color vectors will be automatically generated. Different file formats and resolutions (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the arguments `format` and `dpi`.\
 
 ```{r, eval = FALSE}
 powoMap(data = mapspdist,
@@ -162,7 +162,7 @@ resulting object has to be as input of the argument `botctrs` within the `powoMa
 This is the very column of the dataframe-formatted `mapspdist` object that is
 associated to species distribution at botanical countries.\
 
-The example below shows how to create the global distribution map of _Cariniana_'s species richness as colored by the `viridis` palette of the `Viridis` package. If you set up both the arguments `vir_color` and `bre_color` with any of the `Viridis` and `RColorBrewer` color palettes, then two maps colored respectively by these color vectors will be automatically generated. Different file formats and resolutions (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the arguments `format` and `dpi`.\
+The example below shows how to create the global distribution map of _Cariniana_'s species richness as colored by the `viridis` palette of the __Viridis__ package. If you set up both the arguments `vir_color` and `bre_color` with any of the __Viridis__ and __RColorBrewer__ color palettes, then two maps colored respectively by these color vectors will be automatically generated. Different file formats and resolutions (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the arguments `format` and `dpi`.\
 
 
 ```{r, eval = FALSE}
@@ -217,7 +217,7 @@ object as input data to `powoMap` function, with the `map_div` argument set as
 argument set as "viridis", and the `bre_color` argument set as "Spectral", so as to automatically produce two __global distribution maps__ of Lecythidaceae's 
 species richness at __country level__, which are distinctly colored by `Viridis` and `RColorBrewer` color palettes.\
 
-Note that if you had set here the `multigen` as `TRUE`, then the `powoMap` function would have produced individual distribution maps of species richness for every single genus within Lecythidaceae, all of which being stored in the desired directory at `dir` argument.\
+Note that if you had set here the `multigen` as `TRUE`, then the `powoMap` function would have produced individual distribution maps of species richness for every single genus within Lecythidaceae, all of them being stored in the desired directory at `dir` argument.\
 
 ```{r, eval = FALSE}
 data(botdivmap)
@@ -253,9 +253,9 @@ The example below uses the previously generated dataframe-formatted `mapspdist`
 object as input data to `powoMap` function, with the `map_div` argument set as 
 "native_to_botanical_countries", the `vir_color` argument set as "viridis", and 
 the `bre_color` argument set as "Spectral", so as to automatically produce two 
-__global distribution  maps__ of Lecythidaceae's species richness at __botanical countrylevel__, which are distinctly colored by `Viridis` and `RColorBrewer` color palettes.\
+global distribution  maps of Lecythidaceae's species richness at botanical country-level, which are distinctly colored by `Viridis` and `RColorBrewer` color palettes.\
 
-Note that if you had set here the `multigen` as `TRUE`, then the `powoMap` function would have produced individual distribution maps of species richness for every single genus within Lecythidaceae, all of which being stored in the desired directory at `dir` argument.\
+Note that if you had set here the `multigen` as `TRUE`, then the `powoMap` function would have produced individual distribution maps of species richness for every single genus within Lecythidaceae, all of them being stored in the desired directory at `dir` argument.\
 
 ```{r, eval = FALSE}
 data(botdivmap)

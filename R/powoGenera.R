@@ -5,7 +5,7 @@
 #' @description It produces a CSV file listing all genera with associated number
 #' of accepted species and geographical distribution for any angiosperm
 #' family at
-#' [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
+#' [Plants of the World Online (POWO)](https://www.plantsoftheworldonline.org/).
 #'
 #' @usage
 #' powoGenera(family, uri, genus = NULL, country = NULL,

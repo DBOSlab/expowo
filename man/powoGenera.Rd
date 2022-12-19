@@ -42,7 +42,7 @@ Table in .csv format and saves the output on disk.
 It produces a CSV file listing all genera with associated number
 of accepted species and geographical distribution for any angiosperm
 family at
-\href{http://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
+\href{https://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
 \dontrun{

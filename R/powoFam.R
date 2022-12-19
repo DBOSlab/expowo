@@ -4,7 +4,7 @@
 #'
 #' @description It produces a CSV file listing the number of species within the
 #' target botanical families of flowering plants available at
-#' [Plants of the World Online (POWO)](http://www.plantsoftheworldonline.org/).
+#' [Plants of the World Online (POWO)](https://www.plantsoftheworldonline.org/).
 #'
 #' @usage
 #' powoFam(family, uri,

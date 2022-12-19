@@ -2,7 +2,7 @@
 title: "Associated data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Associated data - POWOcodes, angioData, botregions and botdivmap}
+  %\VignetteIndexEntry{Associated data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -39,9 +39,9 @@ The package has some associate data to enhance performance before and while mini
 
 # `POWOcodes` - A complete list of angiosperm families and associated URI addresses
 
-The data `POWOcodes` is a dataframe containing a list of families of flowering plants according to APG IV and was retrieved from POWO database using the functions \code{apgFamilies} and \code{get_pow} of the package [taxize](https://docs.ropensci.org/taxize/index.html). It is very useful to use this data when the purpose is to query many plant families or all of them. Despite the names of plant families, which will be used in the arguments of all expowo's functions, it has the URI, the main way of accessing each family page at Plants of The World Online. 
+The data `POWOcodes` is a dataframe containing a list of families of flowering plants according to APG IV and was retrieved from POWO database using the functions `apgFamilies` and `get_pow` of the package [taxize](https://docs.ropensci.org/taxize/index.html). It is very useful to use this data when the purpose is to query many plant families or all of them. Despite the names of plant families, which will be used in the arguments of all expowo's functions, it has the URI, the main way of accessing each family page at Plants of The World Online. 
 
-To call this associated data to your R environment, use the function \code{data}.\
+To call this associated data to your R environment, use the function `data`.\
 
 ```{r, eval = FALSE}
 utils::data("POWOcodes")
@@ -52,7 +52,7 @@ utils::data("POWOcodes")
 # `angioData` - A dataframe of Angiosperm species
 
 The data `angioData` is retrieved from POWO database and comprises the species
-of some families of flowering plants and associated data. For publication purposes and package size limitation, we selected some families to include in this associated data and let the information easily available. Currently, there are 11 plant families as listed in Table 1 and it is gathered by using \code{powoSpecies}. The last update of this data was at Nov 2022.\
+of some families of flowering plants and associated data. For publication purposes and package size limitation, we selected some families to include in this associated data and let the information easily available. Currently, there are 11 plant families as listed in Table 1 and it is gathered by using `powoSpecies`. The last update of this data was at Nov 2022.\
 
 | Family | Species number | Family | Species number |
 |:---:|:---:|:---:|:---:|
@@ -78,11 +78,11 @@ utils::data("angioData")
 
 # `botregions` - Countries and associated classification of botanical divisions
 
-The data `botregions` is a dataframe containing all countries of the World and associated classification of botanical divisions according to the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions. It was retrieved using the packages rgdal, ggplot2, broom, sf and raster. 
+The data `botregions` is a dataframe containing all countries of the World and associated classification of botanical divisions according to the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions. It was retrieved using the packages `rgdal`, `ggplot2`, `broom`, `sf` and `raster`. 
 
 It is very useful to use this data when the purpose is to query many plant families or all of them. Despite the names of plant families, which will be used in the arguments of all expowo's functions, it has the URI, the main way of accessing each family page at Plants of The World Online database. 
 
-To call this associated data to your R environment, use the function \code{data}.\
+To call this associated data to your R environment, use the function `data`.\
 
 ```{r, eval = FALSE}
 utils::data("botregions")
@@ -94,7 +94,7 @@ utils::data("botregions")
 
 The data `botdivmap` is a Sf dataframe containing a global-scale map of botanical countries (level 3) according to the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions. 
 
-It was retrieved using the packages rgdal, ggplot2 and sf. This data is very useful to be used within the \code{powoMap} function of this package while the purpose is to plot the native distribution of a species or genus according to botanical countries. To call this associated data to your R environment, use the function \code{data}.\
+It was retrieved using the packages rgdal, ggplot2 and sf. This data is very useful to be used within the `powoMap` function of this package while the purpose is to plot the native distribution of a species or genus according to botanical countries. To call this associated data to your R environment, use the function `data`.\
 
 ```{r, eval = FALSE}
 utils::data("botdivmap")

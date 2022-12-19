@@ -81,24 +81,24 @@ powoFam(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-utils::data("POWOcodes")
-fam <- c("Amborellaceae", "Cabombaceae", "Lecythidaceae", "Martyniaceae")
-powocodes <- data.frame(family = fam,
-                        uri = POWOcodes$uri[POWOcodes$family %in% fam])
+utils::data("angioData")
+library(taxize)
+family <- c("Amborellaceae", "Cabombaceae", "Lecythidaceae", "Martyniaceae")
+fams <- angioData$family[angioData$family %in% family]
+species_number <- table(fams)
+species_number <- as.data.frame(species_number)
+species_number <-species_number$Freq
+powo_uri <- data.frame(taxize::get_pow(family, messages = FALSE))
+kew_id <- powo_uri$ids
+kew_id <- gsub(".+[:]", "", kew_id)
+powo_uri <- powo_uri$uri
 
-res <- powoFam(powocodes$family, powocodes$uri,
-               verbose = FALSE,
-               save = FALSE,
-               dir = "results_powoFam/",
-               filename = "Ambo_Camb_Lecy_Martyniaceae_diversity")
-```
+res <- data.frame(family, species_number, kew_id, powo_uri)
 
-```{r, echo = FALSE, warning = FALSE}
 knitr::kable(res,
              row.names = FALSE,
              align = 'c',
-             caption = "TABLE 1. A general `powoFam` search for mining the total
-             species number of four angiosperm families.")
+             caption = "TABLE 1. A general `powoFam` search for mining the total species number of four angiosperm families.")
 ```
 
 \
