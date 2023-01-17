@@ -87,7 +87,7 @@ for mining basic information on the global plant diversity and
 distribution in the ‘Articles’ section in our
 [site](https://DBOSlab.github.io/expowo/).
 
-<img src="man/figures/expowo_pkg.png" align="center" alt="" width="200" />
+<img src="man/figures/expowo_pkg.png" alt="" width="600" />
 
 ## Documentation
 
