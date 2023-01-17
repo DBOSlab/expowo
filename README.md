@@ -1,7 +1,7 @@
   <!-- badges: start -->
   [![R-CMD-check](https://github.com/DBOSlab/expowo/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/DBOSlab/expowo/actions/workflows/R-CMD-check.yaml)
   <!-- badges: end -->
-
+  
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # expowo <img src="man/figures/expowo.png" align="right" alt="" width="120" />
@@ -31,8 +31,7 @@ Please make sure you have installed the latest versions of both R
 (<a href= "https://cran.r-project.org/bin/macosx/" target="_blank">Mac
 OS</a>,
 <a href= "https://cran.r-project.org/bin/windows/base/" target="_blank">Windows</a>)
-and RStudio
-(<a href= "https://www.rstudio.com/products/rstudio/download/" 
+and RStudio (<a href= "https://posit.co/download/rstudio-desktop/" 
 target="_blank">Mac OS / Windows</a>: choose the free version).
 
 ## Installation
@@ -87,6 +86,8 @@ package. See the examples on how to use the **expowo**’s major functions
 for mining basic information on the global plant diversity and
 distribution in the ‘Articles’ section in our
 [site](https://DBOSlab.github.io/expowo/).
+
+<img src="man/figures/expowo_pkg.png" align="center" alt="" width="200" />
 
 ## Documentation
 

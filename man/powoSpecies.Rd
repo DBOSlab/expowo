@@ -47,7 +47,7 @@ Table in .csv format and saves the output on disk.
 It produces a CSV file listing all accepted species and
 associated geographical distribution from any target genus or family of
 flowering plants at
-\href{https://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
+\href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
 \dontrun{

@@ -5,7 +5,7 @@
 #' @description It produces global-scale maps of species richness at country and
 #' botanical country levels for any genus or family of flowering plants with
 #' associated species distribution data at
-#' [Plants of the World Online (POWO)](https://www.plantsoftheworldonline.org/).
+#' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
 #' powoMap(data = NULL,

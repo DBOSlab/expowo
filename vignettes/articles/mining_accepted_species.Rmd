@@ -71,7 +71,7 @@ of families. The output shown here (TABLE 1) is a simplified version, where we h
 ```{r, eval = FALSE}
 library(taxize)
 
-fam <- c("Amborellaceae", "Cabombaceae", "Martyniaceae")
+fam <- c("Cabombaceae", "Martyniaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
@@ -80,12 +80,12 @@ res <- powoSpecies(powocodes$family, powocodes$uri,
                    verbose = TRUE,
                    save = TRUE,
                    dir = "results_powoSpecies/",
-                   filename = "Ambor_Cabom_Martyniaceae_search")
+                   filename = "Cabom_Martyniaceae_search")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-fam <- c("Amborellaceae", "Cabombaceae", "Martyniaceae")
 utils::data("angioData")
+fam <- c("Cabombaceae", "Martyniaceae")
 df <- angioData[angioData$family %in% fam, ]
 
 knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
@@ -102,7 +102,7 @@ You can also narrow down the species checklist search of any family by
 focusing on just a particular country or a list of countries. You just need to 
 define a vector of country names in the argument \code{country}. In the example 
 below, note that we have originally searched for the species within the families 
-__Amborellaceae__, __Cabombaceae__, and __Martyniaceae__, but the function 
+__Aristolochiaceae__, __Cabombaceae__, and __Martyniaceae__, but the function 
 returned a smaller species list, because many species in the searched families 
 are not recorded in any of the specified vector of country, i.e. __Brazil__ or 
 __Colombia__.\
@@ -110,7 +110,7 @@ __Colombia__.\
 ```{r, eval = FALSE}
 library(taxize)
 
-fam <- c("Amborellaceae", "Cabombaceae", "Martyniaceae")
+fam <- c("Aristolochiaceae", "Cabombaceae", "Martyniaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
@@ -125,7 +125,7 @@ powoSpecies(powocodes$family, powocodes$uri,
 
 ```{r, echo = FALSE, warning = FALSE}
 utils::data("angioData")
-fam <- c("Amborellaceae", "Cabombaceae", "Martyniaceae")
+fam <- c("Aristolochiaceae", "Cabombaceae", "Martyniaceae")
 df <- angioData[angioData$family %in% fam, ]
 country <- c("Brazil", "Colombia")
 df <- df[df$native_to_country %in% country, ]
@@ -144,21 +144,21 @@ You may want to retrieve information for just one or a list of accepted
 genera from a given country (or from a list of countries). Just like before,
 you only need to define a vector of genus names in the argument \code{genus} and
 a vector of country names in the argument \code{country}. In the example below,
-see that we have searched for just the genera ***Amborella*** and 
-***Cabomba*** of the families __Amborellaceae__ and __Cabombaceae__, 
+see that we have searched for just the genera ***Proboscidea*** and 
+***Cabomba*** of the families __Martyniaceae__ and __Cabombaceae__, 
 but the function only returned the __Cabombaceae__ genus ***Cabomba***, 
-because ***Amborella*** does not occur in any of the provided list of countries,
+because ***Proboscidea*** does not occur in any of the provided list of countries,
 i.e. __Argentina__, __French Guiana__, or __Brazil__.\
 
 ```{r, eval = FALSE}
 library(taxize)
 
-fam <- c("Amborellaceae", "Cabombaceae")
+fam <- c("Martyniaceae", "Cabombaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
 powoSpecies(powocodes$family, powocodes$uri,
-            genus = c("Amborella", "Cabomba"),
+            genus = c("Proboscidea", "Cabomba"),
             hybridspp = FALSE,
             country = c("Argentina", "French Guiana", "Brazil"),
             verbose = TRUE,
@@ -169,12 +169,12 @@ powoSpecies(powocodes$family, powocodes$uri,
 
 ```{r, echo = FALSE, warning = FALSE}
 utils::data("angioData")
-genus <- c("Amborella", "Cabomba")
+genus <- c("Proboscidea", "Cabomba")
 country <- c("Argentina", "French Guiana", "Brazil")
 df <- angioData[angioData$genus %in% genus, ]
 df <- df[df$native_to_country %in% country, ]
 
-knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
+knitr::kable(df[-c(2, 3, 10, 11, 13)],
              row.names = FALSE,
              caption = "TABLE 3. A `powoSpecies` search based on specified genus
              and country vectors.")

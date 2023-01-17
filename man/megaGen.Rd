@@ -37,7 +37,7 @@ Table in .csv format that is saved on disk.
 \description{
 It produces a CSV file listing all megadiverse genera for
 any angiosperm family at
-\href{https://www.plantsoftheworldonline.org/}{Plants of the World Online (POWO)}.
+\href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 A numeric value should define the threshold to be considered a megadiverse
 genus. Frodin, D.G.(2004) in Taxon suggests 500 species as the threshold for
 a megadiverse genus.

@@ -62,12 +62,14 @@ library(expowo)
 
 The function `megaGen` uses a specified threshold number to return a dataframe 
 or save a CSV file listing all megadiverse genera for any family of flowering 
-plants and their associated number of accepted species.\
+plants and their associated number of accepted species. In this example, we 
+performed a search for three plant families using a threshold of 500 species, 
+but the output only contains results for **Aristolochia** and **Begonia** of __Aristolochiaceae__ and __Begoniaceae__ families.\
 
 ```{r, eval = FALSE}
 library(taxize)
 
-fam <- c("Aristolochiaceae", "Begoniaceae", "Piperaceae", "Solanaceae")
+fam <- c("Aristolochiaceae", "Begoniaceae", "Martyniaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
@@ -80,27 +82,17 @@ megaGen(powocodes$family, powocodes$uri,
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-library(magrittr)
-library(dplyr, warn.conflicts = FALSE)
-utils::data("angioData")
-thld <- 500
-family <- c("Aristolochiaceae", "Begoniaceae", "Piperaceae", "Solanaceae")
-gens <- angioData$genus[angioData$family %in% family]
-species <- table(gens)
-species <- as.data.frame(species)
-species <- species %>% filter(species$Freq >= thld)
-genus <- as.character(species$gens)
-species_number <- species$Freq
-authors <- c("L.", "L.", "Ruiz & Pav.", "L.", "L.")
-scientific_name <- c("Aristolochia L.", "Begonia L.", 
-                     "Peperomia Ruiz & Pav.", "Piper L.", "Solanum L.")
-powo_uri <- c("https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:330834-2" , "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:327437-2", "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:329746-2", "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:326982-2", "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:30000630-2")
-kew_id <- c( "330834-2", "327437-2", "329746-2", "326982-2","30000630-2")
-family <- c("Aristolochiaceae", "Begoniaceae", "Piperaceae","Piperaceae",
-            "Solanaceae")
+utils::data("angioGenera")
+family <- c("Aristolochiaceae", "Begoniaceae")
+genus <- c("Aristolochia", "Begonia")
+species_number <- angioGenera$species_number[angioGenera$genus %in% genus]
+authors <- c("L.", "L.")
+scientific_name <- c("Aristolochia L.", "Begonia L.")
+powo_uri <- angioGenera$powo_uri[angioGenera$genus %in% genus]
+kew_id <- angioGenera$kew_id[angioGenera$genus %in% genus]
+
 res <- data.frame(family, genus, authors, scientific_name,
                   species_number, kew_id, powo_uri)
-
 
 knitr::kable(res,
              row.names = FALSE,

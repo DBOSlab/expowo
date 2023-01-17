@@ -52,17 +52,15 @@ utils::data("POWOcodes")
 # `angioData` - A dataframe of Angiosperm species
 
 The data `angioData` is retrieved from POWO database and comprises the species
-of some families of flowering plants and associated data. For publication purposes and package size limitation, we selected some families to include in this associated data and let the information easily available. Currently, there are 11 plant families as listed in Table 1 and it is gathered by using `powoSpecies`. The last update of this data was at Nov 2022.\
+of some families of flowering plants and associated data. For publication purposes and package size limitation, we selected some families to include in this associated data and let the information easily available. Currently, there are species from five plant 
+families as listed in Table 1 and it is gathered by using `powoSpecies`. The 
+last update of this data was at Nov 2022.\
 
-| Family | Species number | Family | Species number |
+| family | species_number | family | species_number |
 |:---:|:---:|:---:|:---:|
-| Amborellaceae | 1 | Araceae | 4177 |
-| Aristolochiaceae | 727 | Begoniaceae | 1993 |
-| Cabombaceae | 7 | Dipterocarpaceae | 539 |
-| Fagaceae | 975 | Lecythidaceae | 381 |
-| Annonaceae | 2485 | Malpighiaceae | 1461 |
-| Martyniaceae | 14 | Piperaceae | 3831 |
-| Solanaceae | 2813 |  |  |
+| Lecythidaceae | 381 | Aristolochiaceae | 727 |
+| Martyniaceae | 14 | Cabombaceae | 7 | 
+| Begoniaceae | 1993 | | |
 
 \
 Using the function `data`, it returns a dataframe listing all 
@@ -73,6 +71,36 @@ The example below shows how to call `angioData`: \
 
 ```{r, eval = FALSE}
 utils::data("angioData")
+```
+\
+
+# `angioGenera` - A dataframe of Angiosperm genera
+
+The data `angioGenera` is retrieved from POWO database and comprises the genera
+of some families of flowering plants and associated data. For publication purposes and package size limitation, we selected some families to include in this associated 
+data and let the information easily available. Currently, there are six plant families (Lecythidaceae, Aristolochiaceae, Begoniaceae, Martyniaceae, Dipterocarpaceae, and Fagaceae) as listed in Table 2 and it is gathered by using `powoGenera`. The last update of 
+this data was at Nov 2022.\
+
+```{r, echo = FALSE, warning = FALSE}
+utils::data("angioGenera")
+df <- angioGenera
+
+knitr::kable(df[-c(2, 3, 7, 8, 9, 10, 11, 12, 13)],
+             row.names = FALSE,
+             caption = "TABLE 2. The plant families and genera within `angioGenera`.")
+```
+
+\
+Using the function `data`, it returns a dataframe listing all 
+accepted genera, their publication, authorship, species number and global 
+geographic distribution at country or botanical level. The global classification
+of botanical divisions follows the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions, 
+which is already associated with each taxon's distribution in POWO.\
+
+The example below shows how to call `angioGenera`: \
+
+```{r, eval = FALSE}
+utils::data("angioGenera")
 ```
 \
 

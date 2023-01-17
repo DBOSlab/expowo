@@ -64,12 +64,12 @@ library(expowo)
 The function `powoFam` returns a dataframe or saves a CSV file listing the total
 species number (excluding hybrid species) for the queried plant families.\
 
-The example below shows how to mine the total species number by defining a vector of four families: __Amborellaceae__, __Cabombaceae__, __Lecythidaceae__, and __Martyniaceae__. The resulting output (TABLE 1) is also saved directly in the specified directory __results_powoFam__.\
+The example below shows how to mine the total species number by defining a vector of three families: __Cabombaceae__, __Lecythidaceae__, and __Martyniaceae__. The resulting output (TABLE 1) is also saved directly in the specified directory __results_powoFam__.\
 
 ```{r, eval = FALSE}
 library(taxize)
 
-fam <- c("Amborellaceae", "Cabombaceae", "Lecythidaceae", "Martyniaceae")
+fam <- c("Cabombaceae", "Lecythidaceae", "Martyniaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
@@ -77,17 +77,17 @@ powoFam(powocodes$family, powocodes$uri,
         verbose = TRUE,
         save = TRUE,
         dir = "results_powoFam/",
-        filename = "Ambo_Camb_Lecy_Martyniaceae_diversity")
+        filename = "Camb_Lecy_Martyniaceae_diversity")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
 utils::data("angioData")
 library(taxize)
-family <- c("Amborellaceae", "Cabombaceae", "Lecythidaceae", "Martyniaceae")
+family <- c("Cabombaceae", "Lecythidaceae", "Martyniaceae")
 fams <- angioData$family[angioData$family %in% family]
 species_number <- table(fams)
 species_number <- as.data.frame(species_number)
-species_number <-species_number$Freq
+species_number <- species_number$Freq
 powo_uri <- data.frame(taxize::get_pow(family, messages = FALSE))
 kew_id <- powo_uri$ids
 kew_id <- gsub(".+[:]", "", kew_id)
@@ -98,7 +98,7 @@ res <- data.frame(family, species_number, kew_id, powo_uri)
 knitr::kable(res,
              row.names = FALSE,
              align = 'c',
-             caption = "TABLE 1. A general `powoFam` search for mining the total species number of four angiosperm families.")
+             caption = "TABLE 1. A general `powoFam` search for mining the total species number of three angiosperm families.")
 ```
 
 \

@@ -12,8 +12,7 @@ data(angioData)
 }
 \description{
 Complete list of all non-hybrid species and
-associated data of Lecythidaceae, Aristolochiaceae, Begoniaceae,
-Martyniaceae, Dipterocarpaceae, Fagaceae, Amborellaceae, Cabombaceae,
-Piperaceae, Solanaceae and Araceae as retrieved from POWO database with the
-function \code{powoSpecies} of this package gathered at Nov 2022
+associated data of Lecythidaceae, Aristolochiaceae, Martyniaceae,
+Cabombaceae and Begoniaceae as retrieved from POWO database with the function
+\code{powoSpecies} of this package gathered at Nov 2022
 }

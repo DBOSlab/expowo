@@ -102,11 +102,8 @@ mapspdist <- powoSpecies(powocodes$family, powocodes$uri,
 ```{r, echo = FALSE, warning = FALSE}
 utils::data("angioData")
 
-fam <- "Lecythidaceae"
-genus <- "Cariniana"
-genus_angioData <- genus[which(genus %in% angioData$genus == TRUE)]
-df <- angioData[angioData$family %in% fam, ]
-df <- df[df$genus %in% genus_angioData, ]
+df <- angioData[angioData$family %in% "Lecythidaceae", ]
+df <- df[df$genus %in% "Cariniana", ]
                                
 ```
 
@@ -128,7 +125,7 @@ at political country level, use the previously generated `mapspdist` object as
 input data of the `powoMap` function and set the `map_div` argument as
 "native_to_country". This is the very column of the dataframe-formatted `mapspdist` object that is associated to species distribution at political country.\
 
-The example below shows how to create the global distribution map of _Cariniana_'s species richness as colored by the `viridis` palette of the __Viridis__ package. If you set up both the arguments `vir_color` and `bre_color` with any of the __Viridis__ and __RColorBrewer__ color palettes, then two maps colored respectively by these  color vectors will be automatically generated. Different file formats and resolutions (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the arguments `format` and `dpi`.\
+The example below shows how to create the global distribution map of _Cariniana_'s species richness as colored by the `viridis` palette of the __Viridis__ package. If you set up both the arguments `vir_color` and `bre_color` with any of the __Viridis__ and __RColorBrewer__ color palettes, then two maps colored respectively by these color vectors will be automatically generated. Different file formats and resolutions (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the arguments `format` and `dpi`.\
 
 ```{r, eval = FALSE}
 powoMap(data = mapspdist,

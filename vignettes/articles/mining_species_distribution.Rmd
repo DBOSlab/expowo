@@ -75,23 +75,23 @@ family and distribution according to botanical subdivision columns.\
 ```{r, eval = FALSE}
 library(taxize)
 
-fam <- c("Araceae", "Lecythidaceae")
+fam <- c("Begoniaceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
 powoSpDist(powocodes$family, powocodes$uri,
-           species = c("Anthurium longicaudatum", "Lecythis pisonis"),
+           species = c("Hillebrandia sandwicensis", "Lecythis pisonis"),
            verbose = TRUE,
            save = TRUE,
            dir = "results_powoSpDist/",
-           filename = "Araceae_Lecythidaceae")
+           filename = "Begoniaceae_Lecythidaceae")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
 utils::data("angioData")
-fam <- c("Araceae", "Lecythidaceae")
+fam <- c("Begoniaceae", "Lecythidaceae")
 df <- angioData[angioData$family %in% fam, ]
-species <- c("Anthurium longicaudatum", "Lecythis pisonis")
+species <- c("Hillebrandia sandwicensis", "Lecythis pisonis")
 df <- df[df$taxon_name %in% species, ]
 
 knitr::kable(df[-c(2, 3, 6, 9, 11, 13)],

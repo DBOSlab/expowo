@@ -4,7 +4,7 @@
 #'
 #' @description It produces a CSV file listing the geographical distribution
 #' of all target species of flowering plants available at
-#' [Plants of the World Online (POWO)](https://www.plantsoftheworldonline.org/).
+#' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
 #' powoSpDist(family, uri, species = NULL,

@@ -63,7 +63,7 @@ using any specific threshold, it saves a CSV file listing the top ten most speci
 ```{r, eval = FALSE}
 library(taxize)
 
-fam <- c("Bignoniaceae", "Solanaceae", "Lecythidaceae")
+fam <- c("Aristolochiaceae", "Begoniaceae", "Lecythidaceae")
 powocodes <- cbind(family = fam,
                    data.frame(taxize::get_pow(fam)))
 
@@ -71,27 +71,20 @@ toptenGen(powocodes$family, powocodes$uri,
           verbose = TRUE,
           save = TRUE,
           dir = "results_toptenGen/",
-          filename = "Bigno_Lecyt_Solanaceae_search")
+          filename = "Aristo_Bego_Lecythidaceae_search")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-library(magrittr)
 library(dplyr, warn.conflicts = FALSE)
-utils::data("angioData")
-fams <- c("Begoniaceae", "Solanaceae", "Lecythidaceae")
-gens <- angioData$genus[angioData$family %in% fams]
-species_number <- table(gens)
-species_number <- as.data.frame(species_number)
-family <- angioData$family[angioData$family %in% fams]
-table <- data.frame(family, gens)
-teste <- merge(species_number, table, by = "gens")
-teste <- unique(teste)
-test <- teste %>% arrange(desc(teste$Freq)) %>% group_by(family) %>% 
+utils::data("angioGenera")
+family <- c("Begoniaceae", "Aristolochiaceae", "Lecythidaceae")
+
+genus <- angioGenera$genus[angioGenera$family %in% family]
+species_number <- angioGenera$species_number[angioGenera$family %in% family]
+family <- angioGenera$family[angioGenera$family %in% family]
+table <- data.frame(family, genus, species_number)
+res <- table %>% arrange(desc(table$species_number)) %>% group_by(family) %>% 
   slice(1:10)
-species_number <- test$Freq
-family <- test$family
-genus <- test$gens
-res <- data.frame(family, genus, species_number)
 
 knitr::kable(res,
              row.names = FALSE,

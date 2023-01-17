@@ -4,7 +4,7 @@
 #'
 #' @description It produces a CSV file listing the top ten most diverse genera
 #' of any target botanical family of flowering plants at
-#' [Plants of the World Online (POWO)](https://www.plantsoftheworldonline.org/).
+#' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
 #' toptenGen(family, uri,
