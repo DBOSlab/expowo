@@ -24,17 +24,6 @@ knitr::opts_chunk$set(
 }
 ```
 
-The main goal of the __expowo__ package is to retrieve information about the 
-diversity and distribution of any plant family as publicly available at the 
-taxonomically verified database 
-[Plants of the World Online (POWO)](https://powo.science.kew.org).\
-
-The package is intended to efficiently mine the content within the source HTML 
-pages for any specific genus and family. It can return a comma-separated values 
-(CSV) file with the number of accepted species and country-level distribution 
-for any genus as well as the full checklist of accepted species in any genus or 
-family, their authorship, original publication and global distribution.\
-
 Here in this article, we show how to use the package's function `powoGenera` for
 mining all accepted genera for any family of flowering plants.\
 
@@ -42,8 +31,8 @@ mining all accepted genera for any family of flowering plants.\
 
 # Setup
 
-__expowo__ is not on CRAN yet but you can install the latest development version
-from [GitHub](https://github.com/):
+Install the latest development version of __expowo__ from 
+[GitHub](https://github.com/):
 
 ``` r
 #install.packages("devtools")

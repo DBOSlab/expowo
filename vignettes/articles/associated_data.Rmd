@@ -28,12 +28,7 @@ knitr::opts_chunk$set(
 library(expowo)
 ```
 
-The main goal of the __expowo__ package is to retrieve information about the 
-diversity and distribution of any plant family as publicly available at the 
-taxonomically verified database 
-[Plants of the World Online (POWO)](https://powo.science.kew.org).\
-
-The package has some associate data to enhance performance before and while mining, specially big families of Angiosperms. There are four associated data to expowo's package that can be used by calling "utils::data()" to your environment.Here in this article, we explain how to use the package's data `POWOcodes`, `angioData`, `botregions` and `botdivmap`.\
+This package has some associate data to enhance performance before and while mining. There are four associated data to expowo's package that can be used by calling "utils::data()" to your environment. Here in this article, we explain how to use the package's data `POWOcodes`, `angioData`, `botregions` and `botdivmap`.\
 
 \
 
