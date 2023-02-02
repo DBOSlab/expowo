@@ -41,7 +41,7 @@
 #' @return Table in .csv format and saves the output on disk.
 #'
 #' @seealso \code{\link{megaGen}}
-#' @seealso \code{\link{toptenGen}}
+#' @seealso \code{\link{topGen}}
 #' @seealso \code{\link{powoSpecies}}
 #' @seealso \code{\link{powoFam}}
 #' @seealso \code{\link{POWOcodes}}

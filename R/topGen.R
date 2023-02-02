@@ -1,19 +1,23 @@
-#' Get top ten most species-rich genera
+#' Get the top most species-rich genera
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a CSV file listing the top ten most diverse genera
+#' @description It produces a CSV file listing the top most diverse genera
 #' of any target botanical family of flowering plants at
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
-#' toptenGen(family, uri,
-#'           verbose = TRUE, save = TRUE, dir, filename)
+#' topGen(family, uri, limit,
+#'        verbose = TRUE, save = TRUE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' are present in POWO.
 #'
 #' @param uri URI address for each family to be searched in POWO.
+#'
+#' @param limit A defined numerical limit of most diverse genera to be selected
+#' within each plant family. If no limit number is provided, the function will
+#' select the top ten genera.
 #'
 #' @param verbose Logical, if \code{FALSE}, the search results will not be
 #' printed in the console in full.
@@ -22,7 +26,7 @@
 #'
 #' @param dir Pathway to the computer's directory, where the file will be saved
 #' provided that the argument \code{save} is set up in \code{TRUE}. The default
-#' is to create a directory named **results_toptenGen** and the searched results
+#' is to create a directory named **results_topGen** and the searched results
 #' will be saved within a subfolder named by the current date.
 #'
 #' @param filename Name of the output file to be saved. Default is to create a
@@ -41,23 +45,25 @@
 #' powocodes <- cbind(family = fam,
 #'                    data.frame(taxize::get_pow(fam)))
 #'
-#' toptenGen(powocodes$family, powocodes$uri,
-#'           verbose = TRUE,
-#'           save = TRUE,
-#'           dir = "results_toptenGen/",
-#'           filename = "Araceae_Lecythidaceae")
+#' topGen(powocodes$family, powocodes$uri,
+#'        limit = 10,
+#'        verbose = TRUE,
+#'        save = TRUE,
+#'        dir = "results_topGen/",
+#'        filename = "Araceae_Lecythidaceae")
 #'
-#' ## Searching for the top ten most diverse genera
+#' ## Searching for the top most diverse genera
 #' ## in any or all flowering plant families, by using
 #' ## the URI addresses within the POWOcodes data file
 #'
 #' data(POWOcodes)
 #'
-#' toptenGen(POWOcodes$family, POWOcodes$uri,
-#'         verbose = TRUE,
-#'         save = TRUE,
-#'         dir = "results_toptenGen/",
-#'         filename = "toptendiverse_plant_genera")
+#' topGen(POWOcodes$family, POWOcodes$uri,
+#'        limit = 10,
+#'        verbose = TRUE,
+#'        save = TRUE,
+#'        dir = "results_topGen/",
+#'        filename = "topdiverse_plant_genera")
 #' }
 #'
 #' @importFrom dplyr arrange desc filter group_by select slice
@@ -68,19 +74,23 @@
 #' @export
 #'
 
-toptenGen <- function(family, uri,
-                      verbose = TRUE,
-                      save = TRUE,
-                      dir = "results_toptenGen/",
-                      filename = "output") {
+topGen <- function(family, uri,
+                   limit = NULL,
+                   verbose = TRUE,
+                   save = TRUE,
+                   dir = "results_topGen/",
+                   filename = "output") {
 
-  # family and URI check.
+  # family and URI check
   .arg_check_fam_uri(family, uri)
 
-  # dir check.
+  # limit check
+  .arg_check_limit
+
+  # dir check
   dir <- .arg_check_dir(dir)
 
-  # Placing input data into dataframe.
+  # Placing input data into dataframe
   powo_codes_fam <- data.frame(family = family,
                                uri = uri)
 
@@ -90,11 +100,12 @@ toptenGen <- function(family, uri,
                   genus = NULL,
                   verbose = verbose)
 
-  # Extract number of species using auxiliary function getNumb.
+  # Extract number of species using auxiliary function getNumb
   df <- getNumb(df,
                 verbose = verbose)
 
-  # Select specific columns of interest and the most diverse genera.
+  # Select specific columns of interest and the most diverse genera
+  if(is.null(limit)) limit <- 10
   df$species_number <- as.numeric(df$species_number)
   df <- df %>% select("family",
                       "genus",
@@ -105,10 +116,10 @@ toptenGen <- function(family, uri,
                       "powo_uri") %>%
     arrange(desc(df$species_number)) %>%  # Displaying in the descending order
     group_by(family) %>%                  # to filter in each family
-    slice(1:10)                           # the top ten richest genera.
+    slice(1:limit)                        # the top richest genera.
 
 
-  # Saving the dataframe if param save is TRUE.
+  # Saving the dataframe if param save is TRUE
   if (save) {
     # Create a new directory to save the results (spreadsheet in .csv format)
     # with current date.

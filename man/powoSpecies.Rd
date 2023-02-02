@@ -84,7 +84,7 @@ powoSpecies(POWOcodes$family, POWOcodes$uri,
 \seealso{
 \code{\link{megaGen}}
 
-\code{\link{toptenGen}}
+\code{\link{topGen}}
 
 \code{\link{powoFam}}
 

@@ -130,7 +130,7 @@ powoMap(data = mapspdist,
 \seealso{
 \code{\link{megaGen}}
 
-\code{\link{toptenGen}}
+\code{\link{topGen}}
 
 \code{\link{powoSpecies}}
 

@@ -96,7 +96,7 @@ megaGen <- function(family, uri,
   # dir check
   dir <- .arg_check_dir(dir)
 
-  # Placing input data into dataframe.
+  # Placing input data into dataframe
   powo_codes_fam <- data.frame(family = family,
                                uri = uri)
 
@@ -106,7 +106,7 @@ megaGen <- function(family, uri,
                   genus = NULL,
                   verbose = verbose)
 
-  # Extract number of species using auxiliary function getNumb.
+  # Extract number of species using auxiliary function getNumb
   df <- getNumb(df,
                 verbose = verbose)
 
@@ -123,7 +123,7 @@ megaGen <- function(family, uri,
                       "powo_uri") %>%
     filter(df$species_number >= thld)
 
-  # Saving the dataframe if param save is TRUE.
+  # Saving the dataframe if param save is TRUE
   if (save) {
     # Create a new directory to save the results (spreadsheet in .csv format)
     # with current date.

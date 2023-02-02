@@ -31,7 +31,7 @@
 #' @return Table in .csv format that is saved on disk.
 #'
 #' @seealso \code{\link{megaGen}}
-#' @seealso \code{\link{toptenGen}}
+#' @seealso \code{\link{topGen}}
 #' @seealso \code{\link{powoGenera}}
 #' @seealso \code{\link{powoSpecies}}
 #' @seealso \code{\link{powoMap}}

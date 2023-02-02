@@ -35,6 +35,19 @@
 
 
 #_______________________________________________________________________________
+# Check if the threshold input for topGen is a numeric value
+.arg_check_limit <- function(x) {
+  # Check classes
+  class_x <- class(x)
+  if (!"numeric" %in% class_x) {
+    stop(paste0("The argument limit should be a integer numeric value, not '",
+                class_x, "'."),
+         call. = FALSE)
+  }
+}
+
+
+#_______________________________________________________________________________
 # Check if the dir input is "character" type and if it has a "/" in the end
 .arg_check_dir<- function(x) {
   # Check classes
