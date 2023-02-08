@@ -2,7 +2,7 @@
 % Please edit documentation in R/powoFam.R
 \name{powoFam}
 \alias{powoFam}
-\title{Get the species number of any plant family from POWO}
+\title{Extract species number of any plant family from POWO}
 \usage{
 powoFam(family, uri,
         verbose = TRUE, save = TRUE, dir, filename)

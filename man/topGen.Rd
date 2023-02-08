@@ -2,7 +2,7 @@
 % Please edit documentation in R/topGen.R
 \name{topGen}
 \alias{topGen}
-\title{Get the top most species-rich genera}
+\title{Extract the top most species-rich genera}
 \usage{
 topGen(family, uri, limit,
        verbose = TRUE, save = TRUE, dir, filename)

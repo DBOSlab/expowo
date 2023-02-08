@@ -1,4 +1,4 @@
-#' Get the top most species-rich genera
+#' Extract the top most species-rich genera
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
@@ -80,6 +80,9 @@ topGen <- function(family, uri,
                    save = TRUE,
                    dir = "results_topGen/",
                    filename = "output") {
+
+  # Family check for synonym
+  .arg_check_family(family)
 
   # family and URI check
   .arg_check_fam_uri(family, uri)

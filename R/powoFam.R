@@ -1,4 +1,4 @@
-#' Get the species number of any plant family from POWO
+#' Extract species number of any plant family from POWO
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
@@ -75,6 +75,9 @@ powoFam <- function(family, uri,
                     save = TRUE,
                     dir = "results_powoFam/",
                     filename = "output") {
+
+  # Family check for synonym
+  .arg_check_family(family)
 
   # family and URI check.
   .arg_check_fam_uri(family, uri)

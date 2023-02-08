@@ -1,4 +1,4 @@
-#' Get list of species distribution from POWO
+#' Extract list of species distribution from POWO
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
@@ -81,6 +81,9 @@ powoSpDist <- function(family, uri,
                        save = TRUE,
                        dir = "results_powoSpDist/",
                        filename = "output") {
+
+  # Family check for synonym
+  .arg_check_family(family)
 
   # family and URI check.
   .arg_check_fam_uri(family, uri)

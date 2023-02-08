@@ -2,7 +2,7 @@
 % Please edit documentation in R/powoSpecies.R
 \name{powoSpecies}
 \alias{powoSpecies}
-\title{Get list of species from POWO}
+\title{Extract list of species from POWO}
 \usage{
 powoSpecies(family, uri, genus = NULL, hybridspp = FALSE, country = NULL,
             verbose = TRUE, save = TRUE, dir, filename)

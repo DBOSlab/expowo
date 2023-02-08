@@ -2,7 +2,7 @@
 % Please edit documentation in R/powoGenera.R
 \name{powoGenera}
 \alias{powoGenera}
-\title{Get list of genera from POWO}
+\title{Extract list of genera from POWO}
 \usage{
 powoGenera(family, uri, genus = NULL, country = NULL,
            verbose = TRUE, save = TRUE, dir, filename)

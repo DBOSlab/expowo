@@ -2,7 +2,7 @@
 % Please edit documentation in R/megaGen.R
 \name{megaGen}
 \alias{megaGen}
-\title{Get megadiverse genera from POWO}
+\title{Extract megadiverse genera from POWO}
 \usage{
 megaGen(family, uri, thld = NULL,
         verbose = TRUE, save = TRUE, dir, filename)

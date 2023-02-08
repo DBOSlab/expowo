@@ -1,4 +1,4 @@
-#' Get list of species from POWO
+#' Extract list of species from POWO
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
@@ -98,6 +98,9 @@ powoSpecies <- function(family, uri,
                         save = TRUE,
                         dir = "results_powoSpecies/",
                         filename = "output") {
+
+  # Family check for synonym
+  .arg_check_family(family)
 
   # Family and URI check
   .arg_check_fam_uri(family, uri)

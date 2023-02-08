@@ -2,7 +2,7 @@
 % Please edit documentation in R/powoSpDist.R
 \name{powoSpDist}
 \alias{powoSpDist}
-\title{Get list of species distribution from POWO}
+\title{Extract list of species distribution from POWO}
 \usage{
 powoSpDist(family, uri, species = NULL,
             verbose = TRUE, save = TRUE, dir, filename)

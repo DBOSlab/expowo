@@ -1,4 +1,4 @@
-#' Get megadiverse genera from POWO
+#' Extract megadiverse genera from POWO
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
@@ -86,6 +86,9 @@ megaGen <- function(family, uri,
                     dir = "results_megaGen/",
                     filename = "output") {
 
+
+  # Family check for synonym
+  .arg_check_family(family)
 
   # Family and URI check
   .arg_check_fam_uri(family, uri)

@@ -1,4 +1,4 @@
-#' Get list of genera from POWO
+#' Extract list of genera from POWO
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
@@ -97,6 +97,9 @@ powoGenera <- function(family, uri,
                        save = TRUE,
                        dir = "results_powoGenera/",
                        filename = "output") {
+
+  # Family check for synonym
+  .arg_check_family(family)
 
   # Family and URI check
   .arg_check_fam_uri
