@@ -102,8 +102,8 @@ utils::data("angioGenera")
 # `botregions` - Countries and associated classification of botanical divisions
 
 The data `botregions` is a dataframe containing all countries of the World and associated classification of botanical divisions according to the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions. It was retrieved using the packages `rgdal`, `ggplot2`, `broom`, `sf` and `raster`. 
-
-It is very useful to use this data when the purpose is to query many plant families or all of them. Despite the names of plant families, which will be used in the arguments of all expowo's functions, it has the URI, the main way of accessing each family page at Plants of The World Online database. 
+This dataset is useful when the purpose is to query the distribution data by both
+divisions of the world and for the expowo's functions convert the country names.
 
 To call this associated data to your R environment, use the function `data`.\
 
@@ -115,9 +115,9 @@ utils::data("botregions")
 
 # `botdivmap` - A global map of botanical country subdivisions
 
-The data `botdivmap` is a Sf dataframe containing a global-scale map of botanical countries (level 3) according to the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions. 
+The data `botdivmap` is a Sf dataframe containing a global-scale map of botanical countries (level 3) according to the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions. Besides the botanical country names and geometry, it also contains the codes for the level 3, level 2 and level 1 of distribution data.
 
-It was retrieved using the packages rgdal, ggplot2 and sf. This data is very useful to be used within the `powoMap` function of this package while the purpose is to plot the native distribution of a species or genus according to botanical countries. To call this associated data to your R environment, use the function `data`.\
+It was retrieved using the packages `rgdal`, `ggplot2` and `sf`. This data is very useful to be used within the `powoMap` function of this package while the purpose is to plot the native or introduced distribution of a species or genus according to botanical countries. To call this associated data to your R environment, use the function `data`.\
 
 ```{r, eval = FALSE}
 utils::data("botdivmap")

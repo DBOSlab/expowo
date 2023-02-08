@@ -52,6 +52,9 @@
     <loc>https://dboslab.github.io/expowo/articles/mining_species_distribution.html</loc>
   </url>
   <url>
+    <loc>https://dboslab.github.io/expowo/articles/mining_toprichest_genera.html</loc>
+  </url>
+  <url>
     <loc>https://dboslab.github.io/expowo/articles/mining_toptenrichest_genera.html</loc>
   </url>
   <url>
@@ -104,6 +107,9 @@
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/powoSpecies.html</loc>
+  </url>
+  <url>
+    <loc>https://dboslab.github.io/expowo/reference/topGen.html</loc>
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/toptenGen.html</loc>
