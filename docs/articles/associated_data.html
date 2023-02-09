@@ -93,32 +93,47 @@
   font-size: 1em;
 }
 </style>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></code></pre></div>
-<p>This package has some associate data to enhance performance before
-and while mining. There are four associated data to expowo’s package
-that can be used by calling “utils::data()” to your environment. Here in
-this article, we explain how to use the package’s data
-<code>POWOcodes</code>, <code>angioData</code>, <code>botregions</code>
-and <code>botdivmap</code>.<br></p>
+<p>Here in this article, we describe the data associated with
+<code>expowo</code> package that are helpful to enhance performance
+before and while mining the global diversity and distribution
+data.<br></p>
+<p>There are four associated data package, all of which can be accessed
+and imported into the R environment by simply calling the
+<code>utils</code> function <code>data</code>. Below, we explain how to
+use the data package <code>POWOcodes</code>, <code>angioData</code>,
+<code>botregions</code> and <code>botdivmap</code>.<br></p>
 <p><br></p>
+<div class="section level2">
+<h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
+</h2>
+<p>Install the latest development version of <strong>expowo</strong>
+from <a href="https://github.com/" class="external-link">GitHub</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"DBOSlab/expowo"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
+</div>
 <div class="section level2">
 <h2 id="powocodes---a-complete-list-of-angiosperm-families-and-associated-uri-addresses">
 <code>POWOcodes</code> - A complete list of angiosperm families and
 associated URI addresses<a class="anchor" aria-label="anchor" href="#powocodes---a-complete-list-of-angiosperm-families-and-associated-uri-addresses"></a>
 </h2>
-<p>The data <code>POWOcodes</code> is a dataframe containing a list of
-families of flowering plants according to APG IV and was retrieved from
-POWO database using the functions <code>apgFamilies</code> and
-<code>get_pow</code> of the package <a href="https://docs.ropensci.org/taxize/index.html" class="external-link">taxize</a>. It is
-very useful to use this data when the purpose is to query many plant
-families or all of them. Despite the names of plant families, which will
-be used in the arguments of all expowo’s functions, it has the URI, the
-main way of accessing each family page at Plants of The World
-Online.</p>
-<p>To call this associated data to your R environment, use the function
-<code>data</code>.<br></p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p>The <code>POWOcodes</code> data is a dataframe containing a list of
+families of flowering plants available in the POWO database, according
+to <a href="https://doi.org/10.1111/boj.12385" class="external-link">APG IV</a>’s
+classification. It was produced by using the functions
+<code>apgFamilies</code> and <code>get_pow</code> of the package <a href="https://docs.ropensci.org/taxize/index.html" class="external-link">taxize</a>.
+<code>POWOcodes</code> data is very useful when the purpose is to query
+many plant families or all of them. In addition to the names of POWO’s
+accepted plant families, which are required in any search with
+<code>expowo</code>’s functions, this data package has the corresponding
+family’s URI, which is used internally in the function for opening a
+connection with each family page at Plants of The World Online.<br></p>
+<p>To call this associated data to the R environment, use the code
+below:<br></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"POWOcodes"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 </div>
@@ -126,14 +141,16 @@ Online.</p>
 <h2 id="angiodata---a-dataframe-of-angiosperm-species">
 <code>angioData</code> - A dataframe of Angiosperm species<a class="anchor" aria-label="anchor" href="#angiodata---a-dataframe-of-angiosperm-species"></a>
 </h2>
-<p>The data <code>angioData</code> is retrieved from POWO database and
-comprises the species of some families of flowering plants and
-associated data. For publication purposes and package size limitation,
-we selected some families to include in this associated data and let the
-information easily available. Currently, there are species from five
-plant families as listed in Table 1 and it is gathered by using
-<code>powoSpecies</code>. The last update of this data was at Nov
-2022.<br></p>
+<p>The <code>angioData</code> is a dataframe-formatted list of species
+of some families of flowering plants and associated data, as retrieved
+from POWO database using the <code>expowo</code>’s function
+<code>powoSpecies</code>. For publication purposes and package size
+limitation, we selected some families to include in this associated data
+and let the information easily available. Currently, there are species
+from five plant families as listed in Table 1. The last update of this
+data was at Nov 2022.<br><br></p>
+<p>TABLE 1. The plant families and species number within
+<code>angioData</code>.<br></p>
 <table class="table">
 <thead><tr class="header">
 <th align="center">family</th>
@@ -162,15 +179,16 @@ plant families as listed in Table 1 and it is gathered by using
 </tr>
 </tbody>
 </table>
-<p><br>
-Using the function <code>data</code>, it returns a dataframe listing all
-accepted species (excluding hybrid species), their publication,
-authorship, and global geographic distribution at country or botanical
-level. The global classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
+<p><br></p>
+<p>In addition to all accepted species (excluding hybrid species) in the
+families above, the <code>angioData</code> also contains the
+publication, authorship, and global geographic distribution at country
+or botanical level for each species. The global classification of
+botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
 Scheme</a> for Recording Plant Distributions, which is already
 associated with each taxon’s distribution in POWO.<br></p>
 <p>The example below shows how to call <code>angioData</code>:<br></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"angioData"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 </div>
@@ -178,18 +196,17 @@ associated with each taxon’s distribution in POWO.<br></p>
 <h2 id="angiogenera---a-dataframe-of-angiosperm-genera">
 <code>angioGenera</code> - A dataframe of Angiosperm genera<a class="anchor" aria-label="anchor" href="#angiogenera---a-dataframe-of-angiosperm-genera"></a>
 </h2>
-<p>The data <code>angioGenera</code> is retrieved from POWO database and
-comprises the genera of some families of flowering plants and associated
-data. For publication purposes and package size limitation, we selected
-some families to include in this associated data and let the information
-easily available. Currently, there are six plant families
-(Lecythidaceae, Aristolochiaceae, Begoniaceae, Martyniaceae,
-Dipterocarpaceae, and Fagaceae) as listed in Table 2 and it is gathered
-by using <code>powoGenera</code>. The last update of this data was at
-Nov 2022.<br></p>
+<p>The <code>angioGenera</code> comprises the genera of some families of
+flowering plants and associated data as mined from POWO database using
+<code>powoGenera</code>. For publication purposes and package size
+limitation, we selected some families to include in this associated data
+and let the information easily available. Currently, there are six plant
+families (Lecythidaceae, Aristolochiaceae, Begoniaceae, Martyniaceae,
+Dipterocarpaceae, and Fagaceae) as listed in Table 2. The last update of
+this data was at Nov 2022.<br><br></p>
+<p>TABLE 2. The plant families and genera within
+<code>angioGenera</code>.<br></p>
 <table class="table">
-<caption>TABLE 2. The plant families and genera within
-<code>angioGenera</code>.</caption>
 <colgroup>
 <col width="11%">
 <col width="30%">
@@ -589,15 +606,16 @@ Nachtr. 1: 244 (1897)</td>
 </tr>
 </tbody>
 </table>
-<p><br>
-Using the function <code>data</code>, it returns a dataframe listing all
-accepted genera, their publication, authorship, species number and
-global geographic distribution at country or botanical level. The global
-classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
+<p><br></p>
+<p>In addition to list all accepted genera in the above families, the
+dataframe-formatted <code>angioGenera</code> also contains publication,
+authorship, species number and global geographic distribution at country
+or botanical level for each genus. The global classification of
+botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
 Scheme</a> for Recording Plant Distributions, which is already
 associated with each taxon’s distribution in POWO.<br></p>
 <p>The example below shows how to call <code>angioGenera</code>:<br></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"angioGenera"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 </div>
@@ -606,17 +624,19 @@ associated with each taxon’s distribution in POWO.<br></p>
 <code>botregions</code> - Countries and associated classification of
 botanical divisions<a class="anchor" aria-label="anchor" href="#botregions---countries-and-associated-classification-of-botanical-divisions"></a>
 </h2>
-<p>The data <code>botregions</code> is a dataframe containing all
-countries of the World and associated classification of botanical
+<p>The <code>botregions</code> data package is a dataframe containing
+all countries of the World and associated classification of botanical
 divisions according to the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
-Scheme</a> for Recording Plant Distributions. It was retrieved using the
-packages <code>rgdal</code>, <code>ggplot2</code>, <code>broom</code>,
-<code>sf</code> and <code>raster</code>. This dataset is useful when the
-purpose is to query the distribution data by both divisions of the world
-and for the expowo’s functions convert the country names.</p>
-<p>To call this associated data to your R environment, use the function
-<code>data</code>.<br></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+Scheme</a> for Recording Plant Distributions. It was built using a
+custim script with specific functions from the packages
+<code>rgdal</code>, <code>ggplot2</code>, <code>broom</code>,
+<code>sf</code> and <code>raster</code> (original script can be made
+available upon request). This dataset is useful when the purpose is to
+query the distribution data by both divisions of the world and for the
+<code>expowo</code> ’s functions convert the country names.<br></p>
+<p>To call this associated data to your R environment, use the code
+below:<br></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"botregions"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 </div>
@@ -625,18 +645,20 @@ and for the expowo’s functions convert the country names.</p>
 <code>botdivmap</code> - A global map of botanical country
 subdivisions<a class="anchor" aria-label="anchor" href="#botdivmap---a-global-map-of-botanical-country-subdivisions"></a>
 </h2>
-<p>The data <code>botdivmap</code> is a Sf dataframe containing a
-global-scale map of botanical countries (level 3) according to the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
+<p>The <code>botdivmap</code> data package is a Sf dataframe containing
+a global-scale map of botanical countries (level 3) according to the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
 Scheme</a> for Recording Plant Distributions. Besides the botanical
 country names and geometry, it also contains the codes for the level 3,
-level 2 and level 1 of distribution data.</p>
-<p>It was retrieved using the packages <code>rgdal</code>,
-<code>ggplot2</code> and <code>sf</code>. This data is very useful to be
-used within the <code>powoMap</code> function of this package while the
-purpose is to plot the native or introduced distribution of a species or
-genus according to botanical countries. To call this associated data to
-your R environment, use the function <code>data</code>.<br></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+level 2 and level 1 of distribution data.<br></p>
+<p>It was originally built using a custom script with functions from the
+packages <code>rgdal</code>, <code>ggplot2</code> and <code>sf</code>.
+The <code>botdivmap</code> is also usefull internally with the
+<code>expowo</code>’s function <code>powoMap</code> when the user wants
+to plot native or introduced distribution of a species or genus
+according to botanical countries.<br></p>
+<p>To call this associated data to the R environment, use the code
+below:<br></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"botdivmap"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

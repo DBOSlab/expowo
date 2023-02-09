@@ -18,8 +18,7 @@ utils::data("angioGenera")
 df <- angioGenera
 
 knitr::kable(df[-c(2, 3, 7, 8, 9, 10, 11, 12, 13)],
-             row.names = FALSE,
-             caption = "TABLE 2. The plant families and genera within `angioGenera`.")
+             row.names = FALSE)
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  utils::data("angioGenera")
