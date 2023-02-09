@@ -94,9 +94,6 @@ powoSpecies <- function(family,
   # family check for synonym
   family <- .arg_check_family(family)
 
-  # Family and URI check
-  .arg_check_fam_uri(family, uri)
-
   # dir check
   dir <- .arg_check_dir(dir)
 

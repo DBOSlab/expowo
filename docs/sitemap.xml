@@ -4,30 +4,6 @@
     <loc>https://dboslab.github.io/expowo/404.html</loc>
   </url>
   <url>
-    <loc>https://dboslab.github.io/expowo/articles/articles/associated_data.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/articles/articles/mapping_distribution.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/articles/articles/mining_accepted_genera.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/articles/articles/mining_accepted_species.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/articles/articles/mining_family_species_number.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/articles/articles/mining_megadiverse_genera.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/articles/articles/mining_species_distribution.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/articles/articles/mining_toptenrichest_genera.html</loc>
-  </url>
-  <url>
     <loc>https://dboslab.github.io/expowo/articles/associated_data.html</loc>
   </url>
   <url>
@@ -55,9 +31,6 @@
     <loc>https://dboslab.github.io/expowo/articles/mining_toprichest_genera.html</loc>
   </url>
   <url>
-    <loc>https://dboslab.github.io/expowo/articles/mining_toptenrichest_genera.html</loc>
-  </url>
-  <url>
     <loc>https://dboslab.github.io/expowo/authors.html</loc>
   </url>
   <url>
@@ -74,9 +47,6 @@
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/angioGenera.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/reference/angiospermsData.html</loc>
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/botdivmap.html</loc>
@@ -110,8 +80,5 @@
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/topGen.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/reference/toptenGen.html</loc>
   </url>
 </urlset>
