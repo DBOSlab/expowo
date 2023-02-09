@@ -4,15 +4,12 @@
 \alias{powoSpDist}
 \title{Extract list of species distribution from POWO}
 \usage{
-powoSpDist(family, uri, species = NULL,
+powoSpDist(family, species = NULL,
             verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
 \item{family}{Either a single family name or a vector of multiple families
 that are present in POWO.}
-
-\item{uri}{URI address for each family associated to the target genus to be
-searched in POWO.}
 
 \item{species}{Either one non hybrid species name or a vector of multiple
 species that are present in POWO. If any species name is not provided, then
@@ -44,25 +41,20 @@ of all target species of flowering plants available at
 \examples{
 \dontrun{
 library(expowo)
-library(taxize)
 
-fam <- c("Araceae", "Lecythidaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
-
-powoSpDist(powocodes$family, powocodes$uri,
-           species = c("Anthurium longicaudatum", "Lecythis pisonis"),
+powoSpDist(family = "Lecythidaceae",
+           species = "Lecythis pisonis",
            verbose = TRUE,
            save = TRUE,
            dir = "results_powoSpDist/",
-           filename = "A_longicaudatum_L_pisonis")
+           filename = "L_pisonis")
 
-## Searching for global distribution in any or all flowering plant family,
-## by using the URI addresses within the POWOcodes data file.
+## Searching for global distribution of species in any or all flowering
+## plant familyusing the associated data POWOcodes.
 
 data(POWOcodes)
 
-powoSpDist(POWOcodes$family, POWOcodes$uri,
+powoSpDist(POWOcodes$family,
            verbose = TRUE,
            save = TRUE,
            dir = "results_powoSpDist/",

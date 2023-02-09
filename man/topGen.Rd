@@ -4,14 +4,11 @@
 \alias{topGen}
 \title{Extract the top most species-rich genera}
 \usage{
-topGen(family, uri, limit,
-       verbose = TRUE, save = TRUE, dir, filename)
+topGen(family, limit, verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
 are present in POWO.}
-
-\item{uri}{URI address for each family to be searched in POWO.}
 
 \item{limit}{A defined numerical limit of most diverse genera to be selected
 within each plant family. If no limit number is provided, the function will
@@ -41,26 +38,21 @@ of any target botanical family of flowering plants at
 \examples{
 \dontrun{
 library(expowo)
-library(taxize)
 
-fam <- c("Araceae", "Lecythidaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
-
-topGen(powocodes$family, powocodes$uri,
+topGen(family = "Lecythidaceae",
        limit = 10,
        verbose = TRUE,
        save = TRUE,
        dir = "results_topGen/",
-       filename = "Araceae_Lecythidaceae")
+       filename = "Lecythidaceae")
 
 ## Searching for the top most diverse genera
 ## in any or all flowering plant families, by using
-## the URI addresses within the POWOcodes data file
+## the family names and addresses within the POWOcodes data file.
 
 data(POWOcodes)
 
-topGen(POWOcodes$family, POWOcodes$uri,
+topGen(POWOcodes$family,
        limit = 10,
        verbose = TRUE,
        save = TRUE,

@@ -7,13 +7,10 @@
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
-#' topGen(family, uri, limit,
-#'        verbose = TRUE, save = TRUE, dir, filename)
+#' topGen(family, limit, verbose = TRUE, save = TRUE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' are present in POWO.
-#'
-#' @param uri URI address for each family to be searched in POWO.
 #'
 #' @param limit A defined numerical limit of most diverse genera to be selected
 #' within each plant family. If no limit number is provided, the function will
@@ -39,26 +36,21 @@
 #' @examples
 #' \dontrun{
 #' library(expowo)
-#' library(taxize)
 #'
-#' fam <- c("Araceae", "Lecythidaceae")
-#' powocodes <- cbind(family = fam,
-#'                    data.frame(taxize::get_pow(fam)))
-#'
-#' topGen(powocodes$family, powocodes$uri,
+#' topGen(family = "Lecythidaceae",
 #'        limit = 10,
 #'        verbose = TRUE,
 #'        save = TRUE,
 #'        dir = "results_topGen/",
-#'        filename = "Araceae_Lecythidaceae")
+#'        filename = "Lecythidaceae")
 #'
 #' ## Searching for the top most diverse genera
 #' ## in any or all flowering plant families, by using
-#' ## the URI addresses within the POWOcodes data file
+#' ## the family names and addresses within the POWOcodes data file.
 #'
 #' data(POWOcodes)
 #'
-#' topGen(POWOcodes$family, POWOcodes$uri,
+#' topGen(POWOcodes$family,
 #'        limit = 10,
 #'        verbose = TRUE,
 #'        save = TRUE,
@@ -74,24 +66,25 @@
 #' @export
 #'
 
-topGen <- function(family, uri,
+topGen <- function(family,
                    limit = NULL,
                    verbose = TRUE,
                    save = TRUE,
                    dir = "results_topGen/",
                    filename = "output") {
 
-  # Family check for synonym
-  .arg_check_family(family)
-
-  # family and URI check
-  .arg_check_fam_uri(family, uri)
+  # family check for synonym
+  family <- .arg_check_family(family)
 
   # limit check
   .arg_check_limit
 
   # dir check
   dir <- .arg_check_dir(dir)
+
+  # Extracting the uri of each plant family using associated data POWOcodes
+  utils::data("POWOcodes")
+  uri <- POWOcodes$uri[POWOcodes$family %in% family]
 
   # Placing input data into dataframe
   powo_codes_fam <- data.frame(family = family,

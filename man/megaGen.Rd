@@ -4,14 +4,11 @@
 \alias{megaGen}
 \title{Extract megadiverse genera from POWO}
 \usage{
-megaGen(family, uri, thld = NULL,
-        verbose = TRUE, save = TRUE, dir, filename)
+megaGen(family, thld = NULL, verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
 are present in POWO.}
-
-\item{uri}{URI address for each family to be searched in POWO.}
 
 \item{thld}{A defined threshold of species number for a genus to be
 considered megadiverse. If no threshold number is provided, the function will
@@ -46,26 +43,21 @@ a megadiverse genus.
 \dontrun{
 
 library(expowo)
-library(taxize)
 
-fam <- c("Fabaceae", "Lecythidaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
-
-megaGen(powocodes$family, powocodes$uri,
+megaGen(family = "Lecythidaceae",
         thld = 500,
         verbose = TRUE,
         save = TRUE,
         dir = "results_megaGen/",
-        filename = "Fabaceae_Lecythidaceae")
+        filename = "Lecythidaceae")
 
-## Searching for all megadiverse angiosperm genera
-## in any or all families, by using the URI addresses
-## within the POWOcodes data file
+## Searching for all big angiosperm genera in any or all families,
+## by using the family names and URI addresses within the POWOcodes
+## data file.
 
 data(POWOcodes)
 
-megaGen(POWOcodes$family, POWOcodes$uri,
+megaGen(POWOcodes$family,
         thld = 500,
         verbose = TRUE,
         save = TRUE,

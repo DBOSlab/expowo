@@ -4,15 +4,12 @@
 \alias{powoSpecies}
 \title{Extract list of species from POWO}
 \usage{
-powoSpecies(family, uri, genus = NULL, hybridspp = FALSE, country = NULL,
+powoSpecies(family, genus = NULL, hybridspp = FALSE, country = NULL,
             verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
 \item{family}{Either a single family name or a vector of multiple families
 that are present in POWO.}
-
-\item{uri}{URI address for each family associated to the target genus to be
-searched in POWO.}
 
 \item{genus}{Either one genus name or a vector of multiple genera
 that are present in POWO. If any genus name is not provided, then the
@@ -52,27 +49,22 @@ flowering plants at
 \examples{
 \dontrun{
 library(expowo)
-library(taxize)
 
-fam <- c("Araceae", "Lecythidaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
-
-powoSpecies(powocodes$family, powocodes$uri,
+powoSpecies(family = "Lecythidaceae",
             hybridspp = FALSE,
             country = c("Argentina", "Brazil", "French Guiana"),
             verbose = TRUE,
             save = TRUE,
             dir = "results_powoSpecies/",
-            filename = "Araceae_Lecythidaceae")
+            filename = "Lecythidaceae")
 
 ## Searching for all species and associated global distribution
-## in any or all flowering plant genera, by using the URI addresses
-## within the POWOcodes data file
+## in any or all flowering plant genera, by using the family name and URI
+## addresses within the POWOcodes data file.
 
 data(POWOcodes)
 
-powoSpecies(POWOcodes$family, POWOcodes$uri,
+powoSpecies(POWOcodes$family,
             hybridspp = TRUE,
             verbose = TRUE,
             save = TRUE,

@@ -4,14 +4,11 @@
 \alias{powoFam}
 \title{Extract species number of any plant family from POWO}
 \usage{
-powoFam(family, uri,
-        verbose = TRUE, save = TRUE, dir, filename)
+powoFam(family, verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
 are present in POWO.}
-
-\item{uri}{URI address for each family to be searched in POWO.}
 
 \item{verbose}{Logical, if \code{FALSE}, the search results will not be
 printed in the console in full.}
@@ -37,24 +34,20 @@ target botanical families of flowering plants available at
 \examples{
 \dontrun{
 library(expowo)
-library(taxize)
 
-fam <- c("Araceae", "Sapotaceae")
-powocodes <- cbind(family = fam,
-                   data.frame(taxize::get_pow(fam)))
-
-powoFam(powocodes$family, powocodes$uri,
+powoFam(family = "Lecythidaceae",
         verbose = TRUE,
         save = TRUE,
         dir = "results_powoFam/",
-        filename = "Araceae_Sapotaceae")
+        filename = "Lecythidaceae")
 
-## Searching for the number of species in any or all flowering plant
-## families, by using the URI addresses within the POWOcodes data file.
+## Searching for the species number of in any or all flowering plant
+## families, by using the family names and addresses within the POWOcodes
+## data file.
 
 data(POWOcodes)
 
-powoFam(POWOcodes$family, POWOcodes$uri,
+powoFam(POWOcodes$family,
         verbose = TRUE,
         save = TRUE,
         dir = "results_powoFam/",

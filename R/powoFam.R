@@ -7,13 +7,10 @@
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
-#' powoFam(family, uri,
-#'         verbose = TRUE, save = TRUE, dir, filename)
+#' powoFam(family, verbose = TRUE, save = TRUE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' are present in POWO.
-#'
-#' @param uri URI address for each family to be searched in POWO.
 #'
 #' @param verbose Logical, if \code{FALSE}, the search results will not be
 #' printed in the console in full.
@@ -40,24 +37,20 @@
 #' @examples
 #' \dontrun{
 #' library(expowo)
-#' library(taxize)
 #'
-#' fam <- c("Araceae", "Sapotaceae")
-#' powocodes <- cbind(family = fam,
-#'                    data.frame(taxize::get_pow(fam)))
-#'
-#' powoFam(powocodes$family, powocodes$uri,
+#' powoFam(family = "Lecythidaceae",
 #'         verbose = TRUE,
 #'         save = TRUE,
 #'         dir = "results_powoFam/",
-#'         filename = "Araceae_Sapotaceae")
+#'         filename = "Lecythidaceae")
 #'
-#' ## Searching for the number of species in any or all flowering plant
-#' ## families, by using the URI addresses within the POWOcodes data file.
+#' ## Searching for the species number of in any or all flowering plant
+#' ## families, by using the family names and addresses within the POWOcodes
+#' ## data file.
 #'
 #' data(POWOcodes)
 #'
-#' powoFam(POWOcodes$family, POWOcodes$uri,
+#' powoFam(POWOcodes$family,
 #'         verbose = TRUE,
 #'         save = TRUE,
 #'         dir = "results_powoFam/",
@@ -70,22 +63,23 @@
 #' @export
 #'
 
-powoFam <- function(family, uri,
+powoFam <- function(family,
                     verbose = TRUE,
                     save = TRUE,
                     dir = "results_powoFam/",
                     filename = "output") {
 
-  # Family check for synonym
-  .arg_check_family(family)
+  # family check for synonym
+  family <- .arg_check_family(family)
 
-  # family and URI check.
-  .arg_check_fam_uri(family, uri)
-
-  # dir check.
+  # dir check
   dir <- .arg_check_dir(dir)
 
-  # Placing input data into dataframe.
+  # Extracting the uri of each plant family using associated data POWOcodes
+  utils::data("POWOcodes")
+  uri <- POWOcodes$uri[POWOcodes$family %in% family]
+
+  # Placing input data into dataframe
   powo_codes_fam <- data.frame(family = family,
                                uri = uri)
 

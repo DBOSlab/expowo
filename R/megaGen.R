@@ -10,13 +10,10 @@
 #' a megadiverse genus.
 #'
 #' @usage
-#' megaGen(family, uri, thld = NULL,
-#'         verbose = TRUE, save = TRUE, dir, filename)
+#' megaGen(family, thld = NULL, verbose = TRUE, save = TRUE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' are present in POWO.
-#'
-#' @param uri URI address for each family to be searched in POWO.
 #'
 #' @param thld A defined threshold of species number for a genus to be
 #' considered megadiverse. If no threshold number is provided, the function will
@@ -44,26 +41,21 @@
 #' \dontrun{
 #'
 #' library(expowo)
-#' library(taxize)
 #'
-#' fam <- c("Fabaceae", "Lecythidaceae")
-#' powocodes <- cbind(family = fam,
-#'                    data.frame(taxize::get_pow(fam)))
-#'
-#' megaGen(powocodes$family, powocodes$uri,
+#' megaGen(family = "Lecythidaceae",
 #'         thld = 500,
 #'         verbose = TRUE,
 #'         save = TRUE,
 #'         dir = "results_megaGen/",
-#'         filename = "Fabaceae_Lecythidaceae")
+#'         filename = "Lecythidaceae")
 #'
-#' ## Searching for all megadiverse angiosperm genera
-#' ## in any or all families, by using the URI addresses
-#' ## within the POWOcodes data file
+#' ## Searching for all big angiosperm genera in any or all families,
+#' ## by using the family names and URI addresses within the POWOcodes
+#' ## data file.
 #'
 #' data(POWOcodes)
 #'
-#' megaGen(POWOcodes$family, POWOcodes$uri,
+#' megaGen(POWOcodes$family,
 #'         thld = 500,
 #'         verbose = TRUE,
 #'         save = TRUE,
@@ -79,7 +71,7 @@
 #' @export
 #'
 
-megaGen <- function(family, uri,
+megaGen <- function(family,
                     thld = NULL,
                     verbose = TRUE,
                     save = TRUE,
@@ -87,17 +79,18 @@ megaGen <- function(family, uri,
                     filename = "output") {
 
 
-  # Family check for synonym
-  .arg_check_family(family)
-
-  # Family and URI check
-  .arg_check_fam_uri(family, uri)
+  # family check for synonym
+  family <- .arg_check_family(family)
 
   # thld check
   .arg_check_thld(thld)
 
   # dir check
   dir <- .arg_check_dir(dir)
+
+  # Extracting the uri of each plant family using associated data POWOcodes
+  utils::data("POWOcodes")
+  uri <- POWOcodes$uri[POWOcodes$family %in% family]
 
   # Placing input data into dataframe
   powo_codes_fam <- data.frame(family = family,

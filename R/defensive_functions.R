@@ -2,23 +2,6 @@
 # return meaningful errors.
 # Author: Debora Zuanny & Domingos Cardoso
 
-#_______________________________________________________________________________
-# Function to check if any family or URI is missing
-.arg_check_fam_uri <- function (family, uri) {
-
-  if(length(family) != length(uri)) {
-    stop(paste("Any family or URI is missing."))
-  }
-
-  utils::data("POWOcodes")
-  uri_log <- uri %in% POWOcodes$uri
-  uri_log <- which(uri_log == FALSE)
-  if(length(uri_log) >= 1) {
-    stop(paste("Any family's URI address is incomplete or misspelled and cannot
-               open connection with POWO website."))
-  }
-}
-
 
 #_______________________________________________________________________________
 # Check if the threshold input for megaGen is a numeric value
@@ -166,4 +149,5 @@
     for (i in seq_along(family[tf])) {
       family[tf][i] <- rep_str[names(rep_str) %in% family[tf][i]]}
   }
+  return(family)
 }

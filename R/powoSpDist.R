@@ -7,14 +7,11 @@
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
-#' powoSpDist(family, uri, species = NULL,
+#' powoSpDist(family, species = NULL,
 #'             verbose = TRUE, save = TRUE, dir, filename)
 #'
 #' @param family Either a single family name or a vector of multiple families
 #' that are present in POWO.
-#'
-#' @param uri URI address for each family associated to the target genus to be
-#' searched in POWO.
 #'
 #' @param species Either one non hybrid species name or a vector of multiple
 #' species that are present in POWO. If any species name is not provided, then
@@ -42,25 +39,20 @@
 #' @examples
 #' \dontrun{
 #' library(expowo)
-#' library(taxize)
 #'
-#' fam <- c("Araceae", "Lecythidaceae")
-#' powocodes <- cbind(family = fam,
-#'                    data.frame(taxize::get_pow(fam)))
-#'
-#' powoSpDist(powocodes$family, powocodes$uri,
-#'            species = c("Anthurium longicaudatum", "Lecythis pisonis"),
+#' powoSpDist(family = "Lecythidaceae",
+#'            species = "Lecythis pisonis",
 #'            verbose = TRUE,
 #'            save = TRUE,
 #'            dir = "results_powoSpDist/",
-#'            filename = "A_longicaudatum_L_pisonis")
+#'            filename = "L_pisonis")
 #'
-#' ## Searching for global distribution in any or all flowering plant family,
-#' ## by using the URI addresses within the POWOcodes data file.
+#' ## Searching for global distribution of species in any or all flowering
+#' ## plant familyusing the associated data POWOcodes.
 #'
 #' data(POWOcodes)
 #'
-#' powoSpDist(POWOcodes$family, POWOcodes$uri,
+#' powoSpDist(POWOcodes$family,
 #'            verbose = TRUE,
 #'            save = TRUE,
 #'            dir = "results_powoSpDist/",
@@ -75,21 +67,22 @@
 #' @export
 #'
 
-powoSpDist <- function(family, uri,
+powoSpDist <- function(family,
                        species = NULL,
                        verbose = TRUE,
                        save = TRUE,
                        dir = "results_powoSpDist/",
                        filename = "output") {
 
-  # Family check for synonym
-  .arg_check_family(family)
-
-  # family and URI check.
-  .arg_check_fam_uri(family, uri)
+  # family check for synonym
+  family <- .arg_check_family(family)
 
   # dir check.
   dir <- .arg_check_dir(dir)
+
+  # Extracting the uri of each plant family using associated data POWOcodes
+  utils::data("POWOcodes")
+  uri <- POWOcodes$uri[POWOcodes$family %in% family]
 
   # Placing input data into dataframe.
   powo_codes_fam <- data.frame(family = family,
