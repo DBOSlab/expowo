@@ -8,11 +8,11 @@ topGen(family, limit, verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
-are present in POWO.}
+is present in POWO.}
 
-\item{limit}{A defined numerical limit of most diverse genera to be selected
-within each plant family. If no limit number is provided, the function will
-select the top ten genera.}
+\item{limit}{A defined numerical limit of the most diverse genera to be
+selected within each plant family. If no limit number is provided, the
+function will select the top ten genera.}
 
 \item{verbose}{Logical, if \code{FALSE}, the search results will not be
 printed in the console in full.}
@@ -24,14 +24,14 @@ provided that the argument \code{save} is set up in \code{TRUE}. The default
 is to create a directory named \strong{results_topGen} and the searched results
 will be saved within a subfolder named by the current date.}
 
-\item{filename}{Name of the output file to be saved. Default is to create a
-file entitled \strong{output}.}
+\item{filename}{Name of the output file to be saved. The default is to create
+a file entitled \strong{output}.}
 }
 \value{
 Table in .csv format that is saved on disk.
 }
 \description{
-It produces a CSV file listing the top most diverse genera
+Produces a CSV file listing the top most diverse genera
 of any target botanical family of flowering plants at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
@@ -48,7 +48,7 @@ topGen(family = "Lecythidaceae",
 
 ## Searching for the top most diverse genera
 ## in any or all flowering plant families, by using
-## the family names and addresses within the POWOcodes data file.
+## the family names within the POWOcodes data package.
 
 data(POWOcodes)
 

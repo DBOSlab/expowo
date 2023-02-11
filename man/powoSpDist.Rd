@@ -8,10 +8,10 @@ powoSpDist(family, species = NULL,
             verbose = TRUE, save = TRUE, dir, filename)
 }
 \arguments{
-\item{family}{Either a single family name or a vector of multiple families
-that are present in POWO.}
+\item{family}{Either one family name or a vector of multiple families
+that is present in POWO.}
 
-\item{species}{Either one non hybrid species name or a vector of multiple
+\item{species}{Either one non-hybrid species name or a vector of multiple
 species that are present in POWO. If any species name is not provided, then
 the function will search any species from all accepted genera known for the
 target family.}
@@ -27,14 +27,14 @@ provided that the argument \code{save} is set up in \code{TRUE}. The default
 is to create a directory named \strong{results_powoSpDist} and the search
 results will be saved within a subfolder named by the current date.}
 
-\item{filename}{Name of the output file to be saved. Default is to create a
-file entitled \strong{output}.}
+\item{filename}{Name of the output file to be saved. The default is to create
+a file entitled \strong{output}.}
 }
 \value{
 Table in .csv format and saves the output on disk.
 }
 \description{
-It produces a CSV file listing the geographical distribution
+Produces a CSV file listing the geographical distribution
 of all target species of flowering plants available at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
@@ -50,7 +50,7 @@ powoSpDist(family = "Lecythidaceae",
            filename = "L_pisonis")
 
 ## Searching for global distribution of species in any or all flowering
-## plant familyusing the associated data POWOcodes.
+## plant family using the associated POWOcodes data package.
 
 data(POWOcodes)
 

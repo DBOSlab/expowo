@@ -65,8 +65,8 @@ saved provided that the argument \code{save} is set up in \code{TRUE}. The
 default is to create a directory named \strong{results_powoMap/} and the search
 results will be saved within a subfolder named by the current date.}
 
-\item{filename}{Name of the output file to be saved. Default is to create a
-file entitled \strong{global_richness_map}.}
+\item{filename}{Name of the output file to be saved. The default is to
+create a file entitled \strong{global_richness_map}.}
 
 \item{format}{A character vector related to the file format of the global
 map to be saved. The default is "jpg" to save the output in Joint
@@ -78,7 +78,7 @@ Portable Document Format (.pdf), "tiff" to save in Tag Image File Format
 Global map in .pdf format and saves the output on disk.
 }
 \description{
-It produces global-scale maps of species richness at country and
+Produces global-scale maps of species richness at country and
 botanical country levels for any genus or family of flowering plants with
 associated species distribution data at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.

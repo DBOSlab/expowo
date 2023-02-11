@@ -2,7 +2,7 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a CSV file listing the top most diverse genera
+#' @description Produces a CSV file listing the top most diverse genera
 #' of any target botanical family of flowering plants at
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
@@ -10,11 +10,11 @@
 #' topGen(family, limit, verbose = TRUE, save = TRUE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
-#' are present in POWO.
+#' is present in POWO.
 #'
-#' @param limit A defined numerical limit of most diverse genera to be selected
-#' within each plant family. If no limit number is provided, the function will
-#' select the top ten genera.
+#' @param limit A defined numerical limit of the most diverse genera to be
+#' selected within each plant family. If no limit number is provided, the
+#' function will select the top ten genera.
 #'
 #' @param verbose Logical, if \code{FALSE}, the search results will not be
 #' printed in the console in full.
@@ -26,8 +26,8 @@
 #' is to create a directory named **results_topGen** and the searched results
 #' will be saved within a subfolder named by the current date.
 #'
-#' @param filename Name of the output file to be saved. Default is to create a
-#' file entitled **output**.
+#' @param filename Name of the output file to be saved. The default is to create
+#'  a file entitled **output**.
 #'
 #' @return Table in .csv format that is saved on disk.
 #'
@@ -46,7 +46,7 @@
 #'
 #' ## Searching for the top most diverse genera
 #' ## in any or all flowering plant families, by using
-#' ## the family names and addresses within the POWOcodes data file.
+#' ## the family names within the POWOcodes data package.
 #'
 #' data(POWOcodes)
 #'

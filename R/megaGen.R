@@ -2,24 +2,24 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a CSV file listing all megadiverse genera for
+#' @description Produces a CSV file listing all mega-diverse genera for
 #' any angiosperm family at
-#' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
-#' A numeric value should define the threshold to be considered a megadiverse
-#' genus. Frodin, D.G.(2004) in Taxon suggests 500 species as the threshold for
-#' a megadiverse genus.
+#' [Plants of the World Online (POWO)](https://powo.science.kew.org/) based on
+#' a provided numeric value as the threshold to be considered mega-diverse.
+#' [Frodin, D.G.(2004)](https://doi.org/10.2307/4135449) suggests 500 species as
+#'  the threshold.
 #'
 #' @usage
 #' megaGen(family, thld = NULL, verbose = TRUE, save = TRUE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
-#' are present in POWO.
+#' is present in POWO.
 #'
 #' @param thld A defined threshold of species number for a genus to be
 #' considered megadiverse. If no threshold number is provided, the function will
-#' consider a value of 500 based on Frodin, D.G.(2004) in Taxon.
+#' consider a value of 500 based on Frodin (2004) in Taxon.
 #'
-#' @param verbose Logical, if \code{FALSE}, the searched results will not be
+#' @param verbose Logical, if \code{FALSE}, the search results will not be
 #' printed in the console in full.
 #'
 #' @param save Logical, if \code{FALSE}, the searched results will not be saved
@@ -30,8 +30,8 @@
 #' is to create a directory named **results_megaGen** and the searched results
 #' will be saved within a subfolder named by the current date.
 #'
-#' @param filename Name of the output file to be saved. Default is to create a
-#' file entitled **output**.
+#' @param filename Name of the output file to be saved. The default is to create
+#' a file entitled **output**.
 #'
 #' @return Table in .csv format that is saved on disk.
 #'
@@ -50,8 +50,7 @@
 #'         filename = "Lecythidaceae")
 #'
 #' ## Searching for all big angiosperm genera in any or all families,
-#' ## by using the family names and URI addresses within the POWOcodes
-#' ## data file.
+#' ## by using the family names within the POWOcodes data package.
 #'
 #' data(POWOcodes)
 #'

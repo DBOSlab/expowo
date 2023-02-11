@@ -2,7 +2,7 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces a CSV file listing the geographical distribution
+#' @description Produces a CSV file listing the geographical distribution
 #' of all target species of flowering plants available at
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
@@ -10,10 +10,10 @@
 #' powoSpDist(family, species = NULL,
 #'             verbose = TRUE, save = TRUE, dir, filename)
 #'
-#' @param family Either a single family name or a vector of multiple families
-#' that are present in POWO.
+#' @param family Either one family name or a vector of multiple families
+#' that is present in POWO.
 #'
-#' @param species Either one non hybrid species name or a vector of multiple
+#' @param species Either one non-hybrid species name or a vector of multiple
 #' species that are present in POWO. If any species name is not provided, then
 #' the function will search any species from all accepted genera known for the
 #' target family.
@@ -29,8 +29,8 @@
 #' is to create a directory named **results_powoSpDist** and the search
 #' results will be saved within a subfolder named by the current date.
 #'
-#' @param filename Name of the output file to be saved. Default is to create a
-#' file entitled **output**.
+#' @param filename Name of the output file to be saved. The default is to create
+#'  a file entitled **output**.
 #'
 #' @return Table in .csv format and saves the output on disk.
 #'
@@ -48,7 +48,7 @@
 #'            filename = "L_pisonis")
 #'
 #' ## Searching for global distribution of species in any or all flowering
-#' ## plant familyusing the associated data POWOcodes.
+#' ## plant family using the associated POWOcodes data package.
 #'
 #' data(POWOcodes)
 #'

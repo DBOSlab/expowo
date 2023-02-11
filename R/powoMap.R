@@ -2,7 +2,7 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description It produces global-scale maps of species richness at country and
+#' @description Produces global-scale maps of species richness at country and
 #' botanical country levels for any genus or family of flowering plants with
 #' associated species distribution data at
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
@@ -68,8 +68,8 @@
 #' default is to create a directory named **results_powoMap/** and the search
 #' results will be saved within a subfolder named by the current date.
 #'
-#' @param filename Name of the output file to be saved. Default is to create a
-#' file entitled **global_richness_map**.
+#' @param filename Name of the output file to be saved. The default is to
+#' create a file entitled **global_richness_map**.
 #'
 #' @param format A character vector related to the file format of the global
 #' map to be saved. The default is "jpg" to save the output in Joint

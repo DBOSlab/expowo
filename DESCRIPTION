@@ -14,7 +14,7 @@ Authors@R:
              email = "cardosobot@gmail.com",
              comment = c(ORCID = "0000-0001-7072-2656")))
 Maintainer: Debora Zuanny <deborazuanny@gmail.com>
-Description: Allows to mine angiosperm family, genus and species list, their global distribution, and to create maps with the data available at Plants of the World Online vetted database by interacting with the source code of each plant taxa page.
+Description: Produces diversity estimates and species lists with associated global distribution for any angiosperm family and genus from Plants of the World Online database, by interacting with the source code of each plant taxon page, and creates global maps of species richness.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
