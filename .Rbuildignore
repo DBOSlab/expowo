@@ -5,7 +5,6 @@
 ^pkgdown$
 ^LICENSE\.md$
 ^\.github$
-^vignettes$
 ^hex_logo$
 ^cran-comments\.md$
 ^tests$
