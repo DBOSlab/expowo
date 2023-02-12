@@ -6,8 +6,8 @@
 
 # expowo <img src="man/figures/expowo.png" align="right" alt="" width="120" />
 
-An R package for mining species checklist, diversity estimates, and
-distribution data for any genus or family of flowering plants from RGB
+An R package for mining species list, diversity estimates, and
+distribution data for any genus or family of flowering plants from RBG
 Kew’s [Plants of the World Online (POWO)](https://powo.science.kew.org).
 
 ## Overview
@@ -22,7 +22,7 @@ file with the number of accepted species and country-level distribution
 for any genus as well as the full list of accepted species in any
 genus or family, their authorship, original publication and global
 distribution. The latest major function implemented, `powoMap`, also 
-can automatically create global maps.
+can automatically create global maps for any taxon level.
 
 ## Before using **expowo**
 
