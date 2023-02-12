@@ -89,11 +89,7 @@ megaGen <- function(family,
 
   # Extracting the uri of each plant family using associated data POWOcodes
   utils::data("POWOcodes")
-  uri <- POWOcodes$uri[POWOcodes$family %in% family]
-
-  # Placing input data into dataframe
-  powo_codes_fam <- data.frame(family = family,
-                               uri = uri)
+  powo_codes_fam <- dplyr::filter(POWOcodes, family %in% .env$family)
 
   # POWO search for the genus URI in each family using auxiliary function
   # getGenURI.

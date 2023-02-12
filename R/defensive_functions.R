@@ -31,7 +31,7 @@
 
 #_______________________________________________________________________________
 # Check if the dir input is "character" type and if it has a "/" in the end
-.arg_check_dir<- function(x) {
+.arg_check_dir <- function(x) {
   # Check classes
   class_x <- class(x)
   if (!"character" %in% class_x) {
@@ -48,18 +48,41 @@
 #_______________________________________________________________________________
 # Function to check if the input data for powoMap is a dataframe-formatted
 # object generated from powoSpecies.
-.arg_check_data_map <- function (data) {
-  col_names <- c("family", "genus", "species", "taxon_name", "authors",
-                 "native_to_country", "native_to_botanical_countries",
-                 "kew_id", "powo_uri")
-  tf <- col_names %in% names(data)
-  if(any(!tf)) {
-    stop(paste0("Make sure you have used an input data generated from
-                powoSpecies.\n\n",
-               paste0("The input data must have at least the following
-                      columns:\n\n"),
-                paste0(col_names[c(1,2, 3, 6, 7)], collapse = ", ")))
+.arg_check_data_map <- function (inputdf, distcol) {
+
+  # Change  column names if the the input dataframe is different from powoSpecies
+  tf <- is.null(which(grepl(",\\s", inputdf[[distcol]]) == TRUE))
+  if (any(tf)) {
+    stop(paste("Make sure the input data has each species as a single row with
+                  its corresponding full distribution in all countries and/or
+                  botanical regions within a single cell of their respective
+                  columns, where the country names or botanical regions are
+                  separated by a comma."))
   }
+
+  # Identify the column with the species scientific binomial and rename it to
+  # "taxon_name".
+  temp <- lapply(inputdf[1, ],
+                 function(x) grepl("^[[:upper:]][[:lower:]]+\\s[[:lower:]]+$|
+                                   ^[[:upper:]][[:lower:]]+\\s[[:lower:]]+\\s",
+                                   x))
+  tf <- unlist(temp)[which(unlist(temp) == TRUE)]
+  if (any(tf)) {
+    if(!any(names(tf) %in% "taxon_name")) {
+      tf <- names(inputdf) %in% names(tf)[1]
+      names(inputdf)[tf] <- "taxon_name"
+      # Clean the authorship if they are present within the species binomials
+      inputdf[[names(inputdf)[tf]]] <- sub("^(\\w+\\s+\\w+).*", "\\1",
+                                           inputdf[[names(inputdf)[tf]]])
+    }
+  } else {
+    stop(paste("Make sure the input data has the column with species names as
+                  a binomial, i.e. containing both the genus name and specific
+                  epithet. Having or not the taxon authorship within the same
+                  column of species binomials is NOT an issue."))
+  }
+
+  return(inputdf)
 }
 
 
@@ -71,15 +94,14 @@
   format_supported <- append(format_supported, toupper(format_supported))
   tf <- format %in% format_supported
   if(any(!tf)) {
-    stop(paste0("Make sure the format argument has any of the
-                following format names:\n\n",
+    stop(paste0("Make sure the format argument has any of the following
+                format names:\n\n",
                 paste0(format_supported, collapse = ", ")))
   }
 }
 
-
 #_______________________________________________________________________________
-# Function to check if any family name provided is a synonymous and does not
+# Function to check if any family name provided is a synonym and does not
 # have data available.
 
 .arg_check_family <- function (family) {
@@ -88,7 +110,7 @@
               "Cruciferae" = "Brassicaceae", "Umbelliferae" = "Apiaceae",
               "Labiatae" = "Lamiaceae", "Graminae" = "Poaceae",
               "Capparidaceae" = "Capparaceae", "Avicenniaceae"= "Acanthaceae",
-               "Ficoidaceae" = "Aizoaceae", "Mesembryanthemaceae" = "Aizoaceae",
+              "Ficoidaceae" = "Aizoaceae", "Mesembryanthemaceae" = "Aizoaceae",
               "Tetragoniaceae" = "Aizoaceae",
               "Limnocharitaceae" = "Alismataceae",
               "Chenopodiaceae" = "Amaranthaceae",

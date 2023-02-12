@@ -33,10 +33,10 @@ knitr::kable(df[-c( 2, 3, 5, 6, 7, 10, 11, 13)],
 
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  powoMap(data = mapspdist,
+#  powoMap(inputdf = mapspdist,
 #          botctrs = NULL,
-#          map_div = "native_to_country",
-#          multigen = TRUE,
+#          distcol = "native_to_country",
+#          taxclas = "genus",
 #          verbose = FALSE,
 #          vir_color = "viridis",
 #          bre_color = NULL,
@@ -53,10 +53,10 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Cariniana_viridi
 ## ---- eval = FALSE------------------------------------------------------------
 #  data(botdivmap)
 #  
-#  powoMap(data = mapspdist,
+#  powoMap(inputdf = mapspdist,
 #          botctrs = botdivmap,
-#          map_div = "native_to_botanical_countries",
-#          multigen = TRUE,
+#          distcol = "native_to_botanical_countries",
+#          taxclas = "genus",
 #          verbose = FALSE,
 #          vir_color = "viridis",
 #          bre_color = NULL,
@@ -83,10 +83,10 @@ knitr::include_graphics("figures/global_richness_botcountry_map_SR_Cariniana_vir
 ## ---- eval = FALSE------------------------------------------------------------
 #  data(botdivmap)
 #  
-#  powoMap(data = mapspdist,
+#  powoMap(inputdf = mapspdist,
 #          botctrs = botdivmap,
-#          map_div = "native_to_country",
-#          multigen = FALSE,
+#          distcol = "native_to_country",
+#          taxclas = "family",
 #          verbose = FALSE,
 #          vir_color = "viridis",
 #          bre_color = "Spectral",
@@ -105,10 +105,10 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_Sp
 ## ---- eval = FALSE------------------------------------------------------------
 #  data(botdivmap)
 #  
-#  powoMap(data = mapspdist,
+#  powoMap(inputdf = mapspdist,
 #          botctrs = botdivmap,
-#          map_div = "native_to_botanical_countries",
-#          multigen = FALSE,
+#          distcol = "native_to_botanical_countries",
+#          taxclas = "family",
 #          verbose = FALSE,
 #          vir_color = "viridis",
 #          bre_color = "Spectral",

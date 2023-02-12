@@ -59,7 +59,7 @@
 #'            filename = "all_angiosperm_species_dist")
 #'}
 #'
-#' @importFrom dplyr select
+#' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
 #' @importFrom data.table fwrite
 #' @importFrom utils data
@@ -82,11 +82,7 @@ powoSpDist <- function(family,
 
   # Extracting the uri of each plant family using associated data POWOcodes
   utils::data("POWOcodes")
-  uri <- POWOcodes$uri[POWOcodes$family %in% family]
-
-  # Placing input data into dataframe.
-  powo_codes_fam <- data.frame(family = family,
-                               uri = uri)
+  powo_codes_fam <- dplyr::filter(POWOcodes, family %in% .env$family)
 
   # Extracting the genus name and POWO search for the genus URI in each family
   # using auxiliary function getGenURI.
