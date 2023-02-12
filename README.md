@@ -19,9 +19,10 @@ at the taxonomically verified database [Plants of the World Online
 efficiently mine the content within the source HTML pages for any
 specific genus and family. It can return a comma-separated values (CSV)
 file with the number of accepted species and country-level distribution
-for any genus as well as the full checklist of accepted species in any
+for any genus as well as the full list of accepted species in any
 genus or family, their authorship, original publication and global
-distribution.
+distribution. The latest major function implemented, `powoMap`, also 
+can automatically create global maps.
 
 ## Before using **expowo**
 
@@ -67,27 +68,24 @@ library(expowo)
 
 ## Usage
 
-The package’s four major functions (`powoGenera`, `powoSpecies`,
-`megaGen`, and `toptenGen`) require only the name of the target family
-(or a vector with multiple family names) and the associated specific URI
-(Uniform Resource Identifier) that identifies the HTML page for each
-family in POWO. These four major functions work with other three
-auxiliary functions (`getGenURI`, `getNumb`, and `getDist`) to mine the
+The package’s major functions (`powoFam`, `powoGenera`, `powoSpecies`, 
+`powoSpDist`, `megaGen`, and `topGen`) only require the name of the 
+target family (or a vector with multiple family names). These major 
+functions work with other minor functions (`getGenURI`, `getNumb`, 
+and `getDist`), with auxiliary and defensive functions to mine the 
 plant data. Respectively, `getGenURI` mines the URI for each genus,
 `getNumb` mines the total number of species within any genus, and
-`getDist` does a complete search for native and introduced country-level
-distribution for any genus and species. To get the POWO URI for any
-accepted plant family, you can either look at the data frame object
-`POWOcodes` that come together with the installed **expowo** package, or
-you can use the function `get_pow` from the package
-[**taxize**](https://github.com/ropensci/taxize). So, the vector of URI
-codes is the main input file to everything you can do with expowo
-package. See the examples on how to use the **expowo**’s major functions
-for mining basic information on the global plant diversity and
+`getDist` does a complete search for native and introduced 
+country-level distribution for any genus and species. With this 
+distribution, it is also possible to automatically generate 
+global maps according to political country and botanical
+subdivision with the function `powoMap`. See the examples on 
+how to use the **expowo**’s functions for mining basic 
+information on the global plant diversity and
 distribution in the ‘Articles’ section in our
 [site](https://DBOSlab.github.io/expowo/).
 
-<img src="man/figures/expowo_pkg.png" alt="" width="600" />
+<img src="man/figures/expowo_pkg.png" alt="" width="500" />
 
 ## Documentation
 
