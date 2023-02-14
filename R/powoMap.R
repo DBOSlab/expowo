@@ -232,7 +232,7 @@ powoMap <- function(inputdf = NULL,
 
       # Making world map with species richness across countries/botanical
       # subdivisions.
-      world_plant <- .get_SR(temp_inputdf, world, distcol, verbose)
+      world_plant <- .get_SR(temp_inputdf, world, botctrs, distcol, verbose)
 
       # Making the maps and saving them as figures in different styles.
       .save_map(world_plant,
