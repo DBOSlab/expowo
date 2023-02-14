@@ -207,7 +207,7 @@ powoMap <- function(inputdf = NULL,
 
     # Making world map with species richness across countries/botanical
     # subdivisions.
-    world_plant <- .get_SR(inputdf, world, distcol, verbose)
+    world_plant <- .get_SR(inputdf, world, botctrs, distcol, verbose)
 
     # Making the maps and saving them as figures in different styles.
     .save_map(world_plant,
@@ -252,7 +252,7 @@ powoMap <- function(inputdf = NULL,
 
 # Auxiliary function to make world map with species richness across
 # countries/botanical subdivisions.
-.get_SR <- function(df, world, distcol, verbose) {
+.get_SR <- function(df, world, botctrs, distcol, verbose) {
 
   country_data <- list()
 
@@ -294,7 +294,8 @@ powoMap <- function(inputdf = NULL,
                       format) {
 
   p <- ggplot2::ggplot(data = world_plant) +
-    ggplot2::geom_sf(ggplot2::aes(fill = Freq), colour = "gray60", size = 0.1) +
+    ggplot2::geom_sf(ggplot2::aes(fill = world_plant$Freq), colour = "gray60",
+                     size = 0.1) +
     ggplot2::theme_void() +
     ggplot2::theme(legend.position = c(0.2, 0.3),
                    legend.title = ggplot2::element_text(size = 6,

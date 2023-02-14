@@ -6,8 +6,7 @@
 #' any angiosperm family at
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/) based on
 #' a provided numeric value as the threshold to be considered mega-diverse.
-#' [Frodin, D.G.(2004)](https://doi.org/10.2307/4135449) suggests 500 species as
-#'  the threshold.
+#' Frodin (2004) in Taxon suggests 500 species as the threshold.
 #'
 #' @usage
 #' megaGen(family, thld = NULL, verbose = TRUE, save = TRUE, dir, filename)

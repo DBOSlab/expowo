@@ -50,7 +50,7 @@
 # object generated from powoSpecies.
 .arg_check_data_map <- function (inputdf, distcol) {
 
-  # Change  column names if the the input dataframe is different from powoSpecies
+  # Change column names if the input dataframe is different from powoSpecies
   tf <- is.null(which(grepl(",\\s", inputdf[[distcol]]) == TRUE))
   if (any(tf)) {
     stop(paste("Make sure the input data has each species as a single row with

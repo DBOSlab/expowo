@@ -36,8 +36,7 @@ Produces a CSV file listing all mega-diverse genera for
 any angiosperm family at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)} based on
 a provided numeric value as the threshold to be considered mega-diverse.
-\href{https://doi.org/10.2307/4135449}{Frodin, D.G.(2004)} suggests 500 species as
-the threshold.
+Frodin (2004) in Taxon suggests 500 species as the threshold.
 }
 \examples{
 \dontrun{
