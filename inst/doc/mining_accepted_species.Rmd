@@ -1,0 +1,177 @@
+---
+title: "Mining species list for any plant family"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mining species list for any plant family}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{css, echo=FALSE}
+.table{
+  width: auto;
+  font-size: 14px;
+}
+.table caption {
+  font-size: 1em;
+}
+```
+
+Here in this article, we show how to use the package's function `powoSpecies` 
+for mining all accepted species for any genus or family of flowering plants.\
+
+\
+
+# Setup
+
+Install the latest development version of __expowo__ from 
+[GitHub](https://github.com/):
+
+``` r
+#install.packages("devtools")
+devtools::install_github("DBOSlab/expowo")
+```
+```{r package load}
+library(expowo)
+```
+
+\
+
+# Mining all accepted species for any angiosperm family
+
+The function `powoSpecies` returns a dataframe or saves a CSV file listing all 
+accepted species (including hybrid species or not), their publication, 
+authorship, and global geographic distribution at country or botanical level for
+any family of flowering plants. The global classification of botanical divisions
+follows the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) 
+for Recording Plant Distributions, which is already associated with each taxon's
+distribution in the POWO.\
+
+The example below shows how to mine all accepted species for a specified vector 
+of families. The output shown here (TABLE 1) is a simplified version, where we have removed some columns (genus, epithet and authors) so as to focus on the display of the taxonomic and distribution data.\
+
+```{r, eval = FALSE}
+res <- powoSpecies(family = c("Cabombaceae", "Martyniaceae"),
+                   hybridspp = FALSE,
+                   verbose = TRUE,
+                   save = TRUE,
+                   dir = "results_powoSpecies/",
+                   filename = "Cabom_Martyniaceae_search")
+```
+
+```{r, echo = FALSE, warning = FALSE}
+utils::data("angioData")
+fam <- c("Cabombaceae", "Martyniaceae")
+df <- angioData[angioData$family %in% fam, ]
+
+knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
+             row.names = FALSE,
+             caption = "TABLE 1. A general `powoSpecies` search for mining all 
+             accepted species for some specific angiosperm families.")
+```
+
+\
+
+# Narrowing down the `powoSpecies` search based on a specified country vector
+
+You can also narrow down the species checklist search of any family by
+focusing on just a particular country or a list of countries. You just need to 
+define a vector of country names in the argument \code{country}. In the example 
+below, note that we have originally searched for the species within the families 
+__Aristolochiaceae__, __Cabombaceae__, and __Martyniaceae__, but the function 
+returned a smaller species list, because many species in the searched families 
+are not recorded in any of the specified vector of country, i.e. __Brazil__ or 
+__Colombia__.\
+
+```{r, eval = FALSE}
+powoSpecies(family = c("Aristolochiaceae", "Cabombaceae", "Martyniaceae"),
+            hybridspp = FALSE,
+            country = c("Brazil", "Colombia"),
+            verbose = TRUE,
+            save = F,
+            dir = "results_powoSpecies/",
+            filename = "country_constrained_search")
+```
+
+```{r, echo = FALSE, warning = FALSE}
+utils::data("angioData")
+fam <- c("Aristolochiaceae", "Cabombaceae", "Martyniaceae")
+df <- angioData[angioData$family %in% fam, ]
+country <- c("Brazil", "Colombia")
+df <- df[df$native_to_country %in% country, ]
+
+knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 12, 13)],
+             row.names = FALSE,
+             caption = "TABLE 2. A `powoSpecies` search based on a specified 
+             country vector.")
+```
+
+\
+
+# Narrowing down the `powoSpecies` search based on a specified genus and country vector
+
+You may want to retrieve information for just one or a list of accepted 
+genera from a given country (or from a list of countries). Just like before,
+you only need to define a vector of genus names in the argument \code{genus} and
+a vector of country names in the argument \code{country}. In the example below,
+see that we have searched for just the genera ***Proboscidea*** and 
+***Cabomba*** of the families __Martyniaceae__ and __Cabombaceae__, 
+but the function only returned the __Cabombaceae__ genus ***Cabomba***, 
+because ***Proboscidea*** does not occur in any of the provided list of countries,
+i.e. __Argentina__, __French Guiana__, or __Brazil__.\
+
+```{r, eval = FALSE}
+powoSpecies(family = c("Martyniaceae", "Cabombaceae"),
+            genus = c("Proboscidea", "Cabomba"),
+            hybridspp = FALSE,
+            country = c("Argentina", "French Guiana", "Brazil"),
+            verbose = TRUE,
+            save = F,
+            dir = "results_powoSpecies/",
+            filename = "country_and_genus_constrained_search")
+```
+
+```{r, echo = FALSE, warning = FALSE}
+utils::data("angioData")
+genus <- c("Proboscidea", "Cabomba")
+country <- c("Argentina", "French Guiana", "Brazil")
+df <- angioData[angioData$genus %in% genus, ]
+df <- df[df$native_to_country %in% country, ]
+
+knitr::kable(df[-c(2, 3, 10, 11, 13)],
+             row.names = FALSE,
+             caption = "TABLE 3. A `powoSpecies` search based on specified genus
+             and country vectors.")
+```
+\
+
+# Mining all accepted species for all angiosperm families
+
+To mine a species checklist for all families of flowering plants, you recommend 
+to load the dataframe-formatted data object called `POWOcodes` that comes 
+associated with the __expowo__ package. The `POWOcodes` data object 
+already contains the URI addresses for all angiosperms families recognized in 
+the [POWO](https://powo.science.kew.org) database, so you just need to call it
+to your R environment.\
+
+The example below shows how to mine a global checklist of all accepted species 
+of flowering plants by using the vector of all angiosperm families and 
+associated URI addresses stored in the `POWOcodes` object.\
+
+```{r, eval = FALSE}
+utils::data("POWOcodes")
+
+powoSpecies(POWOcodes$family,
+            hybridspp = TRUE,
+            verbose = TRUE,
+            save = TRUE,
+            dir = "results_powoSpecies/",
+            filename = "all_angiosperm_species")
+```

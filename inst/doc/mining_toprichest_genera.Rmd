@@ -1,0 +1,118 @@
+---
+title: "Mining the top richest genera of flowering plants"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mining the top richest genera of flowering plants}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{css, echo=FALSE}
+.table{
+  width: auto;
+  font-size: 14px;
+}
+.table caption {
+  font-size: 1em;
+}
+```
+
+Here in this article, we show how to use the package's function `topGen` for 
+mining the top most species rich genera for any family of flowering plants.\
+
+\
+
+# Setup
+
+Install the latest development version of __expowo__ from 
+[GitHub](https://github.com/):
+
+``` r
+#install.packages("devtools")
+devtools::install_github("DBOSlab/expowo")
+```
+```{r package load}
+library(expowo)
+```
+
+\
+
+# Mining the top richest genera for any angiosperm family
+
+The function `topGen` is relatively similar to the `megaGen`, but instead of 
+using a specific threshold of species number to be considered a big genera, it 
+saves a CSV file listing the top most species-rich genera of any target 
+angiosperm family, and their associated number of accepted species based on an
+integer number set in the argument limit. In the example below, we used the 
+default to search for the top ten richest genera (i.e., when the argument limit
+is set as NULL, the function searchs for the 10 most diverse genera within a 
+plant family). Some columns were omitted to display the results, and the rows 
+show the top ten of the three chosen families: Bignoniaceae, Solanaceae and 
+Lecythidaceae. Note that the table does not have 30 rows, what would be expected 
+if we multiply each family (n = 3) by ten. It is not an error, since some plant 
+families do not have many genera, which is the case of Begoniaceae with 2 
+genera.\
+
+```{r, eval = FALSE}
+topGen(family = c("Aristolochiaceae", "Begoniaceae", "Lecythidaceae"),
+       limit = NULL,
+       verbose = TRUE,
+       save = TRUE,
+       dir = "results_topGen/",
+       filename = "Aristo_Bego_Lecythidaceae_search")
+```
+
+```{r, echo = FALSE, warning = FALSE}
+library(dplyr, warn.conflicts = FALSE)
+utils::data("angioGenera")
+family <- c("Begoniaceae", "Aristolochiaceae", "Lecythidaceae")
+
+genus <- angioGenera$genus[angioGenera$family %in% family]
+species_number <- angioGenera$species_number[angioGenera$family %in% family]
+family <- angioGenera$family[angioGenera$family %in% family]
+table <- data.frame(family, genus, species_number)
+res <- table %>% arrange(desc(table$species_number)) %>% group_by(family) %>% 
+  slice(1:10)
+
+knitr::kable(res,
+             row.names = FALSE,
+             align = 'c',
+             caption = "TABLE 1. A general `topGen` search to mining the top 
+             most species rich genera for some specific angiosperm 
+             families.")
+```
+
+\
+
+# Mining the top richest genera accross all angiosperm families
+
+To mine a global checklist of the top species-richest genera for all 
+families of flowering plants, including their associated species number, we 
+recommend to load the dataframe-formatted data object called `POWOcodes` that 
+comes associated with the __expowo__ package. The `POWOcodes` data 
+object already contains the URI addresses for all angiosperms families 
+recognized in the [POWO](https://powo.science.kew.org) database, so you just 
+need to call it to your R environment.\
+
+The example below shows how to mine all top most species-rich genera of
+flowering plants by using the vector of all angiosperm families, the associated 
+URI addresses stored in the `POWOcodes` object and the limit of 10 genera for 
+each family.\
+
+```{r, eval = FALSE}
+data(POWOcodes)
+
+topGen(POWOcodes$family,
+       limit = 10,
+       verbose = TRUE,
+       save = TRUE,
+       dir = "results_topGen/",
+       filename = "all_toprichest_angiosperm_genera")
+```
