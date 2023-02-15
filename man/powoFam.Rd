@@ -32,7 +32,7 @@ target botanical families of flowering plants available at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
-\dontrun{
+\donttest{
 library(expowo)
 
 powoFam(family = "Lecythidaceae",

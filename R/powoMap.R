@@ -98,7 +98,7 @@
 #' @seealso \code{\link{botdivmap}}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(expowo)
 #'
 #' mapspdist <- powoSpecies(family = "Lecythidaceae",

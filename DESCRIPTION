@@ -1,6 +1,6 @@
 Type: Package
 Package: expowo
-Title: An R Package for Mining Global Plant Diversity and Distribution Data
+Title: Data Mining of Plant Diversity and Distribution for R
 Version: 1.0
 Authors@R:
     c(person(given = "Debora",
@@ -14,7 +14,7 @@ Authors@R:
              email = "cardosobot@gmail.com",
              comment = c(ORCID = "0000-0001-7072-2656")))
 Maintainer: Debora Zuanny <deborazuanny@gmail.com>
-Description: Produces diversity estimates and species lists with associated global distribution for any angiosperm family and genus from Plants of the World Online database, by interacting with the source code of each plant taxon page, and creates global maps of species richness.
+Description: Produces diversity estimates and species lists with associated global distribution for any angiosperm family and genus from 'Plants of the World Online' database <https://powo.science.kew.org/>, by interacting with the source code of each plant taxon page, and creates global maps of species richness.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

@@ -94,7 +94,7 @@ groups within the input data can be produced automatically in a single run by
 just specifying a column name with the associated taxonomic classification.
 }
 \examples{
-\dontrun{
+\donttest{
 library(expowo)
 
 mapspdist <- powoSpecies(family = "Lecythidaceae",

@@ -49,7 +49,7 @@
 #' @seealso \code{\link{POWOcodes}}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(expowo)
 #'
 #' powoSpecies(family = "Lecythidaceae",
@@ -98,7 +98,7 @@ powoSpecies <- function(family,
   dir <- .arg_check_dir(dir)
 
   # Extracting the uri of each plant family using associated data POWOcodes
-  utils::data("POWOcodes")
+  utils::data("POWOcodes", package = "expowo")
   powo_codes_fam <- dplyr::filter(POWOcodes, family %in% .env$family)
 
   # POWO search for the genus URI in each family using auxiliary function

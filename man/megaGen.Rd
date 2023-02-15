@@ -39,7 +39,7 @@ a provided numeric value as the threshold to be considered mega-diverse.
 Frodin (2004) in Taxon suggests 500 species as the threshold.
 }
 \examples{
-\dontrun{
+\donttest{
 
 library(expowo)
 

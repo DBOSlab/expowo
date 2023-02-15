@@ -39,7 +39,7 @@ of all target species of flowering plants available at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
-\dontrun{
+\donttest{
 library(expowo)
 
 powoSpDist(family = "Lecythidaceae",

@@ -43,7 +43,7 @@ family at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
-\dontrun{
+\donttest{
 library(expowo)
 
 powoGenera(family = "Lecythidaceae",
