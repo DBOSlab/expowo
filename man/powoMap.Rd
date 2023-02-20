@@ -5,10 +5,11 @@
 \title{Create global maps of species richness}
 \usage{
 powoMap(inputdf = NULL,
-        botctrs = NULL,
+        botctrs = FALSE,
         distcol = NULL,
         taxclas = NULL,
         verbose = TRUE,
+        save = FALSE,
         vir_color = "viridis",
         bre_color = NULL,
         leg_title = "SR",
@@ -28,17 +29,21 @@ botanical regions are separated by a comma. This is, for example, the
 standard dataframe from the search results with the
 function \code{powoSpecies}.}
 
-\item{botctrs}{An object of class \code{sf data.frame} with botanical country
-division of the World. This object comes as the expowo's data package
-\code{\link{botdivmap}}.}
+\item{botctrs}{Logical. If \code{TRUE}, the species richness maps will be
+created according to the botanical country subdivisions of the world. Also, a
+WGSRPD folder including the level 3 shapefile and the associated Brummitt's
+(2001) book fully describing the World Geographical Scheme for Recording
+Plant Distributions will be downloaded into the working directory. If you do
+not remove this folder or rename any of the contents, then the function will
+not download the same folder again. The default is \code{FALSE}.}
 
 \item{distcol}{Column name with the full global distribution data for each
-species at country level or the level 3 of botanical subdivision of the
-\href{https://www.tdwg.org/standards/wgsrpd/}{World Geographical Scheme}
+species at political country level or the level 3 of botanical subdivision of
+the \href{https://www.tdwg.org/standards/wgsrpd/}{World Geographical Scheme}
 for Recording Plant Distributions. If the species distribution is given with
-botanical subdivisions, then you must also provide the World's botanical
-country divisions from the \code{\link{botdivmap}} data package in the
-argument \code{botctrs}.}
+botanical subdivisions, then you must also change the argument \code{botctrs}
+to \code{TRUE}. If the distribution is described only by political country
+names, then set \code{botctrs} to \code{FALSE}.}
 
 \item{taxclas}{A character vector with the column name for the corresponding
 taxonomic classification of each species in any higher taxonomic level. If
@@ -47,8 +52,11 @@ maps for every distinct group within the input data. The default is
 \code{NULL}, then the function will generate only one global species richness
 map for the entire input data.}
 
-\item{verbose}{Logical, if \code{FALSE}, the map creation steps will not be
+\item{verbose}{Logical. If \code{FALSE}, the map creation steps will not be
 printed in the console in full.}
+
+\item{save}{Logical. If \code{FALSE}, the global maps will not be saved
+on disk.}
 
 \item{vir_color}{A character vector with the name or code of any of the color
 palettes from \href{https://CRAN.R-project.org/package=viridis}{Viridis} package.}
@@ -80,18 +88,19 @@ Portable Document Format (.pdf), "tiff" to save in Tag Image File Format
 (.tiff) or "png" to save in Portable Network Graphics (.png).}
 }
 \value{
-Global map in .jpg format and saves the output on disk.
+One or a list of objects of class c("gg", "ggplot").
 }
 \description{
-Produces global-scale maps of species richness at country and
-botanical country levels. Despite being originally designed to create maps
-for all input data of any specified taxonomic group (genus or family) from
-the search results with \code{powoSpecies}, the function is also useful
-for any dataframe-formatted input data that has at least a column with
-species and one or two columns with associated distribution in the countries
-and/or botanical regions. Multiple richness maps for any different taxonomic
-groups within the input data can be produced automatically in a single run by
-just specifying a column name with the associated taxonomic classification.
+Produces global-scale maps of species richness at political
+country and botanical country levels. Despite being originally designed to
+create maps for all input data of any specified taxonomic group
+(genus or family) from the search results with \code{powoSpecies}, the
+function is also useful for any dataframe-formatted input data that has at
+least a column with species and one or two columns with associated
+distribution in the countries and/or botanical regions. Multiple richness
+maps for any different taxonomic groups within the input data can be produced
+automatically in a single run by just specifying a column name with the
+associated taxonomic classification.
 }
 \examples{
 \donttest{
@@ -101,16 +110,18 @@ mapspdist <- powoSpecies(family = "Lecythidaceae",
                          hybridspp = FALSE,
                          country = NULL,
                          verbose = TRUE,
-                         save = TRUE,
+                         save = FALSE,
                          dir = "results_powoSpecies/",
                          filename = "Lecythidaceae")
 
-# To create a map according to political countries
+# To create multiple maps for each genus within the input data according to
+# political countries.
 powoMap(inputdf = mapspdist,
-        botctrs = NULL,
+        botctrs = FALSE,
         distcol = "native_to_country",
         taxclas = "genus",
         verbose = FALSE,
+        save = FALSE,
         vir_color = "viridis",
         bre_color = NULL,
         leg_title = "SR",
@@ -119,13 +130,14 @@ powoMap(inputdf = mapspdist,
         filename = "global_richness_country_map",
         format = "jpg")
 
-# To create a map according to botanical countries subdivision
-data(botdivmap)
+# To create multiple maps for each genus within the input data according to
+# botanical country subdivisions.
 powoMap(inputdf = mapspdist,
-        botctrs = botdivmap,
+        botctrs = TRUE,
         distcol = "native_to_botanical_countries",
         taxclas = "genus",
         verbose = FALSE,
+        save = FALSE,
         vir_color = "viridis",
         bre_color = NULL,
         leg_title = "SR",
@@ -146,8 +158,6 @@ powoMap(inputdf = mapspdist,
 \code{\link{powoFam}}
 
 \code{\link{powoGenera}}
-
-\code{\link{botdivmap}}
 }
 \author{
 Debora Zuanny & Domingos Cardoso

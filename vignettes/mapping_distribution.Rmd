@@ -75,7 +75,7 @@ mapspdist <- powoSpecies(family = "Lecythidaceae",
                          hybridspp = FALSE,
                          country = NULL,
                          verbose = TRUE,
-                         save = TRUE,
+                         save = FALSE,
                          dir = "results_powoSpecies/",
                          filename = "Lecythidaceae_Cariniana")
 ```
@@ -111,10 +111,11 @@ The example below shows how to create the global distribution map of _Cariniana_
 
 ```{r, eval = FALSE}
 powoMap(inputdf = mapspdist,
-        botctrs = NULL,
+        botctrs = FALSE,
         distcol = "native_to_country",
         taxclas = "genus",
         verbose = FALSE,
+        save = FALSE,
         vir_color = "viridis",
         bre_color = NULL,
         leg_title = "SR",
@@ -135,23 +136,19 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Cariniana_viridi
 # 3. Creating global-scale map for one genus to show species richness at botanical country level
 
 To generate a global distribution map for one genus that show species richness 
-at botanical country level, run first `data(botdivmap)` to load the global map 
-in __sf data.frame__ format that comes associated with __expowo__ package. This
-resulting object has to be as input of the argument `botctrs` within the `powoMap` function. Then, use the previously generated `mapspdist` object as input data of the `powoMap` function and set the `distcol` argument as "native_to_botanical_countries".
-This is the very column of the dataframe-formatted `mapspdist` object that is
-associated to species distribution at botanical countries.\
+at botanical country level, adjust the argument `botctrs` within the `powoMap` function to TRUE. Then, use the previously generated `mapspdist` object as input data in `inputdf` and set the `distcol` argument to the name of the column with distribution according to botanical countries between quotation marks. This is the column of the dataframe-formatted `mapspdist` object or
+from an external spreadsheet.\
 
 The example below shows how to create the global distribution map of _Cariniana_'s species richness according to botanical subdivision and colored by the `viridis` palette of the __Viridis__ package. If you set up both the arguments `vir_color` and `bre_color` with any of the __Viridis__ and __RColorBrewer__ color palettes, then two maps colored respectively by these color vectors will be automatically generated. Different file formats and resolutions (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the arguments `format` and `dpi`.\
 
 
 ```{r, eval = FALSE}
-data(botdivmap)
-
 powoMap(inputdf = mapspdist,
-        botctrs = botdivmap,
+        botctrs = TRUE,
         distcol = "native_to_botanical_countries",
         taxclas = "genus",
         verbose = FALSE,
+        save = FALSE,
         vir_color = "viridis",
         bre_color = NULL,
         leg_title = "SR",
@@ -188,19 +185,18 @@ mapspdist <- powoSpecies(family = "Lecythidaceae",
 The example below uses the previously generated dataframe-formatted `mapspdist` 
 object as input data to `powoMap` function, with the `distcol` argument set as 
 "native_to_country", the `taxclas` argument set as `"family"`, the `vir_color` 
-argument set as "viridis", and the `bre_color` argument set as "Spectral", so as to automatically produce two __global distribution maps__ of Lecythidaceae's 
+argument set as "viridis", and the `bre_color` argument set as "Spectral", so as to automatically produce two __global distribution maps__ of all Lecythidaceae's 
 species richness at __country level__, which are distinctly colored by `Viridis` and `RColorBrewer` color palettes.\
 
 Note that if you had set here the `taxclas` as `"genus"`, then the `powoMap` function would have produced individual distribution maps of species richness for every single genus within Lecythidaceae, all of them being stored in the desired directory at `dir` argument.\
 
 ```{r, eval = FALSE}
-data(botdivmap)
-
 powoMap(inputdf = mapspdist,
-        botctrs = botdivmap,
+        botctrs = FALSE,
         distcol = "native_to_country",
         taxclas = "family",
         verbose = FALSE,
+        save = FALSE,
         vir_color = "viridis",
         bre_color = "Spectral",
         leg_title = "SR",
@@ -223,8 +219,7 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_Sp
 
 \
 \
-To create global maps of Lecythidaceae, change the argument `distcol` to  
-"native_to_botanical_countries", the `vir_color` argument to "viridis", and 
+To create global maps of Lecythidaceae according to botanical subdivision, change the argument `distcol` to  "native_to_botanical_countries", the `vir_color` argument to "viridis", and 
 the `bre_color` argument to "Spectral". This automatically produce two 
 global distribution maps of Lecythidaceae's species richness at botanical country-level, 
 which are distinctly colored by `Viridis` and `RColorBrewer` color palettes.\
@@ -232,13 +227,12 @@ which are distinctly colored by `Viridis` and `RColorBrewer` color palettes.\
 Note that if you had set here the `taxclas` as `"genus"`, then the `powoMap` function would have produced individual distribution maps of species richness for every single genus within Lecythidaceae, all of them being stored in the desired directory at `dir` argument.\
 
 ```{r, eval = FALSE}
-data(botdivmap)
-
 powoMap(inputdf = mapspdist,
-        botctrs = botdivmap,
+        botctrs = TRUE,
         distcol = "native_to_botanical_countries",
         taxclas = "family",
         verbose = FALSE,
+        save = FALSE,
         vir_color = "viridis",
         bre_color = "Spectral",
         leg_title = "SR",
@@ -269,5 +263,4 @@ and/or botanical regions. The species names must be binomial, and
 the country names must be written in full and separated by a comma and a space right after to the `powoMap` function works properly. The dataframe generated by our function `powoSpecies` can be used as a model to create this standard spreadsheet (see the examples above). 
 \
 
-To use your external dataset as an imported spreadsheet, you must provide the name of the object in the argument `inputdf`. The `powoMap` function also will need information about the taxon level to generate the maps. To do so, the user must provide the name of the correspondent column in the argument `taxclas` (e.g., `"family"`, `"genus"`). To indicate the column with the distribution, change the `distcol` argument. If the distribution is according to political country names (e.g., Brazil, Peru), you just have to write the name of the column with this data. Otherwise, if you need global maps according to the TDWG botanical subdivision level 3, you must indicate in which column this data (e.g., Brazil North, Peru) is stored and also change the argument `botctrs` from NULL to `botdivmap` - the name of our associated data package of botanical countries.
-
+To use your external dataset as an imported spreadsheet, you must provide the name of the object in the argument `inputdf`. The `powoMap` function also will need information about the taxon level to generate the maps. To do so, the user must provide the name of the correspondent column in the argument `taxclas` (e.g., `"family"`, `"genus"`). To indicate the column with the distribution, change the `distcol` argument. If the distribution is according to political country names (e.g., Brazil, Peru), you just have to write the name of the column with this data. Otherwise, if you need global maps according to the TDWG botanical subdivision level 3, you must indicate in which column this data (e.g., Brazil North, Peru) is stored and also change the argument `botctrs` from FALSE to TRUE.\

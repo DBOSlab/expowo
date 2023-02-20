@@ -9,7 +9,7 @@
 #'
 #' @usage
 #' powoGenera(family, genus = NULL, country = NULL,
-#'            verbose = TRUE, save = TRUE, dir, filename)
+#'            verbose = TRUE, save = FALSE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' is present in POWO.
@@ -36,7 +36,7 @@
 #' @param filename Name of the output file to be saved. The default is to
 #' create a file entitled **output**.
 #'
-#' @return Table in .csv format and saves the output on disk.
+#' @return Table in .csv format.
 #'
 #' @seealso \code{\link{megaGen}}
 #' @seealso \code{\link{topGen}}
@@ -50,7 +50,7 @@
 #'
 #' powoGenera(family = "Lecythidaceae",
 #'            verbose = TRUE,
-#'            save = TRUE,
+#'            save = FALSE,
 #'            dir = "results_powoGenera/",
 #'            filename = "Lecythidaceae")
 #'
@@ -58,7 +58,7 @@
 #'            genus = "Bertholletia",
 #'            country = c("Argentina", "Brazil", "French Guiana"),
 #'            verbose = TRUE,
-#'            save = TRUE,
+#'            save = FALSE,
 #'            dir = "results_powoGenera/",
 #'            filename = "Lecythidaceae")
 #'
@@ -70,7 +70,7 @@
 #'
 #' powoGenera(POWOcodes$family,
 #'            verbose = TRUE,
-#'            save = TRUE,
+#'            save = FALSE,
 #'            dir = "results_powoGenera/",
 #'            filename = "all_angiosperm_genera")
 #'}
@@ -87,7 +87,7 @@ powoGenera <- function(family,
                        genus = NULL,
                        country = NULL,
                        verbose = TRUE,
-                       save = TRUE,
+                       save = FALSE,
                        dir = "results_powoGenera/",
                        filename = "output") {
 
@@ -214,11 +214,7 @@ powoGenera <- function(family,
   }
 
   # Saving the dataframe if param save is TRUE.
-  if (save) {
-    # Create a new directory to save the results (spreadsheet in .csv format)
-    # with current date.
-    .save_df(dir, filename, df)
-  }
+    .save_df(save, dir, filename, df)
 
   return(df)
 

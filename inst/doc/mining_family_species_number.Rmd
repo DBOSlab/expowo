@@ -56,11 +56,11 @@ species number (excluding hybrid species) for the queried plant families.\
 The example below shows how to mine the total species number by defining a vector of three families: __Cabombaceae__, __Lecythidaceae__, and __Martyniaceae__. The resulting output (TABLE 1) is also saved directly in the specified directory __results_powoFam__.\
 
 ```{r, eval = FALSE}
-powoFam(family = c("Cabombaceae", "Lecythidaceae", "Martyniaceae"),
-        verbose = TRUE,
-        save = TRUE,
-        dir = "results_powoFam/",
-        filename = "Camb_Lecy_Martyniaceae_diversity")
+CLM <- powoFam(family = c("Cabombaceae", "Lecythidaceae", "Martyniaceae"),
+               verbose = TRUE,
+               save = FALSE,
+               dir = "results_powoFam/",
+               filename = "Camb_Lecy_Martyniaceae_diversity")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
@@ -95,9 +95,9 @@ in the `POWOcodes` object.\
 ```{r, eval = FALSE}
 utils::data(POWOcodes)
 
-powoFam(POWOcodes$family,
-        verbose = TRUE,
-        save = TRUE,
-        dir = "results_powoFam/",
-        filename = "all_angiosperms_species_number")
+ALL_fam <- powoFam(POWOcodes$family,
+                   verbose = TRUE,
+                   save = FALSE,
+                   dir = "results_powoFam/",
+                   filename = "all_angiosperms_species_number")
 ```

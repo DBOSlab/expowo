@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 Here in this article, we describe the data associated with `expowo` package that are helpful to enhance performance before and while mining the global diversity and distribution data.\
 
-There are four associated data package, all of which can be accessed and imported into the R environment by simply calling the `utils` function `data`. Below, we explain how to use the data package `POWOcodes`, `angioData`, `botregions` and `botdivmap`.\
+There are three associated data package, all of which can be accessed and imported into the R environment by simply calling the `utils` function `data`. Below, we explain how to use the data package `POWOcodes`, `angioData`, and `botregions`.\
 
 \
 
@@ -154,21 +154,3 @@ utils::data("botregions")
 ```
 
 \
-
-# `botdivmap` - A global map of botanical country subdivisions
-
-The `botdivmap` data package is a Sf dataframe containing a global-scale map of 
-botanical countries (level 3) according to the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for Recording Plant Distributions. 
-Besides the botanical country names and geometry, it also contains the codes for 
-the level 3, level 2 and level 1 of distribution data.\
-
-It was originally built using a custom script with functions from the packages 
-`rgdal`, `ggplot2` and `sf`. The `botdivmap` is also usefull internally with the
-`expowo`'s function `powoMap` when the user wants to plot native or introduced
-distribution of a species or genus according to botanical countries.\
-
-To call this associated data to the R environment, use the code below:\
-
-```{r, eval = FALSE}
-utils::data("botdivmap")
-```

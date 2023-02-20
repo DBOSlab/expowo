@@ -9,7 +9,7 @@
 #'
 #' @usage
 #' powoSpecies(family, genus = NULL, hybridspp = FALSE, country = NULL,
-#'             verbose = TRUE, save = TRUE, dir, filename)
+#'             verbose = TRUE, save = FALSE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families
 #' that is present in POWO.
@@ -40,7 +40,7 @@
 #' @param filename Name of the output file to be saved. The default is to
 #' create a file entitled **output**.
 #'
-#' @return Table in .csv format and saves the output on disk.
+#' @return Table in .csv format.
 #'
 #' @seealso \code{\link{megaGen}}
 #' @seealso \code{\link{topGen}}
@@ -56,7 +56,7 @@
 #'             hybridspp = FALSE,
 #'             country = c("Argentina", "Brazil", "French Guiana"),
 #'             verbose = TRUE,
-#'             save = TRUE,
+#'             save = FALSE,
 #'             dir = "results_powoSpecies/",
 #'             filename = "Lecythidaceae")
 #'
@@ -69,7 +69,7 @@
 #' powoSpecies(POWOcodes$family,
 #'             hybridspp = TRUE,
 #'             verbose = TRUE,
-#'             save = TRUE,
+#'             save = FALSE,
 #'             dir = "results_powoSpecies/",
 #'             filename = "all_angiosperm_species")
 #'}
@@ -87,7 +87,7 @@ powoSpecies <- function(family,
                         hybridspp = FALSE,
                         country = NULL,
                         verbose = TRUE,
-                        save = TRUE,
+                        save = FALSE,
                         dir = "results_powoSpecies/",
                         filename = "output") {
 
@@ -345,12 +345,7 @@ powoSpecies <- function(family,
   }
 
   # Saving the dataframe if param save is TRUE.
-  if (save) {
-    # Create a new directory to save the results (spreadsheet in .csv format)
-    # with current date.
-    .save_df(dir, filename, df)
-  }
-
+  .save_df(save, dir, filename, df)
 
   return(df)
 

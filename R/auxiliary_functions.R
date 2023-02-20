@@ -4,7 +4,10 @@
 
 #_______________________________________________________________________________
 # Function to save the results in CSV format in an specific directory
-.save_df <- function (dir, filename, df) {
+.save_df <- function (save, dir, filename, df) {
+
+  # Saving the dataframe if param save is TRUE.
+  if (save) {
   # Create a new directory to save the results with current date
   # If there is no directory... make one!
   todaydate <- format(Sys.time(), "%d%b%Y")
@@ -24,6 +27,7 @@
                      sep = ",",
                      row.names = FALSE,
                      col.names = TRUE)
+  }
 }
 
 

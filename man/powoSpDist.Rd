@@ -5,7 +5,7 @@
 \title{Extract list of species distribution from POWO}
 \usage{
 powoSpDist(family, species = NULL,
-            verbose = TRUE, save = TRUE, dir, filename)
+            verbose = TRUE, save = FALSE, dir, filename)
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families
@@ -31,7 +31,7 @@ results will be saved within a subfolder named by the current date.}
 a file entitled \strong{output}.}
 }
 \value{
-Table in .csv format and saves the output on disk.
+Table in .csv format.
 }
 \description{
 Produces a CSV file listing the geographical distribution
@@ -45,7 +45,7 @@ library(expowo)
 powoSpDist(family = "Lecythidaceae",
            species = "Lecythis pisonis",
            verbose = TRUE,
-           save = TRUE,
+           save = FALSE,
            dir = "results_powoSpDist/",
            filename = "L_pisonis")
 
@@ -56,7 +56,7 @@ data(POWOcodes)
 
 powoSpDist(POWOcodes$family,
            verbose = TRUE,
-           save = TRUE,
+           save = FALSE,
            dir = "results_powoSpDist/",
            filename = "all_angiosperm_species_dist")
 }

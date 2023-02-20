@@ -56,12 +56,12 @@ performed a search for three plant families using a threshold of 500 species,
 but the output only contains results for **Aristolochia** and **Begonia** of __Aristolochiaceae__ and __Begoniaceae__ families.\
 
 ```{r, eval = FALSE}
-megaGen(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
-        thld = 500,
-        verbose = TRUE,
-        save = TRUE,
-        dir = "results_megaGen/",
-        filename = "Arist_Begon_Martyniaceae_search")
+ABM <- megaGen(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
+               thld = 500,
+               verbose = TRUE,
+               save = FALSE,
+               dir = "results_megaGen/",
+               filename = "Arist_Begon_Martyniaceae_search")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
@@ -103,10 +103,10 @@ associated URI addresses stored in the `POWOcodes` object.\
 ```{r, eval = FALSE}
 data(POWOcodes)
 
-megaGen(POWOcodes$family,
-        thld = 500,
-        verbose = TRUE,
-        save = TRUE,
-        dir = "results_megaGen/",
-        filename = "all_megadiverse_angiosperm_genera")
+ALL_megaGen <- megaGen(POWOcodes$family,
+                       thld = 500,
+                       verbose = TRUE,
+                       save = FALSE,
+                       dir = "results_megaGen/",
+                       filename = "all_megadiverse_angiosperm_genera")
 ```

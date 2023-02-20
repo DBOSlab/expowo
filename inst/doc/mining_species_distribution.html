@@ -385,12 +385,12 @@ vector of two species. The output shown here (a table) is simplified by
 removing the family and distribution according to botanical subdivision
 columns.<br />
 </p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">powoSpDist</span>(<span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;Begoniaceae&quot;</span>, <span class="st">&quot;Lecythidaceae&quot;</span>),</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">species =</span> <span class="fu">c</span>(<span class="st">&quot;Hillebrandia sandwicensis&quot;</span>, <span class="st">&quot;Lecythis pisonis&quot;</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">save =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">dir =</span> <span class="st">&quot;results_powoSpDist/&quot;</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">filename =</span> <span class="st">&quot;Begoniaceae_Lecythidaceae&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>BL_dist <span class="ot">&lt;-</span> <span class="fu">powoSpDist</span>(<span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;Begoniaceae&quot;</span>, <span class="st">&quot;Lecythidaceae&quot;</span>),</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">species =</span> <span class="fu">c</span>(<span class="st">&quot;Hillebrandia sandwicensis&quot;</span>, <span class="st">&quot;Lecythis pisonis&quot;</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">dir =</span> <span class="st">&quot;results_powoSpDist/&quot;</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">filename =</span> <span class="st">&quot;Begoniaceae_Lecythidaceae&quot;</span>)</span></code></pre></div>
 <table>
 <caption>TABLE 1. A general <code>powoSpDist</code> search for mining
 distribution of two angiosperm species.</caption>
@@ -460,12 +460,12 @@ families.<br />
 </p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(POWOcodes)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">powoSpDist</span>(POWOcodes<span class="sc">$</span>family,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">species =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">save =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">dir =</span> <span class="st">&quot;results_powoSpDist/&quot;</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_distribution&quot;</span>)</span></code></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ALL_dist <span class="ot">&lt;-</span> <span class="fu">powoSpDist</span>(POWOcodes<span class="sc">$</span>family,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">species =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;results_powoSpDist/&quot;</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_distribution&quot;</span>)</span></code></pre></div>
 </div>
 
 

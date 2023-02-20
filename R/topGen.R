@@ -7,7 +7,7 @@
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
-#' topGen(family, limit, verbose = TRUE, save = TRUE, dir, filename)
+#' topGen(family, limit, verbose = TRUE, save = FALSE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' is present in POWO.
@@ -19,7 +19,8 @@
 #' @param verbose Logical, if \code{FALSE}, the search results will not be
 #' printed in the console in full.
 #'
-#' @param save Logical, if \code{FALSE}, the search results will not be saved.
+#' @param save Logical, if \code{FALSE}, the search results will not be saved on
+#' disk.
 #'
 #' @param dir Pathway to the computer's directory, where the file will be saved
 #' provided that the argument \code{save} is set up in \code{TRUE}. The default
@@ -29,7 +30,7 @@
 #' @param filename Name of the output file to be saved. The default is to create
 #'  a file entitled **output**.
 #'
-#' @return Table in .csv format that is saved on disk.
+#' @return Table in .csv format.
 #'
 #' @seealso \code{\link{POWOcodes}}
 #'
@@ -40,7 +41,7 @@
 #' topGen(family = "Lecythidaceae",
 #'        limit = 10,
 #'        verbose = TRUE,
-#'        save = TRUE,
+#'        save = FALSE,
 #'        dir = "results_topGen/",
 #'        filename = "Lecythidaceae")
 #'
@@ -53,7 +54,7 @@
 #' topGen(POWOcodes$family,
 #'        limit = 10,
 #'        verbose = TRUE,
-#'        save = TRUE,
+#'        save = FALSE,
 #'        dir = "results_topGen/",
 #'        filename = "topdiverse_plant_genera")
 #' }
@@ -69,7 +70,7 @@
 topGen <- function(family,
                    limit = NULL,
                    verbose = TRUE,
-                   save = TRUE,
+                   save = FALSE,
                    dir = "results_topGen/",
                    filename = "output") {
 
@@ -111,12 +112,8 @@ topGen <- function(family,
     slice(1:limit)                        # the top richest genera.
 
 
-  # Saving the dataframe if param save is TRUE
-  if (save) {
-    # Create a new directory to save the results (spreadsheet in .csv format)
-    # with current date.
-    .save_df(dir, filename, df)
-  }
+  # Saving the dataframe if param save is TRUE.
+  .save_df(save, dir, filename, df)
 
   return(df)
 }

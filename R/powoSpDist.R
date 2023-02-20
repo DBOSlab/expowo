@@ -8,7 +8,7 @@
 #'
 #' @usage
 #' powoSpDist(family, species = NULL,
-#'             verbose = TRUE, save = TRUE, dir, filename)
+#'             verbose = TRUE, save = FALSE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families
 #' that is present in POWO.
@@ -32,7 +32,7 @@
 #' @param filename Name of the output file to be saved. The default is to create
 #'  a file entitled **output**.
 #'
-#' @return Table in .csv format and saves the output on disk.
+#' @return Table in .csv format.
 #'
 #' @seealso \code{\link{POWOcodes}}
 #'
@@ -43,7 +43,7 @@
 #' powoSpDist(family = "Lecythidaceae",
 #'            species = "Lecythis pisonis",
 #'            verbose = TRUE,
-#'            save = TRUE,
+#'            save = FALSE,
 #'            dir = "results_powoSpDist/",
 #'            filename = "L_pisonis")
 #'
@@ -54,7 +54,7 @@
 #'
 #' powoSpDist(POWOcodes$family,
 #'            verbose = TRUE,
-#'            save = TRUE,
+#'            save = FALSE,
 #'            dir = "results_powoSpDist/",
 #'            filename = "all_angiosperm_species_dist")
 #'}
@@ -70,7 +70,7 @@
 powoSpDist <- function(family,
                        species = NULL,
                        verbose = TRUE,
-                       save = TRUE,
+                       save = FALSE,
                        dir = "results_powoSpDist/",
                        filename = "output") {
 
@@ -209,11 +209,7 @@ powoSpDist <- function(family,
 
 
   # Saving the dataframe if param save is TRUE.
-  if (save) {
-    # Create a new directory to save the results (spreadsheet in .csv format)
-    # with current date.
-    .save_df(dir, filename, df)
-  }
+  .save_df(save, dir, filename, df)
 
   return(df)
 

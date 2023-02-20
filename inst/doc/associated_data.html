@@ -354,11 +354,11 @@ font-size: 1em;
 before and while mining the global diversity and distribution
 data.<br />
 </p>
-<p>There are four associated data package, all of which can be accessed
+<p>There are three associated data package, all of which can be accessed
 and imported into the R environment by simply calling the
 <code>utils</code> function <code>data</code>. Below, we explain how to
-use the data package <code>POWOcodes</code>, <code>angioData</code>,
-<code>botregions</code> and <code>botdivmap</code>.<br />
+use the data package <code>POWOcodes</code>, <code>angioData</code>, and
+<code>botregions</code>.<br />
 </p>
 <p><br />
 </p>
@@ -908,27 +908,6 @@ below:<br />
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;botregions&quot;</span>)</span></code></pre></div>
 <p><br />
 </p>
-</div>
-<div id="botdivmap---a-global-map-of-botanical-country-subdivisions" class="section level1">
-<h1><code>botdivmap</code> - A global map of botanical country
-subdivisions</h1>
-<p>The <code>botdivmap</code> data package is a Sf dataframe containing
-a global-scale map of botanical countries (level 3) according to the <a href="https://www.tdwg.org/standards/wgsrpd/">World Geographical
-Scheme</a> for Recording Plant Distributions. Besides the botanical
-country names and geometry, it also contains the codes for the level 3,
-level 2 and level 1 of distribution data.<br />
-</p>
-<p>It was originally built using a custom script with functions from the
-packages <code>rgdal</code>, <code>ggplot2</code> and <code>sf</code>.
-The <code>botdivmap</code> is also usefull internally with the
-<code>expowo</code>’s function <code>powoMap</code> when the user wants
-to plot native or introduced distribution of a species or genus
-according to botanical countries.<br />
-</p>
-<p>To call this associated data to the R environment, use the code
-below:<br />
-</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;botdivmap&quot;</span>)</span></code></pre></div>
 </div>
 
 

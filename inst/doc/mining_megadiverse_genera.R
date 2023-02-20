@@ -8,12 +8,12 @@ knitr::opts_chunk$set(
 library(expowo)
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  megaGen(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
-#          thld = 500,
-#          verbose = TRUE,
-#          save = TRUE,
-#          dir = "results_megaGen/",
-#          filename = "Arist_Begon_Martyniaceae_search")
+#  ABM <- megaGen(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
+#                 thld = 500,
+#                 verbose = TRUE,
+#                 save = FALSE,
+#                 dir = "results_megaGen/",
+#                 filename = "Arist_Begon_Martyniaceae_search")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
 utils::data("angioGenera")
@@ -37,10 +37,10 @@ knitr::kable(res,
 ## ---- eval = FALSE------------------------------------------------------------
 #  data(POWOcodes)
 #  
-#  megaGen(POWOcodes$family,
-#          thld = 500,
-#          verbose = TRUE,
-#          save = TRUE,
-#          dir = "results_megaGen/",
-#          filename = "all_megadiverse_angiosperm_genera")
+#  ALL_megaGen <- megaGen(POWOcodes$family,
+#                         thld = 500,
+#                         verbose = TRUE,
+#                         save = FALSE,
+#                         dir = "results_megaGen/",
+#                         filename = "all_megadiverse_angiosperm_genera")
 

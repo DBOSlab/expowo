@@ -4,7 +4,7 @@
 \alias{topGen}
 \title{Extract the top most species-rich genera}
 \usage{
-topGen(family, limit, verbose = TRUE, save = TRUE, dir, filename)
+topGen(family, limit, verbose = TRUE, save = FALSE, dir, filename)
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
@@ -17,7 +17,8 @@ function will select the top ten genera.}
 \item{verbose}{Logical, if \code{FALSE}, the search results will not be
 printed in the console in full.}
 
-\item{save}{Logical, if \code{FALSE}, the search results will not be saved.}
+\item{save}{Logical, if \code{FALSE}, the search results will not be saved on
+disk.}
 
 \item{dir}{Pathway to the computer's directory, where the file will be saved
 provided that the argument \code{save} is set up in \code{TRUE}. The default
@@ -28,7 +29,7 @@ will be saved within a subfolder named by the current date.}
 a file entitled \strong{output}.}
 }
 \value{
-Table in .csv format that is saved on disk.
+Table in .csv format.
 }
 \description{
 Produces a CSV file listing the top most diverse genera
@@ -42,7 +43,7 @@ library(expowo)
 topGen(family = "Lecythidaceae",
        limit = 10,
        verbose = TRUE,
-       save = TRUE,
+       save = FALSE,
        dir = "results_topGen/",
        filename = "Lecythidaceae")
 
@@ -55,7 +56,7 @@ data(POWOcodes)
 topGen(POWOcodes$family,
        limit = 10,
        verbose = TRUE,
-       save = TRUE,
+       save = FALSE,
        dir = "results_topGen/",
        filename = "topdiverse_plant_genera")
 }

@@ -13,7 +13,7 @@ library(expowo)
 #                           hybridspp = FALSE,
 #                           country = NULL,
 #                           verbose = TRUE,
-#                           save = TRUE,
+#                           save = FALSE,
 #                           dir = "results_powoSpecies/",
 #                           filename = "Lecythidaceae_Cariniana")
 
@@ -34,10 +34,11 @@ knitr::kable(df[-c( 2, 3, 5, 6, 7, 10, 11, 13)],
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  powoMap(inputdf = mapspdist,
-#          botctrs = NULL,
+#          botctrs = FALSE,
 #          distcol = "native_to_country",
 #          taxclas = "genus",
 #          verbose = FALSE,
+#          save = FALSE,
 #          vir_color = "viridis",
 #          bre_color = NULL,
 #          leg_title = "SR",
@@ -51,13 +52,12 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Cariniana_viridi
                         dpi = 300)
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  data(botdivmap)
-#  
 #  powoMap(inputdf = mapspdist,
-#          botctrs = botdivmap,
+#          botctrs = TRUE,
 #          distcol = "native_to_botanical_countries",
 #          taxclas = "genus",
 #          verbose = FALSE,
+#          save = FALSE,
 #          vir_color = "viridis",
 #          bre_color = NULL,
 #          leg_title = "SR",
@@ -80,13 +80,12 @@ knitr::include_graphics("figures/global_richness_botcountry_map_SR_Cariniana_vir
 #                           filename = "Lecythidaceae")
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  data(botdivmap)
-#  
 #  powoMap(inputdf = mapspdist,
-#          botctrs = botdivmap,
+#          botctrs = FALSE,
 #          distcol = "native_to_country",
 #          taxclas = "family",
 #          verbose = FALSE,
+#          save = FALSE,
 #          vir_color = "viridis",
 #          bre_color = "Spectral",
 #          leg_title = "SR",
@@ -102,13 +101,12 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_vi
 knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_Spectral.png", dpi = 300)
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  data(botdivmap)
-#  
 #  powoMap(inputdf = mapspdist,
-#          botctrs = botdivmap,
+#          botctrs = TRUE,
 #          distcol = "native_to_botanical_countries",
 #          taxclas = "family",
 #          verbose = FALSE,
+#          save = FALSE,
 #          vir_color = "viridis",
 #          bre_color = "Spectral",
 #          leg_title = "SR",

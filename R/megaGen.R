@@ -9,7 +9,7 @@
 #' Frodin (2004) in Taxon suggests 500 species as the threshold.
 #'
 #' @usage
-#' megaGen(family, thld = NULL, verbose = TRUE, save = TRUE, dir, filename)
+#' megaGen(family, thld = NULL, verbose = TRUE, save = FALSE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' is present in POWO.
@@ -32,7 +32,7 @@
 #' @param filename Name of the output file to be saved. The default is to create
 #' a file entitled **output**.
 #'
-#' @return Table in .csv format that is saved on disk.
+#' @return Table in .csv format.
 #'
 #' @seealso \code{\link{POWOcodes}}
 #'
@@ -44,7 +44,7 @@
 #' megaGen(family = "Lecythidaceae",
 #'         thld = 500,
 #'         verbose = TRUE,
-#'         save = TRUE,
+#'         save = FALSE,
 #'         dir = "results_megaGen/",
 #'         filename = "Lecythidaceae")
 #'
@@ -56,7 +56,7 @@
 #' megaGen(POWOcodes$family,
 #'         thld = 500,
 #'         verbose = TRUE,
-#'         save = TRUE,
+#'         save = FALSE,
 #'         dir = "results_megaGen/",
 #'         filename = "megadiverse_plant_genera")
 #'}
@@ -72,7 +72,7 @@
 megaGen <- function(family,
                     thld = NULL,
                     verbose = TRUE,
-                    save = TRUE,
+                    save = FALSE,
                     dir = "results_megaGen/",
                     filename = "output") {
 
@@ -113,12 +113,8 @@ megaGen <- function(family,
                       "powo_uri") %>%
     filter(df$species_number >= thld)
 
-  # Saving the dataframe if param save is TRUE
-  if (save) {
-    # Create a new directory to save the results (spreadsheet in .csv format)
-    # with current date.
-    .save_df(dir, filename, df)
-  }
+  # Saving the dataframe if param save is TRUE.
+  .save_df(save, dir, filename, df)
 
   return(df)
 }

@@ -61,7 +61,7 @@ of families. The output shown here (TABLE 1) is a simplified version, where we h
 res <- powoSpecies(family = c("Cabombaceae", "Martyniaceae"),
                    hybridspp = FALSE,
                    verbose = TRUE,
-                   save = TRUE,
+                   save = FALSE,
                    dir = "results_powoSpecies/",
                    filename = "Cabom_Martyniaceae_search")
 ```
@@ -91,13 +91,13 @@ are not recorded in any of the specified vector of country, i.e. __Brazil__ or
 __Colombia__.\
 
 ```{r, eval = FALSE}
-powoSpecies(family = c("Aristolochiaceae", "Cabombaceae", "Martyniaceae"),
-            hybridspp = FALSE,
-            country = c("Brazil", "Colombia"),
-            verbose = TRUE,
-            save = F,
-            dir = "results_powoSpecies/",
-            filename = "country_constrained_search")
+ACM <- powoSpecies(family = c("Aristolochiaceae", "Cabombaceae", "Martyniaceae"),
+                   hybridspp = FALSE,
+                   country = c("Brazil", "Colombia"),
+                   verbose = FALSE,
+                   save = FALSE,
+                   dir = "results_powoSpecies/",
+                   filename = "country_constrained_search")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
@@ -128,14 +128,14 @@ because ***Proboscidea*** does not occur in any of the provided list of countrie
 i.e. __Argentina__, __French Guiana__, or __Brazil__.\
 
 ```{r, eval = FALSE}
-powoSpecies(family = c("Martyniaceae", "Cabombaceae"),
-            genus = c("Proboscidea", "Cabomba"),
-            hybridspp = FALSE,
-            country = c("Argentina", "French Guiana", "Brazil"),
-            verbose = TRUE,
-            save = F,
-            dir = "results_powoSpecies/",
-            filename = "country_and_genus_constrained_search")
+MC <- powoSpecies(family = c("Martyniaceae", "Cabombaceae"),
+                  genus = c("Proboscidea", "Cabomba"),
+                  hybridspp = FALSE,
+                  country = c("Argentina", "French Guiana", "Brazil"),
+                  verbose = TRUE,
+                  save = FALSE,
+                  dir = "results_powoSpecies/",
+                  filename = "country_and_genus_constrained_search")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
@@ -168,10 +168,10 @@ associated URI addresses stored in the `POWOcodes` object.\
 ```{r, eval = FALSE}
 utils::data("POWOcodes")
 
-powoSpecies(POWOcodes$family,
-            hybridspp = TRUE,
-            verbose = TRUE,
-            save = TRUE,
-            dir = "results_powoSpecies/",
-            filename = "all_angiosperm_species")
+ALL_sp <- powoSpecies(POWOcodes$family,
+                      hybridspp = TRUE,
+                      verbose = TRUE,
+                      save = FALSE,
+                      dir = "results_powoSpecies/",
+                      filename = "all_angiosperm_species")
 ```

@@ -4,7 +4,7 @@
 \alias{powoFam}
 \title{Extract species number of any plant family from POWO}
 \usage{
-powoFam(family, verbose = TRUE, save = TRUE, dir, filename)
+powoFam(family, verbose = TRUE, save = FALSE, dir, filename)
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
@@ -13,7 +13,8 @@ is present in POWO.}
 \item{verbose}{Logical, if \code{FALSE}, the search results will not be
 printed in the console in full.}
 
-\item{save}{Logical, if \code{FALSE}, the search results will not be saved.}
+\item{save}{Logical, if \code{FALSE}, the search results will not be saved on
+disk.}
 
 \item{dir}{Pathway to the computer's directory, where the file will be saved
 provided that the argument \code{save} is set up in \code{TRUE}. The default
@@ -24,7 +25,7 @@ will be saved within a subfolder named by the current date.}
 a file entitled \strong{output}.}
 }
 \value{
-Table in .csv format that is saved on disk.
+Table in .csv format.
 }
 \description{
 Produces a CSV file listing the number of species within the
@@ -37,7 +38,7 @@ library(expowo)
 
 powoFam(family = "Lecythidaceae",
         verbose = TRUE,
-        save = TRUE,
+        save = FALSE,
         dir = "results_powoFam/",
         filename = "Lecythidaceae")
 
@@ -48,7 +49,7 @@ data(POWOcodes)
 
 powoFam(POWOcodes$family,
         verbose = TRUE,
-        save = TRUE,
+        save = FALSE,
         dir = "results_powoFam/",
         filename = "all_angiosperms_species_number")
 }

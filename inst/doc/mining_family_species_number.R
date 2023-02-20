@@ -8,11 +8,11 @@ knitr::opts_chunk$set(
 library(expowo)
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  powoFam(family = c("Cabombaceae", "Lecythidaceae", "Martyniaceae"),
-#          verbose = TRUE,
-#          save = TRUE,
-#          dir = "results_powoFam/",
-#          filename = "Camb_Lecy_Martyniaceae_diversity")
+#  CLM <- powoFam(family = c("Cabombaceae", "Lecythidaceae", "Martyniaceae"),
+#                 verbose = TRUE,
+#                 save = FALSE,
+#                 dir = "results_powoFam/",
+#                 filename = "Camb_Lecy_Martyniaceae_diversity")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
 utils::data("angioData")
@@ -33,9 +33,9 @@ knitr::kable(res,
 ## ---- eval = FALSE------------------------------------------------------------
 #  utils::data(POWOcodes)
 #  
-#  powoFam(POWOcodes$family,
-#          verbose = TRUE,
-#          save = TRUE,
-#          dir = "results_powoFam/",
-#          filename = "all_angiosperms_species_number")
+#  ALL_fam <- powoFam(POWOcodes$family,
+#                     verbose = TRUE,
+#                     save = FALSE,
+#                     dir = "results_powoFam/",
+#                     filename = "all_angiosperms_species_number")
 

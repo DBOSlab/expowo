@@ -8,11 +8,11 @@ knitr::opts_chunk$set(
 library(expowo)
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  powoGenera(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
-#             verbose = FALSE,
-#             save = TRUE,
-#             dir = "results_powoGenera/",
-#             filename = "Arist_Begon_Martyniaceae_search")
+#  ABM <- powoGenera(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
+#                    verbose = FALSE,
+#                    save = FALSE,
+#                    dir = "results_powoGenera/",
+#                    filename = "Arist_Begon_Martyniaceae_search")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
 utils::data("POWOcodes")
@@ -29,19 +29,21 @@ knitr::kable(res[-c(7:10)],
 ## ---- eval = FALSE------------------------------------------------------------
 #  data(POWOcodes)
 #  
-#  powoGenera(POWOcodes$family,
-#             verbose = TRUE,
-#             save = TRUE,
-#             dir = "results_powoGenera/",
-#             filename = "all_angiosperm_genera")
+#  ALL_gen <- powoGenera(POWOcodes$family,
+#                        verbose = TRUE,
+#                        save = FALSE,
+#                        dir = "results_powoGenera/",
+#                        filename = "all_angiosperm_genera")
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  powoGenera(family = c("Aristolochiaceae", "Dipterocarpaceae", "Fagaceae", "Lecythidaceae"),
-#             country = c("Argentina", "Brazil", "French Guiana"),
-#             verbose = FALSE,
-#             save = TRUE,
-#             dir = "results_powoGenera/",
-#             filename = "country_constrained_search")
+#  ADFL <- powoGenera(family =
+#                       c("Aristolochiaceae", "Dipterocarpaceae", "Fagaceae", "Lecythidaceae"),
+#                     country = c("Argentina", "Brazil", "French Guiana"),
+#                     verbose = FALSE,
+#                     save = FALSE,
+#                     dir = "results_powoGenera/",
+#                     filename = "country_constrained_search")
+#  
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
 res <- powoGenera(family = c("Aristolochiaceae", "Dipterocarpaceae", "Fagaceae", "Lecythidaceae"),
@@ -55,13 +57,13 @@ knitr::kable(res[-c(7:12)],
              country vector.")
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  powoGenera(family = c("Aristolochiaceae", "Lecythidaceae"),
-#             genus = c("Asarum", "Bertholletia"),
-#             country = c("Brazil", "French Guiana"),
-#             verbose = TRUE,
-#             save = TRUE,
-#             dir = "results_powoGenera/",
-#             filename = "genus_country_constrained_search")
+#  AL <- powoGenera(family = c("Aristolochiaceae", "Lecythidaceae"),
+#                   genus = c("Asarum", "Bertholletia"),
+#                   country = c("Brazil", "French Guiana"),
+#                   verbose = TRUE,
+#                   save = FALSE,
+#                   dir = "results_powoGenera/",
+#                   filename = "genus_country_constrained_search")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
 res <- powoGenera(family = c("Aristolochiaceae", "Lecythidaceae"),

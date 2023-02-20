@@ -8,12 +8,12 @@ knitr::opts_chunk$set(
 library(expowo)
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  topGen(family = c("Aristolochiaceae", "Begoniaceae", "Lecythidaceae"),
-#         limit = NULL,
-#         verbose = TRUE,
-#         save = TRUE,
-#         dir = "results_topGen/",
-#         filename = "Aristo_Bego_Lecythidaceae_search")
+#  ABL_top <- topGen(family = c("Aristolochiaceae", "Begoniaceae", "Lecythidaceae"),
+#                    limit = NULL,
+#                    verbose = TRUE,
+#                    save = FALSE,
+#                    dir = "results_topGen/",
+#                    filename = "Aristo_Bego_Lecythidaceae_search")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
 library(dplyr, warn.conflicts = FALSE)
@@ -37,10 +37,10 @@ knitr::kable(res,
 ## ---- eval = FALSE------------------------------------------------------------
 #  data(POWOcodes)
 #  
-#  topGen(POWOcodes$family,
-#         limit = 10,
-#         verbose = TRUE,
-#         save = TRUE,
-#         dir = "results_topGen/",
-#         filename = "all_toprichest_angiosperm_genera")
+#  ALL_top <- topGen(POWOcodes$family,
+#                    limit = 10,
+#                    verbose = TRUE,
+#                    save = FALSE,
+#                    dir = "results_topGen/",
+#                    filename = "all_toprichest_angiosperm_genera")
 

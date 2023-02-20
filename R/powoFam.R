@@ -7,7 +7,7 @@
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
-#' powoFam(family, verbose = TRUE, save = TRUE, dir, filename)
+#' powoFam(family, verbose = TRUE, save = FALSE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' is present in POWO.
@@ -15,7 +15,8 @@
 #' @param verbose Logical, if \code{FALSE}, the search results will not be
 #' printed in the console in full.
 #'
-#' @param save Logical, if \code{FALSE}, the search results will not be saved.
+#' @param save Logical, if \code{FALSE}, the search results will not be saved on
+#' disk.
 #'
 #' @param dir Pathway to the computer's directory, where the file will be saved
 #' provided that the argument \code{save} is set up in \code{TRUE}. The default
@@ -25,7 +26,7 @@
 #' @param filename Name of the output file to be saved. The default is to create
 #'  a file entitled **output**.
 #'
-#' @return Table in .csv format that is saved on disk.
+#' @return Table in .csv format.
 #'
 #' @seealso \code{\link{megaGen}}
 #' @seealso \code{\link{topGen}}
@@ -40,7 +41,7 @@
 #'
 #' powoFam(family = "Lecythidaceae",
 #'         verbose = TRUE,
-#'         save = TRUE,
+#'         save = FALSE,
 #'         dir = "results_powoFam/",
 #'         filename = "Lecythidaceae")
 #'
@@ -51,7 +52,7 @@
 #'
 #' powoFam(POWOcodes$family,
 #'         verbose = TRUE,
-#'         save = TRUE,
+#'         save = FALSE,
 #'         dir = "results_powoFam/",
 #'         filename = "all_angiosperms_species_number")
 #' }
@@ -65,7 +66,7 @@
 
 powoFam <- function(family,
                     verbose = TRUE,
-                    save = TRUE,
+                    save = FALSE,
                     dir = "results_powoFam/",
                     filename = "output") {
 
@@ -107,11 +108,7 @@ powoFam <- function(family,
 
 
   # Saving the dataframe if param save is TRUE.
-  if (save) {
-    # Create a new directory to save the results (spreadsheet in .csv format)
-    # with current date.
-    .save_df(dir, filename, df)
-  }
+  .save_df(save, dir, filename, df)
 
   return(df)
 }

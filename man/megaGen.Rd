@@ -4,7 +4,7 @@
 \alias{megaGen}
 \title{Extract megadiverse genera from POWO}
 \usage{
-megaGen(family, thld = NULL, verbose = TRUE, save = TRUE, dir, filename)
+megaGen(family, thld = NULL, verbose = TRUE, save = FALSE, dir, filename)
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
@@ -29,7 +29,7 @@ will be saved within a subfolder named by the current date.}
 a file entitled \strong{output}.}
 }
 \value{
-Table in .csv format that is saved on disk.
+Table in .csv format.
 }
 \description{
 Produces a CSV file listing all mega-diverse genera for
@@ -46,7 +46,7 @@ library(expowo)
 megaGen(family = "Lecythidaceae",
         thld = 500,
         verbose = TRUE,
-        save = TRUE,
+        save = FALSE,
         dir = "results_megaGen/",
         filename = "Lecythidaceae")
 
@@ -58,7 +58,7 @@ data(POWOcodes)
 megaGen(POWOcodes$family,
         thld = 500,
         verbose = TRUE,
-        save = TRUE,
+        save = FALSE,
         dir = "results_megaGen/",
         filename = "megadiverse_plant_genera")
 }

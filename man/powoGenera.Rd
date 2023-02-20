@@ -5,7 +5,7 @@
 \title{Extract list of genera from POWO}
 \usage{
 powoGenera(family, genus = NULL, country = NULL,
-           verbose = TRUE, save = TRUE, dir, filename)
+           verbose = TRUE, save = FALSE, dir, filename)
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
@@ -34,7 +34,7 @@ results will be saved within a subfolder named by the current date.}
 create a file entitled \strong{output}.}
 }
 \value{
-Table in .csv format and saves the output on disk.
+Table in .csv format.
 }
 \description{
 Produces a CSV file listing all genera with associated number
@@ -48,7 +48,7 @@ library(expowo)
 
 powoGenera(family = "Lecythidaceae",
            verbose = TRUE,
-           save = TRUE,
+           save = FALSE,
            dir = "results_powoGenera/",
            filename = "Lecythidaceae")
 
@@ -56,7 +56,7 @@ powoGenera(family = "Lecythidaceae",
            genus = "Bertholletia",
            country = c("Argentina", "Brazil", "French Guiana"),
            verbose = TRUE,
-           save = TRUE,
+           save = FALSE,
            dir = "results_powoGenera/",
            filename = "Lecythidaceae")
 
@@ -68,7 +68,7 @@ data(POWOcodes)
 
 powoGenera(POWOcodes$family,
            verbose = TRUE,
-           save = TRUE,
+           save = FALSE,
            dir = "results_powoGenera/",
            filename = "all_angiosperm_genera")
 }

@@ -2,23 +2,24 @@
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description Produces global-scale maps of species richness at country and
-#' botanical country levels. Despite being originally designed to create maps
-#' for all input data of any specified taxonomic group (genus or family) from
-#' the search results with \code{powoSpecies}, the function is also useful
-#' for any dataframe-formatted input data that has at least a column with
-#' species and one or two columns with associated distribution in the countries
-#' and/or botanical regions. Multiple richness maps for any different taxonomic
-#' groups within the input data can be produced automatically in a single run by
-#' just specifying a column name with the associated taxonomic classification.
-#'
+#' @description Produces global-scale maps of species richness at political
+#' country and botanical country levels. Despite being originally designed to
+#' create maps for all input data of any specified taxonomic group
+#' (genus or family) from the search results with \code{powoSpecies}, the
+#' function is also useful for any dataframe-formatted input data that has at
+#' least a column with species and one or two columns with associated
+#' distribution in the countries and/or botanical regions. Multiple richness
+#' maps for any different taxonomic groups within the input data can be produced
+#' automatically in a single run by just specifying a column name with the
+#' associated taxonomic classification.
 #'
 #' @usage
 #' powoMap(inputdf = NULL,
-#'         botctrs = NULL,
+#'         botctrs = FALSE,
 #'         distcol = NULL,
 #'         taxclas = NULL,
 #'         verbose = TRUE,
+#'         save = FALSE,
 #'         vir_color = "viridis",
 #'         bre_color = NULL,
 #'         leg_title = "SR",
@@ -37,17 +38,21 @@
 #' standard dataframe from the search results with the
 #' function \code{powoSpecies}.
 #'
-#' @param botctrs An object of class \code{sf data.frame} with botanical country
-#' division of the World. This object comes as the expowo's data package
-#' \code{\link{botdivmap}}.
+#' @param botctrs Logical. If \code{TRUE}, the species richness maps will be
+#' created according to the botanical country subdivisions of the world. Also, a
+#' WGSRPD folder including the level 3 shapefile and the associated Brummitt's
+#' (2001) book fully describing the World Geographical Scheme for Recording
+#' Plant Distributions will be downloaded into the working directory. If you do
+#' not remove this folder or rename any of the contents, then the function will
+#' not download the same folder again. The default is \code{FALSE}.
 #'
 #' @param distcol Column name with the full global distribution data for each
-#' species at country level or the level 3 of botanical subdivision of the
-#' [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/)
+#' species at political country level or the level 3 of botanical subdivision of
+#' the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/)
 #' for Recording Plant Distributions. If the species distribution is given with
-#' botanical subdivisions, then you must also provide the World's botanical
-#' country divisions from the \code{\link{botdivmap}} data package in the
-#' argument \code{botctrs}.
+#' botanical subdivisions, then you must also change the argument \code{botctrs}
+#' to \code{TRUE}. If the distribution is described only by political country
+#' names, then set \code{botctrs} to \code{FALSE}.
 #'
 #' @param taxclas A character vector with the column name for the corresponding
 #' taxonomic classification of each species in any higher taxonomic level. If
@@ -56,8 +61,11 @@
 #' \code{NULL}, then the function will generate only one global species richness
 #' map for the entire input data.
 #'
-#' @param verbose Logical, if \code{FALSE}, the map creation steps will not be
+#' @param verbose Logical. If \code{FALSE}, the map creation steps will not be
 #' printed in the console in full.
+#'
+#' @param save Logical. If \code{FALSE}, the global maps will not be saved
+#' on disk.
 #'
 #' @param vir_color A character vector with the name or code of any of the color
 #' palettes from [Viridis](https://CRAN.R-project.org/package=viridis) package.
@@ -88,14 +96,13 @@
 #' Portable Document Format (.pdf), "tiff" to save in Tag Image File Format
 #' (.tiff) or "png" to save in Portable Network Graphics (.png).
 #'
-#' @return Global map in .jpg format and saves the output on disk.
+#' @return One or a list of objects of class c("gg", "ggplot").
 #'
 #' @seealso \code{\link{megaGen}}
 #' @seealso \code{\link{topGen}}
 #' @seealso \code{\link{powoSpecies}}
 #' @seealso \code{\link{powoFam}}
 #' @seealso \code{\link{powoGenera}}
-#' @seealso \code{\link{botdivmap}}
 #'
 #' @examples
 #' \donttest{
@@ -105,16 +112,18 @@
 #'                          hybridspp = FALSE,
 #'                          country = NULL,
 #'                          verbose = TRUE,
-#'                          save = TRUE,
+#'                          save = FALSE,
 #'                          dir = "results_powoSpecies/",
 #'                          filename = "Lecythidaceae")
 #'
-#' # To create a map according to political countries
+#' # To create multiple maps for each genus within the input data according to
+#' # political countries.
 #' powoMap(inputdf = mapspdist,
-#'         botctrs = NULL,
+#'         botctrs = FALSE,
 #'         distcol = "native_to_country",
 #'         taxclas = "genus",
 #'         verbose = FALSE,
+#'         save = FALSE,
 #'         vir_color = "viridis",
 #'         bre_color = NULL,
 #'         leg_title = "SR",
@@ -123,13 +132,14 @@
 #'         filename = "global_richness_country_map",
 #'         format = "jpg")
 #'
-#' # To create a map according to botanical countries subdivision
-#' data(botdivmap)
+#' # To create multiple maps for each genus within the input data according to
+#' # botanical country subdivisions.
 #' powoMap(inputdf = mapspdist,
-#'         botctrs = botdivmap,
+#'         botctrs = TRUE,
 #'         distcol = "native_to_botanical_countries",
 #'         taxclas = "genus",
 #'         verbose = FALSE,
+#'         save = FALSE,
 #'         vir_color = "viridis",
 #'         bre_color = NULL,
 #'         leg_title = "SR",
@@ -145,15 +155,17 @@
 #' @importFrom rnaturalearth ne_countries
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom sp merge
+#' @importFrom utils download.file unzip
 #'
 #' @export
 #'
 
 powoMap <- function(inputdf = NULL,
-                    botctrs = NULL,
+                    botctrs = FALSE,
                     distcol = NULL,
                     taxclas = NULL,
                     verbose = TRUE,
+                    save = FALSE,
                     vir_color = "viridis",
                     bre_color = NULL,
                     leg_title = "SR",
@@ -162,32 +174,62 @@ powoMap <- function(inputdf = NULL,
                     filename = "global_richness_map",
                     format = "jpg") {
 
-  # data check
+  # Data check
   inputdf <- .arg_check_data_map(inputdf, distcol)
 
-  # format check
+  # Format check
   .arg_check_format(format)
 
-  # dir check
+  # Dir check
   dir <- .arg_check_dir(dir)
 
-  # Load global map
-  if (!is.null(botctrs)) {
-    world <- botctrs
+  # If the distribution is according to botanical subdivisions, load global map
+  if (botctrs) {
+
+    # Check if the folder /WGSRPD is in any directory within the user's
+    # machine.
+    if (!dir.exists("WGSRPD")){
+
+      # Download level 3 of botanical subdivision of the World
+      download.file(url = "https://github.com/tdwg/wgsrpd/archive/master.zip",
+                    destfile = "wgsrpd-master.zip")
+
+      # Unzip the .zip file
+      unzip(zipfile = "wgsrpd-master.zip")
+      unlink("wgsrpd-master.zip")
+
+      file.rename("wgsrpd-master", "WGSRPD")
+      file.rename("WGSRPD/109-488-1-ED", "WGSRPD/book-1-ED")
+      file.rename("WGSRPD/README.md", "WGSRPD/README.txt")
+
+      # Remove the downloaded .zip file and other folders which will not be
+      # useful for plotting.
+      unlink("WGSRPD/level1", recursive = TRUE)
+      unlink("WGSRPD/level2", recursive = TRUE)
+      unlink("WGSRPD/level4", recursive = TRUE)
+      unlink("WGSRPD/geojson", recursive = TRUE)
+    }
+
+    # Read the botanical divisions map of level 3
+    world <- sp::st_read("WGSRPD/level3/level3.shp")
+
+    # Remove Antarctica
+    world <- world[!world$LEVEL3_NAM %in% "Antarctica", ]
+
   } else {
+    # Load the world map from rnaturalearth
     world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
 
     # Remove Antarctica
     world <- world[!world$admin %in% "Antarctica", ]
 
-    # Replacing the the non-ASCII char in the world$admin column
+    # Replacing the non-ASCII char in the world$admin column
     world$admin <- gsub("\u00e7", "c", world$admin)
 
     # Harmonize country names between the species list and World sf dataframe
     inputdf <- .harmonize_ctr(inputdf, distcol)
   }
 
-  #_____________________________________________________________________________
   # Create a new directory to save the plot
   # If there is no directory... make one!
   todaydate <- format(Sys.time(), "%d%b%Y")
@@ -200,8 +242,7 @@ powoMap <- function(inputdf = NULL,
     dir.create(folder_name)
   }
 
-  #_____________________________________________________________________________
-  # Plotting the global map of species richness for an entire group, i.e. all
+  # Making the global map of species richness for an entire group, i.e. all
   # data available in the table (e.g. all families, a single family or a genus).
   if (is.null(taxclas)) {
 
@@ -209,24 +250,30 @@ powoMap <- function(inputdf = NULL,
     # subdivisions.
     world_plant <- .get_SR(inputdf, world, botctrs, distcol, verbose)
 
-    # Making the maps and saving them as figures in different styles.
-    .save_map(world_plant,
-              taxclas,
-              tax = NULL,
-              leg_title,
-              vir_color,
-              bre_color,
-              fullname,
-              dpi,
-              format)
+    p <- .ggplot_map(world_plant,
+                     taxclas,
+                     tax = NULL,
+                     leg_title,
+                     vir_color,
+                     bre_color)
+    if (save) {
+      .save_map(p,
+                taxclas,
+                tax = NULL,
+                verbose,
+                vir_color,
+                bre_color,
+                fullname,
+                dpi,
+                format)
+    }
+    return(p)
   }
 
-  #_____________________________________________________________________________
-  # Plotting figures for each taxonomic group separately
+  # Making the maps for each taxonomic group separately
   if (!is.null(taxclas)) {
-
     tax <- unique(inputdf[[taxclas]])
-
+    p <- list()
     for (i in seq_along(tax)) {
       temp_inputdf <- inputdf %>% filter(inputdf[[taxclas]] == tax[i])
 
@@ -234,19 +281,27 @@ powoMap <- function(inputdf = NULL,
       # subdivisions.
       world_plant <- .get_SR(temp_inputdf, world, botctrs, distcol, verbose)
 
-      # Making the maps and saving them as figures in different styles.
-      .save_map(world_plant,
-                taxclas,
-                tax = tax[i],
-                leg_title,
-                vir_color,
-                bre_color,
-                fullname,
-                dpi,
-                format)
+      p[[i]] <- .ggplot_map(world_plant,
+                            taxclas,
+                            tax = tax[i],
+                            leg_title,
+                            vir_color,
+                            bre_color)
+      if (save) {
+        .save_map(p[[i]],
+                  taxclas,
+                  tax = tax[i],
+                  verbose,
+                  vir_color,
+                  bre_color,
+                  fullname,
+                  dpi,
+                  format)
+      }
     }
+    names(p) <- tax
+    return(p)
   }
-
 }
 
 
@@ -269,7 +324,7 @@ powoMap <- function(inputdf = NULL,
 
   # Merge the plant distribution data with global map
   world_plant <- sp::merge(world, country_data,
-                           by.x = ifelse(is.null(botctrs),
+                           by.x = ifelse(!botctrs,
                                          "admin", "LEVEL3_NAM"),
                            by.y = "countries",
                            all.x = T)
@@ -281,21 +336,17 @@ powoMap <- function(inputdf = NULL,
 }
 
 
-# Auxiliary function to create maps and saving them as figures in different
-# styles.
-.save_map <- function(world_plant,
-                      taxclas,
-                      tax,
-                      leg_title,
-                      vir_color,
-                      bre_color,
-                      fullname,
-                      dpi,
-                      format) {
+# Auxiliary function to create maps in different styles.
+.ggplot_map <- function(world_plant,
+                        taxclas,
+                        tax = NULL,
+                        leg_title,
+                        vir_color,
+                        bre_color) {
 
   p <- ggplot2::ggplot(data = world_plant) +
     ggplot2::geom_sf(ggplot2::aes(fill = world_plant$Freq), colour = "gray60",
-                     size = 0.1) +
+                     size = 0.05) +
     ggplot2::theme_void() +
     ggplot2::theme(legend.position = c(0.2, 0.3),
                    legend.title = ggplot2::element_text(size = 6,
@@ -311,10 +362,7 @@ powoMap <- function(inputdf = NULL,
                                              option = vir_color,
                                              limits = c(0,
                                                         max(world_plant$Freq)))
-      ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_",
-                                                       vir_color, ".",
-                                                       format), fullname),
-                      p, dpi = dpi, bg = "white")
+      return(p)
     }
     if (!is.null(bre_color)) {
       bre_col <- rev(RColorBrewer::brewer.pal(9, bre_color))
@@ -323,14 +371,12 @@ powoMap <- function(inputdf = NULL,
                                       colours = bre_col,
                                       limits = c(0, max(world_plant$Freq)),
                                       na.value =  "white")
-      ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_",
-                                                       bre_color, ".",
-                                                       format), fullname),
-                      p, dpi = dpi, bg = "white")
+      return(p)
     }
   }
 
-  # Create the leg title of scale bar and modify taxonomic name to italic and bold
+  # Create the leg title of scale bar and modify taxonomic name to italic and
+  # bold.
   if (!is.null(taxclas)) {
     tax_name <- eval(bquote(expression(bolditalic(.(tax))~bold(.(leg_title)))))
     if (!is.null(vir_color)) {
@@ -339,10 +385,7 @@ powoMap <- function(inputdf = NULL,
                                       direction = -1,
                                       option = vir_color,
                                       limits = c(0, max(world_plant$Freq)))
-      ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_", tax,
-                                                       "_", vir_color, ".",
-                                                       format), fullname),
-                      p, dpi = dpi, bg = "white")
+      return(p)
     }
     if (!is.null(bre_color)) {
       bre_col <- rev(RColorBrewer::brewer.pal(9, bre_color))
@@ -351,10 +394,72 @@ powoMap <- function(inputdf = NULL,
                                       colours = bre_col,
                                       limits = c(0, max(world_plant$Freq)),
                                       na.value = "white")
+      return(p)
+    }
+  }
+}
+
+
+# Auxiliary function to save the maps
+.save_map <- function(p,
+                      taxclas,
+                      tax,
+                      verbose,
+                      vir_color,
+                      bre_color,
+                      fullname,
+                      dpi,
+                      format) {
+
+  # Set dimensions of the images to be saved
+  w = 9.26
+  h = 4.85
+  u = "in"
+
+  if (is.null(taxclas)) {
+    if (!is.null(vir_color)) {
+      if(verbose) {
+        cat(paste("Saving", w, "x", h, u, "image\n"))
+      }
+      ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_",
+                                                       vir_color, ".",
+                                                       format), fullname),
+                      p, dpi = dpi, bg = "white",
+                      width = w, height = h, units = u)
+    }
+    if (!is.null(bre_color)) {
+      if(verbose) {
+        cat(paste("Saving", w, "x", h, u, "image\n"))
+      }
+      ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_",
+                                                       bre_color, ".",
+                                                       format), fullname),
+                      p, dpi = dpi, bg = "white",
+                      width = w, height = h, units = u)
+    }
+  }
+
+  # Create the leg title of scale bar and modify taxonomic name to italic and bold
+  if (!is.null(taxclas)) {
+    if (!is.null(vir_color)) {
+      if(verbose) {
+        cat(paste("Saving", w, "x", h, u, "image\n"))
+      }
+      ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_", tax,
+                                                       "_", vir_color, ".",
+                                                       format), fullname),
+                      p, dpi = dpi, bg = "white",
+                      width = w, height = h, units = u)
+    }
+    if (!is.null(bre_color)) {
+      if(verbose) {
+        cat(paste("Saving", w, "x", h, u, "image\n"))
+      }
       ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_", tax,
                                                        "_", bre_color, ".",
                                                        format), fullname),
-                      p, dpi = dpi, bg = "white")
+                      p, dpi = dpi, bg = "white",
+                      width = w, height = h, units = u)
     }
   }
 }
