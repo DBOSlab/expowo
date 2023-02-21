@@ -13,5 +13,5 @@ data(POWOcodes)
 \description{
 Complete list of the APG IV-based families of flowering plants
 and associated URI addresses as retrieved with the function get_pow of the
-package \href{https://docs.ropensci.org/taxize/index.html}{taxize}
+package \href{https://docs.ropensci.org/taxize/index.html}{taxize}.
 }

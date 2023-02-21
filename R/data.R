@@ -6,7 +6,7 @@
 #'
 #' @description Complete list of the APG IV-based families of flowering plants
 #' and associated URI addresses as retrieved with the function get_pow of the
-#' package [taxize](https://docs.ropensci.org/taxize/index.html)
+#' package [taxize](https://docs.ropensci.org/taxize/index.html).
 #'
 #' @format Dataframe
 #'
@@ -21,7 +21,7 @@ NULL
 #' @title Countries and associated classification of botanical divisions
 #'
 #' @description Countries and associated classification of botanical divisions
-#' according to the World Geographical Scheme for Recording Plant Distributions
+#' according to the World Geographical Scheme for Recording Plant Distributions.
 #'
 #' @format Table in .csv format
 #'
@@ -40,7 +40,7 @@ NULL
 #' @description Complete list of all non-hybrid species and
 #' associated data of Lecythidaceae, Aristolochiaceae, Martyniaceae,
 #' Cabombaceae and Begoniaceae as retrieved from POWO database with the function
-#' \code{powoSpecies} of this package gathered at Nov 2022
+#' \code{powoSpecies} of this package gathered at Nov 2022.
 #'
 #' @format Dataframe
 #'
@@ -57,7 +57,7 @@ NULL
 #' @description Complete list of all genera and associated data of
 #' Lecythidaceae, Aristolochiaceae, Begoniaceae, Martyniaceae, Dipterocarpaceae,
 #' and Fagaceae as retrieved from POWO database with the function
-#' \code{powoGenera} of this package gathered at Jan 2023
+#' \code{powoGenera} of this package gathered at Jan 2023.
 #'
 #' @format Dataframe
 #'

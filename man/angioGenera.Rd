@@ -14,5 +14,5 @@ data(angioGenera)
 Complete list of all genera and associated data of
 Lecythidaceae, Aristolochiaceae, Begoniaceae, Martyniaceae, Dipterocarpaceae,
 and Fagaceae as retrieved from POWO database with the function
-\code{powoGenera} of this package gathered at Jan 2023
+\code{powoGenera} of this package gathered at Jan 2023.
 }

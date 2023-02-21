@@ -9,14 +9,14 @@
 #' Frodin (2004) in Taxon suggests 500 species as the threshold.
 #'
 #' @usage
-#' megaGen(family, thld = NULL, verbose = TRUE, save = FALSE, dir, filename)
+#' megaGen(family, thld = 500, verbose = TRUE, save = FALSE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' is present in POWO.
 #'
 #' @param thld A defined threshold of species number for a genus to be
-#' considered megadiverse. If no threshold number is provided, the function will
-#' consider a value of 500 based on Frodin (2004) in Taxon.
+#' considered megadiverse. The default value is 500 based on Frodin (2004) in
+#' Taxon.
 #'
 #' @param verbose Logical, if \code{FALSE}, the search results will not be
 #' printed in the console in full.
@@ -70,7 +70,7 @@
 #'
 
 megaGen <- function(family,
-                    thld = NULL,
+                    thld = 500,
                     verbose = TRUE,
                     save = FALSE,
                     dir = "results_megaGen/",

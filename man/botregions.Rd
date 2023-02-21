@@ -15,5 +15,5 @@ data(botregions)
 }
 \description{
 Countries and associated classification of botanical divisions
-according to the World Geographical Scheme for Recording Plant Distributions
+according to the World Geographical Scheme for Recording Plant Distributions.
 }
