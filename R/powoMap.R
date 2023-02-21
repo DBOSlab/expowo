@@ -155,6 +155,7 @@
 #' @importFrom rnaturalearth ne_countries
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom sp merge
+#' @importFrom sf st_read
 #' @importFrom utils download.file unzip
 #'
 #' @export
@@ -211,7 +212,7 @@ powoMap <- function(inputdf = NULL,
     }
 
     # Read the botanical divisions map of level 3
-    world <- sp::st_read("WGSRPD/level3/level3.shp")
+    world <- sf::st_read("WGSRPD/level3/level3.shp")
 
     # Remove Antarctica
     world <- world[!world$LEVEL3_NAM %in% "Antarctica", ]

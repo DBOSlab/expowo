@@ -30,6 +30,7 @@ Imports:
     ggplot2,
     rnaturalearth,
     sp,
+    sf,
     utils
 Suggests:
     knitr,
