@@ -105,7 +105,7 @@
 #' @seealso \code{\link{powoGenera}}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(expowo)
 #'
 #' mapspdist <- powoSpecies(family = "Martyniaceae",

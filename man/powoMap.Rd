@@ -103,7 +103,7 @@ automatically in a single run by just specifying a column name with the
 associated taxonomic classification.
 }
 \examples{
-\donttest{
+\dontrun{
 library(expowo)
 
 mapspdist <- powoSpecies(family = "Martyniaceae",

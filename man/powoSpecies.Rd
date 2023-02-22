@@ -50,13 +50,13 @@ flowering plants at
 \donttest{
 library(expowo)
 
-powoSpecies(family = "Lecythidaceae",
+powoSpecies(family = "Martyniaceae",
             hybridspp = FALSE,
             country = c("Argentina", "Brazil", "French Guiana"),
             verbose = TRUE,
             save = FALSE,
             dir = "results_powoSpecies/",
-            filename = "Lecythidaceae")
+            filename = "Martyniaceae_spp")
 }
 
 }

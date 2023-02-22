@@ -43,7 +43,7 @@
 #'         verbose = TRUE,
 #'         save = FALSE,
 #'         dir = "results_powoFam/",
-#'         filename = "Lecythidaceae_sp_number")
+#'         filename = "Lecythidaceae_spp_number")
 #' }
 #'
 #' @importFrom data.table fwrite

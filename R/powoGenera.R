@@ -60,7 +60,7 @@
 #'            verbose = TRUE,
 #'            save = FALSE,
 #'            dir = "results_powoGenera/",
-#'            filename = "Lecythidaceae_bycountry")
+#'            filename = "Lecythidaceae_search")
 #'}
 #'
 #' @importFrom dplyr filter select
