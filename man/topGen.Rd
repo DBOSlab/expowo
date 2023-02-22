@@ -4,15 +4,15 @@
 \alias{topGen}
 \title{Extract the top most species-rich genera}
 \usage{
-topGen(family, limit, verbose = TRUE, save = FALSE, dir, filename)
+topGen(family, limit = 10, verbose = TRUE, save = FALSE, dir, filename)
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
 is present in POWO.}
 
-\item{limit}{A defined numerical limit of the most diverse genera to be
-selected within each plant family. If no limit number is provided, the
-function will select the top ten genera.}
+\item{limit}{A defined numerical value to limit the most diverse genera to be
+selected within each plant family. The default is to select the top ten
+richest genera.}
 
 \item{verbose}{Logical, if \code{FALSE}, the search results will not be
 printed in the console in full.}
@@ -45,20 +45,7 @@ topGen(family = "Lecythidaceae",
        verbose = TRUE,
        save = FALSE,
        dir = "results_topGen/",
-       filename = "Lecythidaceae")
-
-## Searching for the top most diverse genera
-## in any or all flowering plant families, by using
-## the family names within the POWOcodes data package.
-
-data(POWOcodes)
-
-topGen(POWOcodes$family,
-       limit = 10,
-       verbose = TRUE,
-       save = FALSE,
-       dir = "results_topGen/",
-       filename = "topdiverse_plant_genera")
+       filename = "Lecythidaceae_top_ten")
 }
 
 }

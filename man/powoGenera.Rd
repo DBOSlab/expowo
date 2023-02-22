@@ -50,7 +50,7 @@ powoGenera(family = "Lecythidaceae",
            verbose = TRUE,
            save = FALSE,
            dir = "results_powoGenera/",
-           filename = "Lecythidaceae")
+           filename = "Lecythidaceae_genera")
 
 powoGenera(family = "Lecythidaceae",
            genus = "Bertholletia",
@@ -58,19 +58,7 @@ powoGenera(family = "Lecythidaceae",
            verbose = TRUE,
            save = FALSE,
            dir = "results_powoGenera/",
-           filename = "Lecythidaceae")
-
-## Searching for all genera and associated species number and
-## global distribution in any or all angiosperm families,
-## by using the family names within the POWOcodes data package.
-
-data(POWOcodes)
-
-powoGenera(POWOcodes$family,
-           verbose = TRUE,
-           save = FALSE,
-           dir = "results_powoGenera/",
-           filename = "all_angiosperm_genera")
+           filename = "Lecythidaceae_bycountry")
 }
 
 }

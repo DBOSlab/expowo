@@ -7,14 +7,14 @@
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
-#' topGen(family, limit, verbose = TRUE, save = FALSE, dir, filename)
+#' topGen(family, limit = 10, verbose = TRUE, save = FALSE, dir, filename)
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' is present in POWO.
 #'
-#' @param limit A defined numerical limit of the most diverse genera to be
-#' selected within each plant family. If no limit number is provided, the
-#' function will select the top ten genera.
+#' @param limit A defined numerical value to limit the most diverse genera to be
+#' selected within each plant family. The default is to select the top ten
+#' richest genera.
 #'
 #' @param verbose Logical, if \code{FALSE}, the search results will not be
 #' printed in the console in full.
@@ -43,20 +43,7 @@
 #'        verbose = TRUE,
 #'        save = FALSE,
 #'        dir = "results_topGen/",
-#'        filename = "Lecythidaceae")
-#'
-#' ## Searching for the top most diverse genera
-#' ## in any or all flowering plant families, by using
-#' ## the family names within the POWOcodes data package.
-#'
-#' data(POWOcodes)
-#'
-#' topGen(POWOcodes$family,
-#'        limit = 10,
-#'        verbose = TRUE,
-#'        save = FALSE,
-#'        dir = "results_topGen/",
-#'        filename = "topdiverse_plant_genera")
+#'        filename = "Lecythidaceae_top_ten")
 #' }
 #'
 #' @importFrom dplyr arrange desc filter group_by select slice
@@ -68,7 +55,7 @@
 #'
 
 topGen <- function(family,
-                   limit = NULL,
+                   limit = 10,
                    verbose = TRUE,
                    save = FALSE,
                    dir = "results_topGen/",
@@ -78,7 +65,7 @@ topGen <- function(family,
   family <- .arg_check_family(family)
 
   # limit check
-  .arg_check_limit
+  .arg_check_limit(limit)
 
   # dir check
   dir <- .arg_check_dir(dir)

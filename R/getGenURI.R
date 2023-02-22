@@ -44,7 +44,7 @@ getGenURI <- function(powo_codes,
       if (any(!new_fam_name %in% powo_codes$family)) {
         print(paste("Searching genera now under", paste0(new_fam_name, "...")))
         new_powo_fam_uri <-
-          paste("http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:",
+          paste("https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:",
                 new_powo_fam_uri, sep = "")
 
         # Visiting POWO source page again for the accepted family name of an

@@ -43,24 +43,12 @@ Frodin (2004) in Taxon suggests 500 species as the threshold.
 
 library(expowo)
 
-megaGen(family = "Lecythidaceae",
+megaGen(family = "Cyperaceae",
         thld = 500,
         verbose = TRUE,
         save = FALSE,
         dir = "results_megaGen/",
-        filename = "Lecythidaceae")
-
-## Searching for all big angiosperm genera in any or all families,
-## by using the family names within the POWOcodes data package.
-
-data(POWOcodes)
-
-megaGen(POWOcodes$family,
-        thld = 500,
-        verbose = TRUE,
-        save = FALSE,
-        dir = "results_megaGen/",
-        filename = "megadiverse_plant_genera")
+        filename = "Cyperaceae_big_genera")
 }
 
 }

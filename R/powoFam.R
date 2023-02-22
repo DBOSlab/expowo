@@ -43,18 +43,7 @@
 #'         verbose = TRUE,
 #'         save = FALSE,
 #'         dir = "results_powoFam/",
-#'         filename = "Lecythidaceae")
-#'
-#' ## Searching for the species number of any or all flowering plant
-#' ## families, by using the family names within the POWOcodes data package.
-#'
-#' data(POWOcodes)
-#'
-#' powoFam(POWOcodes$family,
-#'         verbose = TRUE,
-#'         save = FALSE,
-#'         dir = "results_powoFam/",
-#'         filename = "all_angiosperms_species_number")
+#'         filename = "Lecythidaceae_sp_number")
 #' }
 #'
 #' @importFrom data.table fwrite

@@ -106,13 +106,13 @@ associated taxonomic classification.
 \donttest{
 library(expowo)
 
-mapspdist <- powoSpecies(family = "Lecythidaceae",
+mapspdist <- powoSpecies(family = "Martyniaceae",
                          hybridspp = FALSE,
                          country = NULL,
                          verbose = TRUE,
                          save = FALSE,
                          dir = "results_powoSpecies/",
-                         filename = "Lecythidaceae")
+                         filename = "Martyniaceae_spp")
 
 # To create multiple maps for each genus within the input data according to
 # political countries.

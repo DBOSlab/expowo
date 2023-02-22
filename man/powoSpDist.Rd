@@ -47,18 +47,7 @@ powoSpDist(family = "Lecythidaceae",
            verbose = TRUE,
            save = FALSE,
            dir = "results_powoSpDist/",
-           filename = "L_pisonis")
-
-## Searching for global distribution of species in any or all flowering
-## plant family using the associated POWOcodes data package.
-
-data(POWOcodes)
-
-powoSpDist(POWOcodes$family,
-           verbose = TRUE,
-           save = FALSE,
-           dir = "results_powoSpDist/",
-           filename = "all_angiosperm_species_dist")
+           filename = "L_pisonis_distribution")
 }
 
 }

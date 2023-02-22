@@ -57,19 +57,6 @@ powoSpecies(family = "Lecythidaceae",
             save = FALSE,
             dir = "results_powoSpecies/",
             filename = "Lecythidaceae")
-
-## Searching for all species and associated global distribution
-## in any or all flowering plant genera, by using the family name within the
-## POWOcodes data package.
-
-data(POWOcodes)
-
-powoSpecies(POWOcodes$family,
-            hybridspp = TRUE,
-            verbose = TRUE,
-            save = FALSE,
-            dir = "results_powoSpecies/",
-            filename = "all_angiosperm_species")
 }
 
 }
