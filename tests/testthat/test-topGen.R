@@ -1,5 +1,5 @@
-test_that("toptenGen works for one family with less than 10 genera", {
-  res_ex <- toptenGen("Begoniaceae",
+test_that("topGen works for one family with less than 10 genera", {
+  res_ex <- topGen("Begoniaceae",
                       verbose = FALSE,
                       save = FALSE)
 
@@ -8,8 +8,8 @@ test_that("toptenGen works for one family with less than 10 genera", {
   expect_equal(nrow(res_ex), 2)
 })
 
-test_that("toptenGen works for more than one family with less than 10 genera", {
-  res_ex <- toptenGen(c("Amborellaceae", "Begoniaceae"),
+test_that("topGen works for more than one family with less than 10 genera", {
+  res_ex <- topGen(c("Amborellaceae", "Begoniaceae"),
                       verbose = FALSE,
                       save = FALSE)
 
@@ -18,8 +18,8 @@ test_that("toptenGen works for more than one family with less than 10 genera", {
   expect_equal(nrow(res_ex), 3)
 })
 
-test_that("toptenGen works for one family with more than 10 genera", {
-  res_ex <- toptenGen("Lecythidaceae",
+test_that("topGen works for one family with more than 10 genera", {
+  res_ex <- topGen("Lecythidaceae",
                       verbose = FALSE,
                       save = FALSE)
 
@@ -28,8 +28,8 @@ test_that("toptenGen works for one family with more than 10 genera", {
   expect_equal(nrow(res_ex), 10)
 })
 
-test_that("toptenGen works for more than one family with more than 10 genera each", {
-  res_ex <- toptenGen(c("Capparaceae", "Lecythidaceae"),
+test_that("topGen works for more than one family with more than 10 genera each", {
+  res_ex <- topGen(c("Capparaceae", "Lecythidaceae"),
                       verbose = FALSE,
                       save = FALSE)
 

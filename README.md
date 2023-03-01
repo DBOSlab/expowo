@@ -2,6 +2,10 @@
   [![R-CMD-check](https://github.com/DBOSlab/expowo/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/DBOSlab/expowo/actions/workflows/R-CMD-check.yaml)
   <!-- badges: end -->
   
+  <!-- badges: start -->
+  [![Codecov test coverage](https://codecov.io/gh/DBOSlab/expowo/branch/master/graph/badge.svg)](https://app.codecov.io/gh/DBOSlab/expowo?branch=master)
+  <!-- badges: end -->
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # expowo <img src="man/figures/expowo.png" align="right" alt="" width="120" />
@@ -37,7 +41,18 @@ target="_blank">Mac OS / Windows</a>: choose the free version).
 
 ## Installation
 
-You can install the latest development version of **expowo** from
+
+You can install **expowo** from [CRAN](https://CRAN.R-project.org/package=expowo) by just running the following R code:
+
+``` r
+install.packages("expowo")
+```
+
+``` r
+library(expowo)
+```
+
+Otherwise, you can install the latest development version of **expowo** from
 [GitHub](https://github.com/) using the
 [devtools](https://github.com/r-lib/devtools) package with the following
 R code:
@@ -55,16 +70,7 @@ OBS.: To download the development version, you will need to have the
 [Git](https://git-scm.com/) software installed. And if your operating
 system is Microsoft Windows, you will also need to download the Rtools.
 
-Otherwise, you will be able to install **expowo** more easily when it is
-available on CRAN, by just running the following R code:
 
-``` r
-install.packages("expowo")
-```
-
-``` r
-library(expowo)
-```
 
 ## Usage
 
