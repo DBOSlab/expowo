@@ -7,6 +7,9 @@
     <loc>https://dboslab.github.io/expowo/articles/associated_data.html</loc>
   </url>
   <url>
+    <loc>https://dboslab.github.io/expowo/articles/data_package.html</loc>
+  </url>
+  <url>
     <loc>https://dboslab.github.io/expowo/articles/index.html</loc>
   </url>
   <url>
@@ -77,6 +80,9 @@
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/powoSpecies.html</loc>
+  </url>
+  <url>
+    <loc>https://dboslab.github.io/expowo/reference/saveCSV.html</loc>
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/topGen.html</loc>

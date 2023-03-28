@@ -1,4 +1,4 @@
-#' Extract list of species from POWO
+#' Extract list of species for any plant genus and family
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
@@ -8,37 +8,54 @@
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
-#' powoSpecies(family, genus = NULL, hybridspp = FALSE, country = NULL,
-#'             verbose = TRUE, save = FALSE, dir, filename)
+#' powoSpecies(family,
+#'             genus = NULL,
+#'             hybrid = FALSE,
+#'             synonyms = FALSE,
+#'             country = NULL,
+#'             verbose = TRUE,
+#'             rerun = FALSE,
+#'             save = FALSE,
+#'             dir = "results_powoSpecies",
+#'             filename = "output")
 #'
 #' @param family Either one family name or a vector of multiple families
 #' that is present in POWO.
 #'
 #' @param genus Either one genus name or a vector of multiple genera
-#' that are present in POWO. If any genus name is not provided, then the
+#' that is present in POWO. If any genus name is not provided, then the
 #' function will search any species from all accepted genera known for the
 #' target family.
 #'
-#' @param hybridspp Logical, if \code{TRUE}, the search results will include
+#' @param hybrid Logical, if \code{TRUE}, the search results will include
 #' hybrid species.
+#'
+#' @param synonyms Logical, if \code{TRUE}, the search results will include
+#' synonyms.
 #'
 #' @param country Either one country name or a vector of multiple countries.
 #' If country names are provided, then the function will return only the species
 #' that are native to such countries, according to POWO.
 #'
-#' @param verbose Logical, if \code{FALSE}, the search results will not be
-#' printed in the console in full.
+#' @param verbose Logical, if \code{FALSE}, a message showing each step during
+#' the POWO search will not be printed in the console in full.
 #'
-#' @param save Logical, if \code{FALSE}, the search results will not be saved
-#' on disk.
+#' @param rerun Logical, if \code{TRUE}, a previously stopped search will continue
+#' from where it left off, starting with the last retrieved taxon. Please ensure
+#' that the 'filename' argument exactly matches the name of the CSV file saved
+#' from the previous search, and that the previously saved CSV file is located
+#' within a subfolder named after the current date. If it is not, please rename
+#' the date subfolder accordingly."
+#'
+#' @param save Logical, if \code{TRUE}, the search results will be saved on disk.
 #'
 #' @param dir Pathway to the computer's directory, where the file will be saved
 #' provided that the argument \code{save} is set up in \code{TRUE}. The default
-#' is to create a directory named **results_powoSpecies** and the search
-#' results will be saved within a subfolder named by the current date.
+#' is to create a directory named **results_powoSpecies** and the search results
+#' will be saved within a subfolder named after the current date.
 #'
-#' @param filename Name of the output file to be saved. The default is to
-#' create a file entitled **output**.
+#' @param filename Name of the output file to be saved. The default is to create
+#' a file entitled **output**.
 #'
 #' @return Table in .csv format.
 #'
@@ -53,17 +70,19 @@
 #' library(expowo)
 #'
 #' powoSpecies(family = "Martyniaceae",
-#'             hybridspp = FALSE,
+#'             synonyms = TRUE,
 #'             country = c("Argentina", "Brazil", "French Guiana"),
-#'             verbose = TRUE,
-#'             save = FALSE,
-#'             dir = "results_powoSpecies/",
+#'             save = TRUE,
+#'             dir = "Martyniaceae_results_powoSpecies",
 #'             filename = "Martyniaceae_spp")
 #'}
 #'
 #' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
 #' @importFrom data.table fwrite
+#' @importFrom tibble add_row
+#' @importFrom flora remove.authors
+#' @importFrom R.utils countLines
 #' @importFrom utils data
 #'
 #' @export
@@ -71,11 +90,13 @@
 
 powoSpecies <- function(family,
                         genus = NULL,
-                        hybridspp = FALSE,
+                        hybrid = FALSE,
+                        synonyms = FALSE,
                         country = NULL,
                         verbose = TRUE,
+                        rerun = FALSE,
                         save = FALSE,
-                        dir = "results_powoSpecies/",
+                        dir = "results_powoSpecies",
                         filename = "output") {
 
   # family check for synonym
@@ -84,257 +105,76 @@ powoSpecies <- function(family,
   # dir check
   dir <- .arg_check_dir(dir)
 
-  # Extracting the uri of each plant family using associated data POWOcodes
-  utils::data("POWOcodes", package = "expowo")
-  powo_codes_fam <- dplyr::filter(POWOcodes, family %in% .env$family)
+  # Check 'rerun = FALSE' to ensure there is no previously saved CSV file
+  # with the same name as the current filename
+  .arg_check_run(dir, filename, rerun)
 
-  # POWO search for the genus URI in each family using auxiliary function
-  # getGenURI.
-  resGenera <- getGenURI(powo_codes_fam,
-                         genus = genus,
-                         verbose = verbose)
+  # rerun check
+  .arg_check_rerun(dir, filename, rerun)
 
-  powo_codes <- data.frame(family = resGenera$family,
-                           genus = resGenera$genus,
-                           uri = resGenera$powo_uri)
-  # POWO search for the list of accepted species in each genus of flowering
-  # plants.
-  powo_genus_uri <- list()
-  list_genus <- list()
-  for (i in seq_along(powo_codes$uri)) {
-    # Adding a pause 300 seconds of um pause every 500th search,
-    # because POWO website may crash when searching uninterruptedly.
-    if (i%%500 == 0) {
-      Sys.sleep(300)
-    }
-    # Adding a counter to identify each running search
-    if (verbose) {
-      print(paste0("Searching spp list of... ",
-                   powo_codes$genus[i], " ",
-                   powo_codes$family[i], " ",
-                   i, "/", length(powo_codes$family)))
-    }
+  # Search POWO for the genus URI within corresponding plant family
+  powo_codes <- .getgenURI(family = family,
+                           genus = genus,
+                           hybrid = hybrid,
+                           verbose = verbose)
 
-    powo_genus_uri[[i]] <- readLines(powo_codes$uri[i], encoding = "UTF-8",
-                                     warn = F)
-
-    temp <-
-      grepl("><a href[=]\"[/]taxon[/]urn[:]lsid[:]ipni[.]org[:]names[:]",
-                  powo_genus_uri[[i]])
-    powo_spp_uri <- powo_genus_uri[[i]][temp]
-
-    if (length(powo_spp_uri) == 0) {
-      powo_spp_uri = "unknown"
-    }
-
-    list_genus[[i]] <- data.frame(temp_spp_uri = powo_spp_uri,
-                                  family = powo_codes$family[i],
-                                  genus = powo_codes$genus[i],
-                                  species = NA,
-                                  taxon_name = NA,
-                                  authors = NA,
-                                  scientific_name = NA,
-                                  hybrid = NA,
-                                  kew_id = NA,
-                                  powo_uri = NA)
-
-    if (!"unknown" %in% powo_spp_uri) {
-
-      # Filling in each column
-      list_genus[[i]][["temp_spp_uri"]] <-
-        gsub(".*><a href[=]\"", "", list_genus[[i]][["temp_spp_uri"]])
-      list_genus[[i]][["powo_uri"]] <-
-        paste("http://www.plantsoftheworldonline.org",
-              gsub("\".+", "", list_genus[[i]][["temp_spp_uri"]]), sep = "")
-      list_genus[[i]][["kew_id"]] <-
-        gsub(".+[:]", "", list_genus[[i]][["powo_uri"]])
-
-      list_genus[[i]][["species"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "",
-                                           list_genus[[i]][["temp_spp_uri"]])
-      list_genus[[i]][["species"]] <- gsub(".*\\s", "",
-                                           list_genus[[i]][["species"]])
-
-      list_genus[[i]][["authors"]] <- gsub(".*em>", "",
-                                           list_genus[[i]][["temp_spp_uri"]])
-      list_genus[[i]][["authors"]] <- gsub("<.*", "",
-                                           list_genus[[i]][["authors"]])
-      list_genus[[i]][["authors"]] <- gsub("^\\s", "",
-                                           list_genus[[i]][["authors"]])
-      list_genus[[i]][["taxon_name"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "",
-                                              list_genus[[i]][["temp_spp_uri"]])
-      list_genus[[i]][["taxon_name"]] <- gsub(".*\\slang[=]'la'>|<[/]em>.*", "",
-                                              list_genus[[i]][["temp_spp_uri"]])
-      list_genus[[i]][["scientific_name"]] <-
-        paste(list_genus[[i]][["taxon_name"]], list_genus[[i]][["authors"]])
-
-
-
-      # Remove any possible generic synonym from the retrieved list
-      list_genus[[i]] <- list_genus[[i]][grepl("\\s",
-                                               list_genus[[i]]$taxon_name), ]
-    }
-
-    # Select specific columns of interest
-    list_genus[[i]] <- list_genus[[i]] %>% select("family", "genus", "species",
-                                                  "taxon_name","authors",
-                                                  "scientific_name","hybrid",
-                                                  "kew_id", "powo_uri")
-
-    # Replace hybrid symbol
-    list_genus[[i]]$taxon_name <- gsub("\u00D7", "x",
-                                       list_genus[[i]]$taxon_name)
-
-    # Identify hybrid species
-    tf <- grepl("[+]|\\sx\\s", list_genus[[i]]$taxon_name)
-    list_genus[[i]]$hybrid[tf] <- "yes"
-    list_genus[[i]]$hybrid[!tf] <- "no"
-
-    if (hybridspp == FALSE) {
-      list_genus[[i]] <- list_genus[[i]] %>%
-        filter(list_genus[[i]]$hybrid == "no") %>%
-        select(-"hybrid")
-    }
-
-  }
-  names(list_genus) <- powo_codes$genus
-
-  # Combining all dataframes from the list of each family/genus search
-  df <- list_genus[[1]]
-  if (length(list_genus) > 1) {
-    for (i in 2:length(list_genus)) {
-      df <- rbind(df, list_genus[[i]])
-    }
+  # Keep only taxa that were not retrieved in previously stopped run
+  if (rerun) {
+    last_gen <- .powo_rerun(powo_codes,
+                            sp_uri = FALSE,
+                            dir, filename)
+    pos <- which(powo_codes$genus %in% last_gen$genus):nrow(powo_codes)
+    powo_codes <- powo_codes[pos, ]
   }
 
-  # Extract distribution using auxiliary function getDist
-  df <- getDist(df,
-                listspp = FALSE,
-                verbose = verbose)
+  # Search POWO URI for all accepted species in each plant genus
+  df <- .getsppURI(powo_codes,
+                   splist = TRUE,
+                   hybrid = hybrid,
+                   verbose = verbose)
 
-
-  # Select specific columns of interest
-  if (hybridspp == FALSE) {
-    df <- df %>% select("family",
-                        "genus",
-                        "species",
-                        "taxon_name",
-                        "authors",
-                        "scientific_name",
-                        "publication",
-                        "native_to_country",
-                        "native_to_botanical_countries",
-                        "introduced_to_country",
-                        "introduced_to_botanical_countries",
-                        "kew_id",
-                        "powo_uri")
-  } else {
-    df <- df %>% select("family",
-                        "genus",
-                        "species",
-                        "taxon_name",
-                        "authors",
-                        "scientific_name",
-                        "publication",
-                        "hybrid",
-                        "native_to_country",
-                        "native_to_botanical_countries",
-                        "introduced_to_country",
-                        "introduced_to_botanical_countries",
-                        "kew_id",
-                        "powo_uri")
-
+  # Keep only taxa that were not retrieved in previously stopped run
+  if (rerun) {
+    df <- .powo_rerun(df,
+                      sp_uri = TRUE,
+                      dir, filename)
   }
 
-  # If a vector of country names is provided, then remove any species that do
-  # not occur in the given country. The temp vector is logical (TRUE or FALSE)
-  # and shows which species/row should be kept in the search given the provided
-  # country vector.
-  if (!is.null(country)) {
-    temp <- vector()
-    for (i in seq_along(df$native_to_country)) {
-      tt <- gsub("^\\s", "",
-                 strsplit(df$native_to_country[i], ",")[[1]]) %in% country
-      if (any(tt)) {
-        temp[i] <- TRUE
-      } else {
-        temp[i] <- FALSE
-      }
+  # Make folder name to save search results
+  foldername <- paste0(dir, "/", format(Sys.time(), "%d%b%Y"))
 
-    }
+  # Extract full information for each taxon
+  # The function searches for a set of up to 500 taxa and then save mined data
+  chunk <- 500
+  n <- nrow(df)
+  r  <- rep(1:ceiling(n/chunk), each=chunk)[1:n]
+  dfchunk <- split(df, r)
+  for (i in 1:length(dfchunk)) {
 
-    # The following conditions is just to show/print how the df will be
-    # subsetted according to the provided country vector.
-    if (verbose) {
-      if (any(temp)) {
-        tl <- list()
-        for (i in seq_along(country)) {
-          tv <- vector()
-          for (l in seq_along(df$native_to_country)) {
-            tv[l] <-
-              country[i] %in% gsub("^\\s", "",
-                                   strsplit(df$native_to_country[l], ",")[[1]])
-          }
-          if (length(which(tv == TRUE)) == 0) {
-            tl[[i]] <- FALSE
-          }
-          if (length(which(tv == TRUE)) != 0 &
-              length(which(tv == TRUE)) < length(tv)) {
-            tl[[i]] <- TRUE
-          }
-          if (length(which(tv == TRUE)) == length(tv)) {
-            tl[[i]] <- TRUE
-          }
-        }
-        cv <- country[unlist(tl)]
+    dfchunk[[i]] <- getInfo(df = dfchunk[[i]],
+                            hybrid = hybrid,
+                            synonyms = synonyms,
+                            country = country,
+                            gen_sp_nbr = FALSE,
+                            verbose = verbose,
+                            dfsize = n)
 
-        if (length(country[country %in% cv]) != length(country)) {
-          cat(paste("Your search returned species with distribution only in the
-                    following countries:\n", "\n",
-
-                    paste(country[country %in% cv], collapse = ", "), "\n",
-                    "\n",
-
-                    "There is no species occurring in the countries below:\n",
-                    "\n",
-
-                    paste(country[!country %in% cv], collapse = ", "), "\n",
-                    "\n",
-
-                    "Check whether any species does not occur in the countries
-                    above either because:\n",
-                    "1. The species indeed does not occur in the provided
-                    country vector;\n",
-                    "2. The country name is written with any typo;\n",
-                    "3. Any country name in the country vector is not written
-                    in English language.\n", "\n"))
-        }
-
-      } else {
-        cat(paste("Your search returned an empty data frame either because:\n",
-                  "1. No species occurs in the provided country vector;\n",
-                  "2. The country vector has any typo;\n",
-                  "3. Any country name in the country vector is not written in
-                  English language."))
-      }
-    }
-
-    # Subset the searched genera according to the country vector.
-    if (verbose) {
-      if(length(df$genus[temp]) != length(temp)) {
-        cat(paste("Genera listed below were removed from the original search
-                  because they are not native to any of the given country
-                  vector:\n", "\n",
-                  df$genus[!temp]))
-      }
-    }
-    df <- df[temp, ]
-
+    # Save the search results if param save is TRUE
+    saveCSV(dfchunk[[i]],
+            dir = dir,
+            filename = filename,
+            verbose = verbose,
+            append = TRUE,
+            save = save,
+            foldername = foldername)
   }
 
-  # Saving the dataframe if param save is TRUE.
-  .save_df(save, dir, filename, df)
+  df <- dfchunk[[1]]
+  if (length(dfchunk) > 1) {
+    for (i in 2:length(dfchunk)) {
+      df <- rbind(df, dfchunk[[i]])
+    }
+  }
 
   return(df)
-
 }
-

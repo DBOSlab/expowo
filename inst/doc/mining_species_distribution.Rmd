@@ -27,8 +27,8 @@ knitr::opts_chunk$set(
 Here in this article, we show how to use the package's function `powoSpDist` 
 for mining the entire distribution for any species of flowering plants. The 
 `powoSpDist` uses the argument `species` to set the name or list of species 
-names, and then the function access the auxiliary functions `getGenURI` and 
-`getDist` to catch their respective distribution.\
+names, and then the function access the auxiliary functions `.getgenURI` and 
+`getInfo` to extract their respective distribution.\
 
 \
 
@@ -47,7 +47,7 @@ library(expowo)
 
 \
 
-# Mining the distribution for any angiosperm species
+# Mining the distribution for any plant species
 
 The function `powoSpDist` returns a dataframe or saves a CSV file listing the 
 entire global distribution at country or botanical level for any of the given 
@@ -55,7 +55,7 @@ species scientific name(s) (excluding hybrid species), their genus, publication
 and authorship. The global classification of botanical divisions follows the 
 [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) for 
 Recording Plant Distributions, which is already associated with each taxon's 
-distribution in the POWO.\
+distribution at POWO.\
 
 The example below shows how to mine the distribution for a specified vector of 
 two species. The output shown here (a table) is simplified by removing the 
@@ -66,7 +66,7 @@ BL_dist <- powoSpDist(family = c("Begoniaceae", "Lecythidaceae"),
                       species = c("Hillebrandia sandwicensis", "Lecythis pisonis"),
                       verbose = TRUE,
                       save = FALSE,
-                      dir = "results_powoSpDist/",
+                      dir = "results_powoSpDist",
                       filename = "Begoniaceae_Lecythidaceae")
 ```
 
@@ -109,6 +109,6 @@ ALL_dist <- powoSpDist(POWOcodes$family,
                        species = NULL,
                        verbose = TRUE,
                        save = FALSE,
-                       dir = "results_powoSpDist/",
+                       dir = "results_powoSpDist",
                        filename = "all_angiosperm_distribution")
 ```

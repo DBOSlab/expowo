@@ -2,24 +2,27 @@
 % Please edit documentation in R/powoFam.R
 \name{powoFam}
 \alias{powoFam}
-\title{Extract species number of any plant family from POWO}
+\title{Extract species number of any plant family}
 \usage{
-powoFam(family, verbose = TRUE, save = FALSE, dir, filename)
+powoFam(family,
+        verbose = TRUE,
+        save = FALSE,
+        dir = "results_powoFam",
+        filename = "output")
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
 is present in POWO.}
 
-\item{verbose}{Logical, if \code{FALSE}, the search results will not be
-printed in the console in full.}
+\item{verbose}{Logical, if \code{FALSE}, a message showing each step during
+the POWO search will not be printed in the console in full.}
 
-\item{save}{Logical, if \code{FALSE}, the search results will not be saved on
-disk.}
+\item{save}{Logical, if \code{TRUE}, the search results will be saved on disk.}
 
 \item{dir}{Pathway to the computer's directory, where the file will be saved
 provided that the argument \code{save} is set up in \code{TRUE}. The default
 is to create a directory named \strong{results_powoFam} and the searched results
-will be saved within a subfolder named by the current date.}
+will be saved within a subfolder named after the current date.}
 
 \item{filename}{Name of the output file to be saved. The default is to create
 a file entitled \strong{output}.}
@@ -28,8 +31,8 @@ a file entitled \strong{output}.}
 Table in .csv format.
 }
 \description{
-Produces a CSV file listing the number of species within the
-target botanical families of flowering plants available at
+Produces a CSV file listing the number of species and genera
+within the target botanical families of flowering plants available at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
@@ -37,9 +40,8 @@ target botanical families of flowering plants available at
 library(expowo)
 
 powoFam(family = "Lecythidaceae",
-        verbose = TRUE,
-        save = FALSE,
-        dir = "results_powoFam/",
+        save = TRUE,
+        dir = "results_powoFam",
         filename = "Lecythidaceae_spp_number")
 }
 

@@ -24,7 +24,7 @@
 #'         bre_color = NULL,
 #'         leg_title = "SR",
 #'         dpi = 600,
-#'         dir = "results_powoMap/",
+#'         dir = "results_powoMap",
 #'         filename = "global_richness_map",
 #'         format = "jpg")
 #'
@@ -61,11 +61,10 @@
 #' \code{NULL}, then the function will generate only one global species richness
 #' map for the entire input data.
 #'
-#' @param verbose Logical. If \code{FALSE}, the map creation steps will not be
-#' printed in the console in full.
+#' @param verbose Logical. If \code{FALSE}, a message showing the map creation
+#' steps will not be printed in the console in full.
 #'
-#' @param save Logical. If \code{FALSE}, the global maps will not be saved
-#' on disk.
+#' @param save Logical, if \code{TRUE}, the global maps will be saved on disk.
 #'
 #' @param vir_color A character vector with the name or code of any of the color
 #' palettes from [Viridis](https://CRAN.R-project.org/package=viridis) package.
@@ -84,8 +83,8 @@
 #'
 #' @param dir Pathway to the computer's directory, where the map file will be
 #' saved provided that the argument \code{save} is set up in \code{TRUE}. The
-#' default is to create a directory named **results_powoMap/** and the search
-#' results will be saved within a subfolder named by the current date.
+#' default is to create a directory named **results_powoMap** and the search
+#' results will be saved within a subfolder named after the current date.
 #'
 #' @param filename Name of the output file to be saved. The default is to
 #' create a file entitled **global_richness_map**.
@@ -113,7 +112,7 @@
 #'                          country = NULL,
 #'                          verbose = TRUE,
 #'                          save = FALSE,
-#'                          dir = "results_powoSpecies/",
+#'                          dir = "results_powoSpecies",
 #'                          filename = "Martyniaceae_spp")
 #'
 #' # To create multiple maps for each genus within the input data according to
@@ -128,7 +127,7 @@
 #'         bre_color = NULL,
 #'         leg_title = "SR",
 #'         dpi = 600,
-#'         dir = "results_powoMap/",
+#'         dir = "results_powoMap",
 #'         filename = "global_richness_country_map",
 #'         format = "jpg")
 #'
@@ -144,7 +143,7 @@
 #'         bre_color = NULL,
 #'         leg_title = "SR",
 #'         dpi = 600,
-#'         dir = "results_powoMap/",
+#'         dir = "results_powoMap",
 #'         filename = "global_richness_botcountry_map",
 #'         format = "jpg")
 #'}
@@ -171,24 +170,23 @@ powoMap <- function(inputdf = NULL,
                     bre_color = NULL,
                     leg_title = "SR",
                     dpi = 600,
-                    dir = "results_powoMap/",
+                    dir = "results_powoMap",
                     filename = "global_richness_map",
                     format = "jpg") {
 
-  # Data check
+  # inputdf check
   inputdf <- .arg_check_data_map(inputdf, distcol)
 
-  # Format check
+  # format check
   .arg_check_format(format)
 
-  # Dir check
+  # dir check
   dir <- .arg_check_dir(dir)
 
   # If the distribution is according to botanical subdivisions, load global map
   if (botctrs) {
 
-    # Check if the folder /WGSRPD is in any directory within the user's
-    # machine.
+    # Check if the folder /WGSRPD is in any directory within the user's machine
     if (!dir.exists("WGSRPD")){
 
       # Download level 3 of botanical subdivision of the World
@@ -233,22 +231,20 @@ powoMap <- function(inputdf = NULL,
 
   # Create a new directory to save the plot
   # If there is no directory... make one!
-  todaydate <- format(Sys.time(), "%d%b%Y")
-  folder_name <- paste0(dir, todaydate)
-  fullname <- paste0(folder_name, "/", filename, ".", format)
+  foldername <- paste0(dir, "/", format(Sys.time(), "%d%b%Y"))
+  fullname <- paste0(foldername, "/", filename, ".", format)
   if (!dir.exists(dir)) {
     dir.create(dir)
   }
-  if (!dir.exists(folder_name)) {
-    dir.create(folder_name)
+  if (!dir.exists(foldername)) {
+    dir.create(foldername)
   }
 
-  # Making the global map of species richness for an entire group, i.e. all
-  # data available in the table (e.g. all families, a single family or a genus).
+  # Making global map of species richness for an entire group, i.e. all data
+  # available in the table (e.g. all families, a single family or a genus).
   if (is.null(taxclas)) {
 
-    # Making world map with species richness across countries/botanical
-    # subdivisions.
+    # Make world map of species richness across countries/botanical subdivisions
     world_plant <- .get_SR(inputdf, world, botctrs, distcol, verbose)
 
     p <- .ggplot_map(world_plant,
@@ -305,8 +301,8 @@ powoMap <- function(inputdf = NULL,
   }
 }
 
-
-# Auxiliary function to make world map with species richness across
+#_______________________________________________________________________________
+# Auxiliary function to make world map of species richness across
 # countries/botanical subdivisions.
 .get_SR <- function(df, world, botctrs, distcol, verbose) {
 
@@ -330,14 +326,14 @@ powoMap <- function(inputdf = NULL,
                            by.y = "countries",
                            all.x = T)
 
-  # Replacing NA values for zero.
+  # Replacing NA values for zero
   world_plant$Freq[is.na(world_plant$Freq)] = 0
 
   return(world_plant)
 }
 
-
-# Auxiliary function to create maps in different styles.
+#_______________________________________________________________________________
+# Auxiliary function to create maps in different styles
 .ggplot_map <- function(world_plant,
                         taxclas,
                         tax = NULL,
@@ -376,8 +372,7 @@ powoMap <- function(inputdf = NULL,
     }
   }
 
-  # Create the leg title of scale bar and modify taxonomic name to italic and
-  # bold.
+  # Create leg title of scale bar and modify taxonomic name to italic and bold
   if (!is.null(taxclas)) {
     tax_name <- eval(bquote(expression(bolditalic(.(tax))~bold(.(leg_title)))))
     if (!is.null(vir_color)) {
@@ -400,7 +395,7 @@ powoMap <- function(inputdf = NULL,
   }
 }
 
-
+#_______________________________________________________________________________
 # Auxiliary function to save the maps
 .save_map <- function(p,
                       taxclas,
@@ -420,7 +415,7 @@ powoMap <- function(inputdf = NULL,
   if (is.null(taxclas)) {
     if (!is.null(vir_color)) {
       if(verbose) {
-        cat(paste("Saving", w, "x", h, u, "image\n"))
+        message(paste("Saving", w, "x", h, u, "image\n"))
       }
       ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_",
                                                        vir_color, ".",
@@ -430,7 +425,7 @@ powoMap <- function(inputdf = NULL,
     }
     if (!is.null(bre_color)) {
       if(verbose) {
-        cat(paste("Saving", w, "x", h, u, "image\n"))
+        message(paste("Saving", w, "x", h, u, "image\n"))
       }
       ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_",
                                                        bre_color, ".",
@@ -440,11 +435,11 @@ powoMap <- function(inputdf = NULL,
     }
   }
 
-  # Create the leg title of scale bar and modify taxonomic name to italic and bold
+  # Create leg title of scale bar and modify taxonomic name to italic and bold
   if (!is.null(taxclas)) {
     if (!is.null(vir_color)) {
       if(verbose) {
-        cat(paste("Saving", w, "x", h, u, "image\n"))
+        message(paste("Saving", w, "x", h, u, "image\n"))
       }
       ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_", tax,
                                                        "_", vir_color, ".",
@@ -454,7 +449,7 @@ powoMap <- function(inputdf = NULL,
     }
     if (!is.null(bre_color)) {
       if(verbose) {
-        cat(paste("Saving", w, "x", h, u, "image\n"))
+        message(paste("Saving", w, "x", h, u, "image\n"))
       }
       ggplot2::ggsave(gsub(paste0(".", format), paste0("_SR_", tax,
                                                        "_", bre_color, ".",
@@ -465,7 +460,7 @@ powoMap <- function(inputdf = NULL,
   }
 }
 
-
+#_______________________________________________________________________________
 # Auxiliary function to harmonize country names between the species list and
 # World sf dataframe.
 .harmonize_ctr <- function(inputdf, distcol) {

@@ -2,9 +2,14 @@
 % Please edit documentation in R/topGen.R
 \name{topGen}
 \alias{topGen}
-\title{Extract the top most species-rich genera}
+\title{Extract the top most species-rich genera of any plant family}
 \usage{
-topGen(family, limit = 10, verbose = TRUE, save = FALSE, dir, filename)
+topGen(family,
+       limit = 10,
+       verbose = TRUE,
+       save = FALSE,
+       dir = "results_topGen",
+       filename = "output")
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
@@ -14,16 +19,15 @@ is present in POWO.}
 selected within each plant family. The default is to select the top ten
 richest genera.}
 
-\item{verbose}{Logical, if \code{FALSE}, the search results will not be
-printed in the console in full.}
+\item{verbose}{Logical, if \code{FALSE}, a message showing each step during
+the POWO search will not be printed in the console in full.}
 
-\item{save}{Logical, if \code{FALSE}, the search results will not be saved on
-disk.}
+\item{save}{Logical, if \code{TRUE}, the search results will be saved on disk.}
 
 \item{dir}{Pathway to the computer's directory, where the file will be saved
 provided that the argument \code{save} is set up in \code{TRUE}. The default
-is to create a directory named \strong{results_topGen} and the searched results
-will be saved within a subfolder named by the current date.}
+is to create a directory named \strong{results_topGen} and the search results
+will be saved within a subfolder named after the current date.}
 
 \item{filename}{Name of the output file to be saved. The default is to create
 a file entitled \strong{output}.}
@@ -42,9 +46,8 @@ library(expowo)
 
 topGen(family = "Lecythidaceae",
        limit = 10,
-       verbose = TRUE,
-       save = FALSE,
-       dir = "results_topGen/",
+       save = TRUE,
+       dir = "results_topGen",
        filename = "Lecythidaceae_top_ten")
 }
 

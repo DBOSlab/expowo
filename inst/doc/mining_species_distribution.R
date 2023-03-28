@@ -12,7 +12,7 @@ library(expowo)
 #                        species = c("Hillebrandia sandwicensis", "Lecythis pisonis"),
 #                        verbose = TRUE,
 #                        save = FALSE,
-#                        dir = "results_powoSpDist/",
+#                        dir = "results_powoSpDist",
 #                        filename = "Begoniaceae_Lecythidaceae")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
@@ -35,6 +35,6 @@ knitr::kable(df[-c(2, 3, 6, 9, 11, 13)],
 #                         species = NULL,
 #                         verbose = TRUE,
 #                         save = FALSE,
-#                         dir = "results_powoSpDist/",
+#                         dir = "results_powoSpDist",
 #                         filename = "all_angiosperm_distribution")
 

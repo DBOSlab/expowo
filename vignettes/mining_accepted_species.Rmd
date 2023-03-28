@@ -46,7 +46,7 @@ library(expowo)
 
 # Mining all accepted species for any angiosperm family
 
-The function `powoSpecies` returns a dataframe or saves a CSV file listing all 
+The function `powoSpecies` returns a data frame or saves a CSV file listing all 
 accepted species (including hybrid species or not), their publication, 
 authorship, and global geographic distribution at country or botanical level for
 any family of flowering plants. The global classification of botanical divisions
@@ -55,14 +55,16 @@ for Recording Plant Distributions, which is already associated with each taxon's
 distribution in the POWO.\
 
 The example below shows how to mine all accepted species for a specified vector 
-of families. The output shown here (TABLE 1) is a simplified version, where we have removed some columns (genus, epithet and authors) so as to focus on the display of the taxonomic and distribution data.\
+of families. The output shown here (TABLE 1) is a simplified version, where we 
+have removed some columns (genus, epithet and authors) so as to focus on the 
+display of the taxonomic and distribution data.\
 
 ```{r, eval = FALSE}
 res <- powoSpecies(family = c("Cabombaceae", "Martyniaceae"),
-                   hybridspp = FALSE,
+                   hybrid = FALSE,
                    verbose = TRUE,
                    save = FALSE,
-                   dir = "results_powoSpecies/",
+                   dir = "results_powoSpecies",
                    filename = "Cabom_Martyniaceae_search")
 ```
 
@@ -92,11 +94,11 @@ __Colombia__.\
 
 ```{r, eval = FALSE}
 ACM <- powoSpecies(family = c("Aristolochiaceae", "Cabombaceae", "Martyniaceae"),
-                   hybridspp = FALSE,
+                   hybrid = FALSE,
                    country = c("Brazil", "Colombia"),
                    verbose = FALSE,
                    save = FALSE,
-                   dir = "results_powoSpecies/",
+                   dir = "results_powoSpecies",
                    filename = "country_constrained_search")
 ```
 
@@ -130,11 +132,11 @@ i.e. __Argentina__, __French Guiana__, or __Brazil__.\
 ```{r, eval = FALSE}
 MC <- powoSpecies(family = c("Martyniaceae", "Cabombaceae"),
                   genus = c("Proboscidea", "Cabomba"),
-                  hybridspp = FALSE,
+                  hybrid = FALSE,
                   country = c("Argentina", "French Guiana", "Brazil"),
                   verbose = TRUE,
                   save = FALSE,
-                  dir = "results_powoSpecies/",
+                  dir = "results_powoSpecies",
                   filename = "country_and_genus_constrained_search")
 ```
 
@@ -168,10 +170,36 @@ associated URI addresses stored in the `POWOcodes` object.\
 ```{r, eval = FALSE}
 utils::data("POWOcodes")
 
-ALL_sp <- powoSpecies(POWOcodes$family,
-                      hybridspp = TRUE,
-                      verbose = TRUE,
-                      save = FALSE,
-                      dir = "results_powoSpecies/",
-                      filename = "all_angiosperm_species")
+ALL_spp <- powoSpecies(POWOcodes$family,
+                       hybrid = TRUE,
+                       verbose = TRUE,
+                       save = FALSE,
+                       dir = "results_powoSpecies",
+                       filename = "all_angiosperm_species")
+```
+
+\
+
+Since this is a very long search that might requires days to be completed, it 
+may happen to loose internet connection at some point of the queried search.
+But you do not need to start an entirely new search from the beginning. By 
+setting the `powoSpecies` with `rerun = TRUE`, a previously stopped search will 
+continue from where it left off, starting with the last retrieved taxon. Please 
+ensure that the 'filename' argument exactly matches the name of the CSV file 
+saved from the previous search, and that the previously saved CSV file is 
+located within a subfolder named after the current date. If it is not, please 
+rename the date subfolder accordingly.
+
+\
+
+```{r, eval = FALSE}
+utils::data("POWOcodes")
+
+ALL_spp <- powoSpecies(POWOcodes$family,
+                       hybrid = TRUE,
+                       verbose = TRUE,
+                       rerun = TRUE,
+                       save = FALSE,
+                       dir = "results_powoSpecies",
+                       filename = "all_angiosperm_species")
 ```

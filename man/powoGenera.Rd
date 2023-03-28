@@ -2,45 +2,60 @@
 % Please edit documentation in R/powoGenera.R
 \name{powoGenera}
 \alias{powoGenera}
-\title{Extract list of genera from POWO}
+\title{Extract list of genera for any plant family}
 \usage{
-powoGenera(family, genus = NULL, country = NULL,
-           verbose = TRUE, save = FALSE, dir, filename)
+powoGenera(family,
+           genus = NULL,
+           hybrid = FALSE,
+           country = NULL,
+           verbose = TRUE,
+           rerun = FALSE,
+           save = FALSE,
+           dir = "results_powoGenera",
+           filename = "output")
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
 is present in POWO.}
 
 \item{genus}{Either one genus name or a vector of multiple genera
-that are present in POWO. If any genus name is not provided, then the
+that is present in POWO. If any genus name is not provided, then the
 function will search all accepted genera known for the target family.}
+
+\item{hybrid}{Logical, if \code{TRUE}, the search results will include
+hybrid genera.}
 
 \item{country}{Either one country name or a vector of multiple countries.
 If country names are provided, then the function will return only the genera
 that are native to such countries, according to POWO.}
 
-\item{verbose}{Logical, if \code{FALSE}, the searched results will not be
-printed in the console in full.}
+\item{verbose}{Logical, if \code{FALSE}, a message showing each step during
+the POWO search will not be printed in the console in full.}
 
-\item{save}{Logical, if \code{FALSE}, the searched results will not be saved
-on disk.}
+\item{rerun}{Logical, if \code{TRUE}, a previously stopped search will continue
+from where it left off, starting with the last retrieved taxon. Please ensure
+that the 'filename' argument exactly matches the name of the CSV file saved
+from the previous search, and that the previously saved CSV file is located
+within a subfolder named after the current date. If it is not, please rename
+the date subfolder accordingly."}
+
+\item{save}{Logical, if \code{TRUE}, the search results will be saved on disk.}
 
 \item{dir}{Pathway to the computer's directory, where the file will be saved
 provided that the argument \code{save} is set up in \code{TRUE}. The default
-is to create a directory named \strong{results_powoGenera} and the searched
-results will be saved within a subfolder named by the current date.}
+is to create a directory named \strong{results_powoGenera} and the search results
+will be saved within a subfolder named after the current date.}
 
-\item{filename}{Name of the output file to be saved. The default is to
-create a file entitled \strong{output}.}
+\item{filename}{Name of the output file to be saved. The default is to create
+a file entitled \strong{output}.}
 }
 \value{
 Table in .csv format.
 }
 \description{
 Produces a CSV file listing all genera with associated number
-of accepted species and geographical distribution for any angiosperm
-family at
-\href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
+of accepted species and geographical distribution for any angiosperm family
+at \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
 \donttest{
@@ -48,16 +63,16 @@ library(expowo)
 
 powoGenera(family = "Lecythidaceae",
            verbose = TRUE,
-           save = FALSE,
-           dir = "results_powoGenera/",
+           save = TRUE,
+           dir = "results_powoGenera",
            filename = "Lecythidaceae_genera")
 
 powoGenera(family = "Lecythidaceae",
            genus = "Bertholletia",
            country = c("Argentina", "Brazil", "French Guiana"),
            verbose = TRUE,
-           save = FALSE,
-           dir = "results_powoGenera/",
+           save = TRUE,
+           dir = "results_powoGenera",
            filename = "Lecythidaceae_search")
 }
 

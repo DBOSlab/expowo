@@ -12,7 +12,7 @@
 
 
 
-<title>Mining megadiverse genera of flowering plants</title>
+<title>Mining mega-diverse genera of flowering plants</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -336,7 +336,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">Mining megadiverse genera of flowering
+<h1 class="title toc-ignore">Mining mega-diverse genera of flowering
 plants</h1>
 
 
@@ -351,11 +351,12 @@ font-size: 1em;
 }
 </style>
 <p>Here in this article, we show how to use the package’s function
-<code>megaGen</code> for mining the megadiverse genera for any family of
-flowering plants. Frodin (2004) in Taxon suggests 500 species as the
-threshold for a genus to be considered megadiverse. The function
-<code>megaGen</code> uses any integer numeric value in the argument
-<code>thld</code> to define the threshold for a megadiverse genus.<br />
+<code>megaGen</code> for mining the mega-diverse genera for any family
+of flowering plants. <a href="https://doi.org/10.2307/4135449">Frodin
+(2004)</a> suggests 500 species as the threshold for a genus to be
+considered mega-diverse. The function <code>megaGen</code> uses any
+integer numeric value in the argument <code>thld</code> to define the
+threshold for a mega-diverse genus.<br />
 </p>
 <p><br />
 </p>
@@ -369,11 +370,11 @@ from <a href="https://github.com/">GitHub</a>:</p>
 <p><br />
 </p>
 </div>
-<div id="mining-megadiverse-genera-for-any-angiosperm-family" class="section level1">
-<h1>Mining megadiverse genera for any angiosperm family</h1>
+<div id="mining-mega-diverse-genera-for-any-plant-family" class="section level1">
+<h1>Mining mega-diverse genera for any plant family</h1>
 <p>The function <code>megaGen</code> uses a specified threshold number
-to return a dataframe or save a CSV file listing all megadiverse genera
-for any family of flowering plants and their associated number of
+to return a data frame or save a CSV file listing all mega-diverse
+genera for any family of flowering plants and their associated number of
 accepted species. In this example, we performed a search for three plant
 families using a threshold of 500 species, but the output only contains
 results for <strong>Aristolochia</strong> and <strong>Begonia</strong>
@@ -384,11 +385,11 @@ families.<br />
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">thld =</span> <span class="dv">500</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">dir =</span> <span class="st">&quot;results_megaGen/&quot;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">dir =</span> <span class="st">&quot;results_megaGen&quot;</span>,</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">filename =</span> <span class="st">&quot;Arist_Begon_Martyniaceae_search&quot;</span>)</span></code></pre></div>
 <table>
 <caption>TABLE 1. A general <code>megaGen</code> search to mining the
-megadiverse genera for some specific angiosperm families, based on a
+mega-diverse genera for some specific angiosperm families, based on a
 specified threshold of 500 species.</caption>
 <colgroup>
 <col width="10%" />
@@ -434,16 +435,16 @@ specified threshold of 500 species.</caption>
 <p><br />
 </p>
 </div>
-<div id="mining-megadiverse-genera-accross-all-angiosperm-families" class="section level1">
-<h1>Mining megadiverse genera accross all angiosperm families</h1>
-<p>To mine a global checklist of megadiverse genera for all families of
+<div id="mining-mega-diverse-genera-accross-all-angiosperm-families" class="section level1">
+<h1>Mining mega-diverse genera accross all angiosperm families</h1>
+<p>To mine a global checklist of mega-diverse genera for all families of
 flowering plants, including their associated species number, we
 recommend to load the dataframe-formatted data object called
 <code>POWOcodes</code> that comes associated with the
 <strong>expowo</strong> package. The <code>POWOcodes</code> data object
 already contains the URI addresses for all angiosperms families
 recognized in the <a href="https://powo.science.kew.org">POWO</a>
-database, you just need to call it to your R environment.<br />
+database, you just need to call it to the R environment.<br />
 </p>
 <p>The example below shows how to mine a global checklist of all most
 speciose genera of flowering plants by using the vector of all
@@ -456,7 +457,7 @@ angiosperm families and associated URI addresses stored in the
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">thld =</span> <span class="dv">500</span>,</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;results_megaGen/&quot;</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;results_megaGen&quot;</span>,</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_megadiverse_angiosperm_genera&quot;</span>)</span></code></pre></div>
 </div>
 

@@ -2,40 +2,57 @@
 % Please edit documentation in R/powoSpecies.R
 \name{powoSpecies}
 \alias{powoSpecies}
-\title{Extract list of species from POWO}
+\title{Extract list of species for any plant genus and family}
 \usage{
-powoSpecies(family, genus = NULL, hybridspp = FALSE, country = NULL,
-            verbose = TRUE, save = FALSE, dir, filename)
+powoSpecies(family,
+            genus = NULL,
+            hybrid = FALSE,
+            synonyms = FALSE,
+            country = NULL,
+            verbose = TRUE,
+            rerun = FALSE,
+            save = FALSE,
+            dir = "results_powoSpecies",
+            filename = "output")
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families
 that is present in POWO.}
 
 \item{genus}{Either one genus name or a vector of multiple genera
-that are present in POWO. If any genus name is not provided, then the
+that is present in POWO. If any genus name is not provided, then the
 function will search any species from all accepted genera known for the
 target family.}
 
-\item{hybridspp}{Logical, if \code{TRUE}, the search results will include
+\item{hybrid}{Logical, if \code{TRUE}, the search results will include
 hybrid species.}
+
+\item{synonyms}{Logical, if \code{TRUE}, the search results will include
+synonyms.}
 
 \item{country}{Either one country name or a vector of multiple countries.
 If country names are provided, then the function will return only the species
 that are native to such countries, according to POWO.}
 
-\item{verbose}{Logical, if \code{FALSE}, the search results will not be
-printed in the console in full.}
+\item{verbose}{Logical, if \code{FALSE}, a message showing each step during
+the POWO search will not be printed in the console in full.}
 
-\item{save}{Logical, if \code{FALSE}, the search results will not be saved
-on disk.}
+\item{rerun}{Logical, if \code{TRUE}, a previously stopped search will continue
+from where it left off, starting with the last retrieved taxon. Please ensure
+that the 'filename' argument exactly matches the name of the CSV file saved
+from the previous search, and that the previously saved CSV file is located
+within a subfolder named after the current date. If it is not, please rename
+the date subfolder accordingly."}
+
+\item{save}{Logical, if \code{TRUE}, the search results will be saved on disk.}
 
 \item{dir}{Pathway to the computer's directory, where the file will be saved
 provided that the argument \code{save} is set up in \code{TRUE}. The default
-is to create a directory named \strong{results_powoSpecies} and the search
-results will be saved within a subfolder named by the current date.}
+is to create a directory named \strong{results_powoSpecies} and the search results
+will be saved within a subfolder named after the current date.}
 
-\item{filename}{Name of the output file to be saved. The default is to
-create a file entitled \strong{output}.}
+\item{filename}{Name of the output file to be saved. The default is to create
+a file entitled \strong{output}.}
 }
 \value{
 Table in .csv format.
@@ -51,11 +68,10 @@ flowering plants at
 library(expowo)
 
 powoSpecies(family = "Martyniaceae",
-            hybridspp = FALSE,
+            synonyms = TRUE,
             country = c("Argentina", "Brazil", "French Guiana"),
-            verbose = TRUE,
-            save = FALSE,
-            dir = "results_powoSpecies/",
+            save = TRUE,
+            dir = "Martyniaceae_results_powoSpecies",
             filename = "Martyniaceae_spp")
 }
 

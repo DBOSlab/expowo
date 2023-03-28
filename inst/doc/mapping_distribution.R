@@ -14,7 +14,7 @@ library(expowo)
 #                           country = NULL,
 #                           verbose = TRUE,
 #                           save = FALSE,
-#                           dir = "results_powoSpecies/",
+#                           dir = "results_powoSpecies",
 #                           filename = "Lecythidaceae_Cariniana")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
@@ -43,7 +43,7 @@ knitr::kable(df[-c( 2, 3, 5, 6, 7, 10, 11, 13)],
 #          bre_color = NULL,
 #          leg_title = "SR",
 #          dpi = 600,
-#          dir = "results_powoMap/",
+#          dir = "results_powoMap",
 #          filename = "global_richness_country_map",
 #          format = "jpg")
 
@@ -62,7 +62,7 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Cariniana_viridi
 #          bre_color = NULL,
 #          leg_title = "SR",
 #          dpi = 600,
-#          dir = "results_powoMap/",
+#          dir = "results_powoMap",
 #          filename = "global_richness_botcountry_map",
 #          format = "jpg")
 
@@ -76,7 +76,7 @@ knitr::include_graphics("figures/global_richness_botcountry_map_SR_Cariniana_vir
 #                           country = NULL,
 #                           verbose = FALSE,
 #                           save = FALSE,
-#                           dir = "results_powoSpecies/",
+#                           dir = "results_powoSpecies",
 #                           filename = "Lecythidaceae")
 
 ## ---- eval = FALSE------------------------------------------------------------
@@ -111,7 +111,7 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_Sp
 #          bre_color = "Spectral",
 #          leg_title = "SR",
 #          dpi = 600,
-#          dir = "results_powoMap/",
+#          dir = "results_powoMap",
 #          filename = "global_richness_botcountry_map",
 #          format = "jpg")
 

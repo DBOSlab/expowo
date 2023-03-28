@@ -366,8 +366,8 @@ from <a href="https://github.com/">GitHub</a>:</p>
 <p><br />
 </p>
 </div>
-<div id="mining-the-top-richest-genera-for-any-angiosperm-family" class="section level1">
-<h1>Mining the top richest genera for any angiosperm family</h1>
+<div id="mining-the-top-richest-genera-for-any-plant-family" class="section level1">
+<h1>Mining the top richest genera for any plant family</h1>
 <p>The function <code>topGen</code> is relatively similar to the
 <code>megaGen</code>, but instead of using a specific threshold of
 species number to be considered a big genera, it saves a CSV file
@@ -375,7 +375,7 @@ listing the top most species-rich genera of any target angiosperm
 family, and their associated number of accepted species based on an
 integer number set in the argument limit. In the example below, we used
 the default to search for the top ten richest genera (i.e., when the
-argument limit is set as NULL, the function searchs for the 10 most
+argument limit is set as NULL, the function searches for the 10 most
 diverse genera within a plant family). Some columns were omitted to
 display the results, and the rows show the top ten of the three chosen
 families: Bignoniaceae, Solanaceae and Lecythidaceae. Note that the
@@ -388,7 +388,7 @@ genera.<br />
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">limit =</span> <span class="cn">NULL</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dir =</span> <span class="st">&quot;results_topGen/&quot;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dir =</span> <span class="st">&quot;results_topGen&quot;</span>,</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">filename =</span> <span class="st">&quot;Aristo_Bego_Lecythidaceae_search&quot;</span>)</span></code></pre></div>
 <table>
 <caption>TABLE 1. A general <code>topGen</code> search to mining the top
@@ -529,7 +529,7 @@ the limit of 10 genera for each family.<br />
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">limit =</span> <span class="dv">10</span>,</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dir =</span> <span class="st">&quot;results_topGen/&quot;</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dir =</span> <span class="st">&quot;results_topGen&quot;</span>,</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">filename =</span> <span class="st">&quot;all_toprichest_angiosperm_genera&quot;</span>)</span></code></pre></div>
 </div>
 

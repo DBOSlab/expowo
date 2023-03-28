@@ -5,7 +5,7 @@
 \alias{angioGenera}
 \title{List of Angiosperm genera}
 \format{
-Dataframe
+\code{data.frame}
 }
 \usage{
 data(angioGenera)
@@ -13,6 +13,6 @@ data(angioGenera)
 \description{
 Complete list of all genera and associated data of
 Lecythidaceae, Aristolochiaceae, Begoniaceae, Martyniaceae, Dipterocarpaceae,
-and Fagaceae as retrieved from POWO database with the function
-\code{powoGenera} of this package gathered at Jan 2023.
+and Fagaceae, as retrieved from POWO database in January 2023 using the
+\code{expowo}'s function \code{powoGenera}.
 }

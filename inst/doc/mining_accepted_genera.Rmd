@@ -44,9 +44,9 @@ library(expowo)
 
 \
 
-# Mining all accepted genera for any angiosperm family
+# Mining all accepted genera for any plant family
 
-The function `powoGenera` returns a dataframe or saves a CSV file listing all 
+The function `powoGenera` returns a data frame or saves a CSV file listing all 
 genera with associated number of accepted species and their global geographic 
 distribution at country or botanical level. The global classification of 
 botanical divisions follows the 
@@ -56,9 +56,10 @@ distribution in POWO.\
 
 ```{r, eval = FALSE}
 ABM <- powoGenera(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
+                  hybrid = FALSE,
                   verbose = FALSE,
                   save = FALSE,
-                  dir = "results_powoGenera/",
+                  dir = "results_powoGenera",
                   filename = "Arist_Begon_Martyniaceae_search")
 ```
 
@@ -66,6 +67,7 @@ ABM <- powoGenera(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
 utils::data("POWOcodes")
 
 res <- powoGenera(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
+                  hybrid = FALSE,
                   verbose = FALSE,
                   save = FALSE)
 
@@ -80,11 +82,11 @@ knitr::kable(res[-c(7:10)],
 # Mining all accepted genera for all angiosperm families
 
 To mine a global genus checklist with associated species number and distribution 
-for all families of flowering plants, we recommend to
-load the dataframe-formatted data object called `POWOcodes` that comes 
-associated with the __expowo__ package. Because the `POWOcodes` data object 
-already contains the URI addresses for all angiosperms families recognized in 
-the [POWO](https://powo.science.kew.org) database, you just need to run the code 
+for all families of flowering plants, we recommend to load the 
+dataframe-formatted data object called `POWOcodes` that comes associated with 
+the __expowo__ package. Because the `POWOcodes` data object already contains the 
+URI addresses for all angiosperms families recognized in the 
+[POWO](https://powo.science.kew.org) database, you just need to run the code 
 below.\
 
 The example below shows how to mine a global checklist of all accepted genera of
@@ -95,9 +97,36 @@ URI addresses stored in the `POWOcodes` object.\
 data(POWOcodes)
 
 ALL_gen <- powoGenera(POWOcodes$family,
+                      hybrid = TRUE,
                       verbose = TRUE,
                       save = FALSE,
-                      dir = "results_powoGenera/",
+                      dir = "results_powoGenera",
+                      filename = "all_angiosperm_genera")
+```
+
+\
+
+Since this is a very long search that might requires days to be completed, it 
+may happen to loose internet connection at some point of the queried search.
+But you do not need to start an entirely new search from the beginning. By 
+setting the `powoGenera` with `rerun = TRUE`, a previously stopped search will 
+continue from where it left off, starting with the last retrieved taxon. Please 
+ensure that the 'filename' argument exactly matches the name of the CSV file 
+saved from the previous search, and that the previously saved CSV file is 
+located within a subfolder named after the current date. If it is not, please 
+rename the date subfolder accordingly.
+
+\
+
+```{r, eval = FALSE}
+data(POWOcodes)
+
+ALL_gen <- powoGenera(POWOcodes$family,
+                      hybrid = TRUE,
+                      verbose = TRUE,
+                      rerun = TRUE,
+                      save = FALSE,
+                      dir = "results_powoGenera",
                       filename = "all_angiosperm_genera")
 ```
 
@@ -115,18 +144,21 @@ recorded in the list of countries of interest, i.e. Argentina, Brazil
 or French Guiana.\
 
 ```{r, eval = FALSE}
-ADFL <- powoGenera(family = 
-                     c("Aristolochiaceae", "Dipterocarpaceae", "Fagaceae", "Lecythidaceae"),
+ADFL <- powoGenera(family = c("Aristolochiaceae", "Dipterocarpaceae", 
+                              "Fagaceae", "Lecythidaceae"),
+                   hybrid = FALSE,
                    country = c("Argentina", "Brazil", "French Guiana"),
                    verbose = FALSE,
                    save = FALSE,
-                   dir = "results_powoGenera/",
+                   dir = "results_powoGenera",
                    filename = "country_constrained_search")
   
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
-res <- powoGenera(family = c("Aristolochiaceae", "Dipterocarpaceae", "Fagaceae", "Lecythidaceae"),
+res <- powoGenera(family = c("Aristolochiaceae", "Dipterocarpaceae", 
+                             "Fagaceae", "Lecythidaceae"),
+                  hybrid = FALSE,
                   country = c("Argentina", "Brazil", "French Guiana"),
                   verbose = FALSE,
                   save = FALSE)
@@ -154,16 +186,18 @@ i.e. Brazil or French Guiana.\
 ```{r, eval = FALSE}
 AL <- powoGenera(family = c("Aristolochiaceae", "Lecythidaceae"), 
                  genus = c("Asarum", "Bertholletia"),
+                 hybrid = FALSE,
                  country = c("Brazil", "French Guiana"),
                  verbose = TRUE,
                  save = FALSE,
-                 dir = "results_powoGenera/",
+                 dir = "results_powoGenera",
                  filename = "genus_country_constrained_search")
 ```
 
 ```{r, echo = FALSE, warning = FALSE}
 res <- powoGenera(family = c("Aristolochiaceae", "Lecythidaceae"),
                   genus = c("Asarum", "Bertholletia"),
+                  hybrid = FALSE,
                   country = c("Brazil", "French Guiana"),
                   verbose = FALSE,
                   save = FALSE)

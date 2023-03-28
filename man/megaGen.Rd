@@ -2,28 +2,32 @@
 % Please edit documentation in R/megaGen.R
 \name{megaGen}
 \alias{megaGen}
-\title{Extract megadiverse genera from POWO}
+\title{Extract megadiverse genera of any plant family}
 \usage{
-megaGen(family, thld = 500, verbose = TRUE, save = FALSE, dir, filename)
+megaGen(family,
+        thld = 500,
+        verbose = TRUE,
+        save = FALSE,
+        dir = "results_megaGen",
+        filename = "output")
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families that
 is present in POWO.}
 
 \item{thld}{A defined threshold of species number for a genus to be
-considered megadiverse. The default value is 500 based on Frodin (2004) in
-Taxon.}
+considered megadiverse. The default value is 500 based on
+\href{https://doi.org/10.2307/4135449}{Frodin (2004)}.}
 
-\item{verbose}{Logical, if \code{FALSE}, the search results will not be
-printed in the console in full.}
+\item{verbose}{Logical, if \code{FALSE}, a message showing each step during
+the POWO search will not be printed in the console in full.}
 
-\item{save}{Logical, if \code{FALSE}, the searched results will not be saved
-on disk.}
+\item{save}{Logical, if \code{TRUE}, the search results will be saved on disk.}
 
 \item{dir}{Pathway to the computer's directory, where the file will be saved
 provided that the argument \code{save} is set up in \code{TRUE}. The default
-is to create a directory named \strong{results_megaGen} and the searched results
-will be saved within a subfolder named by the current date.}
+is to create a directory named \strong{results_megaGen} and the search results
+will be saved within a subfolder named after the current date.}
 
 \item{filename}{Name of the output file to be saved. The default is to create
 a file entitled \strong{output}.}
@@ -32,11 +36,11 @@ a file entitled \strong{output}.}
 Table in .csv format.
 }
 \description{
-Produces a CSV file listing all mega-diverse genera for
-any angiosperm family at
-\href{https://powo.science.kew.org/}{Plants of the World Online (POWO)} based on
-a provided numeric value as the threshold to be considered mega-diverse.
-Frodin (2004) in Taxon suggests 500 species as the threshold.
+Produces a CSV file listing all mega-diverse genera for any plant
+family at \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}
+based on a provided numeric value as the threshold to be considered
+mega-diverse. \href{https://doi.org/10.2307/4135449}{Frodin (2004)} suggests 500
+species as the threshold.
 }
 \examples{
 \donttest{
@@ -45,9 +49,8 @@ library(expowo)
 
 megaGen(family = "Cyperaceae",
         thld = 500,
-        verbose = TRUE,
-        save = FALSE,
-        dir = "results_megaGen/",
+        save = TRUE,
+        dir = "results_megaGen",
         filename = "Cyperaceae_big_genera")
 }
 

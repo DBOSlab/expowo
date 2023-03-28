@@ -5,7 +5,7 @@
 \alias{botregions}
 \title{Countries and associated classification of botanical divisions}
 \format{
-Table in .csv format
+\code{data.frame}
 }
 \source{
 \url{https://www.tdwg.org/standards/wgsrpd/}

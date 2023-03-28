@@ -1,33 +1,37 @@
-#' Extract megadiverse genera from POWO
+#' Extract megadiverse genera of any plant family
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description Produces a CSV file listing all mega-diverse genera for
-#' any angiosperm family at
-#' [Plants of the World Online (POWO)](https://powo.science.kew.org/) based on
-#' a provided numeric value as the threshold to be considered mega-diverse.
-#' Frodin (2004) in Taxon suggests 500 species as the threshold.
+#' @description Produces a CSV file listing all mega-diverse genera for any plant
+#' family at [Plants of the World Online (POWO)](https://powo.science.kew.org/)
+#' based on a provided numeric value as the threshold to be considered
+#' mega-diverse. [Frodin (2004)](https://doi.org/10.2307/4135449) suggests 500
+#' species as the threshold.
 #'
 #' @usage
-#' megaGen(family, thld = 500, verbose = TRUE, save = FALSE, dir, filename)
+#' megaGen(family,
+#'         thld = 500,
+#'         verbose = TRUE,
+#'         save = FALSE,
+#'         dir = "results_megaGen",
+#'         filename = "output")
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' is present in POWO.
 #'
 #' @param thld A defined threshold of species number for a genus to be
-#' considered megadiverse. The default value is 500 based on Frodin (2004) in
-#' Taxon.
+#' considered megadiverse. The default value is 500 based on
+#' [Frodin (2004)](https://doi.org/10.2307/4135449).
 #'
-#' @param verbose Logical, if \code{FALSE}, the search results will not be
-#' printed in the console in full.
+#' @param verbose Logical, if \code{FALSE}, a message showing each step during
+#' the POWO search will not be printed in the console in full.
 #'
-#' @param save Logical, if \code{FALSE}, the searched results will not be saved
-#' on disk.
+#' @param save Logical, if \code{TRUE}, the search results will be saved on disk.
 #'
 #' @param dir Pathway to the computer's directory, where the file will be saved
 #' provided that the argument \code{save} is set up in \code{TRUE}. The default
-#' is to create a directory named **results_megaGen** and the searched results
-#' will be saved within a subfolder named by the current date.
+#' is to create a directory named **results_megaGen** and the search results
+#' will be saved within a subfolder named after the current date.
 #'
 #' @param filename Name of the output file to be saved. The default is to create
 #' a file entitled **output**.
@@ -43,9 +47,8 @@
 #'
 #' megaGen(family = "Cyperaceae",
 #'         thld = 500,
-#'         verbose = TRUE,
-#'         save = FALSE,
-#'         dir = "results_megaGen/",
+#'         save = TRUE,
+#'         dir = "results_megaGen",
 #'         filename = "Cyperaceae_big_genera")
 #' }
 #'
@@ -61,7 +64,7 @@ megaGen <- function(family,
                     thld = 500,
                     verbose = TRUE,
                     save = FALSE,
-                    dir = "results_megaGen/",
+                    dir = "results_megaGen",
                     filename = "output") {
 
 
@@ -74,24 +77,19 @@ megaGen <- function(family,
   # dir check
   dir <- .arg_check_dir(dir)
 
-  # Extracting the uri of each plant family using associated data POWOcodes
-  utils::data("POWOcodes", package = "expowo")
-  powo_codes_fam <- dplyr::filter(POWOcodes, family %in% .env$family)
+  # Search POWO for the genus URI within corresponding plant family
+  df <- .getgenURI(family = family,
+                   genus = NULL,
+                   hybrid = FALSE,
+                   verbose = verbose)
 
-  # POWO search for the genus URI in each family using auxiliary function
-  # getGenURI.
-  df <- getGenURI(powo_codes_fam,
-                  genus = NULL,
-                  verbose = verbose)
-
-  # Extract number of species using auxiliary function getNumb
-  df <- getNumb(df,
-                verbose = verbose)
+  # Extract number of species in each genus of the queried families
+  df <- .getsppNumb(df,
+                    verbose = verbose)
 
   # Select specific columns of interest and the megadiverse genera by a
   # threshold.
   if(is.null(thld)) thld <- 500
-  df$species_number <- as.numeric(df$species_number)
   df <- df %>% select("family",
                       "genus",
                       "authors",
@@ -101,8 +99,14 @@ megaGen <- function(family,
                       "powo_uri") %>%
     filter(df$species_number >= thld)
 
-  # Saving the dataframe if param save is TRUE.
-  .save_df(save, dir, filename, df)
+  # Save the search results if param save is TRUE
+  saveCSV(df,
+          dir = dir,
+          filename = filename,
+          verbose = verbose,
+          append = FALSE,
+          save = save,
+          foldername = NULL)
 
   return(df)
 }

@@ -5,10 +5,10 @@
 #' @title Complete list of angiosperm families and associated URI addresses
 #'
 #' @description Complete list of the APG IV-based families of flowering plants
-#' and associated URI addresses as retrieved with the function get_pow of the
-#' package [taxize](https://docs.ropensci.org/taxize/index.html).
+#' and associated URI addresses as retrieved with the function \code{get_pow} of
+#' the package [taxize](https://docs.ropensci.org/taxize/index.html).
 #'
-#' @format Dataframe
+#' @format \code{data.frame}
 #'
 #' @usage data(POWOcodes)
 
@@ -23,7 +23,7 @@ NULL
 #' @description Countries and associated classification of botanical divisions
 #' according to the World Geographical Scheme for Recording Plant Distributions.
 #'
-#' @format Table in .csv format
+#' @format \code{data.frame}
 #'
 #' @source <https://www.tdwg.org/standards/wgsrpd/>
 #'
@@ -39,10 +39,10 @@ NULL
 #'
 #' @description Complete list of all non-hybrid species and
 #' associated data of Lecythidaceae, Aristolochiaceae, Martyniaceae,
-#' Cabombaceae and Begoniaceae as retrieved from POWO database with the function
-#' \code{powoSpecies} of this package gathered at Nov 2022.
+#' Cabombaceae, and Begoniaceae, as retrieved from POWO database in November 2022
+#' using the \code{expowo}'s function \code{powoSpecies}.
 #'
-#' @format Dataframe
+#' @format \code{data.frame}
 #'
 #' @usage data(angioData)
 
@@ -56,10 +56,10 @@ NULL
 #'
 #' @description Complete list of all genera and associated data of
 #' Lecythidaceae, Aristolochiaceae, Begoniaceae, Martyniaceae, Dipterocarpaceae,
-#' and Fagaceae as retrieved from POWO database with the function
-#' \code{powoGenera} of this package gathered at Jan 2023.
+#' and Fagaceae, as retrieved from POWO database in January 2023 using the
+#' \code{expowo}'s function \code{powoGenera}.
 #'
-#' @format Dataframe
+#' @format \code{data.frame}
 #'
 #' @usage data(angioGenera)
 

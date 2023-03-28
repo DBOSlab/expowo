@@ -14,7 +14,7 @@ powoMap(inputdf = NULL,
         bre_color = NULL,
         leg_title = "SR",
         dpi = 600,
-        dir = "results_powoMap/",
+        dir = "results_powoMap",
         filename = "global_richness_map",
         format = "jpg")
 }
@@ -52,11 +52,10 @@ maps for every distinct group within the input data. The default is
 \code{NULL}, then the function will generate only one global species richness
 map for the entire input data.}
 
-\item{verbose}{Logical. If \code{FALSE}, the map creation steps will not be
-printed in the console in full.}
+\item{verbose}{Logical. If \code{FALSE}, a message showing the map creation
+steps will not be printed in the console in full.}
 
-\item{save}{Logical. If \code{FALSE}, the global maps will not be saved
-on disk.}
+\item{save}{Logical, if \code{TRUE}, the global maps will be saved on disk.}
 
 \item{vir_color}{A character vector with the name or code of any of the color
 palettes from \href{https://CRAN.R-project.org/package=viridis}{Viridis} package.}
@@ -75,8 +74,8 @@ create an output with 600 dpi.}
 
 \item{dir}{Pathway to the computer's directory, where the map file will be
 saved provided that the argument \code{save} is set up in \code{TRUE}. The
-default is to create a directory named \strong{results_powoMap/} and the search
-results will be saved within a subfolder named by the current date.}
+default is to create a directory named \strong{results_powoMap} and the search
+results will be saved within a subfolder named after the current date.}
 
 \item{filename}{Name of the output file to be saved. The default is to
 create a file entitled \strong{global_richness_map}.}
@@ -111,7 +110,7 @@ mapspdist <- powoSpecies(family = "Martyniaceae",
                          country = NULL,
                          verbose = TRUE,
                          save = FALSE,
-                         dir = "results_powoSpecies/",
+                         dir = "results_powoSpecies",
                          filename = "Martyniaceae_spp")
 
 # To create multiple maps for each genus within the input data according to
@@ -126,7 +125,7 @@ powoMap(inputdf = mapspdist,
         bre_color = NULL,
         leg_title = "SR",
         dpi = 600,
-        dir = "results_powoMap/",
+        dir = "results_powoMap",
         filename = "global_richness_country_map",
         format = "jpg")
 
@@ -142,7 +141,7 @@ powoMap(inputdf = mapspdist,
         bre_color = NULL,
         leg_title = "SR",
         dpi = 600,
-        dir = "results_powoMap/",
+        dir = "results_powoMap",
         filename = "global_richness_botcountry_map",
         format = "jpg")
 }

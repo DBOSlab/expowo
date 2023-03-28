@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Associated data</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Associated data</h1>
+
+
+
+<style type="text/css">
+.table{
+width: auto;
+font-size: 14px;
+}
+.table caption {
+font-size: 1em;
+}
+</style>
+<p>Here in this article, we describe the data associated with
+<code>expowo</code> package that are helpful to enhance performance
+before and while mining the global diversity and distribution
+data.<br />
+</p>
+<p>There are three associated data package, all of which can be accessed
+and imported into the R environment by simply calling the
+<code>utils</code> function <code>data</code>. Below, we explain how to
+use the data package <code>POWOcodes</code>, <code>angioData</code>, and
+<code>botregions</code>.<br />
+</p>
+<p><br />
+</p>
+<div id="setup" class="section level1">
+<h1>Setup</h1>
+<p>Install the latest development version of <strong>expowo</strong>
+from <a href="https://github.com/">GitHub</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;DBOSlab/expowo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(expowo)</span></code></pre></div>
+<p><br />
+</p>
+</div>
+<div id="powocodes---a-complete-list-of-angiosperm-families-and-associated-uri-addresses" class="section level1">
+<h1><code>POWOcodes</code> - A complete list of angiosperm families and
+associated URI addresses</h1>
+<p>The <code>POWOcodes</code> data is a dataframe containing a list of
+families of flowering plants available in the POWO database, according
+to <a href="https://doi.org/10.1111/boj.12385">APG IV</a>’s
+classification. It was produced by using the functions
+<code>apgFamilies</code> and <code>get_pow</code> of the package <a href="https://docs.ropensci.org/taxize/index.html">taxize</a>.
+<code>POWOcodes</code> data is very useful when the purpose is to query
+many plant families or all of them. In addition to the names of POWO’s
+accepted plant families, which are required in any search with
+<code>expowo</code>’s functions, this data package has the corresponding
+family’s URI, which is used internally in the function for opening a
+connection with each family page at Plants of The World Online.<br />
+</p>
+<p>To call this associated data to the R environment, use the code
+below:<br />
+</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;POWOcodes&quot;</span>)</span></code></pre></div>
+<p><br />
+</p>
+</div>
+<div id="angiodata---a-dataframe-of-angiosperm-species" class="section level1">
+<h1><code>angioData</code> - A dataframe of Angiosperm species</h1>
+<p>The <code>angioData</code> is a dataframe-formatted list of species
+of some families of flowering plants and associated data, as retrieved
+from POWO database using the <code>expowo</code>’s function
+<code>powoSpecies</code>. For publication purposes and package size
+limitation, we selected some families to include in this associated data
+and let the information easily available. Currently, there are species
+from five plant families as listed in Table 1. The last update of this
+data was at Nov 2022.<br />
+<br />
+</p>
+<p>TABLE 1. The plant families and species number within
+<code>angioData</code>.<br />
+</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">family</th>
+<th align="center">species_number</th>
+<th align="center">family</th>
+<th align="center">species_number</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Lecythidaceae</td>
+<td align="center">381</td>
+<td align="center">Aristolochiaceae</td>
+<td align="center">727</td>
+</tr>
+<tr class="even">
+<td align="center">Martyniaceae</td>
+<td align="center">14</td>
+<td align="center">Cabombaceae</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td align="center">Begoniaceae</td>
+<td align="center">1993</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>In addition to all accepted species (excluding hybrid species) in the
+families above, the <code>angioData</code> also contains the
+publication, authorship, and global geographic distribution at country
+or botanical level for each species. The global classification of
+botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/">World Geographical
+Scheme</a> for Recording Plant Distributions, which is already
+associated with each taxon’s distribution in POWO.<br />
+</p>
+<p>The example below shows how to call <code>angioData</code>:<br />
+</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;angioData&quot;</span>)</span></code></pre></div>
+<p><br />
+</p>
+</div>
+<div id="angiogenera---a-data-frame-of-angiosperm-genera" class="section level1">
+<h1><code>angioGenera</code> - A data frame of Angiosperm genera</h1>
+<p>The <code>angioGenera</code> comprises the genera of some families of
+flowering plants and associated data as mined from POWO database using
+<code>powoGenera</code>. For publication purposes and package size
+limitation, we selected some families to include in this associated data
+and let the information easily available. Currently, there are six plant
+families (Lecythidaceae, Aristolochiaceae, Begoniaceae, Martyniaceae,
+Dipterocarpaceae, and Fagaceae) as listed in Table 2. The last update of
+this data was at Nov 2022.<br />
+</p>
+<p><br />
+</p>
+<p>TABLE 2. The plant families and genera within
+<code>angioGenera</code>.<br />
+</p>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="30%" />
+<col width="48%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">family</th>
+<th align="left">scientific_name</th>
+<th align="left">publication</th>
+<th align="right">species_number</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Aristolochiaceae</td>
+<td align="left">Aristolochia L.</td>
+<td align="left">Sp. Pl.: 960 (1753)</td>
+<td align="right">534</td>
+</tr>
+<tr class="even">
+<td align="left">Aristolochiaceae</td>
+<td align="left">Asarum L.</td>
+<td align="left">Sp. Pl.: 442 (1753)</td>
+<td align="right">129</td>
+</tr>
+<tr class="odd">
+<td align="left">Aristolochiaceae</td>
+<td align="left">Euglypha Chodat &amp; Hassl.</td>
+<td align="left">Bull. Herb. Boissier, ser. 2, 6: 138 (1906)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Aristolochiaceae</td>
+<td align="left">Hydnora Thunb.</td>
+<td align="left">Kongl. Vetensk. Acad. Handl. 36: 69 (1775)</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Aristolochiaceae</td>
+<td align="left">Lactoris Phil.</td>
+<td align="left">Verh. K. K. Zool.-Bot. Ges. Wien 15: 521 (1865)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Aristolochiaceae</td>
+<td align="left">Prosopanche de Bary</td>
+<td align="left">Abh. Naturf. Ges. Halle 10: 267 (1868)</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Aristolochiaceae</td>
+<td align="left">Saruma Oliv.</td>
+<td align="left">Hooker&#39;s Icon. Pl. 19: t. 1895 (1889)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Aristolochiaceae</td>
+<td align="left">Thottea Rottb.</td>
+<td align="left">Nye Saml. Kongel. Danske Vidensk. Selsk. Skr. 2: 529
+(1783)</td>
+<td align="right">45</td>
+</tr>
+<tr class="odd">
+<td align="left">Begoniaceae</td>
+<td align="left">Begonia L.</td>
+<td align="left">Sp. Pl.: 1056 (1753)</td>
+<td align="right">1992</td>
+</tr>
+<tr class="even">
+<td align="left">Begoniaceae</td>
+<td align="left">Hillebrandia Oliv.</td>
+<td align="left">Trans. Linn. Soc. London 25: 361 (1866)</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Martyniaceae</td>
+<td align="left">Craniolaria L.</td>
+<td align="left">Sp. Pl.: 618 (1753)</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Martyniaceae</td>
+<td align="left">Holoregmia Nees</td>
+<td align="left">Flora 4: 300 (1821)</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Martyniaceae</td>
+<td align="left">Ibicella (Stapf) Van Eselt.</td>
+<td align="left">Techn. Bull. New York Agric. Exp. Sta., Geneva 149: 31
+(1929)</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Martyniaceae</td>
+<td align="left">Martynia L.</td>
+<td align="left">Sp. Pl.: 618 (1753)</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Martyniaceae</td>
+<td align="left">Proboscidea Schmidel</td>
+<td align="left">Icon. Pl. Anal., ed. Keller: 49 (1763)</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Anisoptera Korth.</td>
+<td align="left">Verh. Nat. Gesch. Ned. Bezitt., Bot.: 65 (1841)</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Cotylelobium Pierre</td>
+<td align="left">Fl. Forest. Cochinch.: t. 235 (1889)</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Dipterocarpus C.F.Gaertn.</td>
+<td align="left">Suppl. Carp. 3: 50 (1805)</td>
+<td align="right">65</td>
+</tr>
+<tr class="odd">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Dryobalanops C.F.Gaertn.</td>
+<td align="left">Suppl. Carp. 3: 49 (1805)</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Hopea Roxb.</td>
+<td align="left">Pl. Coromandel 3: 7 (1811), nom. cons.</td>
+<td align="right">114</td>
+</tr>
+<tr class="odd">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Marquesia Gilg</td>
+<td align="left">Bot. Jahrb. Syst. 40: 485 (1908)</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Monotes A.DC.</td>
+<td align="left">A.P.de Candolle, Prodr. 16(2): 623 (1868)</td>
+<td align="right">23</td>
+</tr>
+<tr class="odd">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Neobalanocarpus P.S.Ashton</td>
+<td align="left">Fl. Males. 9: 388 (1982)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Parashorea Kurz</td>
+<td align="left">J. Asiat. Soc. Bengal, Pt. 2, Nat. Hist. 39: 65
+(1870)</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Pseudomonotes A.C.Londoño, E.Alvarez &amp; Forero</td>
+<td align="left">Brittonia 47: 230 (1995)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Shorea Roxb. ex C.F.Gaertn.</td>
+<td align="left">Suppl. Carp.: 47 (1805)</td>
+<td align="right">189</td>
+</tr>
+<tr class="odd">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Stemonoporus Thwaites</td>
+<td align="left">Hooker&#39;s J. Bot. Kew Gard. Misc. 6: 67 (1854)</td>
+<td align="right">26</td>
+</tr>
+<tr class="even">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Upuna Symington</td>
+<td align="left">Bull. Jard. Bot. Buitenzorg, ser. 3, 17: 88 (1941)</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Vateria L.</td>
+<td align="left">Sp. Pl.: 515 (1753)</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Vateriopsis F.Heim</td>
+<td align="left">Rech. Dipterocarp.: 94 (1892)</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Dipterocarpaceae</td>
+<td align="left">Vatica L.</td>
+<td align="left">Mant. Pl. 2: 152 (1771)</td>
+<td align="right">77</td>
+</tr>
+<tr class="even">
+<td align="left">Fagaceae</td>
+<td align="left">Castanea Mill.</td>
+<td align="left">Gard. Dict. Abr. ed. 4.: s.p. (1754)</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">Fagaceae</td>
+<td align="left">Castanopsis (D.Don) Spach</td>
+<td align="left">Hist. Nat. Veg. 11: 185 (1842), nom. cons.</td>
+<td align="right">143</td>
+</tr>
+<tr class="even">
+<td align="left">Fagaceae</td>
+<td align="left">Chrysolepis Hjelmq.</td>
+<td align="left">Bot. Not. Suppl. 2, 1: 117 (1948)</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Fagaceae</td>
+<td align="left">Fagus L.</td>
+<td align="left">Sp. Pl.: 997 (1753)</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Fagaceae</td>
+<td align="left">Lithocarpus Blume</td>
+<td align="left">Bijdr. Fl. Ned. Ind.: 526 (1826)</td>
+<td align="right">343</td>
+</tr>
+<tr class="odd">
+<td align="left">Fagaceae</td>
+<td align="left">Notholithocarpus Manos, Cannon &amp; S.H.Oh</td>
+<td align="left">Madrono 55: 188 (2008)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Fagaceae</td>
+<td align="left">Quercus L.</td>
+<td align="left">Sp. Pl.: 994 (1753)</td>
+<td align="right">464</td>
+</tr>
+<tr class="odd">
+<td align="left">Fagaceae</td>
+<td align="left">Trigonobalanus Forman</td>
+<td align="left">Taxon 11: 140 (1962)</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Allantoma Miers</td>
+<td align="left">Trans. Linn. Soc. London 30: 291 (1874)</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Asteranthos Desf.</td>
+<td align="left">Mem. Mus. Hist. Nat. 6: 9 (1820)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Barringtonia J.R.Forst. &amp; G.Forst.</td>
+<td align="left">Char. Gen. Pl.: 75 (1776), nom. cons.</td>
+<td align="right">72</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Bertholletia Bonpl.</td>
+<td align="left">F.W.H.A.von Humboldt &amp; A.J.A.Bonpland, Pl.
+Aequinoct. 1: 122 (1807)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Brazzeia Baill.</td>
+<td align="left">Bull. Mens. Soc. Linn. Paris 1: 609 (1886)</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Careya Roxb.</td>
+<td align="left">Fl. Ind. ed. 1832. 2: 636 (1832)</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Cariniana Casar.</td>
+<td align="left">Nov. Stirp. Bras. 4: 35 (1842)</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Chydenanthus Miers</td>
+<td align="left">Trans. Linn. Soc. London, Bot. 1: 111 (1875)</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Corythophora R.Knuth</td>
+<td align="left">H.G.A.Engler (ed.), Pflanzenr., IV, 219a: 50
+(1939)</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Couratari Aubl.</td>
+<td align="left">Hist. Pl. Guiane 2: 723 (1775)</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Couroupita Aubl.</td>
+<td align="left">Hist. Pl. Guiane 2: 708 (1775)</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Crateranthus Baker f.</td>
+<td align="left">A.B.Rendle &amp; al., Cat. Pl. Oban: 35 (1913)</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Eschweilera Mart. ex DC.</td>
+<td align="left">Prodr. 3: 293 (1828)</td>
+<td align="right">99</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Foetidia Comm. ex Lam.</td>
+<td align="left">Encycl. 2: 457 (1788)</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Grias L.</td>
+<td align="left">Syst. Nat. ed. 10. 2: 1075 (1759)</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Gustavia L.</td>
+<td align="left">Pl. Surin. 12: 17 (1775), nom. cons.</td>
+<td align="right">46</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Lecythis Loefl.</td>
+<td align="left">Iter Hispan.: 189 (1758)</td>
+<td align="right">30</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Napoleonaea P.Beauv.</td>
+<td align="left">Napoleone: 1 (1804)</td>
+<td align="right">17</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Oubanguia Baill.</td>
+<td align="left">Bull. Mens. Soc. Linn. Paris 2: 869 (1890)</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Petersianthus Merr.</td>
+<td align="left">Philipp. J. Sci., C 11: 200 (1916)</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Pierrina Engl.</td>
+<td align="left">Bot. Jahrb. Syst. 43: 374 (1909)</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Planchonia Blume</td>
+<td align="left">Fl. Serres Jard. Eur. 7: 24 (1851)</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">Lecythidaceae</td>
+<td align="left">Rhaptopetalum Oliv.</td>
+<td align="left">J. Linn. Soc., Bot. 8: 159 (1865)</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">Lecythidaceae</td>
+<td align="left">Scytopetalum Pierre ex Engl.</td>
+<td align="left">H.G.A.Engler &amp; K.A.E.Prantl, Nat. Pflanzenfam.,
+Nachtr. 1: 244 (1897)</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>In addition to list all accepted genera in the above families, the
+dataframe-formatted <code>angioGenera</code> also contains publication,
+authorship, species number and global geographic distribution at country
+or botanical level for each genus. The global classification of
+botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/">World Geographical
+Scheme</a> for Recording Plant Distributions, which is already
+associated with each taxon’s distribution in POWO.<br />
+</p>
+<p>The example below shows how to call <code>angioGenera</code>:<br />
+</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;angioGenera&quot;</span>)</span></code></pre></div>
+<p><br />
+</p>
+</div>
+<div id="botregions---countries-and-associated-classification-of-botanical-divisions" class="section level1">
+<h1><code>botregions</code> - Countries and associated classification of
+botanical divisions</h1>
+<p>The <code>botregions</code> data package is a dataframe containing
+all countries of the World and associated classification of botanical
+divisions according to the <a href="https://www.tdwg.org/standards/wgsrpd/">World Geographical
+Scheme</a> for Recording Plant Distributions. It was built using a
+custim script with specific functions from the packages
+<code>rgdal</code>, <code>ggplot2</code>, <code>broom</code>,
+<code>sf</code> and <code>raster</code> (original script can be made
+available upon request). This dataset is useful when the purpose is to
+query the distribution data by both divisions of the world and for the
+<code>expowo</code> ’s functions convert the country names.<br />
+</p>
+<p>To call this associated data to your R environment, use the code
+below:<br />
+</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;botregions&quot;</span>)</span></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -24,9 +24,13 @@ knitr::opts_chunk$set(
 }
 ```
 
-Here in this article, we describe the data associated with `expowo` package that are helpful to enhance performance before and while mining the global diversity and distribution data.\
+Here in this article, we describe the data associated with `expowo` package that 
+are helpful to enhance performance before and while mining the global diversity 
+and distribution data.\
 
-There are three associated data package, all of which can be accessed and imported into the R environment by simply calling the `utils` function `data`. Below, we explain how to use the data package `POWOcodes`, `angioData`, and `botregions`.\
+There are three associated data package, all of which can be accessed and imported 
+into the R environment by simply calling the `utils` function `data`. Below, we 
+explain how to use the data package `POWOcodes`, `angioData`, and `botregions`.\
 
 \
 
@@ -51,11 +55,11 @@ The `POWOcodes` data is a dataframe containing a list of families of flowering
 plants available in the POWO database, according to [APG IV](https://doi.org/10.1111/boj.12385)'s
 classification. It was produced by using the functions `apgFamilies` and `get_pow`
 of the package [taxize](https://docs.ropensci.org/taxize/index.html). `POWOcodes` 
-data is very useful when the purpose is to query many plant families or all of them.
-In addition to the names of POWO's accepted plant families, which are required in
-any search with `expowo`'s functions, this data package has the corresponding
-family's URI, which is used internally in the function for opening a connection
-with each family page at Plants of The World Online.\
+data is very useful when the purpose is to query many plant families or all of 
+them. In addition to the names of POWO's accepted plant families, which are 
+required in any search with `expowo`'s functions, this data package has the 
+corresponding family's URI, which is used internally in the function for opening 
+a connection with each family page at Plants of The World Online.\
 
 To call this associated data to the R environment, use the code below:\
 
@@ -100,7 +104,7 @@ utils::data("angioData")
 
 \
 
-# `angioGenera` - A dataframe of Angiosperm genera
+# `angioGenera` - A data frame of Angiosperm genera
 
 The `angioGenera` comprises the genera of some families of flowering plants and 
 associated data as mined from POWO database using `powoGenera`. For publication 
@@ -109,6 +113,7 @@ this associated  data and let the information easily available. Currently, there
 are six plant families (Lecythidaceae, Aristolochiaceae, Begoniaceae, Martyniaceae,
 Dipterocarpaceae, and Fagaceae) as listed in Table 2. The last update of this 
 data was at Nov 2022.\
+
 \
 
 TABLE 2. The plant families and genera within `angioGenera`.\
@@ -152,5 +157,3 @@ To call this associated data to your R environment, use the code below:\
 ```{r, eval = FALSE}
 utils::data("botregions")
 ```
-
-\

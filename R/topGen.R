@@ -1,4 +1,4 @@
-#' Extract the top most species-rich genera
+#' Extract the top most species-rich genera of any plant family
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
@@ -7,7 +7,12 @@
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage
-#' topGen(family, limit = 10, verbose = TRUE, save = FALSE, dir, filename)
+#' topGen(family,
+#'        limit = 10,
+#'        verbose = TRUE,
+#'        save = FALSE,
+#'        dir = "results_topGen",
+#'        filename = "output")
 #'
 #' @param family Either one family name or a vector of multiple families that
 #' is present in POWO.
@@ -16,19 +21,18 @@
 #' selected within each plant family. The default is to select the top ten
 #' richest genera.
 #'
-#' @param verbose Logical, if \code{FALSE}, the search results will not be
-#' printed in the console in full.
+#' @param verbose Logical, if \code{FALSE}, a message showing each step during
+#' the POWO search will not be printed in the console in full.
 #'
-#' @param save Logical, if \code{FALSE}, the search results will not be saved on
-#' disk.
+#' @param save Logical, if \code{TRUE}, the search results will be saved on disk.
 #'
 #' @param dir Pathway to the computer's directory, where the file will be saved
 #' provided that the argument \code{save} is set up in \code{TRUE}. The default
-#' is to create a directory named **results_topGen** and the searched results
-#' will be saved within a subfolder named by the current date.
+#' is to create a directory named **results_topGen** and the search results
+#' will be saved within a subfolder named after the current date.
 #'
 #' @param filename Name of the output file to be saved. The default is to create
-#'  a file entitled **output**.
+#' a file entitled **output**.
 #'
 #' @return Table in .csv format.
 #'
@@ -40,9 +44,8 @@
 #'
 #' topGen(family = "Lecythidaceae",
 #'        limit = 10,
-#'        verbose = TRUE,
-#'        save = FALSE,
-#'        dir = "results_topGen/",
+#'        save = TRUE,
+#'        dir = "results_topGen",
 #'        filename = "Lecythidaceae_top_ten")
 #' }
 #'
@@ -58,7 +61,7 @@ topGen <- function(family,
                    limit = 10,
                    verbose = TRUE,
                    save = FALSE,
-                   dir = "results_topGen/",
+                   dir = "results_topGen",
                    filename = "output") {
 
   # family check for synonym
@@ -70,23 +73,19 @@ topGen <- function(family,
   # dir check
   dir <- .arg_check_dir(dir)
 
-  # Extracting the uri of each plant family using associated data POWOcodes
-  utils::data("POWOcodes", package = "expowo")
-  powo_codes_fam <- dplyr::filter(POWOcodes, family %in% .env$family)
+  # Search POWO for the genus URI within corresponding plant family
+  df <- .getgenURI(family = family,
+                   genus = NULL,
+                   hybrid = FALSE,
+                   verbose = verbose)
 
-  # POWO search for the genus URI in each family using auxiliary function
-  # getGenURI.
-  df <- getGenURI(powo_codes_fam,
-                  genus = NULL,
-                  verbose = verbose)
-
-  # Extract number of species using auxiliary function getNumb
-  df <- getNumb(df,
-                verbose = verbose)
+  # Extract number of species in each genus of the queried families
+  df <- .getsppNumb(df,
+                    verbose = verbose)
 
   # Select specific columns of interest and the most diverse genera
-  if(is.null(limit)) limit <- 10
-  df$species_number <- as.numeric(df$species_number)
+  if (is.null(limit)) limit <- 10
+
   df <- df %>% select("family",
                       "genus",
                       "authors",
@@ -98,9 +97,14 @@ topGen <- function(family,
     group_by(family) %>%                  # to filter in each family
     slice(1:limit)                        # the top richest genera.
 
-
-  # Saving the dataframe if param save is TRUE.
-  .save_df(save, dir, filename, df)
+  # Save the search results if param save is TRUE
+  saveCSV(df,
+          dir = dir,
+          filename = filename,
+          verbose = verbose,
+          append = FALSE,
+          save = save,
+          foldername = NULL)
 
   return(df)
 }

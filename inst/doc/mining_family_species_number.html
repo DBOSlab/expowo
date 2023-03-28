@@ -372,7 +372,7 @@ from <a href="https://github.com/">GitHub</a>:</p>
 </div>
 <div id="mining-the-total-species-number-for-any-angiosperm-family" class="section level1">
 <h1>Mining the total species number for any angiosperm family</h1>
-<p>The function <code>powoFam</code> returns a dataframe or saves a CSV
+<p>The function <code>powoFam</code> returns a data frame or saves a CSV
 file listing the total species number (excluding hybrid species) for the
 queried plant families.<br />
 </p>
@@ -385,7 +385,7 @@ directory <strong>results_powoFam</strong>.<br />
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>CLM <span class="ot">&lt;-</span> <span class="fu">powoFam</span>(<span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;Cabombaceae&quot;</span>, <span class="st">&quot;Lecythidaceae&quot;</span>, <span class="st">&quot;Martyniaceae&quot;</span>),</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">dir =</span> <span class="st">&quot;results_powoFam/&quot;</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">dir =</span> <span class="st">&quot;results_powoFam&quot;</span>,</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">filename =</span> <span class="st">&quot;Camb_Lecy_Martyniaceae_diversity&quot;</span>)</span></code></pre></div>
 <table>
 <caption>TABLE 1. A general <code>powoFam</code> search for mining the
@@ -431,12 +431,12 @@ total species number of three angiosperm families.</caption>
 <div id="mining-species-number-accross-all-angiosperm-families" class="section level1">
 <h1>Mining species number accross all angiosperm families</h1>
 <p>To mine the species number of all families of flowering plants, we
-recommend to load the data frame-formatted object called
+recommend to load the dataframe-formatted object called
 <code>POWOcodes</code> that comes associated with the
 <strong>expowo</strong> package. The <code>POWOcodes</code> data object
 already contains the URI addresses for all angiosperms families
 recognized in the <a href="https://powo.science.kew.org">POWO</a>
-database, so you just need to call it to your R environment.<br />
+database, so you just need to call it to the R environment.<br />
 </p>
 <p>The example below shows how to mine the species number of all plant
 families by using the vector of all angiosperm families and associated
@@ -447,7 +447,7 @@ URI addresses stored in the <code>POWOcodes</code> object.<br />
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ALL_fam <span class="ot">&lt;-</span> <span class="fu">powoFam</span>(POWOcodes<span class="sc">$</span>family,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">dir =</span> <span class="st">&quot;results_powoFam/&quot;</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">dir =</span> <span class="st">&quot;results_powoFam&quot;</span>,</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">filename =</span> <span class="st">&quot;all_angiosperms_species_number&quot;</span>)</span></code></pre></div>
 </div>
 

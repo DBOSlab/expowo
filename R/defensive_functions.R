@@ -2,7 +2,6 @@
 # return meaningful errors.
 # Author: Debora Zuanny & Domingos Cardoso
 
-
 #_______________________________________________________________________________
 # Check if the threshold input for megaGen is a numeric value
 .arg_check_thld <- function(x) {
@@ -14,7 +13,6 @@
          call. = FALSE)
   }
 }
-
 
 #_______________________________________________________________________________
 # Check if the threshold input for topGen is a numeric value
@@ -28,7 +26,6 @@
   }
 }
 
-
 #_______________________________________________________________________________
 # Check if the dir input is "character" type and if it has a "/" in the end
 .arg_check_dir <- function(x) {
@@ -38,12 +35,60 @@
     stop(paste0("The argument dir should be a character, not '", class_x, "'."),
          call. = FALSE)
   }
-  if (!grepl("[/]$", x)) {
-    x <- paste0(x, "/")
+  if (grepl("[/]$", x)) {
+    x <- gsub("[/]$", "", x)
   }
   return(x)
 }
 
+#_______________________________________________________________________________
+# Check if the previously search CSV file is within the correct subfolder so as
+# to do a renun search
+.arg_check_run <- function(dir, filename, rerun) {
+
+  csv_file <- paste0(paste0(dir, "/", format(Sys.time(), "%d%b%Y")),
+                     "/", filename, ".csv")
+  if (rerun == FALSE) {
+    if (file.exists(csv_file)) {
+      stop(paste0("by setting 'rerun = FALSE', you have selected a completely
+                   new search mode to run. However, it appears that a CSV file
+                   with the same name as your current filename has been detected
+                   in the results folder, from a previous search. Please ensure
+                   that the filename argument is different from the CSV
+                   filename from previous search:\n
+                   (i) rename the CSV filename from previous search;\n
+                   (ii) or move the previously saved CSV file from outside the
+                   subfolder named by the today date '",
+                   format(Sys.time(), "%d%b%Y"), "'."),
+           call. = FALSE)
+    }
+  }
+}
+
+#_______________________________________________________________________________
+# Check if the previously search CSV file is within the correct subfolder so as
+# to do the renun search
+.arg_check_rerun <- function(dir, filename, rerun) {
+
+  csv_file <- paste0(paste0(dir, "/", format(Sys.time(), "%d%b%Y")),
+                     "/", filename, ".csv")
+
+  if (rerun) {
+    if (!file.exists(csv_file)) {
+      stop(paste0("By setting 'rerun = TRUE', you have selected a rerun search
+                   mode. However, the CSV file saved during the previous search
+                   was not found in the results folder. Please ensure that:\n
+                   (i) the filename argument is exactly as the CSV filename from
+                   previous search;\n
+                   (ii) the previously saved CSV file is within a subfolder
+                   named after the today date '",
+                   format(Sys.time(), "%d%b%Y"), "'. If it is not, please rename
+                   the date subfolder accordingly\n
+                   (iii) or set 'rerun = FALSE' for a new run from beginning."),
+           call. = FALSE)
+    }
+  }
+}
 
 #_______________________________________________________________________________
 # Function to check if the input data for powoMap is a dataframe-formatted
@@ -53,11 +98,11 @@
   # Change column names if the input dataframe is different from powoSpecies
   tf <- is.null(which(grepl(",\\s", inputdf[[distcol]]) == TRUE))
   if (any(tf)) {
-    stop(paste("Make sure the input data has each species as a single row with
-                  its corresponding full distribution in all countries and/or
-                  botanical regions within a single cell of their respective
-                  columns, where the country names or botanical regions are
-                  separated by a comma."))
+    stop("Make sure the input data has each species as a single row with
+          its corresponding full distribution in all countries and/or
+          botanical regions within a single cell of their respective
+          columns, where the country names or botanical regions are
+          separated by a comma.")
   }
 
   # Identify the column with the species scientific binomial and rename it to
@@ -76,15 +121,14 @@
                                            inputdf[[names(inputdf)[tf]]])
     }
   } else {
-    stop(paste("Make sure the input data has the column with species names as
-                  a binomial, i.e. containing both the genus name and specific
-                  epithet. Having or not the taxon authorship within the same
-                  column of species binomials is NOT an issue."))
+    stop("Make sure the input data has the column with species names as
+          a binomial, i.e. containing both the genus name and specific
+          epithet. Having or not the taxon authorship within the same
+          column of species binomials is NOT an issue.")
   }
 
   return(inputdf)
 }
-
 
 #_______________________________________________________________________________
 # Function to check if the format argument for powoMap is any of jpg, pdf, tiff,

@@ -12,7 +12,7 @@ library(expowo)
 #                    limit = NULL,
 #                    verbose = TRUE,
 #                    save = FALSE,
-#                    dir = "results_topGen/",
+#                    dir = "results_topGen",
 #                    filename = "Aristo_Bego_Lecythidaceae_search")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
@@ -41,6 +41,6 @@ knitr::kable(res,
 #                    limit = 10,
 #                    verbose = TRUE,
 #                    save = FALSE,
-#                    dir = "results_topGen/",
+#                    dir = "results_topGen",
 #                    filename = "all_toprichest_angiosperm_genera")
 

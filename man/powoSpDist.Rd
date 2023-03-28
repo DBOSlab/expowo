@@ -2,30 +2,33 @@
 % Please edit documentation in R/powoSpDist.R
 \name{powoSpDist}
 \alias{powoSpDist}
-\title{Extract list of species distribution from POWO}
+\title{Extract distribution of any plant species}
 \usage{
-powoSpDist(family, species = NULL,
-            verbose = TRUE, save = FALSE, dir, filename)
+powoSpDist(family,
+           species = NULL,
+           verbose = TRUE,
+           save = FALSE,
+           dir = "results_powoSpDist",
+           filename = "output")
 }
 \arguments{
 \item{family}{Either one family name or a vector of multiple families
 that is present in POWO.}
 
 \item{species}{Either one non-hybrid species name or a vector of multiple
-species that are present in POWO. If any species name is not provided, then
+species that is present in POWO. If any species name is not provided, then
 the function will search any species from all accepted genera known for the
 target family.}
 
-\item{verbose}{Logical, if \code{FALSE}, the search results will not be
-printed in the console in full.}
+\item{verbose}{Logical, if \code{FALSE}, a message showing each step during
+the POWO search will not be printed in the console in full.}
 
-\item{save}{Logical, if \code{FALSE}, the search results will not be saved
-on disk.}
+\item{save}{Logical, if \code{TRUE}, the search results will be saved on disk.}
 
 \item{dir}{Pathway to the computer's directory, where the file will be saved
 provided that the argument \code{save} is set up in \code{TRUE}. The default
-is to create a directory named \strong{results_powoSpDist} and the search
-results will be saved within a subfolder named by the current date.}
+is to create a directory named \strong{results_powoSpDist} and the search results
+will be saved within a subfolder named after the current date.}
 
 \item{filename}{Name of the output file to be saved. The default is to create
 a file entitled \strong{output}.}
@@ -34,9 +37,9 @@ a file entitled \strong{output}.}
 Table in .csv format.
 }
 \description{
-Produces a CSV file listing the geographical distribution
-of all target species of flowering plants available at
-\href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
+Produces a CSV file listing the geographical distribution at
+country and botanical subdivisions of all target species of flowering plants
+at \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
 \donttest{
@@ -44,9 +47,8 @@ library(expowo)
 
 powoSpDist(family = "Lecythidaceae",
            species = "Lecythis pisonis",
-           verbose = TRUE,
-           save = FALSE,
-           dir = "results_powoSpDist/",
+           save = TRUE,
+           dir = "results_powoSpDist",
            filename = "L_pisonis_distribution")
 }
 

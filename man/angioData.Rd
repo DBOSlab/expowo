@@ -5,7 +5,7 @@
 \alias{angioData}
 \title{List of Angiosperm species}
 \format{
-Dataframe
+\code{data.frame}
 }
 \usage{
 data(angioData)
@@ -13,6 +13,6 @@ data(angioData)
 \description{
 Complete list of all non-hybrid species and
 associated data of Lecythidaceae, Aristolochiaceae, Martyniaceae,
-Cabombaceae and Begoniaceae as retrieved from POWO database with the function
-\code{powoSpecies} of this package gathered at Nov 2022.
+Cabombaceae, and Begoniaceae, as retrieved from POWO database in November 2022
+using the \code{expowo}'s function \code{powoSpecies}.
 }

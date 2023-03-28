@@ -9,10 +9,10 @@ library(expowo)
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  res <- powoSpecies(family = c("Cabombaceae", "Martyniaceae"),
-#                     hybridspp = FALSE,
+#                     hybrid = FALSE,
 #                     verbose = TRUE,
 #                     save = FALSE,
-#                     dir = "results_powoSpecies/",
+#                     dir = "results_powoSpecies",
 #                     filename = "Cabom_Martyniaceae_search")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
@@ -27,11 +27,11 @@ knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  ACM <- powoSpecies(family = c("Aristolochiaceae", "Cabombaceae", "Martyniaceae"),
-#                     hybridspp = FALSE,
+#                     hybrid = FALSE,
 #                     country = c("Brazil", "Colombia"),
 #                     verbose = FALSE,
 #                     save = FALSE,
-#                     dir = "results_powoSpecies/",
+#                     dir = "results_powoSpecies",
 #                     filename = "country_constrained_search")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
@@ -49,11 +49,11 @@ knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 12, 13)],
 ## ---- eval = FALSE------------------------------------------------------------
 #  MC <- powoSpecies(family = c("Martyniaceae", "Cabombaceae"),
 #                    genus = c("Proboscidea", "Cabomba"),
-#                    hybridspp = FALSE,
+#                    hybrid = FALSE,
 #                    country = c("Argentina", "French Guiana", "Brazil"),
 #                    verbose = TRUE,
 #                    save = FALSE,
-#                    dir = "results_powoSpecies/",
+#                    dir = "results_powoSpecies",
 #                    filename = "country_and_genus_constrained_search")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
@@ -71,10 +71,21 @@ knitr::kable(df[-c(2, 3, 10, 11, 13)],
 ## ---- eval = FALSE------------------------------------------------------------
 #  utils::data("POWOcodes")
 #  
-#  ALL_sp <- powoSpecies(POWOcodes$family,
-#                        hybridspp = TRUE,
-#                        verbose = TRUE,
-#                        save = FALSE,
-#                        dir = "results_powoSpecies/",
-#                        filename = "all_angiosperm_species")
+#  ALL_spp <- powoSpecies(POWOcodes$family,
+#                         hybrid = TRUE,
+#                         verbose = TRUE,
+#                         save = FALSE,
+#                         dir = "results_powoSpecies",
+#                         filename = "all_angiosperm_species")
+
+## ---- eval = FALSE------------------------------------------------------------
+#  utils::data("POWOcodes")
+#  
+#  ALL_spp <- powoSpecies(POWOcodes$family,
+#                         hybrid = TRUE,
+#                         verbose = TRUE,
+#                         rerun = TRUE,
+#                         save = FALSE,
+#                         dir = "results_powoSpecies",
+#                         filename = "all_angiosperm_species")
 

@@ -11,7 +11,7 @@ library(expowo)
 #  CLM <- powoFam(family = c("Cabombaceae", "Lecythidaceae", "Martyniaceae"),
 #                 verbose = TRUE,
 #                 save = FALSE,
-#                 dir = "results_powoFam/",
+#                 dir = "results_powoFam",
 #                 filename = "Camb_Lecy_Martyniaceae_diversity")
 
 ## ---- echo = FALSE, warning = FALSE-------------------------------------------
@@ -36,6 +36,6 @@ knitr::kable(res,
 #  ALL_fam <- powoFam(POWOcodes$family,
 #                     verbose = TRUE,
 #                     save = FALSE,
-#                     dir = "results_powoFam/",
+#                     dir = "results_powoFam",
 #                     filename = "all_angiosperms_species_number")
 
