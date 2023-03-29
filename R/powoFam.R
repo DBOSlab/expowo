@@ -39,11 +39,11 @@
 #' @seealso \code{\link{POWOcodes}}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(expowo)
 #'
 #' powoFam(family = "Lecythidaceae",
-#'         save = TRUE,
+#'         save = FALSE,
 #'         dir = "results_powoFam",
 #'         filename = "Lecythidaceae_spp_number")
 #' }

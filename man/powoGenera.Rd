@@ -58,12 +58,12 @@ of accepted species and geographical distribution for any angiosperm family
 at \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
-\donttest{
+\dontrun{
 library(expowo)
 
 powoGenera(family = "Lecythidaceae",
            verbose = TRUE,
-           save = TRUE,
+           save = FALSE,
            dir = "results_powoGenera",
            filename = "Lecythidaceae_genera")
 
@@ -71,7 +71,7 @@ powoGenera(family = "Lecythidaceae",
            genus = "Bertholletia",
            country = c("Argentina", "Brazil", "French Guiana"),
            verbose = TRUE,
-           save = TRUE,
+           save = FALSE,
            dir = "results_powoGenera",
            filename = "Lecythidaceae_search")
 }

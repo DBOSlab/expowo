@@ -40,12 +40,12 @@
 #' @seealso \code{\link{POWOcodes}}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(expowo)
 #'
 #' powoSpDist(family = "Lecythidaceae",
 #'            species = "Lecythis pisonis",
-#'            save = TRUE,
+#'            save = FALSE,
 #'            dir = "results_powoSpDist",
 #'            filename = "L_pisonis_distribution")
 #'}

@@ -66,13 +66,13 @@
 #' @seealso \code{\link{POWOcodes}}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(expowo)
 #'
 #' powoSpecies(family = "Martyniaceae",
 #'             synonyms = TRUE,
 #'             country = c("Argentina", "Brazil", "French Guiana"),
-#'             save = TRUE,
+#'             save = FALSE,
 #'             dir = "Martyniaceae_results_powoSpecies",
 #'             filename = "Martyniaceae_spp")
 #'}
@@ -83,7 +83,7 @@
 #' @importFrom tibble add_row
 #' @importFrom flora remove.authors
 #' @importFrom R.utils countLines
-#' @importFrom utils data
+#' @importFrom utils data read.csv
 #'
 #' @export
 #'

@@ -39,12 +39,12 @@
 #' @seealso \code{\link{POWOcodes}}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(expowo)
 #'
 #' topGen(family = "Lecythidaceae",
 #'        limit = 10,
-#'        save = TRUE,
+#'        save = FALSE,
 #'        dir = "results_topGen",
 #'        filename = "Lecythidaceae_top_ten")
 #' }

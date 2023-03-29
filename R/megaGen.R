@@ -5,8 +5,7 @@
 #' @description Produces a CSV file listing all mega-diverse genera for any plant
 #' family at [Plants of the World Online (POWO)](https://powo.science.kew.org/)
 #' based on a provided numeric value as the threshold to be considered
-#' mega-diverse. [Frodin (2004)](https://doi.org/10.2307/4135449) suggests 500
-#' species as the threshold.
+#' mega-diverse. Frodin (2004) suggests 500 species as the threshold.
 #'
 #' @usage
 #' megaGen(family,
@@ -20,8 +19,7 @@
 #' is present in POWO.
 #'
 #' @param thld A defined threshold of species number for a genus to be
-#' considered megadiverse. The default value is 500 based on
-#' [Frodin (2004)](https://doi.org/10.2307/4135449).
+#' considered megadiverse. The default value is 500 based on Frodin (2004).
 #'
 #' @param verbose Logical, if \code{FALSE}, a message showing each step during
 #' the POWO search will not be printed in the console in full.
@@ -41,13 +39,13 @@
 #' @seealso \code{\link{POWOcodes}}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'
 #' library(expowo)
 #'
 #' megaGen(family = "Cyperaceae",
 #'         thld = 500,
-#'         save = TRUE,
+#'         save = FALSE,
 #'         dir = "results_megaGen",
 #'         filename = "Cyperaceae_big_genera")
 #' }

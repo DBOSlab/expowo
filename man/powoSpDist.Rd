@@ -42,12 +42,12 @@ country and botanical subdivisions of all target species of flowering plants
 at \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
-\donttest{
+\dontrun{
 library(expowo)
 
 powoSpDist(family = "Lecythidaceae",
            species = "Lecythis pisonis",
-           save = TRUE,
+           save = FALSE,
            dir = "results_powoSpDist",
            filename = "L_pisonis_distribution")
 }

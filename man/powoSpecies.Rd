@@ -64,13 +64,13 @@ flowering plants at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
-\donttest{
+\dontrun{
 library(expowo)
 
 powoSpecies(family = "Martyniaceae",
             synonyms = TRUE,
             country = c("Argentina", "Brazil", "French Guiana"),
-            save = TRUE,
+            save = FALSE,
             dir = "Martyniaceae_results_powoSpecies",
             filename = "Martyniaceae_spp")
 }

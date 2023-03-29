@@ -41,12 +41,12 @@ of any target botanical family of flowering plants at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
-\donttest{
+\dontrun{
 library(expowo)
 
 topGen(family = "Lecythidaceae",
        limit = 10,
-       save = TRUE,
+       save = FALSE,
        dir = "results_topGen",
        filename = "Lecythidaceae_top_ten")
 }

@@ -368,14 +368,14 @@
   csv_file <- paste0(paste0(dir, "/", format(Sys.time(), "%d%b%Y")),
                      "/", filename, ".csv")
   # Read headers only
-  column_names <- as.vector(t(read.csv(csv_file, header=FALSE,
-                                       colClasses='character', nrows=1)))
+  column_names <- as.vector(t(utils::read.csv(csv_file, header=FALSE,
+                                              colClasses='character', nrows=1)))
   # Then read last n lines
   ltokeep <- 100
   nL <- R.utils::countLines(csv_file)
   df_temp <- read.csv(csv_file, header=FALSE, col.names=column_names,
                       skip=nL-ltokeep)
-
+  status <- df_temp$status
   if (any(names(df_temp) %in% "status")) {
     df_temp <- df_temp %>% filter(status == "Accepted")
     l_row <- nrow(df_temp)

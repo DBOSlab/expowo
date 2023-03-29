@@ -60,12 +60,12 @@
 #' @seealso \code{\link{POWOcodes}}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(expowo)
 #'
 #' powoGenera(family = "Lecythidaceae",
 #'            verbose = TRUE,
-#'            save = TRUE,
+#'            save = FALSE,
 #'            dir = "results_powoGenera",
 #'            filename = "Lecythidaceae_genera")
 #'
@@ -73,7 +73,7 @@
 #'            genus = "Bertholletia",
 #'            country = c("Argentina", "Brazil", "French Guiana"),
 #'            verbose = TRUE,
-#'            save = TRUE,
+#'            save = FALSE,
 #'            dir = "results_powoGenera",
 #'            filename = "Lecythidaceae_search")
 #'}
@@ -82,7 +82,7 @@
 #' @importFrom magrittr "%>%"
 #' @importFrom data.table fwrite
 #' @importFrom R.utils countLines
-#' @importFrom utils data
+#' @importFrom utils data read.csv
 #'
 #' @export
 #'

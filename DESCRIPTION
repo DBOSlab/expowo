@@ -31,7 +31,10 @@ Imports:
     rnaturalearth,
     sp,
     sf,
-    utils
+    utils,
+    R.utils,
+    flora,
+    tibble
 Suggests:
     covr,
     knitr,

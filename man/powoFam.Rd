@@ -36,11 +36,11 @@ within the target botanical families of flowering plants available at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{
-\donttest{
+\dontrun{
 library(expowo)
 
 powoFam(family = "Lecythidaceae",
-        save = TRUE,
+        save = FALSE,
         dir = "results_powoFam",
         filename = "Lecythidaceae_spp_number")
 }

@@ -90,7 +90,7 @@ test_that("powoSpecies works for more than one family and specified genus and co
 
 test_that("powoSpecies works for one family search and a specified hybridspp vector, hybridspp = TRUE", {
   res_ex <- powoSpecies("Cabombaceae",
-                        hybridspp = TRUE,
+                        hybrid = TRUE,
                         verbose = FALSE,
                         save = FALSE)
 

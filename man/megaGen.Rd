@@ -16,8 +16,7 @@ megaGen(family,
 is present in POWO.}
 
 \item{thld}{A defined threshold of species number for a genus to be
-considered megadiverse. The default value is 500 based on
-\href{https://doi.org/10.2307/4135449}{Frodin (2004)}.}
+considered megadiverse. The default value is 500 based on Frodin (2004).}
 
 \item{verbose}{Logical, if \code{FALSE}, a message showing each step during
 the POWO search will not be printed in the console in full.}
@@ -39,17 +38,16 @@ Table in .csv format.
 Produces a CSV file listing all mega-diverse genera for any plant
 family at \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}
 based on a provided numeric value as the threshold to be considered
-mega-diverse. \href{https://doi.org/10.2307/4135449}{Frodin (2004)} suggests 500
-species as the threshold.
+mega-diverse. Frodin (2004) suggests 500 species as the threshold.
 }
 \examples{
-\donttest{
+\dontrun{
 
 library(expowo)
 
 megaGen(family = "Cyperaceae",
         thld = 500,
-        save = TRUE,
+        save = FALSE,
         dir = "results_megaGen",
         filename = "Cyperaceae_big_genera")
 }
