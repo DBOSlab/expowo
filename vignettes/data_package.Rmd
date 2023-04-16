@@ -157,3 +157,8 @@ To call this associated data to your R environment, use the code below:\
 ```{r, eval = FALSE}
 utils::data("botregions")
 ```
+\
+
+## Reference
+
+POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; http://www.plantsoftheworldonline.org/ Retrieved Nov 2022."

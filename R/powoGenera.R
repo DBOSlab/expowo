@@ -51,7 +51,14 @@
 #' @param filename Name of the output file to be saved. The default is to create
 #' a file entitled **output**.
 #'
-#' @return Table in .csv format.
+#' @return A table with the following fields: family, genus, authors,
+#' scientific_name, publication (information about the protologue of the genus),
+#' species_number, native_to_country (original distribution according to
+#' political country), native_to_botanical_countries (original distribution
+#' according to botanical country), introduced_to_country (exotic distribution
+#' according to political country), introduced_to_botanical_countries (exotic
+#' distribution according to botanical country), kew_id (genus code within Kew's
+#' databases), powo_uri (URI to access each genus in POWO).
 #'
 #' @seealso \code{\link{megaGen}}
 #' @seealso \code{\link{topGen}}

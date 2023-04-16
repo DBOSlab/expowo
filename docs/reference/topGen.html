@@ -113,7 +113,10 @@ a file entitled <strong>output</strong>.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>Table in .csv format.</p>
+<p>A table with the following fields: family, genus, authors,
+scientific_name, species_number (counting of species within each genus),
+kew_id (each genus code within Kew's databases), powo_uri (URI to access each
+genus in POWO).</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -126,55 +129,15 @@ a file entitled <strong>output</strong>.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">topGen</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Lecythidaceae"</span>,</span></span>
 <span class="r-in"><span>       limit <span class="op">=</span> <span class="fl">10</span>,</span></span>
-<span class="r-in"><span>       save <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>       save <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>       dir <span class="op">=</span> <span class="st">"results_topGen"</span>,</span></span>
 <span class="r-in"><span>       filename <span class="op">=</span> <span class="st">"Lecythidaceae_top_ten"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching... Lecythidaceae 1/1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Allantoma Lecythidaceae 1/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Asteranthos Lecythidaceae 2/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Barringtonia Lecythidaceae 3/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Bertholletia Lecythidaceae 4/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Brazzeia Lecythidaceae 5/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Careya Lecythidaceae 6/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Cariniana Lecythidaceae 7/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Chydenanthus Lecythidaceae 8/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Corythophora Lecythidaceae 9/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Couratari Lecythidaceae 10/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Couroupita Lecythidaceae 11/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Crateranthus Lecythidaceae 12/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Eschweilera Lecythidaceae 13/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Foetidia Lecythidaceae 14/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Grias Lecythidaceae 15/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Gustavia Lecythidaceae 16/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Lecythis Lecythidaceae 17/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Napoleonaea Lecythidaceae 18/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Oubanguia Lecythidaceae 19/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Petersianthus Lecythidaceae 20/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Pierrina Lecythidaceae 21/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Planchonia Lecythidaceae 22/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Rhaptopetalum Lecythidaceae 23/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp number of... Scytopetalum Lecythidaceae 24/24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Writing spreadsheet 'Lecythidaceae_top_ten.csv' within 'results_topGen/28Mar2023' on disk.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 x 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Groups:   family [1]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    family        genus    authors scientific_name species_number kew_id powo_uri</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Lecythidaceae Eschwei~ Mart. ~ Eschweilera Ma~             99 32698~ http://~</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Lecythidaceae Barring~ J.R.Fo~ Barringtonia J~             72 32991~ http://~</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Lecythidaceae Gustavia L.      Gustavia L.                 46 33163~ http://~</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Lecythidaceae Lecythis Loefl.  Lecythis Loefl.             30 27598~ http://~</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Lecythidaceae Courata~ Aubl.   Couratari Aubl.             19 27498~ http://~</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Lecythidaceae Foetidia Comm. ~ Foetidia Comm.~             18 27546~ http://~</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Lecythidaceae Napoleo~ P.Beau~ Napoleonaea P.~             17 32649~ http://~</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Lecythidaceae Rhaptop~ Oliv.   Rhaptopetalum ~             13 32598~ http://~</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Lecythidaceae Grias    L.      Grias L.                    12 32679~ http://~</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Lecythidaceae Carinia~ Casar.  Cariniana Casa~              9 27473~ http://~</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

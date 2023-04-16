@@ -34,7 +34,10 @@
 #' @param filename Name of the output file to be saved. The default is to create
 #' a file entitled **output**.
 #'
-#' @return Table in .csv format.
+#' @return A table with the following fields: family, genus, authors,
+#' scientific_name, species_number (counting of species within each genus),
+#' kew_id (each genus code within Kew's databases), powo_uri (URI to access each
+#' genus in POWO).
 #'
 #' @seealso \code{\link{POWOcodes}}
 #'

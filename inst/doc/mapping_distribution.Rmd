@@ -315,3 +315,9 @@ country names (e.g., Brazil, Peru), you just have to write the name of the colum
 with this data. Otherwise, if you need global maps according to the TDWG botanical 
 subdivision level 3, you must indicate in which column this data (e.g., Brazil 
 North, Peru) is stored and also change the argument `botctrs` from FALSE to TRUE.\
+
+\
+
+# 6. Reference
+
+POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; http://www.plantsoftheworldonline.org/ Retrieved April 2023."

@@ -114,7 +114,14 @@ a file entitled <strong>output</strong>.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>Table in .csv format.</p>
+<p>A table with the following fields: family, genus, species,
+taxon_name, authors, scientific_name, native_to_country (original
+distribution according to political country),
+native_to_botanical_countries (original distribution according to botanical
+country), introduced_to_country (exotic distribution according to political
+country), introduced_to_botanical_countries (exotic distribution according to
+botanical country), kew_id (each species code within Kew's databases),
+powo_uri (URI to access each species in POWO).</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -127,29 +134,15 @@ a file entitled <strong>output</strong>.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">powoSpDist</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Lecythidaceae"</span>,</span></span>
 <span class="r-in"><span>           species <span class="op">=</span> <span class="st">"Lecythis pisonis"</span>,</span></span>
-<span class="r-in"><span>           save <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>           save <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>           dir <span class="op">=</span> <span class="st">"results_powoSpDist"</span>,</span></span>
 <span class="r-in"><span>           filename <span class="op">=</span> <span class="st">"L_pisonis_distribution"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching... Lecythidaceae 1/1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching sp list of... Lecythis Lecythidaceae 1/1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching distribution of... Lecythis pisonis Lecythidaceae 1/1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Writing spreadsheet 'L_pisonis_distribution.csv' within 'results_powoSpDist/28Mar2023' on disk.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           family    genus species       taxon_name  authors</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 Lecythidaceae Lecythis pisonis Lecythis pisonis Cambess.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              scientific_name      native_to_country</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 Lecythis pisonis Cambess. Brazil, Colombia, Peru</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                            native_to_botanical_countries</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 Brazil North, Brazil Northeast, Brazil Southeast, Brazil West-Central, Colombia, Peru</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    introduced_to_country introduced_to_botanical_countries   kew_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21       Trinidad-Tobago                   Trinidad-Tobago 597315-1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                        powo_uri</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 http://www.plantsoftheworldonline.org/taxon/urn:lsid:ipni.org:names:597315-1</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

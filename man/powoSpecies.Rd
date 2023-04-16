@@ -55,7 +55,14 @@ will be saved within a subfolder named after the current date.}
 a file entitled \strong{output}.}
 }
 \value{
-Table in .csv format.
+A table with the following fields: family, genus, species, taxon_name,
+authors, scientific_name, publication (information about the protologue of
+the species), native_to_country (original distribution according to
+political country), native_to_botanical_countries (original distribution
+according to botanical country), introduced_to_country (exotic distribution
+according to political country), introduced_to_botanical_countries (exotic
+distribution according to botanical country), kew_id (each species code
+within Kew's databases), powo_uri (the URI to access each species in POWO).
 }
 \description{
 Produces a CSV file listing all accepted species and

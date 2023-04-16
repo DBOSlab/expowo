@@ -107,3 +107,8 @@ ALL_fam <- powoFam(POWOcodes$family,
                    dir = "results_powoFam",
                    filename = "all_angiosperms_species_number")
 ```
+\
+
+## Reference
+
+POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; http://www.plantsoftheworldonline.org/ Retrieved April 2023."

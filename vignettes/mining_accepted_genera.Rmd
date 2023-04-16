@@ -207,3 +207,8 @@ knitr::kable(res[-c(8:12)],
              caption = "TABLE 3. A `powoGenera` search based on specified genus 
              and country vectors.")
 ```
+\
+
+## Reference
+
+POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; http://www.plantsoftheworldonline.org/ Retrieved April 2023."

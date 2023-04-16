@@ -29,7 +29,10 @@
 #' @param filename Name of the output file to be saved. The default is to create
 #' a file entitled **output**.
 #'
-#' @return Table in .csv format.
+#' @return A table with the following fields: family, genus_number (counting of
+#' genera within the specified plant family), species_number (countig of species
+#' within each genus), kew_id (the family code used in Kew's database),
+#' powo_uri (the URI to access the family in POWO).
 #'
 #' @seealso \code{\link{megaGen}}
 #' @seealso \code{\link{topGen}}

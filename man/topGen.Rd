@@ -33,7 +33,10 @@ will be saved within a subfolder named after the current date.}
 a file entitled \strong{output}.}
 }
 \value{
-Table in .csv format.
+A table with the following fields: family, genus, authors,
+scientific_name, species_number (counting of species within each genus),
+kew_id (each genus code within Kew's databases), powo_uri (URI to access each
+genus in POWO).
 }
 \description{
 Produces a CSV file listing the top most diverse genera

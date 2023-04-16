@@ -28,7 +28,10 @@ will be saved within a subfolder named after the current date.}
 a file entitled \strong{output}.}
 }
 \value{
-Table in .csv format.
+A table with the following fields: family, genus_number (counting of
+genera within the specified plant family), species_number (countig of species
+within each genus), kew_id (the family code used in Kew's database),
+powo_uri (the URI to access the family in POWO).
 }
 \description{
 Produces a CSV file listing the number of species and genera
