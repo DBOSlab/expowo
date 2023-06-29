@@ -372,9 +372,9 @@ color palettes.<br />
 <h1>Setup</h1>
 <p>Install the latest development version of <strong>expowo</strong>
 from <a href="https://github.com/">GitHub</a>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;devtools&quot;)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;DBOSlab/expowo&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(expowo)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;DBOSlab/expowo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(expowo)</span></code></pre></div>
 <p><br />
 </p>
 </div>
@@ -398,14 +398,14 @@ dataframe-formatted input data to create the map. The output shown here
 (TABLE 1) is a simplified version, where we have removed some columns so
 as to focus on the display of just the distribution data.<br />
 </p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mapspdist <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(<span class="at">family =</span> <span class="st">&quot;Lecythidaceae&quot;</span>, </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">genus =</span> <span class="st">&quot;Cariniana&quot;</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">hybridspp =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">country =</span> <span class="cn">NULL</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">filename =</span> <span class="st">&quot;Lecythidaceae_Cariniana&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>mapspdist <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(<span class="at">family =</span> <span class="st">&quot;Lecythidaceae&quot;</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                         <span class="at">genus =</span> <span class="st">&quot;Cariniana&quot;</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                         <span class="at">hybridspp =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                         <span class="at">country =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>                         <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>                         <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>                         <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>                         <span class="at">filename =</span> <span class="st">&quot;Lecythidaceae_Cariniana&quot;</span>)</span></code></pre></div>
 <table>
 <caption>TABLE 1. A general <code>powoSpecies</code> search for mining
 distribution of the Lecythidaceae genus <em>Cariniana</em>.</caption>
@@ -518,19 +518,19 @@ Different file formats and resolutions (e.g. JPG, PDF, PNG, TIFF) are
 also supported by setting the arguments <code>format</code> and
 <code>dpi</code>.<br />
 </p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">powoMap</span>(<span class="at">inputdf =</span> mapspdist,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">botctrs =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">distcol =</span> <span class="st">&quot;native_to_country&quot;</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxclas =</span> <span class="st">&quot;genus&quot;</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">vir_color =</span> <span class="st">&quot;viridis&quot;</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">bre_color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">leg_title =</span> <span class="st">&quot;SR&quot;</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">dpi =</span> <span class="dv">600</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">dir =</span> <span class="st">&quot;results_powoMap&quot;</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">filename =</span> <span class="st">&quot;global_richness_country_map&quot;</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;jpg&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">powoMap</span>(<span class="at">inputdf =</span> mapspdist,</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>        <span class="at">botctrs =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>        <span class="at">distcol =</span> <span class="st">&quot;native_to_country&quot;</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>        <span class="at">taxclas =</span> <span class="st">&quot;genus&quot;</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>        <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>        <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>        <span class="at">vir_color =</span> <span class="st">&quot;viridis&quot;</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>        <span class="at">bre_color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>        <span class="at">leg_title =</span> <span class="st">&quot;SR&quot;</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>        <span class="at">dpi =</span> <span class="dv">600</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>        <span class="at">dir =</span> <span class="st">&quot;results_powoMap&quot;</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>        <span class="at">filename =</span> <span class="st">&quot;global_richness_country_map&quot;</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;jpg&quot;</span>) </span></code></pre></div>
 <br />
 
 <div class="figure">
@@ -567,19 +567,19 @@ be automatically generated. Different file formats and resolutions
 (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the arguments
 <code>format</code> and <code>dpi</code>.<br />
 </p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">powoMap</span>(<span class="at">inputdf =</span> mapspdist,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">botctrs =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">distcol =</span> <span class="st">&quot;native_to_botanical_countries&quot;</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxclas =</span> <span class="st">&quot;genus&quot;</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">vir_color =</span> <span class="st">&quot;viridis&quot;</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">bre_color =</span> <span class="cn">NULL</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">leg_title =</span> <span class="st">&quot;SR&quot;</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">dpi =</span> <span class="dv">600</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">dir =</span> <span class="st">&quot;results_powoMap&quot;</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">filename =</span> <span class="st">&quot;global_richness_botcountry_map&quot;</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;jpg&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">powoMap</span>(<span class="at">inputdf =</span> mapspdist,</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>        <span class="at">botctrs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>        <span class="at">distcol =</span> <span class="st">&quot;native_to_botanical_countries&quot;</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>        <span class="at">taxclas =</span> <span class="st">&quot;genus&quot;</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>        <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>        <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>        <span class="at">vir_color =</span> <span class="st">&quot;viridis&quot;</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>        <span class="at">bre_color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>        <span class="at">leg_title =</span> <span class="st">&quot;SR&quot;</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>        <span class="at">dpi =</span> <span class="dv">600</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>        <span class="at">dir =</span> <span class="st">&quot;results_powoMap&quot;</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>        <span class="at">filename =</span> <span class="st">&quot;global_richness_botcountry_map&quot;</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;jpg&quot;</span>)</span></code></pre></div>
 <br />
 
 <div class="figure">
@@ -601,14 +601,14 @@ constraint so as to query a full species list of the desired family and
 the associated distribution data. Then, the resulting query object
 should be used as input data of the <code>powoMap</code> function.<br />
 </p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mapspdist <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(<span class="at">family =</span> <span class="st">&quot;Lecythidaceae&quot;</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">genus =</span> <span class="cn">NULL</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">hybridspp =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">country =</span> <span class="cn">NULL</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">filename =</span> <span class="st">&quot;Lecythidaceae&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>mapspdist <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(<span class="at">family =</span> <span class="st">&quot;Lecythidaceae&quot;</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>                         <span class="at">genus =</span> <span class="cn">NULL</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                         <span class="at">hybridspp =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                         <span class="at">country =</span> <span class="cn">NULL</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>                         <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                         <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>                         <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                         <span class="at">filename =</span> <span class="st">&quot;Lecythidaceae&quot;</span>)</span></code></pre></div>
 <p><br />
 The example below uses the previously generated dataframe-formatted
 <code>mapspdist</code> object as input data to <code>powoMap</code>
@@ -627,19 +627,19 @@ produced individual distribution maps of species richness for every
 single genus within Lecythidaceae, all of them being stored in the
 desired directory at <code>dir</code> argument.<br />
 </p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">powoMap</span>(<span class="at">inputdf =</span> mapspdist,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">botctrs =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">distcol =</span> <span class="st">&quot;native_to_country&quot;</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxclas =</span> <span class="st">&quot;family&quot;</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">vir_color =</span> <span class="st">&quot;viridis&quot;</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">bre_color =</span> <span class="st">&quot;Spectral&quot;</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">leg_title =</span> <span class="st">&quot;SR&quot;</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">dpi =</span> <span class="dv">600</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">dir =</span> <span class="st">&quot;results_powoMap/&quot;</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">filename =</span> <span class="st">&quot;global_richness_botcountry_map&quot;</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;jpg&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">powoMap</span>(<span class="at">inputdf =</span> mapspdist,</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>        <span class="at">botctrs =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>        <span class="at">distcol =</span> <span class="st">&quot;native_to_country&quot;</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>        <span class="at">taxclas =</span> <span class="st">&quot;family&quot;</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>        <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>        <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>        <span class="at">vir_color =</span> <span class="st">&quot;viridis&quot;</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>        <span class="at">bre_color =</span> <span class="st">&quot;Spectral&quot;</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>        <span class="at">leg_title =</span> <span class="st">&quot;SR&quot;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>        <span class="at">dpi =</span> <span class="dv">600</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>        <span class="at">dir =</span> <span class="st">&quot;results_powoMap/&quot;</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>        <span class="at">filename =</span> <span class="st">&quot;global_richness_botcountry_map&quot;</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;jpg&quot;</span>)</span></code></pre></div>
 <br />
 
 <div class="figure">
@@ -676,19 +676,19 @@ produced individual distribution maps of species richness for every
 single genus within Lecythidaceae, all of them being stored in the
 desired directory at <code>dir</code> argument.<br />
 </p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">powoMap</span>(<span class="at">inputdf =</span> mapspdist,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">botctrs =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">distcol =</span> <span class="st">&quot;native_to_botanical_countries&quot;</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">taxclas =</span> <span class="st">&quot;family&quot;</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">vir_color =</span> <span class="st">&quot;viridis&quot;</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">bre_color =</span> <span class="st">&quot;Spectral&quot;</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">leg_title =</span> <span class="st">&quot;SR&quot;</span>,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">dpi =</span> <span class="dv">600</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">dir =</span> <span class="st">&quot;results_powoMap&quot;</span>,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">filename =</span> <span class="st">&quot;global_richness_botcountry_map&quot;</span>,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;jpg&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">powoMap</span>(<span class="at">inputdf =</span> mapspdist,</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>        <span class="at">botctrs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>        <span class="at">distcol =</span> <span class="st">&quot;native_to_botanical_countries&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>        <span class="at">taxclas =</span> <span class="st">&quot;family&quot;</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>        <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>        <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>        <span class="at">vir_color =</span> <span class="st">&quot;viridis&quot;</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>        <span class="at">bre_color =</span> <span class="st">&quot;Spectral&quot;</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>        <span class="at">leg_title =</span> <span class="st">&quot;SR&quot;</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>        <span class="at">dpi =</span> <span class="dv">600</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>        <span class="at">dir =</span> <span class="st">&quot;results_powoMap&quot;</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>        <span class="at">filename =</span> <span class="st">&quot;global_richness_botcountry_map&quot;</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>        <span class="at">format =</span> <span class="st">&quot;jpg&quot;</span>)</span></code></pre></div>
 <br />
 
 <div class="figure">

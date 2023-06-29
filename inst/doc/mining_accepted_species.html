@@ -360,9 +360,9 @@ or family of flowering plants.<br />
 <h1>Setup</h1>
 <p>Install the latest development version of <strong>expowo</strong>
 from <a href="https://github.com/">GitHub</a>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;devtools&quot;)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;DBOSlab/expowo&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(expowo)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;DBOSlab/expowo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(expowo)</span></code></pre></div>
 <p><br />
 </p>
 </div>
@@ -382,12 +382,12 @@ simplified version, where we have removed some columns (genus, epithet
 and authors) so as to focus on the display of the taxonomic and
 distribution data.<br />
 </p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(<span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;Cabombaceae&quot;</span>, <span class="st">&quot;Martyniaceae&quot;</span>),</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">hybrid =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">filename =</span> <span class="st">&quot;Cabom_Martyniaceae_search&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(<span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;Cabombaceae&quot;</span>, <span class="st">&quot;Martyniaceae&quot;</span>),</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                   <span class="at">hybrid =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                   <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                   <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>                   <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>                   <span class="at">filename =</span> <span class="st">&quot;Cabom_Martyniaceae_search&quot;</span>)</span></code></pre></div>
 <table>
 <caption>TABLE 1. A general <code>powoSpecies</code> search for mining
 all accepted species for some specific angiosperm families.</caption>
@@ -658,13 +658,13 @@ searched families are not recorded in any of the specified vector of
 country, i.e. <strong>Brazil</strong> or
 <strong>Colombia</strong>.<br />
 </p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ACM <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(<span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;Aristolochiaceae&quot;</span>, <span class="st">&quot;Cabombaceae&quot;</span>, <span class="st">&quot;Martyniaceae&quot;</span>),</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">hybrid =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">country =</span> <span class="fu">c</span>(<span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;Colombia&quot;</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">filename =</span> <span class="st">&quot;country_constrained_search&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>ACM <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(<span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;Aristolochiaceae&quot;</span>, <span class="st">&quot;Cabombaceae&quot;</span>, <span class="st">&quot;Martyniaceae&quot;</span>),</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>                   <span class="at">hybrid =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>                   <span class="at">country =</span> <span class="fu">c</span>(<span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;Colombia&quot;</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>                   <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>                   <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                   <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                   <span class="at">filename =</span> <span class="st">&quot;country_constrained_search&quot;</span>)</span></code></pre></div>
 <table>
 <caption>TABLE 2. A <code>powoSpecies</code> search based on a specified
 country vector.</caption>
@@ -1183,14 +1183,14 @@ function only returned the <strong>Cabombaceae</strong> genus
 provided list of countries, i.e. <strong>Argentina</strong>,
 <strong>French Guiana</strong>, or <strong>Brazil</strong>.<br />
 </p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>MC <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(<span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;Martyniaceae&quot;</span>, <span class="st">&quot;Cabombaceae&quot;</span>),</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">genus =</span> <span class="fu">c</span>(<span class="st">&quot;Proboscidea&quot;</span>, <span class="st">&quot;Cabomba&quot;</span>),</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">hybrid =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">&quot;Argentina&quot;</span>, <span class="st">&quot;French Guiana&quot;</span>, <span class="st">&quot;Brazil&quot;</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">filename =</span> <span class="st">&quot;country_and_genus_constrained_search&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>MC <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(<span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;Martyniaceae&quot;</span>, <span class="st">&quot;Cabombaceae&quot;</span>),</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                  <span class="at">genus =</span> <span class="fu">c</span>(<span class="st">&quot;Proboscidea&quot;</span>, <span class="st">&quot;Cabomba&quot;</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                  <span class="at">hybrid =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">&quot;Argentina&quot;</span>, <span class="st">&quot;French Guiana&quot;</span>, <span class="st">&quot;Brazil&quot;</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                  <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>                  <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>                  <span class="at">filename =</span> <span class="st">&quot;country_and_genus_constrained_search&quot;</span>)</span></code></pre></div>
 <table>
 <caption>TABLE 3. A <code>powoSpecies</code> search based on specified
 genus and country vectors.</caption>
@@ -1247,14 +1247,14 @@ accepted species of flowering plants by using the vector of all
 angiosperm families and associated URI addresses stored in the
 <code>POWOcodes</code> object.<br />
 </p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;POWOcodes&quot;</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ALL_spp <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(POWOcodes<span class="sc">$</span>family,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">hybrid =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_species&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;POWOcodes&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>ALL_spp <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(POWOcodes<span class="sc">$</span>family,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                       <span class="at">hybrid =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>                       <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                       <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_species&quot;</span>)</span></code></pre></div>
 <p><br />
 </p>
 <p>Since this is a very long search that might requires days to be
@@ -1269,15 +1269,15 @@ file is located within a subfolder named after the current date. If it
 is not, please rename the date subfolder accordingly.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;POWOcodes&quot;</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ALL_spp <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(POWOcodes<span class="sc">$</span>family,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">hybrid =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">rerun =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_species&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;POWOcodes&quot;</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>ALL_spp <span class="ot">&lt;-</span> <span class="fu">powoSpecies</span>(POWOcodes<span class="sc">$</span>family,</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                       <span class="at">hybrid =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>                       <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>                       <span class="at">rerun =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>                       <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_species&quot;</span>)</span></code></pre></div>
 <p><br />
 </p>
 <div id="reference" class="section level2">
