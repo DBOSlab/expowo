@@ -55,17 +55,17 @@
 #' @export
 #'
 
-saveCSV <- function (df,
-                     dir = "results",
-                     filename = "output",
-                     verbose = TRUE,
-                     append = FALSE,
-                     save = TRUE,
-                     foldername = NULL) {
+saveCSV <- function(df,
+                    dir = "results",
+                    filename = "output",
+                    verbose = TRUE,
+                    append = FALSE,
+                    save = TRUE,
+                    foldername = NULL) {
 
   # Make folder name to save search results
-  if(is.null(foldername)) {
-    foldername <- paste0(dir, "/", format(Sys.time(), "%d%b%Y"))
+  if (is.null(foldername)) {
+     foldername <- paste0(dir, "/", format(Sys.time(), "%d%b%Y"))
   }
 
   # Save the data frame if param save is TRUE
