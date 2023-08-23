@@ -29,7 +29,7 @@ mining the top most species rich genera for any family of flowering plants.\
 
 \
 
-# Setup
+## Setup
 
 Install the latest development version of __expowo__ from 
 [GitHub](https://github.com/):
@@ -38,13 +38,13 @@ Install the latest development version of __expowo__ from
 #install.packages("devtools")
 devtools::install_github("DBOSlab/expowo")
 ```
-```{r package load}
+```{r package load, message=FALSE, warning=FALSE}
 library(expowo)
 ```
 
 \
 
-# Mining the top richest genera for any plant family
+## Mining the top richest genera for any plant family
 
 The function `topGen` is relatively similar to the `megaGen`, but instead of 
 using a specific threshold of species number to be considered a big genera, it 
@@ -69,6 +69,8 @@ ABL_top <- topGen(family = c("Aristolochiaceae", "Begoniaceae", "Lecythidaceae")
                   filename = "Aristo_Bego_Lecythidaceae_search")
 ```
 
+\
+
 ```{r, echo = FALSE, warning = FALSE}
 library(dplyr, warn.conflicts = FALSE)
 utils::data("angioGenera")
@@ -91,7 +93,7 @@ knitr::kable(res,
 
 \
 
-# Mining the top richest genera accross all angiosperm families
+## Mining the top richest genera accross all angiosperm families
 
 To mine a global checklist of the top species-richest genera for all 
 families of flowering plants, including their associated species number, we 
@@ -116,6 +118,7 @@ ALL_top <- topGen(POWOcodes$family,
                   dir = "results_topGen",
                   filename = "all_toprichest_angiosperm_genera")
 ```
+
 \
 
 ## Reference

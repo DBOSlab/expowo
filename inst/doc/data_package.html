@@ -362,27 +362,19 @@ use the data package <code>POWOcodes</code>, <code>angioData</code>, and
 </p>
 <p><br />
 </p>
-<div id="setup" class="section level1">
-<h1>Setup</h1>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
 <p>Install the latest development version of <strong>expowo</strong>
 from <a href="https://github.com/">GitHub</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#install.packages(&quot;devtools&quot;)</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;DBOSlab/expowo&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(expowo)</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(expowo)</span></code></pre></div>
 <p><br />
 </p>
 </div>
-<div id="powocodes---a-complete-list-of-angiosperm-families-and-associated-uri-addresses" class="section level1">
-<h1><code>POWOcodes</code> - A complete list of angiosperm families and
-associated URI addresses</h1>
+<div id="powocodes---a-complete-list-of-angiosperm-families-and-associated-uri-addresses" class="section level2">
+<h2><code>POWOcodes</code> - A complete list of angiosperm families and
+associated URI addresses</h2>
 <p>The <code>POWOcodes</code> data is a dataframe containing a list of
 families of flowering plants available in the POWO database, according
 to <a href="https://doi.org/10.1111/boj.12385">APG IV</a>’s
@@ -402,8 +394,8 @@ below:<br />
 <p><br />
 </p>
 </div>
-<div id="angiodata---a-dataframe-of-angiosperm-species" class="section level1">
-<h1><code>angioData</code> - A dataframe of Angiosperm species</h1>
+<div id="angiodata---a-dataframe-of-angiosperm-species" class="section level2">
+<h2><code>angioData</code> - A dataframe of Angiosperm species</h2>
 <p>The <code>angioData</code> is a dataframe-formatted list of species
 of some families of flowering plants and associated data, as retrieved
 from POWO database using the <code>expowo</code>’s function
@@ -463,8 +455,8 @@ associated with each taxon’s distribution in POWO.<br />
 <p><br />
 </p>
 </div>
-<div id="angiogenera---a-data-frame-of-angiosperm-genera" class="section level1">
-<h1><code>angioGenera</code> - A data frame of Angiosperm genera</h1>
+<div id="angiogenera---a-data-frame-of-angiosperm-genera" class="section level2">
+<h2><code>angioGenera</code> - A data frame of Angiosperm genera</h2>
 <p>The <code>angioGenera</code> comprises the genera of some families of
 flowering plants and associated data as mined from POWO database using
 <code>powoGenera</code>. For publication purposes and package size
@@ -897,9 +889,9 @@ associated with each taxon’s distribution in POWO.<br />
 <p><br />
 </p>
 </div>
-<div id="botregions---countries-and-associated-classification-of-botanical-divisions" class="section level1">
-<h1><code>botregions</code> - Countries and associated classification of
-botanical divisions</h1>
+<div id="botregions---countries-and-associated-classification-of-botanical-divisions" class="section level2">
+<h2><code>botregions</code> - Countries and associated classification of
+botanical divisions</h2>
 <p>The <code>botregions</code> data package is a dataframe containing
 all countries of the World and associated classification of botanical
 divisions according to the <a href="https://www.tdwg.org/standards/wgsrpd/">World Geographical
@@ -917,12 +909,12 @@ below:<br />
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;botregions&quot;</span>)</span></code></pre></div>
 <p><br />
 </p>
+</div>
 <div id="reference" class="section level2">
 <h2>Reference</h2>
 <p>POWO (2019). “Plants of the World Online. Facilitated by the Royal
 Botanic Gardens, Kew. Published on the Internet; <a href="http://www.plantsoftheworldonline.org/" class="uri">http://www.plantsoftheworldonline.org/</a> Retrieved Nov
 2022.”</p>
-</div>
 </div>
 
 

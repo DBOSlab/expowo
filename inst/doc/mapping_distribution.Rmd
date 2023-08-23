@@ -57,7 +57,7 @@ Install the latest development version of __expowo__ from
 #install.packages("devtools")
 devtools::install_github("DBOSlab/expowo")
 ```
-```{r package load}
+```{r package load, message=FALSE, warning=FALSE}
 library(expowo)
 ```
 

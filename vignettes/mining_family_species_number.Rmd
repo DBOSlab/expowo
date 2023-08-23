@@ -42,13 +42,13 @@ Install the latest development version of __expowo__ from
 #install.packages("devtools")
 devtools::install_github("DBOSlab/expowo")
 ```
-```{r package load}
+```{r package load, message=FALSE, warning=FALSE}
 library(expowo)
 ```
 
 \
 
-# Mining the total species number for any angiosperm family
+## Mining the total species number for any angiosperm family
 
 The function `powoFam` returns a data frame or saves a CSV file listing the total
 species number (excluding hybrid species) for the queried plant families.\
@@ -65,6 +65,8 @@ CLM <- powoFam(family = c("Cabombaceae", "Lecythidaceae", "Martyniaceae"),
                dir = "results_powoFam",
                filename = "Camb_Lecy_Martyniaceae_diversity")
 ```
+
+\
 
 ```{r, echo = FALSE, warning = FALSE}
 utils::data("angioData")
@@ -85,7 +87,7 @@ knitr::kable(res,
 
 \
 
-# Mining species number accross all angiosperm families
+## Mining species number accross all angiosperm families
 
 To mine the species number of all families of flowering plants, we recommend to 
 load the dataframe-formatted object called `POWOcodes` that comes associated 
@@ -107,6 +109,7 @@ ALL_fam <- powoFam(POWOcodes$family,
                    dir = "results_powoFam",
                    filename = "all_angiosperms_species_number")
 ```
+
 \
 
 ## Reference

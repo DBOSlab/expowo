@@ -49,6 +49,7 @@
     <a class="dropdown-item" href="../articles/mining_megadiverse_genera.html">Mining mega-diverse genera of flowering plants</a>
     <a class="dropdown-item" href="../articles/mining_species_distribution.html">Mining distribution for any plant species</a>
     <a class="dropdown-item" href="../articles/mining_toprichest_genera.html">Mining the top richest genera of flowering plants</a>
+    <a class="dropdown-item" href="../articles/plotting_discoveries.html">Plotting species discoveries</a>
   </div>
 </li>
       </ul>
@@ -110,20 +111,11 @@ from <a href="https://github.com/" class="external-link">GitHub</a>:</p>
 <code class="sourceCode R"><span><span class="co">#install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"DBOSlab/expowo"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
-<span><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
-<span><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
-<span><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
-<span><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
-<span><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
-<span><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
-<span><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
-</div>
-<div class="section level2">
-<h2 id="mining-mega-diverse-genera-for-any-plant-family">Mining mega-diverse genera for any plant family<a class="anchor" aria-label="anchor" href="#mining-mega-diverse-genera-for-any-plant-family"></a>
-</h2>
+<div class="section level3">
+<h3 id="mining-mega-diverse-genera-for-any-plant-family">Mining mega-diverse genera for any plant family<a class="anchor" aria-label="anchor" href="#mining-mega-diverse-genera-for-any-plant-family"></a>
+</h3>
 <p>The function <code>megaGen</code> uses a specified threshold number
 to return a data frame or save a CSV file listing all mega-diverse
 genera for any family of flowering plants and their associated number of
@@ -139,6 +131,7 @@ families.<br></p>
 <span>               save <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>               dir <span class="op">=</span> <span class="st">"results_megaGen"</span>,</span>
 <span>               filename <span class="op">=</span> <span class="st">"Arist_Begon_Martyniaceae_search"</span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
 <table class="table">
 <caption>TABLE 1. A general <code>megaGen</code> search to mining the
 mega-diverse genera for some specific angiosperm families, based on a
@@ -184,9 +177,9 @@ specified threshold of 500 species.</caption>
 </table>
 <p><br></p>
 </div>
-<div class="section level2">
-<h2 id="mining-mega-diverse-genera-accross-all-angiosperm-families">Mining mega-diverse genera accross all angiosperm families<a class="anchor" aria-label="anchor" href="#mining-mega-diverse-genera-accross-all-angiosperm-families"></a>
-</h2>
+<div class="section level3">
+<h3 id="mining-mega-diverse-genera-accross-all-angiosperm-families">Mining mega-diverse genera accross all angiosperm families<a class="anchor" aria-label="anchor" href="#mining-mega-diverse-genera-accross-all-angiosperm-families"></a>
+</h3>
 <p>To mine a global checklist of mega-diverse genera for all families of
 flowering plants, including their associated species number, we
 recommend to load the dataframe-formatted data object called
@@ -209,6 +202,7 @@ angiosperm families and associated URI addresses stored in the
 <span>                       dir <span class="op">=</span> <span class="st">"results_megaGen"</span>,</span>
 <span>                       filename <span class="op">=</span> <span class="st">"all_megadiverse_angiosperm_genera"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
+</div>
 <div class="section level3">
 <h3 id="reference">Reference<a class="anchor" aria-label="anchor" href="#reference"></a>
 </h3>

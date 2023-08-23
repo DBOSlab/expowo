@@ -4,7 +4,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ----package load-------------------------------------------------------------
+## ----package load, message=FALSE, warning=FALSE-------------------------------
 library(expowo)
 
 ## ---- eval = FALSE------------------------------------------------------------

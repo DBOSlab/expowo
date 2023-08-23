@@ -34,7 +34,7 @@ explain how to use the data package `POWOcodes`, `angioData`, and `botregions`.\
 
 \
 
-# Setup
+## Setup
 
 Install the latest development version of __expowo__ from 
 [GitHub](https://github.com/):
@@ -43,13 +43,13 @@ Install the latest development version of __expowo__ from
 #install.packages("devtools")
 devtools::install_github("DBOSlab/expowo")
 ```
-```{r package load}
+```{r package load, message=FALSE, warning=FALSE}
 library(expowo)
 ```
 
 \
 
-# `POWOcodes` - A complete list of angiosperm families and associated URI addresses
+## `POWOcodes` - A complete list of angiosperm families and associated URI addresses
 
 The `POWOcodes` data is a dataframe containing a list of families of flowering 
 plants available in the POWO database, according to [APG IV](https://doi.org/10.1111/boj.12385)'s
@@ -69,7 +69,7 @@ utils::data("POWOcodes")
 
 \
 
-# `angioData` - A dataframe of Angiosperm species
+## `angioData` - A dataframe of Angiosperm species
 
 The `angioData` is a dataframe-formatted list of species of some families of 
 flowering plants and associated data, as retrieved from POWO database using the 
@@ -104,7 +104,7 @@ utils::data("angioData")
 
 \
 
-# `angioGenera` - A data frame of Angiosperm genera
+## `angioGenera` - A data frame of Angiosperm genera
 
 The `angioGenera` comprises the genera of some families of flowering plants and 
 associated data as mined from POWO database using `powoGenera`. For publication 
@@ -141,7 +141,7 @@ utils::data("angioGenera")
 
 \
 
-# `botregions` - Countries and associated classification of botanical divisions
+## `botregions` - Countries and associated classification of botanical divisions
 
 The `botregions` data package is a dataframe containing all countries of the 
 World and associated classification of botanical divisions according to the 

@@ -29,7 +29,7 @@ mining all accepted genera for any family of flowering plants.\
 
 \
 
-# Setup
+## Setup
 
 Install the latest development version of __expowo__ from 
 [GitHub](https://github.com/):
@@ -38,13 +38,13 @@ Install the latest development version of __expowo__ from
 #install.packages("devtools")
 devtools::install_github("DBOSlab/expowo")
 ```
-```{r package load}
+```{r package load, message=FALSE, warning=FALSE}
 library(expowo)
 ```
 
 \
 
-# Mining all accepted genera for any plant family
+## Mining all accepted genera for any plant family
 
 The function `powoGenera` returns a data frame or saves a CSV file listing all 
 genera with associated number of accepted species and their global geographic 
@@ -79,7 +79,7 @@ knitr::kable(res[-c(7:10)],
 
 \
 
-# Mining all accepted genera for all angiosperm families
+## Mining all accepted genera for all angiosperm families
 
 To mine a global genus checklist with associated species number and distribution 
 for all families of flowering plants, we recommend to load the 
@@ -132,7 +132,7 @@ ALL_gen <- powoGenera(POWOcodes$family,
 
 \
 
-# Narrowing down the `powoGenera` search based on a specified country vector
+## Narrowing down the `powoGenera` search based on a specified country vector
 
 You can also narrow down the search for all accepted genera of any family so as 
 to focus on just a particular country or a list of countries. You just need to 
@@ -171,7 +171,7 @@ knitr::kable(res[-c(7:12)],
 
 \
 
-# Narrowing down the `powoGenera` search based on a specified genus vector
+## Narrowing down the `powoGenera` search based on a specified genus vector
 
 You may want to retrieve information for just one or a list of accepted 
 genera from a given country (or from a list of countries). Just like before,

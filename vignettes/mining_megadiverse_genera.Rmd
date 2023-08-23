@@ -41,13 +41,13 @@ Install the latest development version of __expowo__ from
 #install.packages("devtools")
 devtools::install_github("DBOSlab/expowo")
 ```
-```{r package load}
+```{r package load, message=FALSE, warning=FALSE}
 library(expowo)
 ```
 
 \
 
-# Mining mega-diverse genera for any plant family
+## Mining mega-diverse genera for any plant family
 
 The function `megaGen` uses a specified threshold number to return a data frame 
 or save a CSV file listing all mega-diverse genera for any family of flowering 
@@ -64,6 +64,8 @@ ABM <- megaGen(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
                dir = "results_megaGen",
                filename = "Arist_Begon_Martyniaceae_search")
 ```
+
+\
 
 ```{r, echo = FALSE, warning = FALSE}
 utils::data("angioGenera")
@@ -87,7 +89,7 @@ knitr::kable(res,
 
 \
 
-# Mining mega-diverse genera accross all angiosperm families
+## Mining mega-diverse genera accross all angiosperm families
 
 To mine a global checklist of mega-diverse genera for all families of flowering 
 plants, including their associated species number, we recommend to load the 
@@ -111,6 +113,7 @@ ALL_megaGen <- megaGen(POWOcodes$family,
                        dir = "results_megaGen",
                        filename = "all_megadiverse_angiosperm_genera")
 ```
+
 \
 
 ## Reference

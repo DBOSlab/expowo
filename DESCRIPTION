@@ -34,7 +34,11 @@ Imports:
     utils,
     R.utils,
     flora,
-    tibble
+    tibble,
+    cowplot,
+    scales,
+    PupillometryR,
+    viridisLite
 Suggests:
     covr,
     knitr,

@@ -32,7 +32,7 @@ names, and then the function access the auxiliary functions `.getgenURI` and
 
 \
 
-# Setup
+## Setup
 
 Install the latest development version of __expowo__ from 
 [GitHub](https://github.com/):
@@ -41,13 +41,13 @@ Install the latest development version of __expowo__ from
 #install.packages("devtools")
 devtools::install_github("DBOSlab/expowo")
 ```
-```{r package load}
+```{r package load, message=FALSE, warning=FALSE}
 library(expowo)
 ```
 
 \
 
-# Mining the distribution for any plant species
+## Mining the distribution for any plant species
 
 The function `powoSpDist` returns a dataframe or saves a CSV file listing the 
 entire global distribution at country or botanical level for any of the given 
@@ -70,6 +70,8 @@ BL_dist <- powoSpDist(family = c("Begoniaceae", "Lecythidaceae"),
                       filename = "Begoniaceae_Lecythidaceae")
 ```
 
+\
+
 ```{r, echo = FALSE, warning = FALSE}
 utils::data("angioData")
 fam <- c("Begoniaceae", "Lecythidaceae")
@@ -86,7 +88,7 @@ knitr::kable(df[-c(2, 3, 6, 9, 11, 13)],
 
 \
 
-# Mining distribution for all angiosperm species
+## Mining distribution for all angiosperm species
 
 To mine the distribution checklist for all accepted species of flowering plants, 
 you can load the dataframe-formatted data object called `POWOcodes` 
@@ -112,6 +114,7 @@ ALL_dist <- powoSpDist(POWOcodes$family,
                        dir = "results_powoSpDist",
                        filename = "all_angiosperm_distribution")
 ```
+
 \
 
 ## Reference
