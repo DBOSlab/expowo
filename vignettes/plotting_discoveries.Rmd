@@ -1,10 +1,10 @@
 ---
-title: "Plotting species discoveries"
+title: "Plotting species discovery"
 output: rmarkdown::html_vignette
 resource_files:
     - cumulative_discovery_Crotalaria.png
 vignette: >
-  %\VignetteIndexEntry{Plotting species discoveries}
+  %\VignetteIndexEntry{Plotting species discovery}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -30,10 +30,7 @@ p.caption {
 ```
 
 Here in this article, we show how to use the package's `accGraph` function
-for plotting the species discoveries over time. The data must be 
-stored in a spreadsheet generated using `powoSpecies` function with the argument 
-`synonyms` set to TRUE. Then, `accGraph` can automatically create individual accumulation graphs for each genus and one violin 
-graph for the entire dataset. The graph is colored according to the need of year rectification using [Viridis](https://CRAN.R-project.org/package=viridis) color palettes.\
+for plotting the species discovery over time. This function can create two types of graphs: species accumulation curves recording the cumulative number of species discovery in each genus as a function of the year of the protologue, and a violin graph to visualize and compare the discovery density of each genera within the provided dataset. The species discovery curve will necessarily represent a continuous growth and its rate of increase will be related to the quantity of new discoveries, while the violin plot will be a way to visualize distribution around the median, the mean and the minimum and maximum of the data. The latter is a way for comparing variations in the data and it fits to multimodal distributions (e.g., more than one peak representing years with many publications). To use this function, the data must be stored in a spreadsheet/dataset generated using `powoSpecies` function with the argument `synonyms` set to TRUE. The graphs will be colored according to the need of year rectification using [Viridis](https://CRAN.R-project.org/package=viridis) color palettes.\
 
 \
 
@@ -53,8 +50,8 @@ library(expowo)
 \
 
 ## 1. Plotting the accumulation of species discoveries for one genus
-The example below shows the output for _Crotalaria_, one of the big legume genera.
-Different file formats (e.g. JPG, PDF, PNG, TIFF) is also supported by setting 
+The example below shows the accumulation curve for _Crotalaria_, one big legume genus.
+Different file formats (e.g. JPG, PDF, PNG, TIFF) are also supported by setting 
 the argument `format`.\ 
 
 ```{r, eval = FALSE}
@@ -75,6 +72,8 @@ knitr::include_graphics("figures/cumulative_discovery_Crotalaria.png",
 
 \
 
+The accumulation curve of _Crotalaria_ shows that it has 712 spp. and a high increase of taxonomic changes between 1840 and 1920 (noticeable by the curve in light red).
+
 ## 2. Plotting the accumulation of species discoveries for the entire dataset
 If your dataset contains species from more than one genus, the `accGraph` function will
 automatically plot a violin graph comparing new discoveries within those genera. In the example before, we adjusted the argument `multi` to FALSE, but notice that it is set as TRUE (default) in the example below. To get those graphs, we extracted
@@ -90,7 +89,7 @@ newdata <- powoSpecies(family = "Poaceae",
 ```
 
 Then, we used the newly developed function `accGraph` to plot individual graphs of 
-accumulation of species discoveries and a violin graph for the three genera. 
+accumulation of species discovery and a violin graph for the three genera. 
 
 ```{r, eval = FALSE}
 accGraph(inputdf = newdata,
@@ -121,3 +120,8 @@ knitr::include_graphics("figures/cumulative_discovery_Poaceae_Olyra.png",
 knitr::include_graphics("figures/cumulative_discovery_Poaceae_all_data.png", 
                         dpi = 300)
 ```
+\
+
+Each one of the individual accumulation graphs showed different patterns, and while _Andropogon_ and _Digitaria_ showed similar rates of new discoveries and taxonomic changes, any of the accepted 25 spp. of _Olyra_ went through a correction in the year of publication. Additionally, the violin plot (Fig. 5) showed a peak of synonymizations of _Andropogon_ around 1870, and a peak of accepted names of _Digitaria_ being published around 1925.
+\
+

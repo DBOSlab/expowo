@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="expowo">
-<title>Plotting species discoveries • expowo</title>
+<title>Plotting species discovery • expowo</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Plotting species discoveries">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Plotting species discovery">
 <meta property="og:description" content="expowo">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -49,7 +49,7 @@
     <a class="dropdown-item" href="../articles/mining_megadiverse_genera.html">Mining mega-diverse genera of flowering plants</a>
     <a class="dropdown-item" href="../articles/mining_species_distribution.html">Mining distribution for any plant species</a>
     <a class="dropdown-item" href="../articles/mining_toprichest_genera.html">Mining the top richest genera of flowering plants</a>
-    <a class="dropdown-item" href="../articles/plotting_discoveries.html">Plotting species discoveries</a>
+    <a class="dropdown-item" href="../articles/plotting_discoveries.html">Plotting species discovery</a>
   </div>
 </li>
       </ul>
@@ -76,7 +76,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Plotting species discoveries</h1>
+      <img src="" class="logo" alt=""><h1>Plotting species discovery</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/DBOSlab/expowo/blob/HEAD/vignettes/plotting_discoveries.Rmd" class="external-link"><code>vignettes/plotting_discoveries.Rmd</code></a></small>
@@ -98,12 +98,21 @@ p.caption {
 }
 </style>
 <p>Here in this article, we show how to use the package’s
-<code>accGraph</code> function for plotting the species discoveries over
-time. The data must be stored in a spreadsheet generated using
+<code>accGraph</code> function for plotting the species discovery over
+time. This function can create two types of graphs: species accumulation
+curves recording the cumulative number of species discovery in each
+genus as a function of the year of the protologue, and a violin graph to
+visualize and compare the discovery density of each genera within the
+provided dataset. The species discovery curve will necessarily represent
+a continuous growth and its rate of increase will be related to the
+quantity of new discoveries, while the violin plot will be a way to
+visualize distribution around the median, the mean and the minimum and
+maximum of the data. The latter is a way for comparing variations in the
+data and it fits to multimodal distributions (e.g., more than one peak
+representing years with many publications). To use this function, the
+data must be stored in a spreadsheet/dataset generated using
 <code>powoSpecies</code> function with the argument
-<code>synonyms</code> set to TRUE. Then, <code>accGraph</code> can
-automatically create individual accumulation graphs for each genus and
-one violin graph for the entire dataset. The graph is colored according
+<code>synonyms</code> set to TRUE. The graphs will be colored according
 to the need of year rectification using <a href="https://CRAN.R-project.org/package=viridis" class="external-link">Viridis</a> color
 palettes.<br></p>
 <p><br></p>
@@ -123,9 +132,10 @@ from <a href="https://github.com/" class="external-link">GitHub</a>:</p>
 <h2 id="plotting-the-accumulation-of-species-discoveries-for-one-genus">1. Plotting the accumulation of species discoveries for one
 genus<a class="anchor" aria-label="anchor" href="#plotting-the-accumulation-of-species-discoveries-for-one-genus"></a>
 </h2>
-<p>The example below shows the output for <em>Crotalaria</em>, one of
-the big legume genera. Different file formats (e.g. JPG, PDF, PNG, TIFF)
-is also supported by setting the argument <code>format</code>. </p>
+<p>The example below shows the accumulation curve for
+<em>Crotalaria</em>, one big legume genus. Different file formats
+(e.g. JPG, PDF, PNG, TIFF) are also supported by setting the argument
+<code>format</code>. </p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/accGraph.html">accGraph</a></span><span class="op">(</span>inputdf <span class="op">=</span> <span class="st">"Crotalaria_spp"</span>,</span>
 <span>         verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -141,6 +151,9 @@ FIGURE 1. Accumulation graph of new species discoveries in the big genus
 </p>
 </div>
 <p><br></p>
+<p>The accumulation curve of <em>Crotalaria</em> shows that it has 712
+spp. and a high increase of taxonomic changes between 1840 and 1920
+(noticeable by the curve in light red).</p>
 </div>
 <div class="section level2">
 <h2 id="plotting-the-accumulation-of-species-discoveries-for-the-entire-dataset">2. Plotting the accumulation of species discoveries for the entire
@@ -162,8 +175,8 @@ extracted all data of the genera <em>Andropogon</em>, <em>Olyra</em> and
 <span>                       dir <span class="op">=</span> <span class="st">"Poaceae_results"</span>,</span>
 <span>                       filename <span class="op">=</span> <span class="st">"Poaceae_spp"</span><span class="op">)</span></span></code></pre></div>
 <p>Then, we used the newly developed function <code>accGraph</code> to
-plot individual graphs of accumulation of species discoveries and a
-violin graph for the three genera.</p>
+plot individual graphs of accumulation of species discovery and a violin
+graph for the three genera.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/accGraph.html">accGraph</a></span><span class="op">(</span>inputdf <span class="op">=</span> <span class="va">newdata</span>,</span>
 <span>         verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -196,6 +209,14 @@ FIGURE 5. Violin graph of new species discoveries in three genera over
 time.
 </p>
 </div>
+<p><br></p>
+<p>Each one of the individual accumulation graphs showed different
+patterns, and while <em>Andropogon</em> and <em>Digitaria</em> showed
+similar rates of new discoveries and taxonomic changes, any of the
+accepted 25 spp. of <em>Olyra</em> went through a correction in the year
+of publication. Additionally, the violin plot (Fig. 5) showed a peak of
+synonymizations of <em>Andropogon</em> around 1870, and a peak of
+accepted names of <em>Digitaria</em> being published around 1925.<br></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

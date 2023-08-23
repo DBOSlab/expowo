@@ -1,13 +1,13 @@
-#' Create graphs of cumulative discoveries
+#' Create graphs depicting the accumulation of species discoveries
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description Produces graphs of accumulation of species discoveries for each
+#' @description Produces graphs of accumulation of species discovery for each
 #' genus and a flat violin graph for all data provided. It is designed to
 #' create graphs based on the search results from \code{powoSpecies}. Multiple
 #' graphs for any different taxonomic groups within the input data can be
-#' produced automatically in a single run, and can generate a accumulation graph
-#' with all genera included.
+#' produced automatically in a single run, and can generate a violin plot
+#' comparing the distribution of data of all genera included.
 #'
 #' @usage
 #' accGraph(inputdf = NULL,
@@ -20,14 +20,15 @@
 #'
 #' @param inputdf A dataframe generated using \code{powoSpecies} function and
 #' containing the genus and species column and the associated information about
-#' the protologue of each species. The species name must be as a binomial, i.e.
+#' the protologue of each species. The species name must be binomial, i.e.
 #' must contain both the genus name and specific epithet.
 #'
 #' @param verbose Logical, if \code{FALSE}, a message showing each step during
 #' the POWO search will not be printed in the console in full.
 #'
-#' @param multi Logical, if \code{FALSE}, the function will not create a second
-#' graph with all data available in the dataset. The default is \code{TRUE}.
+#' @param multi Logical. Setting to \code{FALSE} means that your dataset contains
+#' only one genus and the function will not create a violin plot.
+#' The default is \code{TRUE}.
 #'
 #' @param save Logical, if \code{TRUE}, the search results will be saved on disk.
 #'

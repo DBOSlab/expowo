@@ -12,7 +12,7 @@
 
 
 
-<title>Plotting species discoveries</title>
+<title>Plotting species discovery</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -336,7 +336,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">Plotting species discoveries</h1>
+<h1 class="title toc-ignore">Plotting species discovery</h1>
 
 
 
@@ -353,12 +353,21 @@ font-size: 1em;
 }
 </style>
 <p>Here in this article, we show how to use the package’s
-<code>accGraph</code> function for plotting the species discoveries over
-time. The data must be stored in a spreadsheet generated using
+<code>accGraph</code> function for plotting the species discovery over
+time. This function can create two types of graphs: species accumulation
+curves recording the cumulative number of species discovery in each
+genus as a function of the year of the protologue, and a violin graph to
+visualize and compare the discovery density of each genera within the
+provided dataset. The species discovery curve will necessarily represent
+a continuous growth and its rate of increase will be related to the
+quantity of new discoveries, while the violin plot will be a way to
+visualize distribution around the median, the mean and the minimum and
+maximum of the data. The latter is a way for comparing variations in the
+data and it fits to multimodal distributions (e.g., more than one peak
+representing years with many publications). To use this function, the
+data must be stored in a spreadsheet/dataset generated using
 <code>powoSpecies</code> function with the argument
-<code>synonyms</code> set to TRUE. Then, <code>accGraph</code> can
-automatically create individual accumulation graphs for each genus and
-one violin graph for the entire dataset. The graph is colored according
+<code>synonyms</code> set to TRUE. The graphs will be colored according
 to the need of year rectification using <a href="https://CRAN.R-project.org/package=viridis">Viridis</a> color
 palettes.<br />
 </p>
@@ -377,9 +386,10 @@ from <a href="https://github.com/">GitHub</a>:</p>
 <div id="plotting-the-accumulation-of-species-discoveries-for-one-genus" class="section level2">
 <h2>1. Plotting the accumulation of species discoveries for one
 genus</h2>
-<p>The example below shows the output for <em>Crotalaria</em>, one of
-the big legume genera. Different file formats (e.g. JPG, PDF, PNG, TIFF)
-is also supported by setting the argument <code>format</code>. </p>
+<p>The example below shows the accumulation curve for
+<em>Crotalaria</em>, one big legume genus. Different file formats
+(e.g. JPG, PDF, PNG, TIFF) are also supported by setting the argument
+<code>format</code>. </p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">accGraph</span>(<span class="at">inputdf =</span> <span class="st">&quot;Crotalaria_spp&quot;</span>,</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>         <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>         <span class="at">multi =</span> <span class="cn">FALSE</span>,</span>
@@ -398,6 +408,9 @@ FIGURE 1. Accumulation graph of new species discoveries in the big genus
 </div>
 <p><br />
 </p>
+<p>The accumulation curve of <em>Crotalaria</em> shows that it has 712
+spp. and a high increase of taxonomic changes between 1840 and 1920
+(noticeable by the curve in light red).</p>
 </div>
 <div id="plotting-the-accumulation-of-species-discoveries-for-the-entire-dataset" class="section level2">
 <h2>2. Plotting the accumulation of species discoveries for the entire
@@ -417,8 +430,8 @@ extracted all data of the genera <em>Andropogon</em>, <em>Olyra</em> and
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;Poaceae_results&quot;</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;Poaceae_spp&quot;</span>)</span></code></pre></div>
 <p>Then, we used the newly developed function <code>accGraph</code> to
-plot individual graphs of accumulation of species discoveries and a
-violin graph for the three genera.</p>
+plot individual graphs of accumulation of species discovery and a violin
+graph for the three genera.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">accGraph</span>(<span class="at">inputdf =</span> newdata,</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>         <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>         <span class="at">multi =</span> <span class="cn">TRUE</span>,</span>
@@ -462,6 +475,16 @@ FIGURE 5. Violin graph of new species discoveries in three genera over
 time.
 </p>
 </div>
+<p><br />
+</p>
+<p>Each one of the individual accumulation graphs showed different
+patterns, and while <em>Andropogon</em> and <em>Digitaria</em> showed
+similar rates of new discoveries and taxonomic changes, any of the
+accepted 25 spp. of <em>Olyra</em> went through a correction in the year
+of publication. Additionally, the violin plot (Fig. 5) showed a peak of
+synonymizations of <em>Andropogon</em> around 1870, and a peak of
+accepted names of <em>Digitaria</em> being published around 1925.<br />
+</p>
 </div>
 
 

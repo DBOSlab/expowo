@@ -2,7 +2,7 @@
 % Please edit documentation in R/accGraph.R
 \name{accGraph}
 \alias{accGraph}
-\title{Create graphs of cumulative discoveries}
+\title{Create graphs depicting the accumulation of species discoveries}
 \usage{
 accGraph(inputdf = NULL,
          verbose = TRUE,
@@ -15,14 +15,15 @@ accGraph(inputdf = NULL,
 \arguments{
 \item{inputdf}{A dataframe generated using \code{powoSpecies} function and
 containing the genus and species column and the associated information about
-the protologue of each species. The species name must be as a binomial, i.e.
+the protologue of each species. The species name must be binomial, i.e.
 must contain both the genus name and specific epithet.}
 
 \item{verbose}{Logical, if \code{FALSE}, a message showing each step during
 the POWO search will not be printed in the console in full.}
 
-\item{multi}{Logical, if \code{FALSE}, the function will not create a second
-graph with all data available in the dataset. The default is \code{TRUE}.}
+\item{multi}{Logical. Setting to \code{FALSE} means that your dataset contains
+only one genus and the function will not create a violin plot.
+The default is \code{TRUE}.}
 
 \item{save}{Logical, if \code{TRUE}, the search results will be saved on disk.}
 
@@ -44,12 +45,12 @@ Experts Group (.jpg), "tiff" to save in Tag Image File Format (.tiff) or
 One or a list of objects of class c("gg", "ggplot").
 }
 \description{
-Produces graphs of accumulation of species discoveries for each
+Produces graphs of accumulation of species discovery for each
 genus and a flat violin graph for all data provided. It is designed to
 create graphs based on the search results from \code{powoSpecies}. Multiple
 graphs for any different taxonomic groups within the input data can be
-produced automatically in a single run, and can generate a accumulation graph
-with all genera included.
+produced automatically in a single run, and can generate a violin plot
+comparing the distribution of data of all genera included.
 }
 \examples{
 \dontrun{
