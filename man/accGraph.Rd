@@ -42,7 +42,8 @@ Experts Group (.jpg), "tiff" to save in Tag Image File Format (.tiff) or
 "png" to save in Portable Network Graphics (.png).}
 }
 \value{
-One or a list of objects of class c("gg", "ggplot").
+Objects of class c("gg", "ggplot") or graphics and saves the output
+on disk.
 }
 \description{
 Produces graphs of accumulation of species discovery for each

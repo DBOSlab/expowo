@@ -20,13 +20,13 @@ The main goal of the **expowo** package is to retrieve information about
 the diversity and distribution of any plant family as publicly available
 at the taxonomically verified database [Plants of the World Online
 (POWO)](https://powo.science.kew.org). The package is intended to
-efficiently mine the content within the source HTML pages for any
+efficiently mine the content inside the source HTML pages for any
 specific genus and family. It can return a comma-separated values (CSV)
 file with the number of accepted species and country-level distribution
 for any genus as well as the full list of accepted species in any
 genus or family, their authorship, original publication and global
-distribution. The latest major function implemented, `powoMap`, also 
-can automatically create global maps for any taxon level.
+distribution. The latests functions implemented, `powoMap` and `accGraph`, are available in the GitHub version and can automatically create global maps for any 
+taxon level and accumulation graphics of species discovery, respectively.
 
 ## Before using **expowo**
 
@@ -77,18 +77,11 @@ system is Microsoft Windows, you will also need to download the Rtools.
 The package’s major functions (`powoFam`, `powoGenera`, `powoSpecies`, 
 `powoSpDist`, `megaGen`, and `topGen`) only require the name of the 
 target family (or a vector with multiple family names). These major 
-functions work with other minor functions (`getGenURI`, `getNumb`, 
-and `getDist`), with auxiliary and defensive functions to mine the 
-plant data. Respectively, `getGenURI` mines the URI for each genus,
-`getNumb` mines the total number of species within any genus, and
-`getDist` does a complete search for native and introduced 
-country-level distribution for any genus and species. With this 
-distribution, it is also possible to automatically generate 
-global maps according to political country and botanical
-subdivision with the function `powoMap`. See the examples on 
-how to use the **expowo**’s functions for mining basic 
-information on the global plant diversity and
-distribution in the ‘Articles’ section in our
+functions work with other minor functions (`getInfo` and `saveCSV`), with auxiliary and defensive functions to mine the 
+plant data. Respectively, `getInfo` mines the taxonomic information of each genus, 
+the total number of species within any genus, and does a complete search for native and introduced country-level distribution for any genus and species, while `saveCSV` fastly writes CSV files within the current date subfolder of a provided specific directory. With these extracted distributions, it is also possible to automatically generate global maps according to political country and botanical
+subdivision with the function `powoMap`. Additionally, if you want to plot new species discoveries within any genus after downloading the data using `powoSpecies`, it is also possible to do it automatically using `accGraph`. See the examples on 
+how to use the **expowo**’s functions for mining and using data regarding the global plant diversity and distribution in the ‘Articles’ section in our
 [site](https://DBOSlab.github.io/expowo/).
 
 <img src="man/figures/expowo_pkg.png" alt="" width="500" />

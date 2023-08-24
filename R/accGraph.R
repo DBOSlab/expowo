@@ -46,7 +46,8 @@
 #' Experts Group (.jpg), "tiff" to save in Tag Image File Format (.tiff) or
 #' "png" to save in Portable Network Graphics (.png).
 #'
-#' @return One or a list of objects of class c("gg", "ggplot").
+#' @return Objects of class c("gg", "ggplot") or graphics and saves the output
+#' on disk.
 #'
 #' @seealso \code{\link{megaGen}}
 #' @seealso \code{\link{topGen}}

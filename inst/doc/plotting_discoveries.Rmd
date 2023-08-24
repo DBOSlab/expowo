@@ -30,7 +30,7 @@ p.caption {
 ```
 
 Here in this article, we show how to use the package's `accGraph` function
-for plotting the species discovery over time. This function can create two types of graphs: species accumulation curves recording the cumulative number of species discovery in each genus as a function of the year of the protologue, and a violin graph to visualize and compare the discovery density of each genera within the provided dataset. The species discovery curve will necessarily represent a continuous growth and its rate of increase will be related to the quantity of new discoveries, while the violin plot will be a way to visualize distribution around the median, the mean and the minimum and maximum of the data. The latter is a way for comparing variations in the data and it fits to multimodal distributions (e.g., more than one peak representing years with many publications). To use this function, the data must be stored in a spreadsheet/dataset generated using `powoSpecies` function with the argument `synonyms` set to TRUE. The graphs will be colored according to the need of year rectification using [Viridis](https://CRAN.R-project.org/package=viridis) color palettes.\
+for plotting the species discovery over time. This function can create two types of graphs: species accumulation curves recording the cumulative number of species discovery in each genus as a function of the year of the protologue, and a violin graph to visualize and compare the discovery density of each genera within the provided dataset. The species discovery curve will necessarily represent a continuous growth and its rate of increase will be related to the quantity of new discoveries, while the violin plot will be a way to visualize distribution around the median, the minimum and maximum of the data. The latter is a way for comparing variations in the data and it fits to multimodal distributions (e.g., more than one peak representing years with many publications). To use this function, the data must be stored in a spreadsheet/dataset generated using `powoSpecies` function with the argument `synonyms` set to TRUE. The graphs will be colored according to the need of year rectification using [Viridis](https://CRAN.R-project.org/package=viridis) color palettes.\
 
 \
 
@@ -122,6 +122,6 @@ knitr::include_graphics("figures/cumulative_discovery_Poaceae_all_data.png",
 ```
 \
 
-Each one of the individual accumulation graphs showed different patterns, and while _Andropogon_ and _Digitaria_ showed similar rates of new discoveries and taxonomic changes, any of the accepted 25 spp. of _Olyra_ went through a correction in the year of publication. Additionally, the violin plot (Fig. 5) showed a peak of synonymizations of _Andropogon_ around 1870, and a peak of accepted names of _Digitaria_ being published around 1925.
+Each one of the accumulation graphs exhibited different patterns, and while _Andropogon_ and _Digitaria_ showed similar rates of new discoveries and taxonomic changes, no corrections were made to any of the 25 accepted species of _Olyra_ about their respective year of publication. Additionally, the violin plot (Fig. 5) displayed a peak of synonymizations in _Andropogon_ around 1870, and a peak of accepted names of _Digitaria_ being published around 1925.
 \
 
