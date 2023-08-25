@@ -353,21 +353,22 @@ font-size: 1em;
 }
 </style>
 <p>Here in this article, we show how to use the package’s
-<code>accGraph</code> function for plotting the species discovery over
-time. This function can create two types of graphs: species accumulation
-curves recording the cumulative number of species discovery in each
-genus as a function of the year of the protologue, and a violin graph to
-visualize and compare the discovery density of each genera within the
-provided dataset. The species discovery curve will necessarily represent
-a continuous growth and its rate of increase will be related to the
-quantity of new discoveries, while the violin plot will be a way to
-visualize distribution around the median, the minimum and maximum of the
-data. The latter is a way for comparing variations in the data and it
-fits to multimodal distributions (e.g., more than one peak representing
-years with many publications). To use this function, the data must be
-stored in a spreadsheet/dataset generated using <code>powoSpecies</code>
-function with the argument <code>synonyms</code> set to TRUE. The graphs
-will be colored according to the need of year rectification using <a href="https://CRAN.R-project.org/package=viridis">Viridis</a> color
+<code>accGraph</code> function for plotting the species discoveries and
+nomenclatural changes over time. This function can create two types of
+graphs: species accumulation curves recording the cumulative number of
+species discovery in each genus as a function of the year of the
+protologue, and a violin plot to visualize and compare the nomenclatural
+changes of each genus within the provided dataset. The species discovery
+curve will necessarily represent a continuous growth and its rate of
+increase will be related to the quantity of new discoveries, while the
+violin plot will be a way to visualize distribution around the median of
+species changes, the minimum and maximum of the data. The latter is a
+way for comparing variations in the data and it fits to multimodal
+distributions (e.g., more than one peak representing years with many
+publications). To use this function, the data must be stored in a
+spreadsheet/dataset generated using <code>powoSpecies</code> function
+with the argument <code>synonyms</code> set to TRUE. The graphs will be
+colored according to the need of year rectification using <a href="https://CRAN.R-project.org/package=viridis">Viridis</a> color
 palettes.<br />
 </p>
 <p><br />

@@ -36,8 +36,8 @@ Imports:
     flora,
     tibble,
     cowplot,
-    scales,
     PupillometryR,
+    scales,
     viridisLite
 Suggests:
     covr,

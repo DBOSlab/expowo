@@ -2,28 +2,37 @@
 % Please edit documentation in R/accGraph.R
 \name{accGraph}
 \alias{accGraph}
-\title{Create graphs depicting the accumulation of species discoveries}
+\title{Create graphs of species discoveries accumulation and nomenclatural changes}
 \usage{
 accGraph(inputdf = NULL,
          verbose = TRUE,
-         multi = TRUE,
+         spp_acc = TRUE,
+         spp_changes = TRUE,
+         save_data_to_plot = FALSE,
          save = FALSE,
          dir = "results_accGraph",
          filename = "cumulative_discovery_",
          format = "pdf")
 }
 \arguments{
-\item{inputdf}{A dataframe generated using \code{powoSpecies} function and
-containing the genus and species column and the associated information about
-the protologue of each species. The species name must be binomial, i.e.
-must contain both the genus name and specific epithet.}
+\item{inputdf}{A dataframe generated using \code{powoSpecies} function using
+the argument synonyms set as \code{TRUE} and containing the genus and species
+column and the associated information about the protologue of each species.
+The species name must be binomial, i.e. must contain both the genus name and
+specific epithet.}
 
 \item{verbose}{Logical, if \code{FALSE}, a message showing each step during
 the POWO search will not be printed in the console in full.}
 
-\item{multi}{Logical. Setting to \code{FALSE} means that your dataset contains
-only one genus and the function will not create a violin plot.
+\item{spp_acc}{Logical. Setting to \code{FALSE} means that you do not want to
+create individual accumulation graphs for each genus present in your dataset.
 The default is \code{TRUE}.}
+
+\item{spp_changes}{Logical. Setting to \code{FALSE} means that you do not want
+to create a violin plot with all data provided. The default is \code{TRUE}.}
+
+\item{save_data_to_plot}{Logical. If \code{TRUE}, the spreadsheet used to
+generate the plots will be saved on disk. The default is \code{FALSE}.}
 
 \item{save}{Logical, if \code{TRUE}, the search results will be saved on disk.}
 
@@ -42,16 +51,15 @@ Experts Group (.jpg), "tiff" to save in Tag Image File Format (.tiff) or
 "png" to save in Portable Network Graphics (.png).}
 }
 \value{
-Objects of class c("gg", "ggplot") or graphics and saves the output
-on disk.
+Objects of class c("gg", "ggplot") and saves the output on disk.
 }
 \description{
-Produces graphs of accumulation of species discovery for each
-genus and a flat violin graph for all data provided. It is designed to
-create graphs based on the search results from \code{powoSpecies}. Multiple
+Produces graphs of accumulation of species discovery and
+nomenclatural changes within any genus provided. It is designed to
+create graphs based on the search results from \code{powoSpecies}. The graph
+type can be selected by two arguments (sppacc and sppchg) and then multiple
 graphs for any different taxonomic groups within the input data can be
-produced automatically in a single run, and can generate a violin plot
-comparing the distribution of data of all genera included.
+produced automatically in a single run.
 }
 \examples{
 \dontrun{
@@ -60,7 +68,9 @@ library(expowo)
 
 accGraph(inputdf = "output",
          verbose = TRUE,
-         multi = FALSE,
+         spp_acc = TRUE,
+         spp_changes = TRUE,
+         save_data_to_plot = FALSE,
          save = FALSE,
          dir = "results_accGraph",
          filename = "cumulative_discovery_Cyperaceae",

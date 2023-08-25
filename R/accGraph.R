@@ -1,34 +1,43 @@
-#' Create graphs depicting the accumulation of species discoveries
+#' Create graphs of species discoveries accumulation and nomenclatural changes
 #'
 #' @author Debora Zuanny & Domingos Cardoso
 #'
-#' @description Produces graphs of accumulation of species discovery for each
-#' genus and a flat violin graph for all data provided. It is designed to
-#' create graphs based on the search results from \code{powoSpecies}. Multiple
+#' @description Produces graphs of accumulation of species discovery and
+#' nomenclatural changes within any genus provided. It is designed to
+#' create graphs based on the search results from \code{powoSpecies}. The graph
+#' type can be selected by two arguments (sppacc and sppchg) and then multiple
 #' graphs for any different taxonomic groups within the input data can be
-#' produced automatically in a single run, and can generate a violin plot
-#' comparing the distribution of data of all genera included.
+#' produced automatically in a single run.
 #'
 #' @usage
 #' accGraph(inputdf = NULL,
 #'          verbose = TRUE,
-#'          multi = TRUE,
+#'          spp_acc = TRUE,
+#'          spp_changes = TRUE,
+#'          save_data_to_plot = FALSE,
 #'          save = FALSE,
 #'          dir = "results_accGraph",
 #'          filename = "cumulative_discovery_",
 #'          format = "pdf")
 #'
-#' @param inputdf A dataframe generated using \code{powoSpecies} function and
-#' containing the genus and species column and the associated information about
-#' the protologue of each species. The species name must be binomial, i.e.
-#' must contain both the genus name and specific epithet.
+#' @param inputdf A dataframe generated using \code{powoSpecies} function using
+#' the argument synonyms set as \code{TRUE} and containing the genus and species
+#' column and the associated information about the protologue of each species.
+#' The species name must be binomial, i.e. must contain both the genus name and
+#' specific epithet.
 #'
 #' @param verbose Logical, if \code{FALSE}, a message showing each step during
 #' the POWO search will not be printed in the console in full.
 #'
-#' @param multi Logical. Setting to \code{FALSE} means that your dataset contains
-#' only one genus and the function will not create a violin plot.
+#' @param spp_acc Logical. Setting to \code{FALSE} means that you do not want to
+#' create individual accumulation graphs for each genus present in your dataset.
 #' The default is \code{TRUE}.
+#'
+#' @param spp_changes Logical. Setting to \code{FALSE} means that you do not want
+#' to create a violin plot with all data provided. The default is \code{TRUE}.
+#'
+#' @param save_data_to_plot Logical. If \code{TRUE}, the spreadsheet used to
+#' generate the plots will be saved on disk. The default is \code{FALSE}.
 #'
 #' @param save Logical, if \code{TRUE}, the search results will be saved on disk.
 #'
@@ -46,8 +55,7 @@
 #' Experts Group (.jpg), "tiff" to save in Tag Image File Format (.tiff) or
 #' "png" to save in Portable Network Graphics (.png).
 #'
-#' @return Objects of class c("gg", "ggplot") or graphics and saves the output
-#' on disk.
+#' @return Objects of class c("gg", "ggplot") and saves the output on disk.
 #'
 #' @seealso \code{\link{megaGen}}
 #' @seealso \code{\link{topGen}}
@@ -63,13 +71,16 @@
 #'
 #' accGraph(inputdf = "output",
 #'          verbose = TRUE,
-#'          multi = FALSE,
+#'          spp_acc = TRUE,
+#'          spp_changes = TRUE,
+#'          save_data_to_plot = FALSE,
 #'          save = FALSE,
 #'          dir = "results_accGraph",
 #'          filename = "cumulative_discovery_Cyperaceae",
 #'          format = "pdf")
 #' }
 #'
+#' @importFrom cowplot save_plot
 #' @importFrom dplyr filter select
 #' @importFrom magrittr "%>%"
 #' @importFrom ggplot2 ggplot aes theme_bw theme stat_ecdf element_blank ylab
@@ -78,7 +89,6 @@
 #' @importFrom ggplot2 margin element_rect guides guide_legend annotate
 #' @importFrom ggplot2 position_nudge position_jitter
 #' @importFrom PupillometryR geom_flat_violin
-#' @importFrom cowplot save_plot
 #' @importFrom scales show_col
 #' @importFrom tibble add_column
 #' @importFrom viridisLite viridis
@@ -88,7 +98,9 @@
 
 accGraph <- function(inputdf = NULL,
                      verbose = TRUE,
-                     multi = TRUE,
+                     spp_acc = TRUE,
+                     spp_changes = TRUE,
+                     save_data_to_plot = FALSE,
                      save = FALSE,
                      dir = "results_accGraph",
                      filename = "cumulative_discovery_",
@@ -202,67 +214,72 @@ accGraph <- function(inputdf = NULL,
     dir.create(foldername)
   }
 
-  # saving the new spreadsheet with the data to plot
-  saveCSV(df_accepted,
-          dir = dir,
-          filename = "data_to_plot",
-          verbose = verbose,
-          save = save,
-          foldername = foldername)
+  if(save_data_to_plot){
+    # saving the new spreadsheet with the data to plot
+    saveCSV(df_accepted,
+            dir = dir,
+            filename = "data_to_plot",
+            verbose = verbose,
+            save = save,
+            foldername = foldername)
+  }
 
-  # Plotting the figures
-  # Selecting colors
-  scales::show_col(viridis(10, option = "magma"))
-  cols <- c("#180F3EFF", "#F1605DFF")
+  if(spp_acc){
+    # Plotting the accumulation figures
+    # Selecting colors
+    scales::show_col(viridis(10, option = "magma"))
+    cols <- c("#180F3EFF", "#F1605DFF")
 
-  tax_group <- unique(df_accepted$genus)
-  for (i in seq_along(tax_group)) {
+    tax_group <- unique(df_accepted$genus)
+    p <- list()
+    for (i in seq_along(tax_group)) {
 
-    temp_df_accepted <- df_accepted[df_accepted$genus %in% tax_group[i], ]
-    l <- length(temp_df_accepted$species)
+      temp_df_accepted <- df_accepted[df_accepted$genus %in% tax_group[i], ]
+      l <- length(temp_df_accepted$species)
 
-    plot <- ggplot(temp_df_accepted,
-                   aes(temp_df_accepted$year,
-                       colour = temp_df_accepted$year_changed))+
-      stat_ecdf(linewidth = 1.5, alpha=0.6, geom = "step") +
-      theme_bw() +
-      ylab(eval(bquote(expression(bold("Accumulation of species discovery in")
-                                  ~bolditalic(.(tax_group[i])))))) +
-      theme(axis.title.x=element_blank()) +
-      scale_color_manual(values = cols) +
-      scale_y_continuous(breaks=scales::pretty_breaks(n=5),
-                         labels=scales::percent_format(accuracy = 1)) +
-      scale_x_continuous(breaks=c(1753, 1800, 1850, 1900, 1950, 2000,
-                                  max(df$year[!is.na(df$year)]))) +
-      theme(axis.title.y=element_text(size=14, margin=margin(0,12,0,0))) +
-      theme(axis.text.x=element_text(size=14)) +
-      theme(axis.text.y=element_text(size=14)) +
-      theme(legend.title = element_text(size=14)) +
-      theme(legend.position = c(0.2, 0.8),
-            legend.key = element_rect(linewidth=10, linetype='blank'),
-            legend.text = element_text(size=14),
-            legend.key.size = unit(1, "cm"),
-            legend.title = element_text(size=14)) +
-      guides(alpha='none', colour=guide_legend("Publication year corrected"),
-             size=14) +
-      annotate("text", x = 2020, y = 1.02,
-               label = paste(l, " spp."),
-               colour = "black", alpha=0.6)
+      p[[i]] <- ggplot(temp_df_accepted,
+                       aes(temp_df_accepted$year,
+                           colour = temp_df_accepted$year_changed))+
+        stat_ecdf(linewidth = 1.5, alpha=0.6, geom = "step") +
+        theme_bw() +
+        ylab(eval(bquote(expression(bold("Accumulation of species discovery in")
+                                    ~bolditalic(.(tax_group[i])))))) +
+        theme(axis.title.x=element_blank()) +
+        scale_color_manual(values = cols) +
+        scale_y_continuous(breaks=scales::pretty_breaks(n=5),
+                           labels=scales::percent_format(accuracy = 1)) +
+        scale_x_continuous(breaks=c(1753, 1800, 1850, 1900, 1950, 2000,
+                                    max(df$year[!is.na(df$year)]))) +
+        theme(axis.title.y=element_text(size=14, margin=margin(0,12,0,0))) +
+        theme(axis.text.x=element_text(size=14)) +
+        theme(axis.text.y=element_text(size=14)) +
+        theme(legend.title = element_text(size=14)) +
+        theme(legend.position = c(0.2, 0.8),
+              legend.key = element_rect(linewidth=10, linetype='blank'),
+              legend.text = element_text(size=14),
+              legend.key.size = unit(1, "cm"),
+              legend.title = element_text(size=14)) +
+        guides(alpha='none', colour=guide_legend("Publication year corrected"),
+               size=14) +
+        annotate("text", x = 2020, y = 1.02,
+                 label = paste(l, " spp."),
+                 colour = "black", alpha=0.6)
 
-    if(save){
-      cowplot::save_plot(gsub(paste0(".", format),
-                              paste0(tax_group[i], ".", format),
-                              fullname),
-                         plot,
-                         ncol = 1, nrow = 1,
-                         base_height = 8.5,
-                         base_aspect_ratio = 1.3,
-                         base_width = NULL)
+      if(save){
+        cowplot::save_plot(gsub(paste0(".", format),
+                                paste0(tax_group[i], ".", format),
+                                fullname),
+                           p[[i]],
+                           ncol = 1, nrow = 1,
+                           base_height = 8.5,
+                           base_aspect_ratio = 1.3,
+                           base_width = NULL)
+      }
     }
   }
 
-  if (multi){
-    # Plotting the figures for all data
+  if (spp_changes){
+    # Plotting the figure for all data in a violin plot
     tf <- !df$status %in% "Accepted"
     df$genus[tf] <- gsub("\\s.*", "", df$accepted_name[tf])
     df$status[tf] <- "Synonym"
@@ -270,15 +287,14 @@ accGraph <- function(inputdf = NULL,
 
     df$number_synonyms[is.na(df$number_synonyms)] <- 0
 
-    source("https://gist.githubusercontent.com/benmarwick/2a1bb0133ff568cbe28d/raw/fb53bd97121f7f9ce947837ef1a4c65a73bffb3f/geom_flat_violin.R")
-
+    # Plotting the graph
     p <- ggplot(df,
                 aes(x = df$genus, y = df$year, fill = df$status,
                     size = df$number_synonyms))+
-      geom_flat_violin(position = position_nudge(x = .25, y = 0),
-                       trim = FALSE,
-                       alpha = .6,
-                       lwd = 0.1) +
+      PupillometryR::geom_flat_violin(position = position_nudge(x = .25, y = 0),
+                                      trim = FALSE,
+                                      alpha = .6,
+                                      lwd = 0.1) +
       geom_point(position = position_jitter(width = .1, height = 0.05),
                  shape =  21,
                  alpha = .6,
@@ -308,6 +324,5 @@ accGraph <- function(inputdf = NULL,
                          base_aspect_ratio = 1.3,
                          base_width = NULL)  }
   }
-
   return(p)
 }
