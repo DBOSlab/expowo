@@ -10,11 +10,14 @@ library(expowo)
 ## ---- eval = FALSE------------------------------------------------------------
 #  accGraph(inputdf = "Crotalaria_spp",
 #           verbose = TRUE,
-#           multi = FALSE,
+#           spp_acc = TRUE,
+#           spp_changes = TRUE,
+#           save_data_to_plot = FALSE,
 #           save = TRUE,
 #           dir = "results_accGraph",
 #           filename = "cumulative_discovery_Crotalaria",
 #           format = "jpg")
+#  
 
 ## ---- echo = FALSE, out.width = "600px", fig.cap = "FIGURE 1. Accumulation graph of new species discoveries in the big genus _Crotalaria_ over time."----
 knitr::include_graphics("figures/cumulative_discovery_Crotalaria.png", 
@@ -31,7 +34,9 @@ knitr::include_graphics("figures/cumulative_discovery_Crotalaria.png",
 ## ---- eval = FALSE------------------------------------------------------------
 #  accGraph(inputdf = newdata,
 #           verbose = TRUE,
-#           multi = TRUE,
+#           spp_acc = TRUE,
+#           spp_changes = TRUE,
+#           save_data_to_plot = FALSE,
 #           save = TRUE,
 #           dir = "results_accGraph",
 #           filename = "cumulative_discovery_Poaceae_",

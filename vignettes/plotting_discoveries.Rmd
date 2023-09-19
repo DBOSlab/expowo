@@ -57,11 +57,14 @@ the argument `format`.\
 ```{r, eval = FALSE}
 accGraph(inputdf = "Crotalaria_spp",
          verbose = TRUE,
-         multi = FALSE,
+         spp_acc = TRUE,
+         spp_changes = TRUE,
+         save_data_to_plot = FALSE,
          save = TRUE,
          dir = "results_accGraph",
          filename = "cumulative_discovery_Crotalaria",
          format = "jpg")
+
 ```
 
 \
@@ -94,7 +97,9 @@ accumulation of species discovery and a violin graph for the three genera.
 ```{r, eval = FALSE}
 accGraph(inputdf = newdata,
          verbose = TRUE,
-         multi = TRUE,
+         spp_acc = TRUE,
+         spp_changes = TRUE,
+         save_data_to_plot = FALSE,
          save = TRUE,
          dir = "results_accGraph",
          filename = "cumulative_discovery_Poaceae_",
