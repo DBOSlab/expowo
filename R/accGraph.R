@@ -161,7 +161,7 @@ accGraph <- function(inputdf = NULL,
     temp <- df[tf_inval, ][tftf, ]
     temp <- temp[!grepl("\\svar[.]|\\sf[.]\\s|\\ssubsp[.]\\s",
                         temp$scientific_name), ]
-    if(length(temp$year) == 0) {
+    if (length(temp$year) == 0) {
       year_syn <- NA
     } else {
       year_syn <- min(temp$year)
@@ -224,7 +224,7 @@ accGraph <- function(inputdf = NULL,
             foldername = foldername)
   }
 
-  if(spp_acc){
+  if (spp_acc) {
     # Plotting the accumulation figures
     # Selecting colors
     scales::show_col(viridis(10, option = "magma"))
@@ -278,7 +278,7 @@ accGraph <- function(inputdf = NULL,
     }
   }
 
-  if (spp_changes){
+  if (spp_changes) {
     # Plotting the figure for all data in a violin plot
     tf <- !df$status %in% "Accepted"
     df$genus[tf] <- gsub("\\s.*", "", df$accepted_name[tf])
@@ -287,21 +287,24 @@ accGraph <- function(inputdf = NULL,
 
     df$number_synonyms[is.na(df$number_synonyms)] <- 0
 
+
     # Plotting the graph
     p <- ggplot(df,
                 aes(x = df$genus, y = df$year, fill = df$status,
-                    size = df$number_synonyms))+
+                    size = df$number_synonyms)) +
       PupillometryR::geom_flat_violin(position = position_nudge(x = .25, y = 0),
                                       trim = FALSE,
                                       alpha = .6,
-                                      lwd = 0.1) +
-      geom_point(position = position_jitter(width = .1, height = 0.05),
-                 shape =  21,
+                                      size = .1,
+                                      na.rm = TRUE) +
+      geom_point(aes(fill = df$status, size = df$number_synonyms),
+                 position = position_jitter(width = .1, height = .05),
+                 shape = 21,
                  alpha = .6,
-                 stroke = 0.0001,
-                 show.legend = TRUE,
-                 colour="black",
-                 aes(fill = df$status, size = df$number_synonyms)) +
+                 stroke = .1,
+                 colour = "black",
+                 na.rm = TRUE,
+                 show.legend = TRUE) +
 
       scale_fill_viridis_d(option = "E") +
       scale_colour_viridis_d(option = "E") +
@@ -314,7 +317,7 @@ accGraph <- function(inputdf = NULL,
       theme(axis.text.x=element_text(size = 12, face = "italic")) +
       theme(axis.title.y=element_text(size = 14))
 
-    if (save){
+    if (save) {
       cowplot::save_plot(gsub(paste0(".", format),
                               paste0("all_data", ".", format),
                               fullname),

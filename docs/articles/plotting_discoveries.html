@@ -166,16 +166,16 @@ dataset<a class="anchor" aria-label="anchor" href="#plotting-the-accumulation-of
 comparing new discoveries within those genera. In the example before, we
 adjusted the argument <code>multi</code> to FALSE, but notice that it is
 set as TRUE (default) in the example below. To get those graphs, we
-extracted all data of the genera <em>Andropogon</em>, <em>Olyra</em> and
-<em>Digitaria</em> from Plants of the World Online using
+extracted all data of the genera <em>Achillea</em>, <em>Matricaria</em>
+and <em>Launaea</em> from Plants of the World Online using
 <code>powoSpecies</code> as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">newdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/powoSpecies.html">powoSpecies</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Poaceae"</span>,</span>
-<span>                       genus <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Andropogon"</span>, <span class="st">"Olyra"</span>, <span class="st">"Digitaria"</span><span class="op">)</span>,</span>
+<code class="sourceCode R"><span><span class="va">newdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/powoSpecies.html">powoSpecies</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Asteraceae"</span>,</span>
+<span>                       genus <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Achillea"</span>, <span class="st">"Matricaria"</span>, <span class="st">"Launaea"</span><span class="op">)</span>,</span>
 <span>                       synonyms <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                       save <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                       dir <span class="op">=</span> <span class="st">"Poaceae_results"</span>,</span>
-<span>                       filename <span class="op">=</span> <span class="st">"Poaceae_spp"</span><span class="op">)</span></span></code></pre></div>
+<span>                       dir <span class="op">=</span> <span class="st">"Asteraceae_results"</span>,</span>
+<span>                       filename <span class="op">=</span> <span class="st">"Asteraceae_spp"</span><span class="op">)</span></span></code></pre></div>
 <p>Then, we used the newly developed function <code>accGraph</code> to
 plot individual graphs of accumulation of species discovery and a violin
 graph for the three genera.</p>
@@ -187,40 +187,33 @@ graph for the three genera.</p>
 <span>         save_data_to_plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>         save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>         dir <span class="op">=</span> <span class="st">"results_accGraph"</span>,</span>
-<span>         filename <span class="op">=</span> <span class="st">"cumulative_discovery_Poaceae_"</span>,</span>
+<span>         filename <span class="op">=</span> <span class="st">"cumulative_discovery_Asteraceae_"</span>,</span>
 <span>         format <span class="op">=</span> <span class="st">"jpg"</span><span class="op">)</span></span></code></pre></div>
 <br><div class="figure">
-<img src="figures/cumulative_discovery_Poaceae_Andropogon.png" alt="FIGURE 2. Accumulation graph of new species discoveries in the genus _Andropogon_ over time." width="600px"><p class="caption">
+<img src="figures/cumulative_discovery_Asteraceae_Achillea.png" alt="FIGURE 2. Accumulation graph of new species discoveries in the genus _Achillea_ over time." width="600px"><p class="caption">
 FIGURE 2. Accumulation graph of new species discoveries in the genus
-<em>Andropogon</em> over time.
+<em>Achillea</em> over time.
 </p>
 </div>
 <br><div class="figure">
-<img src="figures/cumulative_discovery_Poaceae_Digitaria.png" alt="FIGURE 3. Accumulation graph of new species discoveries in the genus _Digitaria_ over time." width="600px"><p class="caption">
+<img src="figures/cumulative_discovery_Asteraceae_Matricaria.png" alt="FIGURE 3. Accumulation graph of new species discoveries in the genus _Matricaria_ over time." width="600px"><p class="caption">
 FIGURE 3. Accumulation graph of new species discoveries in the genus
-<em>Digitaria</em> over time.
+<em>Matricaria</em> over time.
 </p>
 </div>
 <br><div class="figure">
-<img src="figures/cumulative_discovery_Poaceae_Olyra.png" alt="FIGURE 4. Accumulation graph of new species discoveries in the genus _Olyra_ over time." width="600px"><p class="caption">
+<img src="figures/cumulative_discovery_Asteraceae_Launaea.png" alt="FIGURE 4. Accumulation graph of new species discoveries in the genus _Launaea_ over time." width="600px"><p class="caption">
 FIGURE 4. Accumulation graph of new species discoveries in the genus
-<em>Olyra</em> over time.
+<em>Launaea</em> over time.
 </p>
 </div>
 <br><div class="figure">
-<img src="figures/cumulative_discovery_Poaceae_all_data.png" alt="FIGURE 5. Violin graph of new species discoveries in three genera over time." width="600px"><p class="caption">
+<img src="figures/cumulative_discovery_Asteraceae_all_data.png" alt="FIGURE 5. Violin graph of new species discoveries in three genera over time." width="600px"><p class="caption">
 FIGURE 5. Violin graph of new species discoveries in three genera over
 time.
 </p>
 </div>
 <p><br></p>
-<p>Each one of the accumulation graphs exhibited different patterns, and
-while <em>Andropogon</em> and <em>Digitaria</em> showed similar rates of
-new discoveries and taxonomic changes, no corrections were made to any
-of the 25 accepted species of <em>Olyra</em> about their respective year
-of publication. Additionally, the violin plot (Fig. 5) displayed a peak
-of synonymizations in <em>Andropogon</em> around 1870, and a peak of
-accepted names of <em>Digitaria</em> being published around 1925.<br></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

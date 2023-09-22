@@ -80,15 +80,15 @@ The accumulation curve of _Crotalaria_ shows that it has 712 spp. and a high inc
 ## 2. Plotting the accumulation of species discoveries for the entire dataset
 If your dataset contains species from more than one genus, the `accGraph` function will
 automatically plot a violin graph comparing new discoveries within those genera. In the example before, we adjusted the argument `multi` to FALSE, but notice that it is set as TRUE (default) in the example below. To get those graphs, we extracted
-all data of the genera _Andropogon_, _Olyra_ and _Digitaria_ from Plants of the World Online using `powoSpecies` as follows:
+all data of the genera _Achillea_, _Matricaria_ and _Launaea_ from Plants of the World Online using `powoSpecies` as follows:
 
 ```{r, eval = FALSE}
-newdata <- powoSpecies(family = "Poaceae",
-                       genus = c("Andropogon", "Olyra", "Digitaria"),
+newdata <- powoSpecies(family = "Asteraceae",
+                       genus = c("Achillea", "Matricaria", "Launaea"),
                        synonyms = TRUE,
                        save = FALSE,
-                       dir = "Poaceae_results",
-                       filename = "Poaceae_spp")
+                       dir = "Asteraceae_results",
+                       filename = "Asteraceae_spp")
 ```
 
 Then, we used the newly developed function `accGraph` to plot individual graphs of 
@@ -102,31 +102,29 @@ accGraph(inputdf = newdata,
          save_data_to_plot = FALSE,
          save = TRUE,
          dir = "results_accGraph",
-         filename = "cumulative_discovery_Poaceae_",
+         filename = "cumulative_discovery_Asteraceae_",
          format = "jpg")
 ```
 \
-```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 2. Accumulation graph of new species discoveries in the genus _Andropogon_ over time."}
-knitr::include_graphics("figures/cumulative_discovery_Poaceae_Andropogon.png", 
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 2. Accumulation graph of new species discoveries in the genus _Achillea_ over time."}
+knitr::include_graphics("figures/cumulative_discovery_Asteraceae_Achillea.png", 
                         dpi = 300)
 ```
 \
-```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 3. Accumulation graph of new species discoveries in the genus _Digitaria_ over time."}
-knitr::include_graphics("figures/cumulative_discovery_Poaceae_Digitaria.png", 
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 3. Accumulation graph of new species discoveries in the genus _Matricaria_ over time."}
+knitr::include_graphics("figures/cumulative_discovery_Asteraceae_Matricaria.png", 
                         dpi = 300)
 ```
 \
-```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 4. Accumulation graph of new species discoveries in the genus _Olyra_ over time."}
-knitr::include_graphics("figures/cumulative_discovery_Poaceae_Olyra.png", 
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 4. Accumulation graph of new species discoveries in the genus _Launaea_ over time."}
+knitr::include_graphics("figures/cumulative_discovery_Asteraceae_Launaea.png", 
                         dpi = 300)
 ```
 \
 ```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 5. Violin graph of new species discoveries in three genera over time."}
-knitr::include_graphics("figures/cumulative_discovery_Poaceae_all_data.png", 
+knitr::include_graphics("figures/cumulative_discovery_Asteraceae_all_data.png", 
                         dpi = 300)
 ```
-\
 
-Each one of the accumulation graphs exhibited different patterns, and while _Andropogon_ and _Digitaria_ showed similar rates of new discoveries and taxonomic changes, no corrections were made to any of the 25 accepted species of _Olyra_ about their respective year of publication. Additionally, the violin plot (Fig. 5) displayed a peak of synonymizations in _Andropogon_ around 1870, and a peak of accepted names of _Digitaria_ being published around 1925.
 \
 
