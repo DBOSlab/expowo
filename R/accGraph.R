@@ -5,7 +5,7 @@
 #' @description Produces graphs of accumulation of species discovery and
 #' nomenclatural changes within any genus provided. It is designed to
 #' create graphs based on the search results from \code{powoSpecies}. The graph
-#' type can be selected by two arguments (sppacc and sppchg) and then multiple
+#' type can be selected by two arguments (spp_acc and spp_changes) and then multiple
 #' graphs for any different taxonomic groups within the input data can be
 #' produced automatically in a single run.
 #'
