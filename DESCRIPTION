@@ -1,7 +1,7 @@
 Type: Package
 Package: expowo
-Title: Data Mining of Plant Diversity and Distribution for R
-Version: 1.0
+Title: Data Mining of Plant Diversity and Distribution
+Version: 2.0
 Authors@R:
     c(person(given = "Debora",
              family = "Zuanny",
