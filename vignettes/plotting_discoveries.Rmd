@@ -29,14 +29,14 @@ p.caption {
 }
 ```
 
-Here in this article, we show how to use the package's `accGraph` function
-for plotting the species discoveries and nomenclatural changes over time. This function can create two types of graphs: species accumulation curves recording the cumulative number of species discovery in each genus as a function of the year of the protologue, and a violin plot to visualize and compare the nomenclatural changes of each genus within the provided dataset. The species discovery curve will necessarily represent a continuous growth and its rate of increase will be related to the quantity of new discoveries, while the violin plot will be a way to visualize distribution around the median of species changes, the minimum and maximum of the data. The latter is a way for comparing variations in the data and it fits to multimodal distributions (e.g., more than one peak representing years with many publications). To use this function, the data must be stored in a spreadsheet/dataset generated using `powoSpecies` function with the argument `synonyms` set to TRUE. The graphs will be colored according to the need of year rectification using [Viridis](https://CRAN.R-project.org/package=viridis) color palettes.\
+Information concerning the year of publication of a species and its current status, obtained from the taxonomically validated [Plants of the World Online (POWO)](https://powo.science.kew.org/) database, can offer valuable insights into temporal trends related to changes in species nomenclature.\
 
+In this article, we illustrate the utilization of the package's `accGraph` function for automatically generate plots that showcase the dynamics of species discoveries and nomenclatural changes over time – all in a single run! This versatile function is capable of producing two distinct types of graphics: one depicting the accumulation of formally described species within each genus or family, and the other illustrating changes in species nomenclature over time. The species discovery curve inherently demonstrates continuous growth, with the rate of this growth linked to the number of new discoveries. Conversely, the second type of graphic allows for the comparison of variations in the data, accommodating multimodal distributions, such as those with multiple peaks representing years characterized by numerous changes. To employ this function effectively, it is necessary to have data stored in a spreadsheet or dataset generated using the `powoSpecies` function, where the `synonyms` argument is set to TRUE.
 \
 
 ## Setup
 
-Install the latest development version of __expowo__ from 
+Install the latest developmental version of __expowo__ from 
 [GitHub](https://github.com/):
 
 ``` r
@@ -49,17 +49,17 @@ library(expowo)
 
 \
 
-## 1. Plotting the accumulation of species discoveries for one genus
-The example below shows the accumulation curve for _Crotalaria_, one big legume genus.
-Different file formats (e.g. JPG, PDF, PNG, TIFF) are also supported by setting 
-the argument `format`.\ 
+## 1. Plotting the species discoveries for one genus
+The example below shows the accumulation curve of [Crotalaria](https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:329745-2), 
+one big legume genus. The black line is derived from the publication dates of currently accepted species names, while the red line is related to the publication year of the basionym for each accepted species name. As a result, it illustrates the cumulative count of formally described species of this genus. Different file formats (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the argument `format`. Notice that the `spp_changes_col` argument is set with the name of the column (in this case, "genus") of the input dataframe that we want to be used for plotting the graphic. If we defined it as "family", for example, the function would use the data of the entire family available in the input dataframe to create the graphic.\ 
 
 ```{r, eval = FALSE}
 accGraph(inputdf = "Crotalaria_spp",
          verbose = TRUE,
-         spp_acc = TRUE,
+         spp_acc = FALSE,
          spp_changes = TRUE,
-         save_data_to_plot = FALSE,
+         spp_changes_col = "genus",
+         genus_plots = TRUE,         
          save = TRUE,
          dir = "results_accGraph",
          filename = "cumulative_discovery_Crotalaria",
@@ -68,19 +68,23 @@ accGraph(inputdf = "Crotalaria_spp",
 ```
 
 \
-```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 1. Accumulation graph of new species discoveries in the big genus _Crotalaria_ over time."}
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 1. Accumulation of formally described species in the big genus _Crotalaria_ over time."}
 knitr::include_graphics("figures/cumulative_discovery_Crotalaria.png", 
                         dpi = 300)
 ```
 
 \
 
-The accumulation curve of _Crotalaria_ shows that it has 712 spp. and a high increase of taxonomic changes between 1840 and 1920 (noticeable by the curve in light red).
+The accumulation curve of _Crotalaria_ shows that it has 712 spp. described and a high 
+increase of taxonomic changes between 1840 and 1920 (noticeable by the curve in light red).
 
-## 2. Plotting the accumulation of species discoveries for the entire dataset
-If your dataset contains species from more than one genus, the `accGraph` function will
-automatically plot a violin graph comparing new discoveries within those genera. In the example before, we adjusted the argument `multi` to FALSE, but notice that it is set as TRUE (default) in the example below. To get those graphs, we extracted
-all data of the genera _Achillea_, _Matricaria_ and _Launaea_ from Plants of the World Online using `powoSpecies` as follows:
+## 2. Plotting the species discoveries for the entire dataset
+If your dataset contains species from more than one genus, the `accGraph` function can
+automatically plot a graphic of changes in species nomenclature over the years with the data of those genera.
+In the example before, we adjusted the argument `spp_acc` to FALSE, but notice that it is set as TRUE in the example below. It is because the argument `spp_acc` will define the 
+creation of the second type of graphic. The dynamics of nomenclatural changes are visually represented through the varying densities of curves and circles between the years of publications. Currently accepted names are in gray and its size is scaled proportionately to their associated homotypic or heterotypic synonyms (in yellow) that were published over time. 
+
+First, to get those graphs, we extracted all data of the genera _Achillea_, _Matricaria_ and _Launaea_ from Plants of the World Online using `powoSpecies` as follows:
 
 ```{r, eval = FALSE}
 newdata <- powoSpecies(family = "Asteraceae",
@@ -91,37 +95,39 @@ newdata <- powoSpecies(family = "Asteraceae",
                        filename = "Asteraceae_spp")
 ```
 
-Then, we used the newly developed function `accGraph` to plot individual graphs of 
-accumulation of species discovery and a violin graph for the three genera. 
+Then, we used the newly developed function `accGraph` to plot individual graphics of 
+accumulation of species discovery and a violin graph for the three genera.
+
 
 ```{r, eval = FALSE}
 accGraph(inputdf = newdata,
          verbose = TRUE,
          spp_acc = TRUE,
          spp_changes = TRUE,
-         save_data_to_plot = FALSE,
+         spp_changes_col = "genus",
+         genus_plots = TRUE,
          save = TRUE,
          dir = "results_accGraph",
          filename = "cumulative_discovery_Asteraceae_",
          format = "jpg")
 ```
 \
-```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 2. Accumulation graph of new species discoveries in the genus _Achillea_ over time."}
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 2. Accumulation of formally described species in the genus _Achillea_ over time."}
 knitr::include_graphics("figures/cumulative_discovery_Asteraceae_Achillea.png", 
                         dpi = 300)
 ```
 \
-```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 3. Accumulation graph of new species discoveries in the genus _Matricaria_ over time."}
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 3. Accumulation of formally described species in the genus _Matricaria_ over time."}
 knitr::include_graphics("figures/cumulative_discovery_Asteraceae_Matricaria.png", 
                         dpi = 300)
 ```
 \
-```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 4. Accumulation graph of new species discoveries in the genus _Launaea_ over time."}
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 4. Accumulation of formally described species in the genus _Launaea_ over time."}
 knitr::include_graphics("figures/cumulative_discovery_Asteraceae_Launaea.png", 
                         dpi = 300)
 ```
 \
-```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 5. Violin graph of new species discoveries in three genera over time."}
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 5. The temporal dynamics of nomenclatural changes in three genera."}
 knitr::include_graphics("figures/cumulative_discovery_Asteraceae_all_data.png", 
                         dpi = 300)
 ```

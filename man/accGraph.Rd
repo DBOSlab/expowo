@@ -2,13 +2,14 @@
 % Please edit documentation in R/accGraph.R
 \name{accGraph}
 \alias{accGraph}
-\title{Create graphs of species discoveries accumulation and nomenclatural changes}
+\title{Create graphics of species discoveries accumulation and nomenclatural changes}
 \usage{
 accGraph(inputdf = NULL,
          verbose = TRUE,
          spp_acc = TRUE,
          spp_changes = TRUE,
-         save_data_to_plot = FALSE,
+         spp_changes_col = NULL,
+         genus_plots = TRUE,
          save = FALSE,
          dir = "results_accGraph",
          filename = "cumulative_discovery_",
@@ -31,8 +32,18 @@ The default is \code{TRUE}.}
 \item{spp_changes}{Logical. Setting to \code{FALSE} means that you do not want
 to create a violin plot with all data provided. The default is \code{TRUE}.}
 
-\item{save_data_to_plot}{Logical. If \code{TRUE}, the spreadsheet used to
-generate the plots will be saved on disk. The default is \code{FALSE}.}
+\item{spp_changes_col}{Define the name of a column in the main input data
+for which the species changes will be considered. For example, if densities
+and jitters should be presented for each genus in the same graphic, then set
+\code{spp_changes_col = "genus"}. If you are plotting the dynamics of
+nomenclatural changes across the entire dataset in a single density graphic,
+then you must add a new column in your input data containing the same character
+inside all rows. In this case, ensure that you also keep \code{genus_plots = TRUE}.}
+
+\item{genus_plots}{Logical. If \code{FALSE}, a single density and jitter plot
+graphic will be produced for the entire input data. The default is \code{TRUE},
+which will result in a graphic where multiple densities and jitters will be
+created inside the graphic, depending on the chosen column.}
 
 \item{save}{Logical, if \code{TRUE}, the search results will be saved on disk.}
 
@@ -54,12 +65,13 @@ Experts Group (.jpg), "tiff" to save in Tag Image File Format (.tiff) or
 Objects of class c("gg", "ggplot") and saves the output on disk.
 }
 \description{
-Produces graphs of accumulation of species discovery and
-nomenclatural changes within any genus provided. It is designed to
-create graphs based on the search results from \code{powoSpecies}. The graph
-type can be selected by two arguments (spp_acc and spp_changes) and then multiple
-graphs for any different taxonomic groups within the input data can be
-produced automatically in a single run.
+Produces graphics of the dynamics of species description and
+historical nomenclature changes within any family or genus provided. It is
+designed to create graphics based on the dataframe resulted from
+\code{powoSpecies}. The graph type can be selected by two arguments
+(spp_acc and spp_changes) and then multiple graphs for any different
+taxonomic groups within the input data can be produced automatically in a
+single run.
 }
 \examples{
 \dontrun{
@@ -70,7 +82,8 @@ accGraph(inputdf = "output",
          verbose = TRUE,
          spp_acc = TRUE,
          spp_changes = TRUE,
-         save_data_to_plot = FALSE,
+         spp_changes_col = "genus",
+         genus_plots = TRUE,
          save = FALSE,
          dir = "results_accGraph",
          filename = "cumulative_discovery_Cyperaceae",

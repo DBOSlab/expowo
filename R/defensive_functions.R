@@ -217,3 +217,27 @@
   }
   return(family)
 }
+
+#_______________________________________________________________________________
+# Function to check if the input data for accGraph is a dataframe-formatted
+# object generated from powoSpecies.
+.arg_check_inputdf <- function(inputdf) {
+  expected_columns <- c("family", "genus", "species", "taxon_name",
+                        "authors", "scientific_name", "status",
+                        "accepted_name", "publication", "native_to_country",
+                        "native_to_botanical_countries",
+                        "introduced_to_country",
+                        "introduced_to_botanical_countries", "kew_id",
+                        "powo_uri")
+
+  if (is.data.frame(inputdf)) {
+    if (identical(colnames(inputdf), expected_columns)) {
+      cat("Column names match the expected sequence.\n")
+    } else {
+      cat("Did you use powoSpecies function to create this input dataframe?
+           Because the column names do not match the expected sequence.\n")
+    }
+  } else {
+    cat("Input is not a dataframe.\n")
+  }
+}
