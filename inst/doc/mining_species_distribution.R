@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -7,7 +7,7 @@ knitr::opts_chunk$set(
 ## ----package load, message=FALSE, warning=FALSE-------------------------------
 library(expowo)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  BL_dist <- powoSpDist(family = c("Begoniaceae", "Lecythidaceae"),
 #                        species = c("Hillebrandia sandwicensis", "Lecythis pisonis"),
 #                        verbose = TRUE,
@@ -15,7 +15,7 @@ library(expowo)
 #                        dir = "results_powoSpDist",
 #                        filename = "Begoniaceae_Lecythidaceae")
 
-## ---- echo = FALSE, warning = FALSE-------------------------------------------
+## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
 fam <- c("Begoniaceae", "Lecythidaceae")
 df <- angioData[angioData$family %in% fam, ]
@@ -28,7 +28,7 @@ knitr::kable(df[-c(2, 3, 6, 9, 11, 13)],
              caption = "TABLE 1. A general `powoSpDist` search for mining 
              distribution of two angiosperm species.")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  data(POWOcodes)
 #  
 #  ALL_dist <- powoSpDist(POWOcodes$family,

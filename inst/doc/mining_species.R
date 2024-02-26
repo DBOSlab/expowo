@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -7,7 +7,7 @@ knitr::opts_chunk$set(
 ## ----package load, message=FALSE, warning=FALSE-------------------------------
 library(expowo)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  res <- powoSpecies(family = c("Cabombaceae", "Martyniaceae"),
 #                     hybrid = FALSE,
 #                     verbose = TRUE,
@@ -15,7 +15,7 @@ library(expowo)
 #                     dir = "results_powoSpecies",
 #                     filename = "Cabom_Martyniaceae_search")
 
-## ---- echo = FALSE, warning = FALSE-------------------------------------------
+## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
 fam <- c("Cabombaceae", "Martyniaceae")
 df <- angioData[angioData$family %in% fam, ]
@@ -25,7 +25,7 @@ knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
              caption = "TABLE 1. A general `powoSpecies` search for mining all 
              accepted species for some specific angiosperm families.")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  ACM <- powoSpecies(family = c("Aristolochiaceae", "Cabombaceae", "Martyniaceae"),
 #                     hybrid = FALSE,
 #                     country = c("Brazil", "Colombia"),
@@ -34,7 +34,7 @@ knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
 #                     dir = "results_powoSpecies",
 #                     filename = "country_constrained_search")
 
-## ---- echo = FALSE, warning = FALSE-------------------------------------------
+## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
 fam <- c("Aristolochiaceae", "Cabombaceae", "Martyniaceae")
 df <- angioData[angioData$family %in% fam, ]
@@ -46,7 +46,7 @@ knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 12, 13)],
              caption = "TABLE 2. A `powoSpecies` search based on a specified 
              country vector.")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  MC <- powoSpecies(family = c("Martyniaceae", "Cabombaceae"),
 #                    genus = c("Proboscidea", "Cabomba"),
 #                    hybrid = FALSE,
@@ -56,7 +56,7 @@ knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 12, 13)],
 #                    dir = "results_powoSpecies",
 #                    filename = "country_and_genus_constrained_search")
 
-## ---- echo = FALSE, warning = FALSE-------------------------------------------
+## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
 genus <- c("Proboscidea", "Cabomba")
 country <- c("Argentina", "French Guiana", "Brazil")
@@ -68,7 +68,7 @@ knitr::kable(df[-c(2, 3, 10, 11, 13)],
              caption = "TABLE 3. A `powoSpecies` search based on specified genus
              and country vectors.")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  utils::data("POWOcodes")
 #  
 #  ALL_spp <- powoSpecies(POWOcodes$family,
@@ -78,7 +78,7 @@ knitr::kable(df[-c(2, 3, 10, 11, 13)],
 #                         dir = "results_powoSpecies",
 #                         filename = "all_angiosperm_species")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  utils::data("POWOcodes")
 #  
 #  ALL_spp <- powoSpecies(POWOcodes$family,

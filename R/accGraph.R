@@ -100,7 +100,8 @@
 #' @importFrom ggplot2 geom_point scale_colour_viridis_d scale_fill_viridis_d
 #' @importFrom ggplot2 scale_color_manual scale_y_continuous scale_x_continuous
 #' @importFrom ggplot2 margin element_rect guides guide_legend annotate
-#' @importFrom ggplot2 position_nudge position_jitter
+#' @importFrom ggplot2 position_nudge position_jitter xlab scale_colour_manual
+#' @importFrom ggplot2 geom_histogram
 #' @importFrom PupillometryR geom_flat_violin
 #' @importFrom viridisLite viridis
 #' @importFrom plyr round_any
@@ -173,6 +174,7 @@ accGraph <- function(inputdf = NULL,
 
         #stat_ecdf(linewidth = 1.5, alpha=0.6, geom = "step", pad = FALSE) +
         theme_bw() +
+        xlab(expression(bold("Year of publication of name"))) +
         ylab(expression(bold("Accumulation of species discovery"))) +
         theme(axis.title.x = element_blank()) +
         scale_colour_manual(values = cols, labels = c("accepted name", "basionym")) +
@@ -244,6 +246,7 @@ accGraph <- function(inputdf = NULL,
           stat_bin(aes(x = year_basionym, y = cumsum(..count..), colour = cols[2]),
                    geom = "step", bins=80) +
           theme_bw() +
+          xlab(expression(bold("Year of publication of name"))) +
           ylab(eval(bquote(expression(bold("Accumulation of species discovery in")
                                       ~bolditalic(.(tax_group[i])))))) +
           theme(axis.title.x = element_blank()) +
@@ -317,6 +320,7 @@ accGraph <- function(inputdf = NULL,
       scale_fill_viridis_d(option = "E") +
       scale_colour_viridis_d(option = "E") +
       theme_bw() +
+      xlab(expression(bold("Year of publication of name"))) +
       ylab(expression(bold("Changes in species nomenclature over time"))) +
       theme(axis.title.x = element_blank(),
             legend.title = element_blank()) +

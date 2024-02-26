@@ -25,10 +25,21 @@ knitr::opts_chunk$set(
 ```
 
 Here in this article, we show how to use the package's function `powoSpDist` 
-for mining the entire distribution for any species of flowering plants. The 
-`powoSpDist` uses the argument `species` to set the name or list of species 
-names, and then the function access the auxiliary functions `.getgenURI` and 
-`getInfo` to extract their respective distribution.\
+for mining the entire distribution for any species of flowering plants. Despite 
+yielding similar outputs, `powoSpDist` and `powoSpecies` serve distinct purposes. 
+`powoSpecies` enables the retrieval of all species from a designated list of 
+families and/or genera. In contrast, `powoSpDist` is designed to focus 
+specifically on a designated list of species, streamlining the process of 
+retrieving species distribution information. While both functions ultimately 
+produce the same output, their utility depends on the user’s initial interest. 
+If one’s interest is centered on a particular species, `powoSpDist` offers a 
+more efficient approach, eliminating the need to run a code that mines data for 
+an entire family or genus and subsequently filter the desired species—a process 
+that could be more time-consuming. This targeted approach allows for a more 
+streamlined and resource-efficient search. The `powoSpDist` uses the argument 
+`species` to set the name or list of species names, and then the function access 
+the auxiliary functions `.getgenURI` and `getInfo` to extract their respective 
+distribution.\
 
 \
 

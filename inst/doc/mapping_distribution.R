@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -7,7 +7,7 @@ knitr::opts_chunk$set(
 ## ----package load, message=FALSE, warning=FALSE-------------------------------
 library(expowo)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  mapspdist <- powoSpecies(family = "Lecythidaceae",
 #                           genus = "Cariniana",
 #                           hybridspp = FALSE,
@@ -17,14 +17,14 @@ library(expowo)
 #                           dir = "results_powoSpecies",
 #                           filename = "Lecythidaceae_Cariniana")
 
-## ---- echo = FALSE, warning = FALSE-------------------------------------------
+## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
 
 df <- angioData[angioData$family %in% "Lecythidaceae", ]
 df <- df[df$genus %in% "Cariniana", ]
                                
 
-## ---- echo = FALSE, warning = FALSE-------------------------------------------
+## ----echo = FALSE, warning = FALSE--------------------------------------------
 knitr::kable(df[-c( 2, 3, 5, 6, 7, 10, 11, 13)],
              row.names = FALSE,
              align = 'c',
@@ -32,7 +32,7 @@ knitr::kable(df[-c( 2, 3, 5, 6, 7, 10, 11, 13)],
              distribution of the Lecythidaceae genus _Cariniana_.")
 
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  powoMap(inputdf = mapspdist,
 #          botctrs = FALSE,
 #          distcol = "native_to_country",
@@ -47,11 +47,11 @@ knitr::kable(df[-c( 2, 3, 5, 6, 7, 10, 11, 13)],
 #          filename = "global_richness_country_map",
 #          format = "jpg")
 
-## ---- echo = FALSE, out.width = "600px", fig.cap = "FIGURE 1. Global species richness of the genus _Cariniana_ at country level and colored with viridis scale."----
+## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 1. Global species richness of the genus _Cariniana_ at country level and colored with viridis scale."----
 knitr::include_graphics("figures/global_richness_country_map_SR_Cariniana_viridis.png", 
                         dpi = 300)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  powoMap(inputdf = mapspdist,
 #          botctrs = TRUE,
 #          distcol = "native_to_botanical_countries",
@@ -66,10 +66,10 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Cariniana_viridi
 #          filename = "global_richness_botcountry_map",
 #          format = "jpg")
 
-## ---- echo = FALSE, out.width = "600px", fig.cap = "FIGURE 2. Global species richness of the genus _Cariniana_ at botanical country level and colored with viridis scale."----
+## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 2. Global species richness of the genus _Cariniana_ at botanical country level and colored with viridis scale."----
 knitr::include_graphics("figures/global_richness_botcountry_map_SR_Cariniana_viridis.png", dpi = 300)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  mapspdist <- powoSpecies(family = "Lecythidaceae",
 #                           genus = NULL,
 #                           hybridspp = FALSE,
@@ -79,7 +79,7 @@ knitr::include_graphics("figures/global_richness_botcountry_map_SR_Cariniana_vir
 #                           dir = "results_powoSpecies",
 #                           filename = "Lecythidaceae")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  powoMap(inputdf = mapspdist,
 #          botctrs = FALSE,
 #          distcol = "native_to_country",
@@ -94,13 +94,13 @@ knitr::include_graphics("figures/global_richness_botcountry_map_SR_Cariniana_vir
 #          filename = "global_richness_botcountry_map",
 #          format = "jpg")
 
-## ---- echo = FALSE, out.width = "600px", fig.cap = "FIGURE 3. Global species richness of Lecythidaceae at country level and colored with viridis scale."----
+## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 3. Global species richness of Lecythidaceae at country level and colored with viridis scale."----
 knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_viridis.png", dpi = 300)
 
-## ---- echo = FALSE, out.width = "600px", fig.cap = "FIGURE 4. Global species richness of Lecythidaceae at country level and colored with Spectral scale."----
+## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 4. Global species richness of Lecythidaceae at country level and colored with Spectral scale."----
 knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_Spectral.png", dpi = 300)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  powoMap(inputdf = mapspdist,
 #          botctrs = TRUE,
 #          distcol = "native_to_botanical_countries",
@@ -115,9 +115,9 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_Sp
 #          filename = "global_richness_botcountry_map",
 #          format = "jpg")
 
-## ---- echo = FALSE, out.width = "600px", fig.cap = "FIGURE 5. Global species richness of Lecythidaceae at botanical country level and colored with viridis scale."----
+## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 5. Global species richness of Lecythidaceae at botanical country level and colored with viridis scale."----
 knitr::include_graphics("figures/global_richness_botcountry_map_SR_Lecythidaceae_viridis.png", dpi = 300)
 
-## ---- echo = FALSE, out.width = "600px", fig.cap = "FIGURE 6. Global species richness of Lecythidaceae at botanical country level and colored with Spectral scale."----
+## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 6. Global species richness of Lecythidaceae at botanical country level and colored with Spectral scale."----
 knitr::include_graphics("figures/global_richness_botcountry_map_SR_Lecythidaceae_Spectral.png", dpi = 300)
 

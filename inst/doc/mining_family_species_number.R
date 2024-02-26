@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -7,14 +7,14 @@ knitr::opts_chunk$set(
 ## ----package load, message=FALSE, warning=FALSE-------------------------------
 library(expowo)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  CLM <- powoFam(family = c("Cabombaceae", "Lecythidaceae", "Martyniaceae"),
 #                 verbose = TRUE,
 #                 save = FALSE,
 #                 dir = "results_powoFam",
 #                 filename = "Camb_Lecy_Martyniaceae_diversity")
 
-## ---- echo = FALSE, warning = FALSE-------------------------------------------
+## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
 utils::data("POWOcodes")
 family <- c("Cabombaceae", "Lecythidaceae", "Martyniaceae")
@@ -30,7 +30,7 @@ knitr::kable(res,
              align = 'c',
              caption = "TABLE 1. A general `powoFam` search for mining the total species number of three angiosperm families.")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  utils::data(POWOcodes)
 #  
 #  ALL_fam <- powoFam(POWOcodes$family,

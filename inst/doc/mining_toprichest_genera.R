@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -7,7 +7,7 @@ knitr::opts_chunk$set(
 ## ----package load, message=FALSE, warning=FALSE-------------------------------
 library(expowo)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  ABL_top <- topGen(family = c("Aristolochiaceae", "Begoniaceae", "Lecythidaceae"),
 #                    limit = NULL,
 #                    verbose = TRUE,
@@ -15,7 +15,7 @@ library(expowo)
 #                    dir = "results_topGen",
 #                    filename = "Aristo_Bego_Lecythidaceae_search")
 
-## ---- echo = FALSE, warning = FALSE-------------------------------------------
+## ----echo = FALSE, warning = FALSE--------------------------------------------
 library(dplyr, warn.conflicts = FALSE)
 utils::data("angioGenera")
 family <- c("Begoniaceae", "Aristolochiaceae", "Lecythidaceae")
@@ -34,7 +34,7 @@ knitr::kable(res,
              most species rich genera for some specific angiosperm 
              families.")
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
 #  data(POWOcodes)
 #  
 #  ALL_top <- topGen(POWOcodes$family,

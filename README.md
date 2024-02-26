@@ -11,7 +11,8 @@
 # expowo <img src="man/figures/expowo.png" align="right" alt="" width="120" />
 
 An R package for mining species list, diversity estimates, and
-distribution data for any genus or family of flowering plants from RBG
+distribution data for any genus or family of flowering plants from the 
+World Checklist of Vascular Plants (WCVP) available through RBG
 Kew’s [Plants of the World Online (POWO)](https://powo.science.kew.org).
 
 ## Overview

@@ -352,11 +352,23 @@ font-size: 1em;
 </style>
 <p>Here in this article, we show how to use the package’s function
 <code>powoSpDist</code> for mining the entire distribution for any
-species of flowering plants. The <code>powoSpDist</code> uses the
-argument <code>species</code> to set the name or list of species names,
-and then the function access the auxiliary functions
-<code>.getgenURI</code> and <code>getInfo</code> to extract their
-respective distribution.<br />
+species of flowering plants. Despite yielding similar outputs,
+<code>powoSpDist</code> and <code>powoSpecies</code> serve distinct
+purposes. <code>powoSpecies</code> enables the retrieval of all species
+from a designated list of families and/or genera. In contrast,
+<code>powoSpDist</code> is designed to focus specifically on a
+designated list of species, streamlining the process of retrieving
+species distribution information. While both functions ultimately
+produce the same output, their utility depends on the user’s initial
+interest. If one’s interest is centered on a particular species,
+<code>powoSpDist</code> offers a more efficient approach, eliminating
+the need to run a code that mines data for an entire family or genus and
+subsequently filter the desired species—a process that could be more
+time-consuming. This targeted approach allows for a more streamlined and
+resource-efficient search. The <code>powoSpDist</code> uses the argument
+<code>species</code> to set the name or list of species names, and then
+the function access the auxiliary functions <code>.getgenURI</code> and
+<code>getInfo</code> to extract their respective distribution.<br />
 </p>
 <p><br />
 </p>

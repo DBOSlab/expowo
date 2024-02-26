@@ -5,12 +5,12 @@ articles:
   data_package: data_package.html
   mapping_distribution: mapping_distribution.html
   mining_accepted_genera: mining_accepted_genera.html
-  mining_accepted_species: mining_accepted_species.html
   mining_family_species_number: mining_family_species_number.html
+  mining_species: mining_species.html
   mining_species_distribution: mining_species_distribution.html
   mining_toprichest_genera: mining_toprichest_genera.html
   plotting_discoveries: plotting_discoveries.html
-last_built: 2024-01-17T20:52Z
+last_built: 2024-02-26T12:00Z
 urls:
   reference: https://dboslab.github.io/expowo/reference
   article: https://dboslab.github.io/expowo/articles
