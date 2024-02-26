@@ -84,7 +84,6 @@ get_year_pubs <- function(inputdf = NULL,
 
   # Get name of folder and file name if the results are intended to be saved
   foldername <- paste0(dir, "/", format(Sys.time(), "%d%b%Y"))
-  fullname <- paste0(foldername, "/", filename, ".", format)
 
   # Fill in with NAs the empty cells
   df <- data.frame(apply(inputdf, 2, function(x) gsub("^$", NA, x)))

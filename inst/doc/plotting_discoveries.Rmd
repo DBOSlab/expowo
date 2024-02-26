@@ -50,33 +50,33 @@ library(expowo)
 \
 
 ## 1. Plotting the species discoveries for one genus
-The example below shows the accumulation curve of [Crotalaria](https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:329745-2), 
-one big legume genus. The black line is derived from the publication dates of currently accepted species names, while the red line is related to the publication year of the basionym for each accepted species name. As a result, it illustrates the cumulative count of formally described species of this genus. Different file formats (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the argument `format`. Notice that the `spp_changes_col` argument is set with the name of the column (in this case, "genus") of the input dataframe that we want to be used for plotting the graphic. If we defined it as "family", for example, the function would use the data of the entire family available in the input dataframe to create the graphic.\ 
+The example below shows the accumulation curve of [Luetzelburgia](https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:22832-1), 
+one legume genus. The black line is derived from the publication dates of currently accepted species names, while the red line is related to the publication year of the basionym for each accepted species name. As a result, it illustrates the cumulative count of formally described species of this genus. Different file formats (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the argument `format`. Notice that the `spp_changes_col` argument is set with the name of the column (in this case, "genus") of the input dataframe that we want to be used for plotting the graphic. If we defined it as "family", for example, the function would use the data of the entire family available in the input dataframe to create the graphic.\ 
 
 ```{r, eval = FALSE}
-accGraph(inputdf = "Crotalaria_spp",
+accGraph(inputdf = "Luetzelburgia_spp",
          verbose = TRUE,
          spp_acc = FALSE,
          spp_changes = TRUE,
          spp_changes_col = "genus",
-         genus_plots = TRUE,         
+         genus_plots = FALSE,         
          save = TRUE,
          dir = "results_accGraph",
-         filename = "cumulative_discovery_Crotalaria",
+         filename = "cumulative_discovery_Luetzelburgia",
          format = "jpg")
 
 ```
 
 \
-```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 1. Accumulation of formally described species in the big genus _Crotalaria_ over time."}
-knitr::include_graphics("figures/cumulative_discovery_Crotalaria.png", 
+```{r, echo = FALSE, out.width = "600px", fig.cap = "FIGURE 1. Accumulation of formally described species in the big genus _Luetzelburgia_ over time."}
+knitr::include_graphics("figures/cumulative_discovery_Luetzelburgia.png", 
                         dpi = 300)
 ```
 
 \
 
-The accumulation curve of _Crotalaria_ shows that it has 712 spp. described and a high 
-increase of taxonomic changes between 1840 and 1920 (noticeable by the curve in light red).
+The accumulation curve of _Luetzelburgia_ shows that it has 14 spp. described and a high 
+increase of taxonomic changes in 2008 (noticeable by the curve in light red).
 
 ## 2. Plotting the species discoveries for the entire dataset
 If your dataset contains species from more than one genus, the `accGraph` function can

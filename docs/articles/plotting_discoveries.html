@@ -130,11 +130,11 @@ from <a href="https://github.com/" class="external-link">GitHub</a>:</p>
 <div class="section level2">
 <h2 id="plotting-the-species-discoveries-for-one-genus">1. Plotting the species discoveries for one genus<a class="anchor" aria-label="anchor" href="#plotting-the-species-discoveries-for-one-genus"></a>
 </h2>
-<p>The example below shows the accumulation curve of <a href="https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:329745-2" class="external-link">Crotalaria</a>,
-one big legume genus. The black line is derived from the publication
-dates of currently accepted species names, while the red line is related
-to the publication year of the basionym for each accepted species name.
-As a result, it illustrates the cumulative count of formally described
+<p>The example below shows the accumulation curve of <a href="https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:22832-1" class="external-link">Luetzelburgia</a>,
+one legume genus. The black line is derived from the publication dates
+of currently accepted species names, while the red line is related to
+the publication year of the basionym for each accepted species name. As
+a result, it illustrates the cumulative count of formally described
 species of this genus. Different file formats (e.g. JPG, PDF, PNG, TIFF)
 are also supported by setting the argument <code>format</code>. Notice
 that the <code>spp_changes_col</code> argument is set with the name of
@@ -143,26 +143,26 @@ to be used for plotting the graphic. If we defined it as “family”, for
 example, the function would use the data of the entire family available
 in the input dataframe to create the graphic. </p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/accGraph.html">accGraph</a></span><span class="op">(</span>inputdf <span class="op">=</span> <span class="st">"Crotalaria_spp"</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/accGraph.html">accGraph</a></span><span class="op">(</span>inputdf <span class="op">=</span> <span class="st">"Luetzelburgia_spp"</span>,</span>
 <span>         verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>         spp_acc <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>         spp_changes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>         spp_changes_col <span class="op">=</span> <span class="st">"genus"</span>,</span>
-<span>         genus_plots <span class="op">=</span> <span class="cn">TRUE</span>,         </span>
+<span>         genus_plots <span class="op">=</span> <span class="cn">FALSE</span>,         </span>
 <span>         save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>         dir <span class="op">=</span> <span class="st">"results_accGraph"</span>,</span>
-<span>         filename <span class="op">=</span> <span class="st">"cumulative_discovery_Crotalaria"</span>,</span>
+<span>         filename <span class="op">=</span> <span class="st">"cumulative_discovery_Luetzelburgia"</span>,</span>
 <span>         format <span class="op">=</span> <span class="st">"jpg"</span><span class="op">)</span></span></code></pre></div>
 <br><div class="figure">
-<img src="figures/cumulative_discovery_Crotalaria.png" alt="FIGURE 1. Accumulation of formally described species in the big genus _Crotalaria_ over time." width="600px"><p class="caption">
+<img src="figures/cumulative_discovery_Luetzelburgia.png" alt="FIGURE 1. Accumulation of formally described species in the big genus _Luetzelburgia_ over time." width="600px"><p class="caption">
 FIGURE 1. Accumulation of formally described species in the big genus
-<em>Crotalaria</em> over time.
+<em>Luetzelburgia</em> over time.
 </p>
 </div>
 <p><br></p>
-<p>The accumulation curve of <em>Crotalaria</em> shows that it has 712
-spp. described and a high increase of taxonomic changes between 1840 and
-1920 (noticeable by the curve in light red).</p>
+<p>The accumulation curve of <em>Luetzelburgia</em> shows that it has 14
+spp. described and a high increase of taxonomic changes in 2008
+(noticeable by the curve in light red).</p>
 </div>
 <div class="section level2">
 <h2 id="plotting-the-species-discoveries-for-the-entire-dataset">2. Plotting the species discoveries for the entire dataset<a class="anchor" aria-label="anchor" href="#plotting-the-species-discoveries-for-the-entire-dataset"></a>

@@ -8,20 +8,20 @@ knitr::opts_chunk$set(
 library(expowo)
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  accGraph(inputdf = "Crotalaria_spp",
+#  accGraph(inputdf = "Luetzelburgia_spp",
 #           verbose = TRUE,
 #           spp_acc = FALSE,
 #           spp_changes = TRUE,
 #           spp_changes_col = "genus",
-#           genus_plots = TRUE,
+#           genus_plots = FALSE,
 #           save = TRUE,
 #           dir = "results_accGraph",
-#           filename = "cumulative_discovery_Crotalaria",
+#           filename = "cumulative_discovery_Luetzelburgia",
 #           format = "jpg")
 #  
 
-## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 1. Accumulation of formally described species in the big genus _Crotalaria_ over time."----
-knitr::include_graphics("figures/cumulative_discovery_Crotalaria.png", 
+## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 1. Accumulation of formally described species in the big genus _Luetzelburgia_ over time."----
+knitr::include_graphics("figures/cumulative_discovery_Luetzelburgia.png", 
                         dpi = 300)
 
 ## ----eval = FALSE-------------------------------------------------------------

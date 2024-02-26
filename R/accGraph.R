@@ -176,7 +176,7 @@ accGraph <- function(inputdf = NULL,
         theme_bw() +
         xlab(expression(bold("Year of publication of name"))) +
         ylab(expression(bold("Accumulation of species discovery"))) +
-        theme(axis.title.x = element_blank()) +
+        theme(legend.title = element_blank()) +
         scale_colour_manual(values = cols, labels = c("accepted name", "basionym")) +
 
         scale_y_continuous(breaks = scales::pretty_breaks(n=5)) +
@@ -249,7 +249,7 @@ accGraph <- function(inputdf = NULL,
           xlab(expression(bold("Year of publication of name"))) +
           ylab(eval(bquote(expression(bold("Accumulation of species discovery in")
                                       ~bolditalic(.(tax_group[i])))))) +
-          theme(axis.title.x = element_blank()) +
+          theme(legend.title = element_blank()) +
           scale_colour_manual(values = cols, labels = c("accepted name", "basionym")) +
           scale_y_continuous(breaks = scales::pretty_breaks(n = 5),
                              labels = scales::percent_format(accuracy = 1)) +
@@ -320,10 +320,9 @@ accGraph <- function(inputdf = NULL,
       scale_fill_viridis_d(option = "E") +
       scale_colour_viridis_d(option = "E") +
       theme_bw() +
-      xlab(expression(bold("Year of publication of name"))) +
-      ylab(expression(bold("Changes in species nomenclature over time"))) +
-      theme(axis.title.x = element_blank(),
-            legend.title = element_blank()) +
+      ylab(expression(bold("Year of publication of name"))) +
+      xlab(expression(bold("Changes in species nomenclature over time"))) +
+      theme(legend.title = element_blank()) +
       scale_y_continuous(breaks=c(1753, 1800, 1850, 1900, 1950, 2000,
                                   max(df$year[!is.na(df$year)]))) +
       theme(axis.text.x=element_text(size = 12, face = "italic")) +
