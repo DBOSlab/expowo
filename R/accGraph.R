@@ -101,7 +101,6 @@
 #' @importFrom ggplot2 scale_color_manual scale_y_continuous scale_x_continuous
 #' @importFrom ggplot2 margin element_rect guides guide_legend annotate
 #' @importFrom ggplot2 position_nudge position_jitter xlab scale_colour_manual
-#' @importFrom ggplot2 geom_histogram
 #' @importFrom PupillometryR geom_flat_violin
 #' @importFrom viridisLite viridis
 #' @importFrom plyr round_any
@@ -138,9 +137,9 @@ accGraph <- function(inputdf = NULL,
   df <- inputdf
   tf <- names(df) %in% c("number_synonyms", "year", "year_basionym", "year_changed")
   if (length(which(tf)) == 0) {
-  df <- get_year_pubs(inputdf = df,
-                      verbose = FALSE,
-                      save = FALSE)
+    df <- get_year_pubs(inputdf = df,
+                        verbose = FALSE,
+                        save = FALSE)
   }
 
 
@@ -178,14 +177,15 @@ accGraph <- function(inputdf = NULL,
         ylab(expression(bold("Accumulation of species discovery"))) +
         theme(legend.title = element_blank()) +
         scale_colour_manual(values = cols, labels = c("accepted name", "basionym")) +
-
         scale_y_continuous(breaks = scales::pretty_breaks(n=5)) +
         scale_x_continuous(breaks = c(1753, 1800, 1850, 1900, 1950, 2000,
                                       max(df$year[!is.na(df$year)]))) +
+        theme(axis.title.x = element_text(size = 14, margin = margin(12,0,0,0))) +
         theme(axis.title.y = element_text(size = 14, margin = margin(0,12,0,0))) +
         theme(axis.text.x = element_text(size = 14)) +
         theme(axis.text.y = element_text(size = 14)) +
         theme(legend.title = element_text(size = 14)) +
+        theme(plot.margin = unit(c(1, 1, 1, 1), "cm")) +
         theme(legend.position = c(0.2, 0.8),
               legend.key = element_rect(linewidth=10, linetype='blank'),
               legend.text = element_text(size=14),
@@ -208,8 +208,12 @@ accGraph <- function(inputdf = NULL,
           dir.create(foldername)
         }
 
+        if (verbose) {
+          message(paste0("Writing accumulation plot within '",
+                         foldername, "' on disk."))
+        }
         cowplot::save_plot(gsub(paste0(".", format),
-                                paste0(tax_group, ".", format),
+                                paste0("_", tax_group, ".", format),
                                 fullname),
                            p,
                            ncol = 1, nrow = 1,
@@ -240,25 +244,26 @@ accGraph <- function(inputdf = NULL,
         temp_df_accepted <- df_accepted[df_accepted$genus %in% tax_group[i], ]
         l <- length(temp_df_accepted$species)
 
-        p[[i]] <- ggplot(df_accepted) +
+        p[[i]] <- ggplot(temp_df_accepted) +
           stat_bin(aes(x = year, y = cumsum(..count..), colour = cols[1]),
                    geom = "step", bins = 80) +
           stat_bin(aes(x = year_basionym, y = cumsum(..count..), colour = cols[2]),
-                   geom = "step", bins=80) +
+                   geom = "step", bins = 80) +
           theme_bw() +
           xlab(expression(bold("Year of publication of name"))) +
           ylab(eval(bquote(expression(bold("Accumulation of species discovery in")
                                       ~bolditalic(.(tax_group[i])))))) +
           theme(legend.title = element_blank()) +
           scale_colour_manual(values = cols, labels = c("accepted name", "basionym")) +
-          scale_y_continuous(breaks = scales::pretty_breaks(n = 5),
-                             labels = scales::percent_format(accuracy = 1)) +
+          scale_y_continuous(breaks = scales::pretty_breaks(n=5)) +
           scale_x_continuous(breaks = c(1753, 1800, 1850, 1900, 1950, 2000,
-                                        max(df$year[!is.na(df$year)]))) +
+                                        max(temp_df_accepted$year[!is.na(temp_df_accepted$year)]))) +
+          theme(axis.title.x = element_text(size = 14, margin = margin(12,0,0,0))) +
           theme(axis.title.y = element_text(size = 14, margin = margin(0,12,0,0))) +
           theme(axis.text.x = element_text(size = 14)) +
           theme(axis.text.y = element_text(size = 14)) +
           theme(legend.title = element_text(size = 14)) +
+          theme(plot.margin = unit(c(1, 1, 1, 1), "cm")) +
           theme(legend.position = c(0.2, 0.8),
                 legend.key = element_rect(linewidth = 10, linetype = 'blank'),
                 legend.text = element_text(size = 14),
@@ -267,14 +272,19 @@ accGraph <- function(inputdf = NULL,
           guides(alpha = 'none', colour=guide_legend("publication year"),
                  size = 14) +
           annotate("text",
-                   x = max(df$year[!is.na(df$year)]),
+                   x = max(temp_df_accepted$year[!is.na(temp_df_accepted$year)]),
                    y = plyr::round_any(l, 5, ceiling),
                    label = paste(l, " spp."),
                    colour = "black", alpha=0.6)
 
         if (save) {
+
+          if (verbose) {
+            message(paste0("Writing accumulation plot of '", tax_group[i],
+                           "' within '", foldername, "' on disk."))
+          }
           cowplot::save_plot(gsub(paste0(".", format),
-                                  paste0(tax_group[i], ".", format),
+                                  paste0("_", tax_group[i], ".", format),
                                   fullname),
                              p[[i]],
                              ncol = 1, nrow = 1,
@@ -296,19 +306,19 @@ accGraph <- function(inputdf = NULL,
 
     df$number_synonyms[is.na(df$number_synonyms)] <- 0
 
-    # Plotting the graph
+    # Plotting the graphic
     p <- ggplot(df,
-                aes(x = df[[spp_changes_col]], y = df$year,
-                    size = df$number_synonyms,
-                    fill = factor(df$status, levels = c("Homotypic Synonym",
-                                                        "Heterotypic Synonym",
-                                                        "Accepted")))) +
+                aes(x = .data[[spp_changes_col]], y = year,
+                    size = number_synonyms,
+                    fill = factor(status, levels = c("Homotypic Synonym",
+                                                     "Heterotypic Synonym",
+                                                     "Accepted")))) +
       PupillometryR::geom_flat_violin(position = position_nudge(x = .25, y = 0),
                                       trim = FALSE,
                                       alpha = .6,
                                       size = .1,
                                       na.rm = TRUE) +
-      geom_point(aes(fill = df$status, size = df$number_synonyms),
+      geom_point(aes(fill = status, size = number_synonyms),
                  position = position_jitter(width = .1, height = .05),
                  shape = 21,
                  alpha = .6,
@@ -323,10 +333,12 @@ accGraph <- function(inputdf = NULL,
       ylab(expression(bold("Year of publication of name"))) +
       xlab(expression(bold("Changes in species nomenclature over time"))) +
       theme(legend.title = element_blank()) +
-      scale_y_continuous(breaks=c(1753, 1800, 1850, 1900, 1950, 2000,
-                                  max(df$year[!is.na(df$year)]))) +
-      theme(axis.text.x=element_text(size = 12, face = "italic")) +
-      theme(axis.title.y=element_text(size = 14)) +
+      scale_y_continuous(breaks = c(1753, 1800, 1850, 1900, 1950, 2000,
+                                    max(df$year[!is.na(df$year)]))) +
+      theme(axis.text.x = element_text(size = 12, face = "italic")) +
+      theme(axis.title.x = element_text(size = 14, margin = margin(12,0,0,0))) +
+      theme(axis.title.y = element_text(size = 14, margin = margin(0,12,0,0))) +
+      theme(plot.margin = unit(c(1, 1, 1, 1), "cm")) +
       guides(fill = guide_legend(order = 1),
              size = guide_legend(order = 2))
 
@@ -339,6 +351,10 @@ accGraph <- function(inputdf = NULL,
         dir.create(foldername)
       }
 
+      if (verbose) {
+        message(paste0("Writing violin plot '", filename, ".", format,
+                       "' within '", foldername, "' on disk."))
+      }
       cowplot::save_plot(gsub(paste0(".", format),
                               paste0("all_data", ".", format),
                               fullname),
