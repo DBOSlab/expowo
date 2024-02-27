@@ -36,5 +36,5 @@ knitr::kable(df[-c(2, 3, 6, 9, 11, 13)],
 #                         verbose = TRUE,
 #                         save = FALSE,
 #                         dir = "results_powoSpDist",
-#                         filename = "all_angiosperm_distribution")
+#                         filename = "all_plant_distribution")
 

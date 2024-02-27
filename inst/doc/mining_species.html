@@ -352,7 +352,7 @@ font-size: 1em;
 </style>
 <p>Here in this article, we show how to use the package’s function
 <code>powoSpecies</code> for mining all accepted species for any genus
-or family of flowering plants in the World Checklist of Vascular Plants
+or family of vascular plants in the World Checklist of Vascular Plants
 (WCVP; Govaerts et al., 2021) available through Kew’s Plants of The
 World Online (POWO, <a href="https://powo.science.kew.org" class="uri">https://powo.science.kew.org</a>).<br />
 </p>
@@ -367,13 +367,13 @@ from <a href="https://github.com/">GitHub</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(expowo)</span></code></pre></div>
 <p><br />
 </p>
-<div id="mining-all-accepted-species-for-any-angiosperm-family" class="section level2">
-<h2>Mining all accepted species for any angiosperm family</h2>
+<div id="mining-all-accepted-species-for-any-plant-family" class="section level2">
+<h2>Mining all accepted species for any plant family</h2>
 <p>The function <code>powoSpecies</code> returns a data frame or saves a
 CSV file listing all accepted species (including hybrid species or not),
 their publication, authorship, and global geographic distribution at
-country or botanical level for any family of flowering plants. The
-global classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/">World Geographical
+country or botanical level for any family of vascular plants. The global
+classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/">World Geographical
 Scheme</a> for Recording Plant Distributions, which is already
 associated with each taxon’s distribution in the POWO.<br />
 </p>
@@ -393,7 +393,7 @@ distribution data.<br />
 </p>
 <table>
 <caption>TABLE 1. A general <code>powoSpecies</code> search for mining
-all accepted species for some specific angiosperm families.</caption>
+all accepted species for some specific plant families.</caption>
 <colgroup>
 <col width="0%" />
 <col width="3%" />
@@ -1239,19 +1239,19 @@ genus and country vectors.</caption>
 <p><br />
 </p>
 </div>
-<div id="mining-all-accepted-species-for-all-angiosperm-families" class="section level2">
-<h2>Mining all accepted species for all angiosperm families</h2>
-<p>To mine a species checklist for all families of flowering plants, you
+<div id="mining-all-accepted-species-for-all-plant-families" class="section level2">
+<h2>Mining all accepted species for all plant families</h2>
+<p>To mine a species checklist for all families of vascular plants, you
 recommend to load the dataframe-formatted data object called
 <code>POWOcodes</code> that comes associated with the
 <strong>expowo</strong> package. The <code>POWOcodes</code> data object
-already contains the URI addresses for all angiosperms families
-recognized in the <a href="https://powo.science.kew.org">POWO</a>
-database, so you just need to call it to your R environment.<br />
+already contains the URI addresses for all plant families recognized in
+the <a href="https://powo.science.kew.org">POWO</a> database, so you
+just need to call it to your R environment.<br />
 </p>
 <p>The example below shows how to mine a global checklist of all
-accepted species of flowering plants by using the vector of all
-angiosperm families and associated URI addresses stored in the
+accepted species of vascular plants by using the vector of all plant
+families and associated URI addresses stored in the
 <code>POWOcodes</code> object.<br />
 </p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>(<span class="st">&quot;POWOcodes&quot;</span>)</span>
@@ -1261,10 +1261,10 @@ angiosperm families and associated URI addresses stored in the
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>                       <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                       <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_species&quot;</span>)</span></code></pre></div>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_plant_species&quot;</span>)</span></code></pre></div>
 <p><br />
 </p>
-<p>Since this is a very long search that might requires days to be
+<p>Since this is a very long search that might requires hours to be
 completed, it may happen to loose internet connection at some point of
 the queried search. But you do not need to start an entirely new search
 from the beginning. By setting the <code>powoSpecies</code> with
@@ -1284,7 +1284,7 @@ is not, please rename the date subfolder accordingly.</p>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>                       <span class="at">rerun =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>                       <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;results_powoSpecies&quot;</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_species&quot;</span>)</span></code></pre></div>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_plant_species&quot;</span>)</span></code></pre></div>
 <p><br />
 </p>
 </div>

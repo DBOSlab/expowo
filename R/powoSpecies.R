@@ -4,7 +4,7 @@
 #'
 #' @description Produces a CSV file listing all accepted species and
 #' associated geographical distribution from any target genus or family of
-#' flowering plants at
+#' vascular plants at
 #' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage

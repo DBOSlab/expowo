@@ -42,5 +42,5 @@ knitr::kable(res,
 #                    verbose = TRUE,
 #                    save = FALSE,
 #                    dir = "results_topGen",
-#                    filename = "all_toprichest_angiosperm_genera")
+#                    filename = "all_toprichest_plant_genera")
 

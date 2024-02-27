@@ -35,7 +35,7 @@ powo_uri (the URI to access the family in POWO).
 }
 \description{
 Produces a CSV file listing the number of species and genera
-within the target botanical families of flowering plants available at
+within the target botanical families of vascular plants available at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{

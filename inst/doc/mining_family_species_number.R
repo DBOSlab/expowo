@@ -37,5 +37,5 @@ knitr::kable(res,
 #                     verbose = TRUE,
 #                     save = FALSE,
 #                     dir = "results_powoFam",
-#                     filename = "all_angiosperms_species_number")
+#                     filename = "all_plants_species_number")
 

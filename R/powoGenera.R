@@ -3,7 +3,7 @@
 #' @author Debora Zuanny & Domingos Cardoso
 #'
 #' @description Produces a CSV file listing all genera with associated number
-#' of accepted species and geographical distribution for any angiosperm family
+#' of accepted species and geographical distribution for any vascular plant family
 #' at [Plants of the World Online (POWO)](https://powo.science.kew.org/).
 #'
 #' @usage

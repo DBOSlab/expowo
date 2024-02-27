@@ -67,7 +67,7 @@ within Kew's databases), powo_uri (the URI to access each species in POWO).
 \description{
 Produces a CSV file listing all accepted species and
 associated geographical distribution from any target genus or family of
-flowering plants at
+vascular plants at
 \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
 }
 \examples{

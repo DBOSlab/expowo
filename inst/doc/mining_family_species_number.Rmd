@@ -25,11 +25,11 @@ knitr::opts_chunk$set(
 ```
 
 Here in this article, we show how to use the package's function `powoFam` 
-for mining the species number for any family of flowering plants. By providing
-a family name or a vector of family names, the `powoFam` function visits each 
-POWO page of the genera within the queried family(ies) to extract the accepted 
-species number. Then, it sums these values to deliver the total species number
-within each plant family.\
+for mining the species number for any family of angiosperms, gymnosperms and 
+pteridophytes. By providing a family name or a vector of family names, 
+the `powoFam` function visits each POWO page of the genera within the queried 
+family(ies) to extract the accepted species number. Then, it sums these values 
+to deliver the total species number within each plant family.\
 
 \
 
@@ -48,7 +48,7 @@ library(expowo)
 
 \
 
-## Mining the total species number for any angiosperm family
+## Mining the total species number for any plant family
 
 The function `powoFam` returns a data frame or saves a CSV file listing the total
 species number (excluding hybrid species) for the queried plant families.\
@@ -87,18 +87,18 @@ knitr::kable(res,
 
 \
 
-## Mining species number accross all angiosperm families
+## Mining species number accross all plant families
 
-To mine the species number of all families of flowering plants, we recommend to 
+To mine the species number of all families of vascular plants, we recommend to 
 load the dataframe-formatted object called `POWOcodes` that comes associated 
 with the __expowo__ package. The `POWOcodes` data object already contains the 
-URI addresses for all angiosperms families recognized in the 
+URI addresses for all plant families recognized in the 
 [POWO](https://powo.science.kew.org) database, so you just need to call it to 
 the R environment.\
 
-The example below shows how to mine the species number of all plant families by 
-using the vector of all angiosperm families and associated URI addresses stored 
-in the `POWOcodes` object.\
+The example below shows how to mine the species number of all vascular plant 
+families by using the vector of all plant families and associated URI 
+addresses stored in the `POWOcodes` object.\
 
 ```{r, eval = FALSE}
 utils::data(POWOcodes)
@@ -107,7 +107,7 @@ ALL_fam <- powoFam(POWOcodes$family,
                    verbose = TRUE,
                    save = FALSE,
                    dir = "results_powoFam",
-                   filename = "all_angiosperms_species_number")
+                   filename = "all_plants_species_number")
 ```
 
 \

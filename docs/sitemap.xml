@@ -4,9 +4,6 @@
     <loc>https://dboslab.github.io/expowo/404.html</loc>
   </url>
   <url>
-    <loc>https://dboslab.github.io/expowo/articles/associated_data.html</loc>
-  </url>
-  <url>
     <loc>https://dboslab.github.io/expowo/articles/data_package.html</loc>
   </url>
   <url>
@@ -19,13 +16,7 @@
     <loc>https://dboslab.github.io/expowo/articles/mining_accepted_genera.html</loc>
   </url>
   <url>
-    <loc>https://dboslab.github.io/expowo/articles/mining_accepted_species.html</loc>
-  </url>
-  <url>
     <loc>https://dboslab.github.io/expowo/articles/mining_family_species_number.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/articles/mining_megadiverse_genera.html</loc>
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/articles/mining_species.html</loc>
@@ -59,9 +50,6 @@
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/angioGenera.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/reference/botdivmap.html</loc>
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/botregions.html</loc>
@@ -98,11 +86,5 @@
   </url>
   <url>
     <loc>https://dboslab.github.io/expowo/reference/topGen.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/reference/WGSRPD/book-1-ED/1st Edition/index.html</loc>
-  </url>
-  <url>
-    <loc>https://dboslab.github.io/expowo/reference/WGSRPD/level3/master_meta_data.html</loc>
   </url>
 </urlset>

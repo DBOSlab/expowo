@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 ```
 
 Here in this article, we show how to use the package's function `powoSpDist` 
-for mining the entire distribution for any species of flowering plants. Despite 
+for mining the entire distribution for any species of vascular plants. Despite 
 yielding similar outputs, `powoSpDist` and `powoSpecies` serve distinct purposes. 
 `powoSpecies` enables the retrieval of all species from a designated list of 
 families and/or genera. In contrast, `powoSpDist` is designed to focus 
@@ -99,17 +99,17 @@ knitr::kable(df[-c(2, 3, 6, 9, 11, 13)],
 
 \
 
-## Mining distribution for all angiosperm species
+## Mining distribution for all vascular plant species
 
-To mine the distribution checklist for all accepted species of flowering plants, 
+To mine the distribution checklist for all accepted species of vascular plants, 
 you can load the dataframe-formatted data object called `POWOcodes` 
 that comes associated with the __expowo__ package. The `POWOcodes` data 
-object already contains the URI addresses for all angiosperms families 
+object already contains the URI addresses for all plant families 
 recognized in the [POWO](https://powo.science.kew.org) database, you just need 
 to call it to your R environment.\
 
 The example below shows how to mine the global distribution of all accepted non
-hybrid species of flowering plants by using the vector of all angiosperm 
+hybrid species of vascular plants by using the vector of all plant
 families and associated URI addresses stored in the `POWOcodes` object. Note that
 the argument `species` should be as `NULL`, so that the search is not constrained
 to any particular species, i.e. the function will return global distribution for
@@ -123,7 +123,7 @@ ALL_dist <- powoSpDist(POWOcodes$family,
                        verbose = TRUE,
                        save = FALSE,
                        dir = "results_powoSpDist",
-                       filename = "all_angiosperm_distribution")
+                       filename = "all_plant_distribution")
 ```
 
 \

@@ -1,8 +1,8 @@
 ---
-title: "Mining genus list for any plant family"
+title: "Mining genus list for any vascular plant family"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Mining genus list for any plant family}
+  %\VignetteIndexEntry{Mining genus list for any vascular plant family}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 ```
 
 Here in this article, we show how to use the package's function `powoGenera` for
-mining all accepted genera for any family of flowering plants.\
+mining all accepted genera for any family of vascular plants available at POWO.\
 
 \
 
@@ -44,7 +44,7 @@ library(expowo)
 
 \
 
-## Mining all accepted genera for any plant family
+## Mining all accepted genera for some plant families
 
 The function `powoGenera` returns a data frame or saves a CSV file listing all 
 genera with associated number of accepted species and their global geographic 
@@ -52,7 +52,8 @@ distribution at country or botanical level. The global classification of
 botanical divisions follows the 
 [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/)
 for Recording Plant Distributions, which is already associated with each taxon's
-distribution in POWO.\
+distribution in POWO. Here, we extracted the data for Aristolochiaceae, Begoniaceae, Martyniaceae.\
+
 
 ```{r, eval = FALSE}
 ABM <- powoGenera(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
@@ -74,23 +75,24 @@ res <- powoGenera(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
 knitr::kable(res[-c(7:10)],
              row.names = FALSE,
              caption = "TABLE 1. A general `powoGenera` search for mining all 
-             accepted genera for some specific angiosperm families.")
+             accepted genera for some specific families.")
 ```
 
 \
 
-## Mining all accepted genera for all angiosperm families
+## Mining all accepted genera for all vascular plant families
 
 To mine a global genus checklist with associated species number and distribution 
-for all families of flowering plants, we recommend to load the 
+for all families of vascular plants, we recommend to load the 
 dataframe-formatted data object called `POWOcodes` that comes associated with 
 the __expowo__ package. Because the `POWOcodes` data object already contains the 
-URI addresses for all angiosperms families recognized in the 
+URI addresses for all angiosperms, gimnosperms and pteridophytes families 
+recognized in the 
 [POWO](https://powo.science.kew.org) database, you just need to run the code 
 below.\
 
 The example below shows how to mine a global checklist of all accepted genera of
-flowering plants by using the vector of all angiosperm families and associated 
+plants by using the vector of all families and associated 
 URI addresses stored in the `POWOcodes` object.\
 
 ```{r, eval = FALSE}
@@ -101,7 +103,7 @@ ALL_gen <- powoGenera(POWOcodes$family,
                       verbose = TRUE,
                       save = FALSE,
                       dir = "results_powoGenera",
-                      filename = "all_angiosperm_genera")
+                      filename = "all_plant_genera")
 ```
 
 \
@@ -127,7 +129,7 @@ ALL_gen <- powoGenera(POWOcodes$family,
                       rerun = TRUE,
                       save = FALSE,
                       dir = "results_powoGenera",
-                      filename = "all_angiosperm_genera")
+                      filename = "all_plant_genera")
 ```
 
 \

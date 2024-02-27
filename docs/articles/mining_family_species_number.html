@@ -43,11 +43,11 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/data_package.html">Associated data</a>
     <a class="dropdown-item" href="../articles/mapping_distribution.html">Mapping global distribution for any taxonomic level</a>
-    <a class="dropdown-item" href="../articles/mining_accepted_genera.html">Mining genus list for any plant family</a>
+    <a class="dropdown-item" href="../articles/mining_accepted_genera.html">Mining genus list for any vascular plant family</a>
     <a class="dropdown-item" href="../articles/mining_family_species_number.html">Mining species number of any plant family</a>
     <a class="dropdown-item" href="../articles/mining_species.html">Mining species list for any plant family</a>
     <a class="dropdown-item" href="../articles/mining_species_distribution.html">Mining distribution for any plant species</a>
-    <a class="dropdown-item" href="../articles/mining_toprichest_genera.html">Mining the top richest genera of flowering plants</a>
+    <a class="dropdown-item" href="../articles/mining_toprichest_genera.html">Mining the top richest genera of vascular plants</a>
     <a class="dropdown-item" href="../articles/plotting_discoveries.html">Plotting species discovery</a>
   </div>
 </li>
@@ -95,11 +95,11 @@
 </style>
 <p>Here in this article, we show how to use the package’s function
 <code>powoFam</code> for mining the species number for any family of
-flowering plants. By providing a family name or a vector of family
-names, the <code>powoFam</code> function visits each POWO page of the
-genera within the queried family(ies) to extract the accepted species
-number. Then, it sums these values to deliver the total species number
-within each plant family.<br></p>
+angiosperms, gymnosperms and pteridophytes. By providing a family name
+or a vector of family names, the <code>powoFam</code> function visits
+each POWO page of the genera within the queried family(ies) to extract
+the accepted species number. Then, it sums these values to deliver the
+total species number within each plant family.<br></p>
 <p><br></p>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
@@ -113,7 +113,7 @@ from <a href="https://github.com/" class="external-link">GitHub</a>:</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 <div class="section level3">
-<h3 id="mining-the-total-species-number-for-any-angiosperm-family">Mining the total species number for any angiosperm family<a class="anchor" aria-label="anchor" href="#mining-the-total-species-number-for-any-angiosperm-family"></a>
+<h3 id="mining-the-total-species-number-for-any-plant-family">Mining the total species number for any plant family<a class="anchor" aria-label="anchor" href="#mining-the-total-species-number-for-any-plant-family"></a>
 </h3>
 <p>The function <code>powoFam</code> returns a data frame or saves a CSV
 file listing the total species number (excluding hybrid species) for the
@@ -169,18 +169,19 @@ total species number of three angiosperm families.</caption>
 <p><br></p>
 </div>
 <div class="section level3">
-<h3 id="mining-species-number-accross-all-angiosperm-families">Mining species number accross all angiosperm families<a class="anchor" aria-label="anchor" href="#mining-species-number-accross-all-angiosperm-families"></a>
+<h3 id="mining-species-number-accross-all-plant-families">Mining species number accross all plant families<a class="anchor" aria-label="anchor" href="#mining-species-number-accross-all-plant-families"></a>
 </h3>
-<p>To mine the species number of all families of flowering plants, we
+<p>To mine the species number of all families of vascular plants, we
 recommend to load the dataframe-formatted object called
 <code>POWOcodes</code> that comes associated with the
 <strong>expowo</strong> package. The <code>POWOcodes</code> data object
-already contains the URI addresses for all angiosperms families
-recognized in the <a href="https://powo.science.kew.org" class="external-link">POWO</a>
-database, so you just need to call it to the R environment.<br></p>
-<p>The example below shows how to mine the species number of all plant
-families by using the vector of all angiosperm families and associated
-URI addresses stored in the <code>POWOcodes</code> object.<br></p>
+already contains the URI addresses for all plant families recognized in
+the <a href="https://powo.science.kew.org" class="external-link">POWO</a> database, so you
+just need to call it to the R environment.<br></p>
+<p>The example below shows how to mine the species number of all
+vascular plant families by using the vector of all plant families and
+associated URI addresses stored in the <code>POWOcodes</code>
+object.<br></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">POWOcodes</span><span class="op">)</span></span>
 <span></span>
@@ -188,7 +189,7 @@ URI addresses stored in the <code>POWOcodes</code> object.<br></p>
 <span>                   verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                   save <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                   dir <span class="op">=</span> <span class="st">"results_powoFam"</span>,</span>
-<span>                   filename <span class="op">=</span> <span class="st">"all_angiosperms_species_number"</span><span class="op">)</span></span></code></pre></div>
+<span>                   filename <span class="op">=</span> <span class="st">"all_plants_species_number"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div class="section level3">

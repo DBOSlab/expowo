@@ -12,7 +12,7 @@
 
 
 
-<title>Mining genus list for any plant family</title>
+<title>Mining genus list for any vascular plant family</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -336,7 +336,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">Mining genus list for any plant family</h1>
+<h1 class="title toc-ignore">Mining genus list for any vascular plant
+family</h1>
 
 
 
@@ -351,7 +352,7 @@ font-size: 1em;
 </style>
 <p>Here in this article, we show how to use the package’s function
 <code>powoGenera</code> for mining all accepted genera for any family of
-flowering plants.<br />
+vascular plants available at POWO.<br />
 </p>
 <p><br />
 </p>
@@ -365,14 +366,15 @@ from <a href="https://github.com/">GitHub</a>:</p>
 <p><br />
 </p>
 </div>
-<div id="mining-all-accepted-genera-for-any-plant-family" class="section level2">
-<h2>Mining all accepted genera for any plant family</h2>
+<div id="mining-all-accepted-genera-for-some-plant-families" class="section level2">
+<h2>Mining all accepted genera for some plant families</h2>
 <p>The function <code>powoGenera</code> returns a data frame or saves a
 CSV file listing all genera with associated number of accepted species
 and their global geographic distribution at country or botanical level.
 The global classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/">World Geographical
 Scheme</a> for Recording Plant Distributions, which is already
-associated with each taxon’s distribution in POWO.<br />
+associated with each taxon’s distribution in POWO. Here, we extracted
+the data for Aristolochiaceae, Begoniaceae, Martyniaceae.<br />
 </p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>ABM <span class="ot">&lt;-</span> <span class="fu">powoGenera</span>(<span class="at">family =</span> <span class="fu">c</span>(<span class="st">&quot;Aristolochiaceae&quot;</span>, <span class="st">&quot;Begoniaceae&quot;</span>, <span class="st">&quot;Martyniaceae&quot;</span>),</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                  <span class="at">hybrid =</span> <span class="cn">FALSE</span>,</span>
@@ -382,7 +384,7 @@ associated with each taxon’s distribution in POWO.<br />
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>                  <span class="at">filename =</span> <span class="st">&quot;Arist_Begon_Martyniaceae_search&quot;</span>)</span></code></pre></div>
 <table>
 <caption>TABLE 1. A general <code>powoGenera</code> search for mining
-all accepted genera for some specific angiosperm families.</caption>
+all accepted genera for some specific families.</caption>
 <colgroup>
 <col width="6%" />
 <col width="5%" />
@@ -563,20 +565,21 @@ all accepted genera for some specific angiosperm families.</caption>
 <p><br />
 </p>
 </div>
-<div id="mining-all-accepted-genera-for-all-angiosperm-families" class="section level2">
-<h2>Mining all accepted genera for all angiosperm families</h2>
+<div id="mining-all-accepted-genera-for-all-vascular-plant-families" class="section level2">
+<h2>Mining all accepted genera for all vascular plant families</h2>
 <p>To mine a global genus checklist with associated species number and
-distribution for all families of flowering plants, we recommend to load
+distribution for all families of vascular plants, we recommend to load
 the dataframe-formatted data object called <code>POWOcodes</code> that
 comes associated with the <strong>expowo</strong> package. Because the
 <code>POWOcodes</code> data object already contains the URI addresses
-for all angiosperms families recognized in the <a href="https://powo.science.kew.org">POWO</a> database, you just need to
-run the code below.<br />
+for all angiosperms, gimnosperms and pteridophytes families recognized
+in the <a href="https://powo.science.kew.org">POWO</a> database, you
+just need to run the code below.<br />
 </p>
 <p>The example below shows how to mine a global checklist of all
-accepted genera of flowering plants by using the vector of all
-angiosperm families and associated URI addresses stored in the
-<code>POWOcodes</code> object.<br />
+accepted genera of plants by using the vector of all families and
+associated URI addresses stored in the <code>POWOcodes</code>
+object.<br />
 </p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">data</span>(POWOcodes)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
@@ -585,7 +588,7 @@ angiosperm families and associated URI addresses stored in the
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>                      <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                      <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                      <span class="at">dir =</span> <span class="st">&quot;results_powoGenera&quot;</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                      <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_genera&quot;</span>)</span></code></pre></div>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                      <span class="at">filename =</span> <span class="st">&quot;all_plant_genera&quot;</span>)</span></code></pre></div>
 <p><br />
 </p>
 <p>Since this is a very long search that might requires days to be
@@ -608,7 +611,7 @@ is not, please rename the date subfolder accordingly.</p>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                      <span class="at">rerun =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>                      <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>                      <span class="at">dir =</span> <span class="st">&quot;results_powoGenera&quot;</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>                      <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_genera&quot;</span>)</span></code></pre></div>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>                      <span class="at">filename =</span> <span class="st">&quot;all_plant_genera&quot;</span>)</span></code></pre></div>
 <p><br />
 </p>
 </div>

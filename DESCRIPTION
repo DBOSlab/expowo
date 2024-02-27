@@ -14,7 +14,7 @@ Authors@R:
              email = "cardosobot@gmail.com",
              comment = c(ORCID = "0000-0001-7072-2656")))
 Maintainer: Debora Zuanny <deborazuanny@gmail.com>
-Description: Produces diversity estimates and species lists with associated global distribution for any angiosperm family and genus from 'Plants of the World Online' database <https://powo.science.kew.org/>, by interacting with the source code of each plant taxon page, and creates global maps of species richness.
+Description: Produces diversity estimates and species lists with associated global distribution for any plant family and genus from 'Plants of the World Online' database <https://powo.science.kew.org/>, by interacting with the source code of each plant taxon page, creates global maps of species richness and graphics of species discoveries and nomenclatural changes over time.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

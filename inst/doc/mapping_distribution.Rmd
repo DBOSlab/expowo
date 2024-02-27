@@ -35,7 +35,7 @@ p.caption {
 ```
 
 Here in this article, we show how to use the package's function `powoMap` 
-for mapping the global distribution for any genus or family of flowering plants 
+for mapping the global distribution for any genus or family of plants 
 either at political country or botanical country level, following the 
 [World Geographical Scheme for Recording Plant Distributions](https://www.tdwg.org/standards/wgsrpd/). 
 The `powoMap` can use as input data the dataframe-formatted resulting query from 

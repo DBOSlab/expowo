@@ -23,7 +23,7 @@ df <- angioData[angioData$family %in% fam, ]
 knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
              row.names = FALSE,
              caption = "TABLE 1. A general `powoSpecies` search for mining all 
-             accepted species for some specific angiosperm families.")
+             accepted species for some specific plant families.")
 
 ## ----eval = FALSE-------------------------------------------------------------
 #  ACM <- powoSpecies(family = c("Aristolochiaceae", "Cabombaceae", "Martyniaceae"),
@@ -76,7 +76,7 @@ knitr::kable(df[-c(2, 3, 10, 11, 13)],
 #                         verbose = TRUE,
 #                         save = FALSE,
 #                         dir = "results_powoSpecies",
-#                         filename = "all_angiosperm_species")
+#                         filename = "all_plant_species")
 
 ## ----eval = FALSE-------------------------------------------------------------
 #  utils::data("POWOcodes")
@@ -87,5 +87,5 @@ knitr::kable(df[-c(2, 3, 10, 11, 13)],
 #                         rerun = TRUE,
 #                         save = FALSE,
 #                         dir = "results_powoSpecies",
-#                         filename = "all_angiosperm_species")
+#                         filename = "all_plant_species")
 

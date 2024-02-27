@@ -352,7 +352,7 @@ font-size: 1em;
 </style>
 <p>Here in this article, we show how to use the package’s function
 <code>powoSpDist</code> for mining the entire distribution for any
-species of flowering plants. Despite yielding similar outputs,
+species of vascular plants. Despite yielding similar outputs,
 <code>powoSpDist</code> and <code>powoSpecies</code> serve distinct
 purposes. <code>powoSpecies</code> enables the retrieval of all species
 from a designated list of families and/or genera. In contrast,
@@ -453,19 +453,19 @@ distribution of two angiosperm species.</caption>
 <p><br />
 </p>
 </div>
-<div id="mining-distribution-for-all-angiosperm-species" class="section level2">
-<h2>Mining distribution for all angiosperm species</h2>
+<div id="mining-distribution-for-all-vascular-plant-species" class="section level2">
+<h2>Mining distribution for all vascular plant species</h2>
 <p>To mine the distribution checklist for all accepted species of
-flowering plants, you can load the dataframe-formatted data object
-called <code>POWOcodes</code> that comes associated with the
+vascular plants, you can load the dataframe-formatted data object called
+<code>POWOcodes</code> that comes associated with the
 <strong>expowo</strong> package. The <code>POWOcodes</code> data object
-already contains the URI addresses for all angiosperms families
-recognized in the <a href="https://powo.science.kew.org">POWO</a>
-database, you just need to call it to your R environment.<br />
+already contains the URI addresses for all plant families recognized in
+the <a href="https://powo.science.kew.org">POWO</a> database, you just
+need to call it to your R environment.<br />
 </p>
 <p>The example below shows how to mine the global distribution of all
-accepted non hybrid species of flowering plants by using the vector of
-all angiosperm families and associated URI addresses stored in the
+accepted non hybrid species of vascular plants by using the vector of
+all plant families and associated URI addresses stored in the
 <code>POWOcodes</code> object. Note that the argument
 <code>species</code> should be as <code>NULL</code>, so that the search
 is not constrained to any particular species, i.e. the function will
@@ -479,7 +479,7 @@ families.<br />
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>                       <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                       <span class="at">save =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                       <span class="at">dir =</span> <span class="st">&quot;results_powoSpDist&quot;</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_angiosperm_distribution&quot;</span>)</span></code></pre></div>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="st">&quot;all_plant_distribution&quot;</span>)</span></code></pre></div>
 <p><br />
 </p>
 </div>

@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 ```
 
 Here in this article, we show how to use the package's function `powoSpecies` 
-for mining all accepted species for any genus or family of flowering plants in 
+for mining all accepted species for any genus or family of vascular plants in 
 the World Checklist of Vascular Plants (WCVP; Govaerts et al., 2021) available 
 through Kew’s Plants of The World Online (POWO, https://powo.science.kew.org).\
 
@@ -46,12 +46,12 @@ library(expowo)
 
 \
 
-## Mining all accepted species for any angiosperm family
+## Mining all accepted species for any plant family
 
 The function `powoSpecies` returns a data frame or saves a CSV file listing all 
 accepted species (including hybrid species or not), their publication, 
 authorship, and global geographic distribution at country or botanical level for
-any family of flowering plants. The global classification of botanical divisions
+any family of vascular plants. The global classification of botanical divisions
 follows the [World Geographical Scheme](https://www.tdwg.org/standards/wgsrpd/) 
 for Recording Plant Distributions, which is already associated with each taxon's
 distribution in the POWO.\
@@ -80,7 +80,7 @@ df <- angioData[angioData$family %in% fam, ]
 knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
              row.names = FALSE,
              caption = "TABLE 1. A general `powoSpecies` search for mining all 
-             accepted species for some specific angiosperm families.")
+             accepted species for some specific plant families.")
 ```
 
 \
@@ -162,17 +162,17 @@ knitr::kable(df[-c(2, 3, 10, 11, 13)],
 ```
 \
 
-## Mining all accepted species for all angiosperm families
+## Mining all accepted species for all plant families
 
-To mine a species checklist for all families of flowering plants, you recommend 
+To mine a species checklist for all families of vascular plants, you recommend 
 to load the dataframe-formatted data object called `POWOcodes` that comes 
 associated with the __expowo__ package. The `POWOcodes` data object 
-already contains the URI addresses for all angiosperms families recognized in 
+already contains the URI addresses for all plant families recognized in 
 the [POWO](https://powo.science.kew.org) database, so you just need to call it
 to your R environment.\
 
 The example below shows how to mine a global checklist of all accepted species 
-of flowering plants by using the vector of all angiosperm families and 
+of vascular plants by using the vector of all plant families and 
 associated URI addresses stored in the `POWOcodes` object.\
 
 ```{r, eval = FALSE}
@@ -183,12 +183,12 @@ ALL_spp <- powoSpecies(POWOcodes$family,
                        verbose = TRUE,
                        save = FALSE,
                        dir = "results_powoSpecies",
-                       filename = "all_angiosperm_species")
+                       filename = "all_plant_species")
 ```
 
 \
 
-Since this is a very long search that might requires days to be completed, it 
+Since this is a very long search that might requires hours to be completed, it 
 may happen to loose internet connection at some point of the queried search.
 But you do not need to start an entirely new search from the beginning. By 
 setting the `powoSpecies` with `rerun = TRUE`, a previously stopped search will 
@@ -209,7 +209,7 @@ ALL_spp <- powoSpecies(POWOcodes$family,
                        rerun = TRUE,
                        save = FALSE,
                        dir = "results_powoSpecies",
-                       filename = "all_angiosperm_species")
+                       filename = "all_plant_species")
 ```
 \
 

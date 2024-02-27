@@ -43,11 +43,11 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/data_package.html">Associated data</a>
     <a class="dropdown-item" href="../articles/mapping_distribution.html">Mapping global distribution for any taxonomic level</a>
-    <a class="dropdown-item" href="../articles/mining_accepted_genera.html">Mining genus list for any plant family</a>
+    <a class="dropdown-item" href="../articles/mining_accepted_genera.html">Mining genus list for any vascular plant family</a>
     <a class="dropdown-item" href="../articles/mining_family_species_number.html">Mining species number of any plant family</a>
     <a class="dropdown-item" href="../articles/mining_species.html">Mining species list for any plant family</a>
     <a class="dropdown-item" href="../articles/mining_species_distribution.html">Mining distribution for any plant species</a>
-    <a class="dropdown-item" href="../articles/mining_toprichest_genera.html">Mining the top richest genera of flowering plants</a>
+    <a class="dropdown-item" href="../articles/mining_toprichest_genera.html">Mining the top richest genera of vascular plants</a>
     <a class="dropdown-item" href="../articles/plotting_discoveries.html">Plotting species discovery</a>
   </div>
 </li>
@@ -95,7 +95,7 @@
 </style>
 <p>Here in this article, we show how to use the package’s function
 <code>powoSpecies</code> for mining all accepted species for any genus
-or family of flowering plants in the World Checklist of Vascular Plants
+or family of vascular plants in the World Checklist of Vascular Plants
 (WCVP; Govaerts et al., 2021) available through Kew’s Plants of The
 World Online (POWO, <a href="https://powo.science.kew.org" class="external-link uri">https://powo.science.kew.org</a>).<br></p>
 <p><br></p>
@@ -111,13 +111,13 @@ from <a href="https://github.com/" class="external-link">GitHub</a>:</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dboslab.github.io/expowo/">expowo</a></span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 <div class="section level3">
-<h3 id="mining-all-accepted-species-for-any-angiosperm-family">Mining all accepted species for any angiosperm family<a class="anchor" aria-label="anchor" href="#mining-all-accepted-species-for-any-angiosperm-family"></a>
+<h3 id="mining-all-accepted-species-for-any-plant-family">Mining all accepted species for any plant family<a class="anchor" aria-label="anchor" href="#mining-all-accepted-species-for-any-plant-family"></a>
 </h3>
 <p>The function <code>powoSpecies</code> returns a data frame or saves a
 CSV file listing all accepted species (including hybrid species or not),
 their publication, authorship, and global geographic distribution at
-country or botanical level for any family of flowering plants. The
-global classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
+country or botanical level for any family of vascular plants. The global
+classification of botanical divisions follows the <a href="https://www.tdwg.org/standards/wgsrpd/" class="external-link">World Geographical
 Scheme</a> for Recording Plant Distributions, which is already
 associated with each taxon’s distribution in the POWO.<br></p>
 <p>The example below shows how to mine all accepted species for a
@@ -135,7 +135,7 @@ distribution data.<br></p>
 <p><br></p>
 <table class="table">
 <caption>TABLE 1. A general <code>powoSpecies</code> search for mining
-all accepted species for some specific angiosperm families.</caption>
+all accepted species for some specific plant families.</caption>
 <colgroup>
 <col width="0%">
 <col width="3%">
@@ -971,18 +971,18 @@ genus and country vectors.</caption>
 <p><br></p>
 </div>
 <div class="section level3">
-<h3 id="mining-all-accepted-species-for-all-angiosperm-families">Mining all accepted species for all angiosperm families<a class="anchor" aria-label="anchor" href="#mining-all-accepted-species-for-all-angiosperm-families"></a>
+<h3 id="mining-all-accepted-species-for-all-plant-families">Mining all accepted species for all plant families<a class="anchor" aria-label="anchor" href="#mining-all-accepted-species-for-all-plant-families"></a>
 </h3>
-<p>To mine a species checklist for all families of flowering plants, you
+<p>To mine a species checklist for all families of vascular plants, you
 recommend to load the dataframe-formatted data object called
 <code>POWOcodes</code> that comes associated with the
 <strong>expowo</strong> package. The <code>POWOcodes</code> data object
-already contains the URI addresses for all angiosperms families
-recognized in the <a href="https://powo.science.kew.org" class="external-link">POWO</a>
-database, so you just need to call it to your R environment.<br></p>
+already contains the URI addresses for all plant families recognized in
+the <a href="https://powo.science.kew.org" class="external-link">POWO</a> database, so you
+just need to call it to your R environment.<br></p>
 <p>The example below shows how to mine a global checklist of all
-accepted species of flowering plants by using the vector of all
-angiosperm families and associated URI addresses stored in the
+accepted species of vascular plants by using the vector of all plant
+families and associated URI addresses stored in the
 <code>POWOcodes</code> object.<br></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"POWOcodes"</span><span class="op">)</span></span>
@@ -992,9 +992,9 @@ angiosperm families and associated URI addresses stored in the
 <span>                       verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                       save <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                       dir <span class="op">=</span> <span class="st">"results_powoSpecies"</span>,</span>
-<span>                       filename <span class="op">=</span> <span class="st">"all_angiosperm_species"</span><span class="op">)</span></span></code></pre></div>
+<span>                       filename <span class="op">=</span> <span class="st">"all_plant_species"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
-<p>Since this is a very long search that might requires days to be
+<p>Since this is a very long search that might requires hours to be
 completed, it may happen to loose internet connection at some point of
 the queried search. But you do not need to start an entirely new search
 from the beginning. By setting the <code>powoSpecies</code> with
@@ -1014,7 +1014,7 @@ is not, please rename the date subfolder accordingly.</p>
 <span>                       rerun <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                       save <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                       dir <span class="op">=</span> <span class="st">"results_powoSpecies"</span>,</span>
-<span>                       filename <span class="op">=</span> <span class="st">"all_angiosperm_species"</span><span class="op">)</span></span></code></pre></div>
+<span>                       filename <span class="op">=</span> <span class="st">"all_plant_species"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div class="section level3">

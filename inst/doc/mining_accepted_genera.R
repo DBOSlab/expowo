@@ -26,7 +26,7 @@ res <- powoGenera(family = c("Aristolochiaceae", "Begoniaceae", "Martyniaceae"),
 knitr::kable(res[-c(7:10)],
              row.names = FALSE,
              caption = "TABLE 1. A general `powoGenera` search for mining all 
-             accepted genera for some specific angiosperm families.")
+             accepted genera for some specific families.")
 
 ## ----eval = FALSE-------------------------------------------------------------
 #  data(POWOcodes)
@@ -36,7 +36,7 @@ knitr::kable(res[-c(7:10)],
 #                        verbose = TRUE,
 #                        save = FALSE,
 #                        dir = "results_powoGenera",
-#                        filename = "all_angiosperm_genera")
+#                        filename = "all_plant_genera")
 
 ## ----eval = FALSE-------------------------------------------------------------
 #  data(POWOcodes)
@@ -47,7 +47,7 @@ knitr::kable(res[-c(7:10)],
 #                        rerun = TRUE,
 #                        save = FALSE,
 #                        dir = "results_powoGenera",
-#                        filename = "all_angiosperm_genera")
+#                        filename = "all_plant_genera")
 
 ## ----eval = FALSE-------------------------------------------------------------
 #  ADFL <- powoGenera(family = c("Aristolochiaceae", "Dipterocarpaceae",
