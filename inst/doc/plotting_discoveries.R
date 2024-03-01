@@ -10,7 +10,7 @@ library(expowo)
 ## ----eval = FALSE-------------------------------------------------------------
 #  accGraph(inputdf = "Luetzelburgia_spp",
 #           verbose = TRUE,
-#           spp_acc = FALSE,
+#           spp_acc = TRUE,
 #           spp_changes = TRUE,
 #           spp_changes_col = "genus",
 #           genus_plots = FALSE,
@@ -36,7 +36,7 @@ knitr::include_graphics("figures/cumulative_discovery_Luetzelburgia.png",
 #  accGraph(inputdf = newdata,
 #           verbose = TRUE,
 #           spp_acc = TRUE,
-#           spp_changes = TRUE,
+#           spp_changes = FALSE,
 #           spp_changes_col = "genus",
 #           genus_plots = TRUE,
 #           save = TRUE,
@@ -54,9 +54,5 @@ knitr::include_graphics("figures/cumulative_discovery_Asteraceae_Matricaria.png"
 
 ## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 4. Accumulation of formally described species in the genus _Launaea_ over time."----
 knitr::include_graphics("figures/cumulative_discovery_Asteraceae_Launaea.png", 
-                        dpi = 300)
-
-## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 5. The temporal dynamics of nomenclatural changes in three genera."----
-knitr::include_graphics("figures/cumulative_discovery_Asteraceae_all_data.png", 
                         dpi = 300)
 

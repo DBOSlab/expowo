@@ -52,8 +52,9 @@ library(expowo)
 ## `POWOcodes` - A complete list of vascular plant families and associated URI addresses
 
 The `POWOcodes` data is a dataframe containing a list of families of vascular 
-plants available in the POWO database, according to [APG IV](https://doi.org/10.1111/boj.12385)'s
-classification. It was produced by using the functions `apgFamilies` and `get_pow`
+plants available in the POWO database. The flowering plant families are according 
+to [APG IV](https://doi.org/10.1111/boj.12385)'s classification. It was produced 
+by using the functions `apgFamilies` and `get_pow`
 of the package [taxize](https://docs.ropensci.org/taxize/index.html). `POWOcodes` 
 data is very useful when the purpose is to query many plant families or all of 
 them. In addition to the names of POWO's accepted plant families, which are 
