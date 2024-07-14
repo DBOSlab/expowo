@@ -5,8 +5,8 @@
 #' @title Complete list of vascular plant families and associated URI addresses
 #'
 #' @description Complete list of the vascular plants (APG IV-based families of
-#' flowering plants, gymnosperm and pteridophytes) and associated URI addresses
-#' as retrieved with the function \code{get_pow} of the package
+#' flowering plants, gymnosperms, ferns and lycophytes) and associated
+#' URI addresses as retrieved with the function \code{get_pow} of the package
 #' [taxize](https://docs.ropensci.org/taxize/index.html).
 #'
 #' @format \code{data.frame}

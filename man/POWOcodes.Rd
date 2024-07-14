@@ -12,7 +12,7 @@ data(POWOcodes)
 }
 \description{
 Complete list of the vascular plants (APG IV-based families of
-flowering plants, gymnosperm and pteridophytes) and associated URI addresses
-as retrieved with the function \code{get_pow} of the package
+flowering plants, gymnosperms, ferns and lycophytes) and associated
+URI addresses as retrieved with the function \code{get_pow} of the package
 \href{https://docs.ropensci.org/taxize/index.html}{taxize}.
 }
