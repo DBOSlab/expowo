@@ -81,7 +81,7 @@ target family (or a vector with multiple family names). These major
 functions work with other minor functions (`getInfo` and `saveCSV`), with auxiliary and defensive functions to mine the 
 plant data. Respectively, `getInfo` mines the taxonomic information of each genus, 
 the total number of species within any genus, and does a complete search for native and introduced country-level distribution for any genus and species, while `saveCSV` fastly writes CSV files within the current date subfolder of a provided specific directory. With these extracted distributions, it is also possible to automatically generate global maps according to political country and botanical
-subdivision with the function `powoMap`. Additionally, if you want to plot new species discoveries within any genus after downloading the data using `powoSpecies`, it is also possible to do it automatically using `accGraph`. See the examples on 
+countries with the function `powoMap`. Additionally, if you want to plot new species discoveries within any genus after downloading the data using `powoSpecies`, it is also possible to do it automatically using `accGraph`. See the examples on 
 how to use the **expowo**’s functions for mining and using data regarding the global plant diversity and distribution in the ‘Articles’ section in our
 [site](https://DBOSlab.github.io/expowo/).
 
