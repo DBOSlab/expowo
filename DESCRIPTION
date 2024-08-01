@@ -1,16 +1,16 @@
 Type: Package
 Package: expowo
-Title: Data Mining of Plant Diversity and Distribution
+Title: An R package for mining global plant diversity and distribution data
 Version: 2.0
 Authors@R:
-    c(person(given = "Debora",
+    c(person(given = "Debora C.",
              family = "Zuanny",
              role = c("aut", "cre", "cph"),
              email = "deborazuanny@gmail.com",
              comment = c(ORCID = "0000-0001-6623-3788")),
       person(given = "Domingos",
              family = "Cardoso",
-             role = c("aut", "ctb", "cph"),
+             role = c("aut", "ths", "cph"),
              email = "cardosobot@gmail.com",
              comment = c(ORCID = "0000-0001-7072-2656")))
 Maintainer: Debora Zuanny <deborazuanny@gmail.com>
