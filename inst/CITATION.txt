@@ -1,0 +1,19 @@
+
+bibentry(bibtype = "Article",
+         author = c(person("Zuanny", "D. C."),
+                    person("B.", "Vilela"),
+                    person(c("P.","W."),"Moonlight"),
+                    person(c("T.","E."),"Särkinen"),
+                    person("D.","Cardoso")),
+         header = "To cite expowo, please use:",
+               year = "2024",
+               journal = "Applications in Plant Sciences",
+               title="expowo: An R package for mining global plant diversity and distribution data.",
+               textVersion  = paste("Zuanny, D. C., B. Vilela, P. W. Moonlight, T. E. Särkinen, and 
+                                    D. Cardoso. 2024.",
+                                    "expowo: An R package for mining global plant diversity and distribution data",
+                                    "Applications in Plant Sciences, 12: e11609."),
+               footer = "To cite expowo, please use: \nZuanny, D. C., B. Vilela, P. W. Moonlight, T. E. Särkinen, and D. Cardoso. 2024. 
+                         expowo: An R package for mining global plant diversity and distribution data. Applications in Plant Sciences 
+                         12: e11609. <https://doi.org/10.1002/aps3.11609>"
+               )

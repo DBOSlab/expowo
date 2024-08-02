@@ -14,7 +14,8 @@ Authors@R:
              email = "cardosobot@gmail.com",
              comment = c(ORCID = "0000-0001-7072-2656")))
 Maintainer: Debora Zuanny <deborazuanny@gmail.com>
-Description: Produces diversity estimates and species lists with associated global distribution for any vascular plant family and genus from 'Plants of the World Online' database <https://powo.science.kew.org/>, by interacting with the source code of each plant taxon page. It also creates global maps of species richness, graphics of species discoveries and nomenclatural changes over time.
+Description: Produces diversity estimates and species lists with associated global distribution for any vascular plant family and genus from 'Plants of the World Online' database <https://powo.science.kew.org/>, by interacting with the source code of each plant taxon page. It also creates global maps of species richness, graphics of species discoveries and nomenclatural changes over time. For more details 
+and to cite the package, see: "Zuanny, D. C., B. Vilela, P. W. Moonlight, T. E. Särkinen, and D. Cardoso. 2024. expowo: An R package for mining global plant diversity and distribution data. Applications in Plant Sciences 12: e11609."
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
