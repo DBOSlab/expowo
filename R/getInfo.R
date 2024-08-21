@@ -190,8 +190,8 @@ get_tax_data <- function(df,
       fam <- df$family[tf]
       if (!is.na(df$powo_uri[i])) {
         #html[[i]] <- readLines(paste(df$powo_uri[i]), warn = F)
-        set_config(config(ssl_verifypeer = FALSE, ssl_verifyhost = FALSE))
-        html[[i]] <- readLines(textConnection(content(GET(paste(df$powo_uri[i])), as="text")), encoding="UTF-8", warn=F)
+        httr::set_config(httr::config(ssl_verifypeer = FALSE, ssl_verifyhost = FALSE))
+        html[[i]] <- readLines(textConnection(httr::content(httr::GET(paste(df$powo_uri[i])), as="text")), encoding="UTF-8", warn=F)
 
         # Adding a counter to identify each running search.
         if (gen_sp_nbr) {
