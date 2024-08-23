@@ -115,9 +115,9 @@ knitr::include_graphics("figures/global_richness_country_map_SR_Lecythidaceae_Sp
 #          filename = "global_richness_botcountry_map",
 #          format = "jpg")
 
-## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 5. Global species richness of Lecythidaceae at botanical country level and colored with viridis scale."----
+## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 5. Global species richness of Lecythidaceae at botanical countries and colored with viridis scale."----
 knitr::include_graphics("figures/global_richness_botcountry_map_SR_Lecythidaceae_viridis.png", dpi = 300)
 
-## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 6. Global species richness of Lecythidaceae at botanical country level and colored with Spectral scale."----
+## ----echo = FALSE, out.width = "600px", fig.cap = "FIGURE 6. Global species richness of Lecythidaceae at botanical countries and colored with Spectral scale."----
 knitr::include_graphics("figures/global_richness_botcountry_map_SR_Lecythidaceae_Spectral.png", dpi = 300)
 

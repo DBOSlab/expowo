@@ -60,7 +60,9 @@ data is very useful when the purpose is to query many plant families or all of
 them. In addition to the names of POWO's accepted plant families, which are 
 required in any search with `expowo`'s functions, this data package has the 
 corresponding family's URI, which is used internally in the function for opening 
-a connection with each family page at Plants of The World Online.\
+a connection with each family page at Plants of The World Online.  In addition, 
+plant families are classified into three groups: "angiosperm", 
+"gymnosperm", and "fern and lycophyte".
 
 To call this associated data to the R environment, use the code below:\
 
