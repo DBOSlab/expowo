@@ -327,7 +327,13 @@ powoMap <- function(inputdf = NULL,
                            all.x = T)
 
   # Replacing NA values for zero
-  world_plant$Freq[is.na(world_plant$Freq)] = 0
+  if ("Freq" %in% colnames(world_plant)){
+    world_plant$Freq[is.na(world_plant$Freq)] = 0
+  } else {
+    # add column Freq
+    world_plant$Freq <- 0
+  }
+
 
   return(world_plant)
 }
