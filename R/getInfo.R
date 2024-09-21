@@ -274,7 +274,7 @@ get_tax_data <- function(df,
     # Pause for 300 seconds right after every 500th search,
     # because POWO website may crash when searching uninterruptedly.
     if (i %% 500 == 0) {
-      Sys.sleep(300)
+      Sys.sleep(30)
     }
   }
 
