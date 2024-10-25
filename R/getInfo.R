@@ -406,8 +406,18 @@ country_filter <- function(df,
                strsplit(df$native_to_country[i], ",")[[1]]) %in% country
     if (any(tt)) {
       temp[i] <- TRUE
+
     } else {
       temp[i] <- FALSE
+    }
+
+  }
+
+  for (i in seq_along(df$introduced_to_country)) {
+    tt <- gsub("^\\s", "",
+               strsplit(df$introduced_to_country[i], ",")[[1]]) %in% country
+    if (any(tt)) {
+      temp[i] <- TRUE
     }
 
   }
