@@ -123,12 +123,30 @@ get_year_pubs <- function(inputdf = NULL,
   
   # Count the number of synonyms
   df$number_synonyms[tf_accepted][tftf] <- 0
-  df$number_synonyms[tf_accepted][!tftf] <- table(df$accepted_name)
+
+  acc_clean <- na.omit(df$accepted_name)
+  unique_taxa <- character()
+  counts <- integer()
+  last_seen <- NULL
+  for (taxon in acc_clean) {
+    if (is.null(last_seen) || taxon != last_seen) {
+      # If the taxon is different from the previous one, add to results
+      unique_taxa <- c(unique_taxa, taxon)
+      counts <- c(counts, 1)
+    } else {
+      # If the taxon is the same as the previous one, increment the count
+      counts[length(counts)] <- counts[length(counts)] + 1
+    }
+    last_seen <- taxon
+  }
+  res <- setNames(counts, unique_taxa)
+  df$number_synonyms[tf_accepted][!tftf] <- res
+  #df$number_synonyms[tf_accepted][!tftf] <- table(df$accepted_name)
   
   # Extracting the correct year for species with synonyms
   n_au <- unique(df$accepted_name[!is.na(df$accepted_name)])
   for (i in seq_along(n_au)) { 
-    
+
     tf <- df$scientific_name[tf_accepted] %in% n_au[i]
     year_acc <- df$year[tf_accepted][tf]
     
@@ -147,8 +165,7 @@ get_year_pubs <- function(inputdf = NULL,
       year_syn <- min(temp$year)
     }
     
-    if (year_acc < year_syn |
-        is.na(year_syn)) {
+    if (any(year_acc < year_syn) | is.na(year_syn)) {
       df$year_basionym[tf_accepted][tf] <- year_acc
     } else {
       df$year_basionym[tf_accepted][tf] <- year_syn
