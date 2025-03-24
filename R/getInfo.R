@@ -324,8 +324,10 @@ get_synonyms <- function(df, syns) {
                                  "\\1", temp[[j]][-1][k]))
         tf_opus <- grepl("ipni[.]org", temp_opus)
         if(any(tf)) {
-          temp_opus[tf_opus] <- gsub(".*class[=]'p-s'>(.+),\\s.*",
+          temp_opus[tf_opus] <- gsub(".*class=['\"]p-s['\"]>([^<]+).*",
                                      "\\1", temp_opus[tf_opus])
+          # temp_opus[tf_opus] <- gsub(".*class[=]'p-s'>(.+),\\s.*",
+          #                            "\\1", temp_opus[tf_opus])
         }
         tf_opus <- grepl("unknown\\spublication$|ipni[.]org", temp_opus)
         if(any(tf)) {
@@ -508,3 +510,4 @@ country_filter <- function(df,
   x[unlist(temp)] <- NA
   return(x)
 }
+
