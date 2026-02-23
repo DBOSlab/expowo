@@ -39,14 +39,12 @@
 #' this always as \code{NULL}.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' library(expowo)
-#' # Use a previously generated dataframe using function powoGenera, then use
-#' # the dataframe as input in this function:
 #'
-#' saveCSV(dataframe,
-#'         dir = "results_powoGenera",
-#'         filename = "Angiosperms_search",
+#' saveCSV(angioData,
+#'         dir = "results_Angiosperms",
+#'         filename = "Angiosperms_expowo",
 #'         append = FALSE)
 #'}
 #'
