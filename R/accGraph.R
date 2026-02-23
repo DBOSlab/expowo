@@ -174,7 +174,7 @@ accGraph <- function(inputdf = NULL,
         #stat_ecdf(linewidth = 1.5, alpha=0.6, geom = "step", pad = FALSE) +
         theme_bw() +
         xlab(expression(bold("Year of publication of name"))) +
-        ylab(expression(bold("Accumulation of species discovery"))) +
+        ylab(expression(bold("Accumulation of species"))) +
         theme(legend.title = element_blank()) +
         scale_colour_manual(values = cols, labels = c("accepted name", "basionym")) +
         scale_y_continuous(breaks = scales::pretty_breaks(n=5)) +
@@ -251,7 +251,7 @@ accGraph <- function(inputdf = NULL,
                    geom = "step", bins = 80) +
           theme_bw() +
           xlab(expression(bold("Year of publication of name"))) +
-          ylab(eval(bquote(expression(bold("Accumulation of species discovery in")
+          ylab(eval(bquote(expression(bold("Accumulation of species in")
                                       ~bolditalic(.(tax_group[i])))))) +
           theme(legend.title = element_blank()) +
           scale_colour_manual(values = cols, labels = c("accepted name", "basionym")) +

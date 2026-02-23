@@ -42,16 +42,12 @@ Uses \code{fwrite} to fastly write a CSV file within a current
 date subfolder of a provided specific directory.
 }
 \examples{
-\donttest{
+\dontrun{
 library(expowo)
 
-res <- powoGenera(family = "Lecythidaceae",
-                  verbose = TRUE,
-                  save = FALSE)
-
-saveCSV(res,
-        dir = "results_powoGenera",
-        filename = "Lecythidaceae_search",
+saveCSV(angioData,
+        dir = "results_Angiosperms",
+        filename = "Angiosperms_expowo",
         append = FALSE)
 }
 

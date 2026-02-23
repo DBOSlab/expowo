@@ -41,14 +41,12 @@
 #' @examples
 #' \donttest{
 #' library(expowo)
+#' # Use a previously generated dataframe using function powoGenera, then use
+#' # the dataframe as input in this function:
 #'
-#' res <- powoGenera(family = "Lecythidaceae",
-#'                   verbose = TRUE,
-#'                   save = FALSE)
-#'
-#' saveCSV(res,
+#' saveCSV(dataframe,
 #'         dir = "results_powoGenera",
-#'         filename = "Lecythidaceae_search",
+#'         filename = "Angiosperms_search",
 #'         append = FALSE)
 #'}
 #'
