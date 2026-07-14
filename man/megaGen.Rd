@@ -39,9 +39,9 @@ genus in POWO).
 }
 \description{
 Produces a CSV file listing all mega-diverse genera for any plant
-family at \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}
-based on a provided numeric value as the threshold to be considered
-mega-diverse. Frodin (2004) suggests 500 species as the threshold.
+family at Plants of the World Online (POWO) based on a provided numeric value
+as the threshold to be considered mega-diverse. Frodin (2004) suggests 500
+species as the threshold.
 }
 \examples{
 \dontrun{

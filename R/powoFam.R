@@ -4,7 +4,7 @@
 #'
 #' @description Produces a CSV file listing the number of species and genera
 #' within the target botanical families of vascular plants available at
-#' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
+#' Plants of the World Online (POWO).
 #'
 #' @usage
 #' powoFam(family,

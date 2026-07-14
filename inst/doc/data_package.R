@@ -8,10 +8,10 @@ knitr::opts_chunk$set(
 library(expowo)
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  utils::data("POWOcodes")
+# utils::data("POWOcodes")
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  utils::data("angioData")
+# utils::data("angioData")
 
 ## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioGenera")
@@ -21,8 +21,8 @@ knitr::kable(df[-c(2, 3, 7, 8, 9, 10, 11, 12, 13)],
              row.names = FALSE)
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  utils::data("angioGenera")
+# utils::data("angioGenera")
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  utils::data("botregions")
+# utils::data("botregions")
 

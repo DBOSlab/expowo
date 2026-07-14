@@ -4,8 +4,7 @@
 #'
 #' @description Produces a CSV file listing all accepted species and
 #' associated geographical distribution from any target genus or family of
-#' vascular plants at
-#' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
+#' vascular plants at Plants of the World Online (POWO).
 #'
 #' @usage
 #' powoSpecies(family,
@@ -176,12 +175,7 @@ powoSpecies <- function(family,
             foldername = foldername)
   }
 
-  df <- dfchunk[[1]]
-  if (length(dfchunk) > 1) {
-    for (i in 2:length(dfchunk)) {
-      df <- rbind(df, dfchunk[[i]])
-    }
-  }
+  df <- dplyr::bind_rows(dfchunk)
 
   return(df)
 }

@@ -10,3 +10,4 @@
 ^tests$
 ^CRAN-SUBMISSION$
 ^codecov\.yml$
+^vignettes$

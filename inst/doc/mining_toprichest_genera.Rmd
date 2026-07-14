@@ -100,7 +100,7 @@ families of vascular plants, including their associated species number, we
 recommend to load the dataframe-formatted data object called `POWOcodes` that 
 comes associated with the __expowo__ package. The `POWOcodes` data 
 object already contains the URI addresses for all plant families 
-recognized in the [POWO](https://powo.science.kew.org) database, so you just 
+recognized in the Plants of the World Online database, so you just 
 need to call it to your R environment.\
 
 The example below shows how to mine all top most species-rich genera of
@@ -123,4 +123,4 @@ ALL_top <- topGen(POWOcodes$family,
 
 ## Reference
 
-POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; http://www.plantsoftheworldonline.org/ Retrieved April 2023."
+POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; https://powo.science.kew.org/ Retrieved April 2023."

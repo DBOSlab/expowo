@@ -4,7 +4,7 @@
 #'
 #' @description Produces a CSV file listing all genera with associated number
 #' of accepted species and geographical distribution for any vascular plant family
-#' at [Plants of the World Online (POWO)](https://powo.science.kew.org/).
+#' at Plants of the World Online (POWO).
 #'
 #' @usage
 #' powoGenera(family,
@@ -161,12 +161,7 @@ powoGenera <- function(family,
             foldername = foldername)
   }
 
-  df <- dfchunk[[1]]
-  if (length(dfchunk) > 1) {
-    for (i in 2:length(dfchunk)) {
-      df <- rbind(df, dfchunk[[i]])
-    }
-  }
+  df <- dplyr::bind_rows(dfchunk)
 
   return(df)
 }

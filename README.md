@@ -13,14 +13,14 @@
 An R package for mining species list, diversity estimates, and
 distribution data for any genus or family of vascular plants from the 
 World Checklist of Vascular Plants (WCVP) available through RBG
-Kew’s [Plants of the World Online (POWO)](https://powo.science.kew.org).
+Kew’s Plants of the World Online (POWO).
 
 ## Overview
 
 The main goal of the **expowo** package is to retrieve information about
 the diversity and distribution of any plant family as publicly available
-at the taxonomically verified database [Plants of the World Online
-(POWO)](https://powo.science.kew.org). The package is intended to
+at the taxonomically verified database Plants of the World Online
+(POWO). The package is intended to
 efficiently mine the content inside the source HTML pages for any
 specific genus and family. It can return a comma-separated values (CSV)
 file with the number of accepted species and country-level distribution
@@ -37,7 +37,7 @@ Please make sure you have installed the latest versions of both R
 (<a href= "https://cran.r-project.org/bin/macosx/" target="_blank">Mac
 OS</a>,
 <a href= "https://cran.r-project.org/bin/windows/base/" target="_blank">Windows</a>)
-and RStudio (<a href= "https://posit.co/download/rstudio-desktop/" 
+and RStudio (<a href= "https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads" 
 target="_blank">Mac OS / Windows</a>: choose the free version).
 
 ## Installation

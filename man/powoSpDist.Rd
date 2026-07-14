@@ -46,7 +46,7 @@ powo_uri (URI to access each species in POWO).
 \description{
 Produces a CSV file listing the geographical distribution at
 country and botanical subdivisions of all target species of vascular plants
-at \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
+at Plants of the World Online (POWO).
 }
 \examples{
 \dontrun{

@@ -8,12 +8,12 @@ knitr::opts_chunk$set(
 library(expowo)
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  res <- powoSpecies(family = c("Cabombaceae", "Martyniaceae"),
-#                     hybrid = FALSE,
-#                     verbose = TRUE,
-#                     save = FALSE,
-#                     dir = "results_powoSpecies",
-#                     filename = "Cabom_Martyniaceae_search")
+# res <- powoSpecies(family = c("Cabombaceae", "Martyniaceae"),
+#                    hybrid = FALSE,
+#                    verbose = TRUE,
+#                    save = FALSE,
+#                    dir = "results_powoSpecies",
+#                    filename = "Cabom_Martyniaceae_search")
 
 ## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
@@ -26,13 +26,13 @@ knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 13)],
              accepted species for some specific plant families.")
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  ACM <- powoSpecies(family = c("Aristolochiaceae", "Cabombaceae", "Martyniaceae"),
-#                     hybrid = FALSE,
-#                     country = c("Brazil", "Colombia"),
-#                     verbose = FALSE,
-#                     save = FALSE,
-#                     dir = "results_powoSpecies",
-#                     filename = "country_constrained_search")
+# ACM <- powoSpecies(family = c("Aristolochiaceae", "Cabombaceae", "Martyniaceae"),
+#                    hybrid = FALSE,
+#                    country = c("Brazil", "Colombia"),
+#                    verbose = FALSE,
+#                    save = FALSE,
+#                    dir = "results_powoSpecies",
+#                    filename = "country_constrained_search")
 
 ## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
@@ -47,14 +47,14 @@ knitr::kable(df[-c(2, 3, 4, 5, 10, 11, 12, 13)],
              country vector.")
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  MC <- powoSpecies(family = c("Martyniaceae", "Cabombaceae"),
-#                    genus = c("Proboscidea", "Cabomba"),
-#                    hybrid = FALSE,
-#                    country = c("Argentina", "French Guiana", "Brazil"),
-#                    verbose = TRUE,
-#                    save = FALSE,
-#                    dir = "results_powoSpecies",
-#                    filename = "country_and_genus_constrained_search")
+# MC <- powoSpecies(family = c("Martyniaceae", "Cabombaceae"),
+#                   genus = c("Proboscidea", "Cabomba"),
+#                   hybrid = FALSE,
+#                   country = c("Argentina", "French Guiana", "Brazil"),
+#                   verbose = TRUE,
+#                   save = FALSE,
+#                   dir = "results_powoSpecies",
+#                   filename = "country_and_genus_constrained_search")
 
 ## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
@@ -69,23 +69,23 @@ knitr::kable(df[-c(2, 3, 10, 11, 13)],
              and country vectors.")
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  utils::data("POWOcodes")
-#  
-#  ALL_spp <- powoSpecies(POWOcodes$family,
-#                         hybrid = TRUE,
-#                         verbose = TRUE,
-#                         save = FALSE,
-#                         dir = "results_powoSpecies",
-#                         filename = "all_plant_species")
+# utils::data("POWOcodes")
+# 
+# ALL_spp <- powoSpecies(POWOcodes$family,
+#                        hybrid = TRUE,
+#                        verbose = TRUE,
+#                        save = FALSE,
+#                        dir = "results_powoSpecies",
+#                        filename = "all_plant_species")
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  utils::data("POWOcodes")
-#  
-#  ALL_spp <- powoSpecies(POWOcodes$family,
-#                         hybrid = TRUE,
-#                         verbose = TRUE,
-#                         rerun = TRUE,
-#                         save = FALSE,
-#                         dir = "results_powoSpecies",
-#                         filename = "all_plant_species")
+# utils::data("POWOcodes")
+# 
+# ALL_spp <- powoSpecies(POWOcodes$family,
+#                        hybrid = TRUE,
+#                        verbose = TRUE,
+#                        rerun = TRUE,
+#                        save = FALSE,
+#                        dir = "results_powoSpecies",
+#                        filename = "all_plant_species")
 

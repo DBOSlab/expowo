@@ -105,7 +105,7 @@ To mine the distribution checklist for all accepted species of vascular plants,
 you can load the dataframe-formatted data object called `POWOcodes` 
 that comes associated with the __expowo__ package. The `POWOcodes` data 
 object already contains the URI addresses for all plant families 
-recognized in the [POWO](https://powo.science.kew.org) database, you just need 
+recognized in the Plants of the World Online database, you just need 
 to call it to your R environment.\
 
 The example below shows how to mine the global distribution of all accepted non
@@ -130,4 +130,4 @@ ALL_dist <- powoSpDist(POWOcodes$family,
 
 ## Reference
 
-POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; http://www.plantsoftheworldonline.org/ Retrieved April 2023."
+POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; https://powo.science.kew.org/ Retrieved April 2023."

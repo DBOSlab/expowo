@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 Here in this article, we show how to use the package's function `powoSpecies` 
 for mining all accepted species for any genus or family of vascular plants in 
 the World Checklist of Vascular Plants (WCVP; Govaerts et al., 2021) available 
-through Kew’s Plants of The World Online (POWO, https://powo.science.kew.org).\
+through Kew’s Plants of The World Online (POWO).\
 
 \
 
@@ -168,7 +168,7 @@ To mine a species checklist for all families of vascular plants, you recommend
 to load the dataframe-formatted data object called `POWOcodes` that comes 
 associated with the __expowo__ package. The `POWOcodes` data object 
 already contains the URI addresses for all plant families recognized in 
-the [POWO](https://powo.science.kew.org) database, so you just need to call it
+the Plants of the World Online database, so you just need to call it
 to your R environment.\
 
 The example below shows how to mine a global checklist of all accepted species 
@@ -215,4 +215,4 @@ ALL_spp <- powoSpecies(POWOcodes$family,
 
 ## Reference
 
-POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; http://www.plantsoftheworldonline.org/ Retrieved April 2023."
+POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; https://powo.science.kew.org/ Retrieved April 2023."

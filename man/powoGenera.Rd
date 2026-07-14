@@ -62,7 +62,7 @@ databases), powo_uri (URI to access each genus in POWO).
 \description{
 Produces a CSV file listing all genera with associated number
 of accepted species and geographical distribution for any vascular plant family
-at \href{https://powo.science.kew.org/}{Plants of the World Online (POWO)}.
+at Plants of the World Online (POWO).
 }
 \examples{
 \dontrun{

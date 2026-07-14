@@ -4,7 +4,7 @@
 #'
 #' @description Produces a CSV file listing the top most diverse genera
 #' of any target botanical family of vascular plants at
-#' [Plants of the World Online (POWO)](https://powo.science.kew.org/).
+#' Plants of the World Online (POWO).
 #'
 #' @usage
 #' topGen(family,

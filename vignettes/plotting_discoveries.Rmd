@@ -29,7 +29,7 @@ p.caption {
 }
 ```
 
-Information concerning the year of publication of a species and its current status, obtained from the taxonomically validated [Plants of the World Online (POWO)](https://powo.science.kew.org/) database, can offer valuable insights into temporal trends related to changes in species nomenclature.\
+Information concerning the year of publication of a species and its current status, obtained from the taxonomically validated Plants of the World Online (POWO) database, can offer valuable insights into temporal trends related to changes in species nomenclature.\
 
 In this article, we illustrate the utilization of the package's `accGraph` function for automatically generate plots that showcase the dynamics of species discoveries and nomenclatural changes over time – all in a single run! This versatile function is capable of producing two distinct types of graphics: one depicting the accumulation of formally described species within each genus or family, and the other illustrating changes in species nomenclature over time. The species discovery curve inherently demonstrates continuous growth, with the rate of this growth linked to the number of new discoveries - and this one is the focus of this article. To employ this function effectively, it is necessary to have data stored in a spreadsheet or dataset generated using the `powoSpecies` function, where the `synonyms` argument is set to TRUE.
 \
@@ -50,8 +50,17 @@ library(expowo)
 \
 
 ## 1. Plotting the species discoveries for one genus
-The example below shows the accumulation curve of [Luetzelburgia](https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:22832-1), 
-one legume genus. The black line is derived from the publication dates of currently accepted species names, while the red line is related to the publication year of the basionym for each accepted species name. As a result, it illustrates the cumulative count of formally described species of this genus. Different file formats (e.g. JPG, PDF, PNG, TIFF) are also supported by setting the argument `format`. Notice that the `spp_changes_col` argument is set with the name of the column (in this case, "genus") of the input dataframe that we want to be used for plotting the graphic. If we defined it as "family", for example, the function would use the data of the entire family available in the input dataframe to create the graphic.\ 
+The example below shows the accumulation curve of Luetzelburgia, one legume genus. 
+The black line is derived from the publication dates of currently accepted species 
+names, while the red line is related to the publication year of the basionym for 
+each accepted species name. As a result, it illustrates the cumulative count of 
+formally described species of this genus. Different file formats 
+(e.g. JPG, PDF, PNG, TIFF) are also supported by setting the argument `format`. 
+Notice that the `spp_changes_col` argument is set with the name of the column 
+(in this case, "genus") of the input dataframe that we want to be used for 
+plotting the graphic. If we defined it as "family", for example, the function 
+would use the data of the entire family available in the input dataframe to 
+create the graphic.\ 
 
 ```{r, eval = FALSE}
 accGraph(inputdf = "Luetzelburgia_spp",

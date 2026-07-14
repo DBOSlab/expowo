@@ -29,7 +29,7 @@ p.caption {
 }
 ```
 
-Information concerning the year of publication of a species and its current status, obtained from the taxonomically validated [Plants of the World Online (POWO)](https://powo.science.kew.org/) database, can offer valuable insights into temporal trends related to changes in species nomenclature.\
+Information concerning the year of publication of a species and its current status, obtained from the taxonomically validated Plants of the World Online database, can offer valuable insights into temporal trends related to changes in species nomenclature.\
 
 Employing the World Checklist of Vascular Plants (WCVP) accessible via RBG Kew’s 
 Plants of the World Online (POWO) database entails a thorough examination of type specimens, representative herbarium material, protologues, and other pertinent literature housed in the herbariums, some of which required detailed systematic study.\

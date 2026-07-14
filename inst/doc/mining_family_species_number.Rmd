@@ -93,7 +93,7 @@ To mine the species number of all families of vascular plants, we recommend to
 load the dataframe-formatted object called `POWOcodes` that comes associated 
 with the __expowo__ package. The `POWOcodes` data object already contains the 
 URI addresses for all plant families recognized in the 
-[POWO](https://powo.science.kew.org) database, so you just need to call it to 
+Plants of the World Online database, so you just need to call it to 
 the R environment.\
 
 The example below shows how to mine the species number of all vascular plant 
@@ -114,4 +114,4 @@ ALL_fam <- powoFam(POWOcodes$family,
 
 ## Reference
 
-POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; http://www.plantsoftheworldonline.org/ Retrieved April 2023."
+POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; https://powo.science.kew.org/ Retrieved April 2023."

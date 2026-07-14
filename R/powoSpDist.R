@@ -4,7 +4,7 @@
 #'
 #' @description Produces a CSV file listing the geographical distribution at
 #' country and botanical subdivisions of all target species of vascular plants
-#' at [Plants of the World Online (POWO)](https://powo.science.kew.org/).
+#' at Plants of the World Online (POWO).
 #'
 #' @usage
 #' powoSpDist(family,

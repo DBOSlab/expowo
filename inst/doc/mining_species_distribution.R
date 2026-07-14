@@ -8,12 +8,12 @@ knitr::opts_chunk$set(
 library(expowo)
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  BL_dist <- powoSpDist(family = c("Begoniaceae", "Lecythidaceae"),
-#                        species = c("Hillebrandia sandwicensis", "Lecythis pisonis"),
-#                        verbose = TRUE,
-#                        save = FALSE,
-#                        dir = "results_powoSpDist",
-#                        filename = "Begoniaceae_Lecythidaceae")
+# BL_dist <- powoSpDist(family = c("Begoniaceae", "Lecythidaceae"),
+#                       species = c("Hillebrandia sandwicensis", "Lecythis pisonis"),
+#                       verbose = TRUE,
+#                       save = FALSE,
+#                       dir = "results_powoSpDist",
+#                       filename = "Begoniaceae_Lecythidaceae")
 
 ## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
@@ -29,12 +29,12 @@ knitr::kable(df[-c(2, 3, 6, 9, 11, 13)],
              distribution of two angiosperm species.")
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  data(POWOcodes)
-#  
-#  ALL_dist <- powoSpDist(POWOcodes$family,
-#                         species = NULL,
-#                         verbose = TRUE,
-#                         save = FALSE,
-#                         dir = "results_powoSpDist",
-#                         filename = "all_plant_distribution")
+# data(POWOcodes)
+# 
+# ALL_dist <- powoSpDist(POWOcodes$family,
+#                        species = NULL,
+#                        verbose = TRUE,
+#                        save = FALSE,
+#                        dir = "results_powoSpDist",
+#                        filename = "all_plant_distribution")
 
