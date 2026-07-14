@@ -1,7 +1,7 @@
 Type: Package
 Package: expowo
 Title: An R Package for Mining Global Plant Diversity and Distribution Data
-Version: 3.0
+Version: 3.1
 Authors@R:
     c(person(given = "Debora",
              family = "Zuanny",
