@@ -16,14 +16,11 @@ library(expowo)
 
 ## ----echo = FALSE, warning = FALSE--------------------------------------------
 utils::data("angioData")
-utils::data("POWOcodes")
 family <- c("Cabombaceae", "Lecythidaceae", "Martyniaceae")
 fams <- angioData$family[angioData$family %in% family]
 sp_nbr <- as.data.frame(table(fams))
-powo_uri <- gsub("^http", "https", POWOcodes$uri[POWOcodes$family %in% family])
-kew_id <- gsub(".+[:]", "", powo_uri)
 species_number <- sp_nbr$Freq
-res <- data.frame(family, species_number, kew_id, powo_uri)
+res <- data.frame(family, species_number)
 
 knitr::kable(res,
              row.names = FALSE,

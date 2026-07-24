@@ -123,4 +123,4 @@ ALL_top <- topGen(POWOcodes$family,
 
 ## Reference
 
-POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; https://powo.science.kew.org/ Retrieved April 2023."
+POWO (2019). "Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet. Retrieved April 2023."
