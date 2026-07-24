@@ -83,8 +83,7 @@ for all families of vascular plants, we recommend to load the
 dataframe-formatted data object called `POWOcodes` that comes associated with 
 the __expowo__ package. Because the `POWOcodes` data object already contains the 
 URI addresses for all angiosperms, gimnosperms and pteridophytes families 
-recognized in the 
-[POWO](https://powo.science.kew.org) database, you just need to run the code 
+recognized in the POWO database, you just need to run the code 
 below.\
 
 The example below shows how to mine a global checklist of all accepted genera of
