@@ -189,7 +189,10 @@ get_tax_data <- function(df,
       gen <- df$genus[tf]
       fam <- df$family[tf]
       if (!is.na(df$powo_uri[i])) {
-        html[[i]] <- readLines(paste(df$powo_uri[i]), warn = F)
+        #html[[i]] <- readLines(paste(df$powo_uri[i]), warn = F)
+        httr::set_config(httr::config(ssl_verifypeer = FALSE, ssl_verifyhost = FALSE))
+        html[[i]] <- readLines(textConnection(httr::content(httr::GET(paste(df$powo_uri[i])), as="text")), encoding="UTF-8", warn=F)
+
         # Adding a counter to identify each running search.
         if (gen_sp_nbr) {
           if (verbose) {
@@ -271,7 +274,7 @@ get_tax_data <- function(df,
     # Pause for 300 seconds right after every 500th search,
     # because POWO website may crash when searching uninterruptedly.
     if (i %% 500 == 0) {
-      Sys.sleep(300)
+      Sys.sleep(30)
     }
   }
 
