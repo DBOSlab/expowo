@@ -23,6 +23,36 @@
 * The previous mining of POWO source pages is still available with
   `source = "powo"`.
 
+## New functions
+
+* `endemicMap()` maps the number of species endemic to each botanical country
+  (WGSRPD level 3), i.e. the species native to a single botanical country.
+  While `powoMap()` maps where species occur, `endemicMap()` maps where they
+  are restricted to. The classes of the map are set with `breaks`.
+
+* `discoveryGraph()` plots, in two panels, the number of species described and
+  of synonyms published in each decade (or any period set with `bin`). A
+  species is counted in the year of its basionym, i.e. the year it was
+  discovered. It complements the cumulative curves of `accGraph()`, showing
+  when taxonomic work was most intense.
+
+* `introGraph()` plots a heatmap with the number of species native to each
+  continent (or WGSRPD region, with `level = "region"`) that are introduced in
+  each other one.
+
+* The three functions take the output of `powoSpecies()`, return a `ggplot`
+  object and save the graphic with `save`, `dir`, `filename`, `format` and
+  `dpi`, like `powoMap()` and `accGraph()`. The TDWG map of botanical countries
+  used by `endemicMap()` (about 4 MB) is downloaded only once and cached with
+  the WCVP data.
+
+* A small internal table of the 368 WGSRPD level-3 areas, with their names as
+  returned by expowo and their region and continent, is built by
+  `data-raw/build_wgsrpd_l3.R`. It lets `introGraph()` work without any
+  download and `endemicMap()` match the map by area code, so that botanical
+  countries with accented names in the TDWG map (e.g. "Réunion", "Zaïre")
+  are not missed.
+
 ## How the output is built from WCVP
 
 * Only two WCVP tables are used: `wcvp_names.csv` and
@@ -105,6 +135,15 @@
 * expowo now requires R >= 4.0.0.
 
 * Added a `README.Rmd` from which `README.md` is generated.
+
+* Added three vignettes showing how to make the new graphics: mapping endemic
+  species, plotting species discovery over time and plotting species
+  introductions.
+
+* The test suite now covers about 98% of the code, including the POWO mining
+  (tested offline with copies of POWO pages), the WCVP download and cache, the
+  maps and the graphics. A GitHub Actions workflow reports the coverage to
+  Codecov.
 
 # expowo 3.1
 

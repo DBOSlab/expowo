@@ -14,8 +14,14 @@
   : List of Angiosperm genera
 - [`botregions`](https://dboslab.github.io/expowo/reference/botregions.md)
   : Countries and associated classification of botanical divisions
+- [`discoveryGraph()`](https://dboslab.github.io/expowo/reference/discoveryGraph.md)
+  : Plot species discovery and synonymy over time
+- [`endemicMap()`](https://dboslab.github.io/expowo/reference/endemicMap.md)
+  : Create a global map of endemic species
 - [`get_year_pubs()`](https://dboslab.github.io/expowo/reference/get_year_pubs.md)
   : Secondary function to transform data generated with powoSpecies
+- [`introGraph()`](https://dboslab.github.io/expowo/reference/introGraph.md)
+  : Plot where species were introduced from and to
 - [`megaGen()`](https://dboslab.github.io/expowo/reference/megaGen.md) :
   Extract megadiverse genera of any plant family
 - [`powoFam()`](https://dboslab.github.io/expowo/reference/powoFam.md) :

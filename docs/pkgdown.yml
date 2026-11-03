@@ -4,14 +4,17 @@ pkgdown_sha: ~
 articles:
   data_package: data_package.html
   mapping_distribution: mapping_distribution.html
+  mapping_endemism: mapping_endemism.html
   mining_accepted_genera: mining_accepted_genera.html
   mining_family_species_number: mining_family_species_number.html
   mining_species_distribution: mining_species_distribution.html
   mining_species: mining_species.html
   mining_toprichest_genera: mining_toprichest_genera.html
   plotting_discoveries: plotting_discoveries.html
+  plotting_discovery_timeline: plotting_discovery_timeline.html
+  plotting_introductions: plotting_introductions.html
   plotting_nomenclatural_changes: plotting_nomenclatural_changes.html
-last_built: 2026-11-03T16:56Z
+last_built: 2026-11-03T20:19Z
 urls:
   reference: https://dboslab.github.io/expowo/reference
   article: https://dboslab.github.io/expowo/articles

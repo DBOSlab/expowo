@@ -16,7 +16,9 @@ as well as the full list of accepted species in any genus or family,
 their authorship, original publication and global distribution. The
 functions `powoMap` and `accGraph` can automatically create global maps
 for any taxon level and accumulation graphics of species discovery,
-respectively.
+respectively, while `endemicMap`, `discoveryGraph` and `introGraph` map
+the centres of endemism, plot when species were discovered and renamed,
+and show where species were introduced from and to.
 
 ## Data source
 
@@ -101,10 +103,14 @@ distributions, it is also possible to automatically generate global maps
 according to political country and botanical countries with the function
 `powoMap`. Additionally, if you want to plot new species discoveries
 within any genus after downloading the data using `powoSpecies`, it is
-also possible to do it automatically using `accGraph`. See the examples
-on how to use the **expowo**’s functions for mining and using data
-regarding the global plant diversity and distribution in the ‘Articles’
-section in our [site](https://DBOSlab.github.io/expowo/).
+also possible to do it automatically using `accGraph`. The global
+endemism of any group can be mapped with `endemicMap`, the number of
+species described and synonyms published over time can be plotted with
+`discoveryGraph`, and the introductions of species between continents
+with `introGraph`. See the examples on how to use the **expowo**’s
+functions for mining and using data regarding the global plant diversity
+and distribution in the ‘Articles’ section in our
+[site](https://DBOSlab.github.io/expowo/).
 
 ![](reference/figures/expowo_pkg.png)
 
@@ -142,8 +148,14 @@ and distribution data. Applications in Plant Sciences 12: e11609.
   : List of Angiosperm genera
 - [`botregions`](https://dboslab.github.io/expowo/reference/botregions.md)
   : Countries and associated classification of botanical divisions
+- [`discoveryGraph()`](https://dboslab.github.io/expowo/reference/discoveryGraph.md)
+  : Plot species discovery and synonymy over time
+- [`endemicMap()`](https://dboslab.github.io/expowo/reference/endemicMap.md)
+  : Create a global map of endemic species
 - [`get_year_pubs()`](https://dboslab.github.io/expowo/reference/get_year_pubs.md)
   : Secondary function to transform data generated with powoSpecies
+- [`introGraph()`](https://dboslab.github.io/expowo/reference/introGraph.md)
+  : Plot where species were introduced from and to
 - [`megaGen()`](https://dboslab.github.io/expowo/reference/megaGen.md) :
   Extract megadiverse genera of any plant family
 - [`powoFam()`](https://dboslab.github.io/expowo/reference/powoFam.md) :
@@ -169,6 +181,8 @@ and distribution data. Applications in Plant Sciences 12: e11609.
   data](https://dboslab.github.io/expowo/articles/data_package.md):
 - [Mapping global distribution for any taxonomic
   level](https://dboslab.github.io/expowo/articles/mapping_distribution.md):
+- [Mapping endemic
+  species](https://dboslab.github.io/expowo/articles/mapping_endemism.md):
 - [Mining genus list for any vascular plant
   family](https://dboslab.github.io/expowo/articles/mining_accepted_genera.md):
 - [Mining species number of any plant
@@ -181,5 +195,9 @@ and distribution data. Applications in Plant Sciences 12: e11609.
   plants](https://dboslab.github.io/expowo/articles/mining_toprichest_genera.md):
 - [Plotting species
   discovery](https://dboslab.github.io/expowo/articles/plotting_discoveries.md):
+- [Plotting species discovery and synonymy over
+  time](https://dboslab.github.io/expowo/articles/plotting_discovery_timeline.md):
+- [Plotting species introductions between
+  continents](https://dboslab.github.io/expowo/articles/plotting_introductions.md):
 - [Plotting nomenclatural
   changes](https://dboslab.github.io/expowo/articles/plotting_nomenclatural_changes.md):

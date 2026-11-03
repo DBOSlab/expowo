@@ -30,7 +30,9 @@ as well as the full list of accepted species in any genus or family,
 their authorship, original publication and global distribution. The
 functions `powoMap` and `accGraph` can automatically create global maps
 for any taxon level and accumulation graphics of species discovery,
-respectively.
+respectively, while `endemicMap`, `discoveryGraph` and `introGraph` map
+the centres of endemism, plot when species were discovered and renamed,
+and show where species were introduced from and to.
 
 ## Data source
 
@@ -121,10 +123,14 @@ distributions, it is also possible to automatically generate global maps
 according to political country and botanical countries with the function
 `powoMap`. Additionally, if you want to plot new species discoveries
 within any genus after downloading the data using `powoSpecies`, it is
-also possible to do it automatically using `accGraph`. See the examples
-on how to use the **expowo**’s functions for mining and using data
-regarding the global plant diversity and distribution in the ‘Articles’
-section in our [site](https://DBOSlab.github.io/expowo/).
+also possible to do it automatically using `accGraph`. The global
+endemism of any group can be mapped with `endemicMap`, the number of
+species described and synonyms published over time can be plotted with
+`discoveryGraph`, and the introductions of species between continents
+with `introGraph`. See the examples on how to use the **expowo**’s
+functions for mining and using data regarding the global plant diversity
+and distribution in the ‘Articles’ section in our
+[site](https://DBOSlab.github.io/expowo/).
 
 <img src="man/figures/expowo_pkg.png" alt="" width="500" />
 
