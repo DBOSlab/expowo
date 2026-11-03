@@ -10,6 +10,7 @@
 #' powoSpDist(family,
 #'            species = NULL,
 #'            verbose = TRUE,
+#'            source = "wcvp",
 #'            save = FALSE,
 #'            dir = "results_powoSpDist",
 #'            filename = "output")
@@ -24,6 +25,14 @@
 #'
 #' @param verbose Logical, if \code{FALSE}, a message showing each step during
 #' the POWO search will not be printed in the console in full.
+#'
+#' @param source Data source to be mined. The default \code{"wcvp"} uses the
+#' bulk data of the World Checklist of Vascular Plants (WCVP), the taxonomic
+#' backbone of POWO, which is downloaded once from Kew and cached on disk (see
+#' \code{tools::R_user_dir("expowo", "cache")}). It is refreshed only when Kew
+#' releases a new WCVP version. Use \code{"powo"} to mine the source page of
+#' each taxon at the POWO website instead, which is much slower and may be
+#' blocked by POWO.
 #'
 #' @param save Logical, if \code{TRUE}, the search results will be saved on disk.
 #'
@@ -51,10 +60,10 @@
 #' library(expowo)
 #'
 #' powoSpDist(family = "Lecythidaceae",
-#'            species = "Lecythis pisonis",
+#'            species = "Bertholletia excelsa",
 #'            save = FALSE,
 #'            dir = "results_powoSpDist",
-#'            filename = "L_pisonis_distribution")
+#'            filename = "B_excelsa_distribution")
 #'}
 #'
 #' @importFrom dplyr filter select
@@ -68,6 +77,7 @@
 powoSpDist <- function(family,
                        species = NULL,
                        verbose = TRUE,
+                       source = "wcvp",
                        save = FALSE,
                        dir = "results_powoSpDist",
                        filename = "output") {
@@ -83,6 +93,46 @@ powoSpDist <- function(family,
   if (length(genus) == 0){
     genus = NULL
   }
+
+  # source check
+  source <- .arg_check_source(source)
+
+  # Mine the WCVP bulk data, which is the taxonomic backbone of POWO
+  if (source == "wcvp") {
+    powo_codes <- .wcvp_genera(family = family,
+                               genus = genus,
+                               hybrid = FALSE,
+                               verbose = verbose)
+
+    df <- .wcvp_species(powo_codes,
+                        hybrid = FALSE,
+                        verbose = verbose)
+
+    if (!is.null(species)) {
+      df <- df[df$taxon_name %in% species, ]
+    }
+
+    df <- .wcvp_getInfo(df,
+                        hybrid = FALSE,
+                        synonyms = FALSE,
+                        country = NULL,
+                        gen_sp_nbr = FALSE,
+                        verbose = verbose)
+
+    df <- df %>% select(-"publication")
+
+    # Save the search results if param save is TRUE
+    saveCSV(df,
+            dir = dir,
+            filename = filename,
+            verbose = verbose,
+            append = FALSE,
+            save = save,
+            foldername = NULL)
+
+    return(df)
+  }
+
   powo_codes <- .getgenURI(family = family,
                            genus = genus,
                            hybrid = FALSE,
