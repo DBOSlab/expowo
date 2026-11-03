@@ -101,7 +101,8 @@
 
 #_______________________________________________________________________________
 # Function to download WCVP and keep only the data used by expowo
-.wcvp_download <- function(verbose = TRUE) {
+.wcvp_download <- function(verbose = TRUE,
+                           url = .wcvp_url) {
 
   if (verbose) {
     message("Downloading WCVP from Kew (about 90 MB, only once)...")
@@ -114,7 +115,7 @@
 
   old_timeout <- options(timeout = max(1800, getOption("timeout")))
   on.exit(options(old_timeout), add = TRUE)
-  utils::download.file(url = .wcvp_url,
+  utils::download.file(url = url,
                        destfile = zip_file,
                        mode = "wb",
                        quiet = !verbose)

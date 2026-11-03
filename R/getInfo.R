@@ -189,7 +189,7 @@ get_tax_data <- function(df,
       gen <- df$genus[tf]
       fam <- df$family[tf]
       if (!is.na(df$powo_uri[i])) {
-        html[[i]] <- readLines(paste(df$powo_uri[i]), warn = F)
+        html[[i]] <- .powo_readLines(paste(df$powo_uri[i]), warn = F)
         # Adding a counter to identify each running search.
         if (gen_sp_nbr) {
           if (verbose) {
