@@ -7,6 +7,7 @@
 powoSpDist(family,
            species = NULL,
            verbose = TRUE,
+           source = "wcvp",
            save = FALSE,
            dir = "results_powoSpDist",
            filename = "output")
@@ -22,6 +23,14 @@ target family.}
 
 \item{verbose}{Logical, if \code{FALSE}, a message showing each step during
 the POWO search will not be printed in the console in full.}
+
+\item{source}{Data source to be mined. The default \code{"wcvp"} uses the
+bulk data of the World Checklist of Vascular Plants (WCVP), the taxonomic
+backbone of POWO, which is downloaded once from Kew and cached on disk (see
+\code{tools::R_user_dir("expowo", "cache")}). It is refreshed only when Kew
+releases a new WCVP version. Use \code{"powo"} to mine the source page of
+each taxon at the POWO website instead, which is much slower and may be
+blocked by POWO.}
 
 \item{save}{Logical, if \code{TRUE}, the search results will be saved on disk.}
 
@@ -53,10 +62,10 @@ at Plants of the World Online (POWO).
 library(expowo)
 
 powoSpDist(family = "Lecythidaceae",
-           species = "Lecythis pisonis",
+           species = "Bertholletia excelsa",
            save = FALSE,
            dir = "results_powoSpDist",
-           filename = "L_pisonis_distribution")
+           filename = "B_excelsa_distribution")
 }
 
 }

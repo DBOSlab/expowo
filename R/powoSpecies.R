@@ -13,6 +13,7 @@
 #'             synonyms = FALSE,
 #'             country = NULL,
 #'             verbose = TRUE,
+#'             source = "wcvp",
 #'             rerun = FALSE,
 #'             save = FALSE,
 #'             dir = "results_powoSpecies",
@@ -38,6 +39,14 @@
 #'
 #' @param verbose Logical, if \code{FALSE}, a message showing each step during
 #' the POWO search will not be printed in the console in full.
+#'
+#' @param source Data source to be mined. The default \code{"wcvp"} uses the
+#' bulk data of the World Checklist of Vascular Plants (WCVP), the taxonomic
+#' backbone of POWO, which is downloaded once from Kew and cached on disk (see
+#' \code{tools::R_user_dir("expowo", "cache")}). It is refreshed only when Kew
+#' releases a new WCVP version. Use \code{"powo"} to mine the source page of
+#' each taxon at the POWO website instead, which is much slower and may be
+#' blocked by POWO.
 #'
 #' @param rerun Logical, if \code{TRUE}, a previously stopped search will continue
 #' from where it left off, starting with the last retrieved taxon. Please ensure
@@ -100,6 +109,7 @@ powoSpecies <- function(family,
                         synonyms = FALSE,
                         country = NULL,
                         verbose = TRUE,
+                        source = "wcvp",
                         rerun = FALSE,
                         save = FALSE,
                         dir = "results_powoSpecies",
@@ -117,6 +127,46 @@ powoSpecies <- function(family,
 
   # rerun check
   .arg_check_rerun(dir, filename, rerun)
+
+  # source check
+  source <- .arg_check_source(source)
+
+  # Mine the WCVP bulk data, which is the taxonomic backbone of POWO
+  if (source == "wcvp") {
+    powo_codes <- .wcvp_genera(family = family,
+                               genus = genus,
+                               hybrid = hybrid,
+                               verbose = verbose)
+
+    df <- .wcvp_species(powo_codes,
+                        hybrid = hybrid,
+                        verbose = verbose)
+
+    # Keep only taxa that were not retrieved in previously stopped run
+    if (rerun) {
+      df <- .powo_rerun(df,
+                        sp_uri = TRUE,
+                        dir, filename)
+    }
+
+    df <- .wcvp_getInfo(df,
+                        hybrid = hybrid,
+                        synonyms = synonyms,
+                        country = country,
+                        gen_sp_nbr = FALSE,
+                        verbose = verbose)
+
+    # Save the search results if param save is TRUE
+    saveCSV(df,
+            dir = dir,
+            filename = filename,
+            verbose = verbose,
+            append = TRUE,
+            save = save,
+            foldername = paste0(dir, "/", format(Sys.time(), "%d%b%Y")))
+
+    return(df)
+  }
 
   # Search POWO for the genus URI within corresponding plant family
   powo_codes <- .getgenURI(family = family,

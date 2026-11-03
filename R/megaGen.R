@@ -11,6 +11,7 @@
 #' megaGen(family,
 #'         thld = 500,
 #'         verbose = TRUE,
+#'         source = "wcvp",
 #'         save = FALSE,
 #'         dir = "results_megaGen",
 #'         filename = "output")
@@ -23,6 +24,14 @@
 #'
 #' @param verbose Logical, if \code{FALSE}, a message showing each step during
 #' the POWO search will not be printed in the console in full.
+#'
+#' @param source Data source to be mined. The default \code{"wcvp"} uses the
+#' bulk data of the World Checklist of Vascular Plants (WCVP), the taxonomic
+#' backbone of POWO, which is downloaded once from Kew and cached on disk (see
+#' \code{tools::R_user_dir("expowo", "cache")}). It is refreshed only when Kew
+#' releases a new WCVP version. Use \code{"powo"} to mine the source page of
+#' each taxon at the POWO website instead, which is much slower and may be
+#' blocked by POWO.
 #'
 #' @param save Logical, if \code{TRUE}, the search results will be saved on disk.
 #'
@@ -64,6 +73,7 @@
 megaGen <- function(family,
                     thld = 500,
                     verbose = TRUE,
+                    source = "wcvp",
                     save = FALSE,
                     dir = "results_megaGen",
                     filename = "output") {
@@ -78,15 +88,28 @@ megaGen <- function(family,
   # dir check
   dir <- .arg_check_dir(dir)
 
-  # Search POWO for the genus URI within corresponding plant family
-  df <- .getgenURI(family = family,
-                   genus = NULL,
-                   hybrid = FALSE,
-                   verbose = verbose)
+  # source check
+  source <- .arg_check_source(source)
 
-  # Extract number of species in each genus of the queried families
-  df <- .getsppNumb(df,
-                    verbose = verbose)
+  if (source == "wcvp") {
+    # Get the accepted genera and species number from WCVP bulk data
+    df <- .wcvp_genera(family = family,
+                       genus = NULL,
+                       hybrid = FALSE,
+                       verbose = verbose)
+    df <- .wcvp_sppNumb(df,
+                        verbose = verbose)
+  } else {
+    # Search POWO for the genus URI within corresponding plant family
+    df <- .getgenURI(family = family,
+                     genus = NULL,
+                     hybrid = FALSE,
+                     verbose = verbose)
+
+    # Extract number of species in each genus of the queried families
+    df <- .getsppNumb(df,
+                      verbose = verbose)
+  }
 
   # Select specific columns of interest and the megadiverse genera by a
   # threshold.

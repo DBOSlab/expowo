@@ -74,7 +74,7 @@ family and distribution according to botanical subdivision columns.\
 
 ```{r, eval = FALSE}
 BL_dist <- powoSpDist(family = c("Begoniaceae", "Lecythidaceae"),
-                      species = c("Hillebrandia sandwicensis", "Lecythis pisonis"),
+                      species = c("Hillebrandia sandwicensis", "Bertholletia excelsa"),
                       verbose = TRUE,
                       save = FALSE,
                       dir = "results_powoSpDist",
@@ -87,7 +87,7 @@ BL_dist <- powoSpDist(family = c("Begoniaceae", "Lecythidaceae"),
 utils::data("angioData")
 fam <- c("Begoniaceae", "Lecythidaceae")
 df <- angioData[angioData$family %in% fam, ]
-species <- c("Hillebrandia sandwicensis", "Lecythis pisonis")
+species <- c("Hillebrandia sandwicensis", "Bertholletia excelsa")
 df <- df[df$taxon_name %in% species, ]
 
 knitr::kable(df[-c(2, 3, 6, 9, 11, 13)],
