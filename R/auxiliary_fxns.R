@@ -2,6 +2,13 @@
 # Author: Debora Zuanny & Domingos Cardoso
 
 #_______________________________________________________________________________
+# Function to read the source page of a POWO taxon. It is a thin wrapper of
+# readLines, so the POWO mining can be tested with local copies of the pages.
+.powo_readLines <- function(con, ...) {
+  readLines(con, ...)
+}
+
+#_______________________________________________________________________________
 # Function to get genus URI
 .getgenURI <- function(family = family,
                        genus = NULL,
@@ -23,8 +30,8 @@
     }
 
     # Visiting the POWO source page for each entry family
-    powo_fams_uri[[i]] <- readLines(powo_codes$uri[i], encoding = "UTF-8",
-                                    warn = F)
+    powo_fams_uri[[i]] <- .powo_readLines(powo_codes$uri[i],
+                                          encoding = "UTF-8", warn = F)
 
     # Find whether the family exists by searching a pattern for constituent
     # accepted genera.
@@ -53,8 +60,8 @@
 
         # Visiting POWO source page again for the accepted family name of an
         # originally entered family that is under synonym.
-        powo_fams_uri[[i]] <- readLines(new_powo_fam_uri, encoding = "UTF-8",
-                                        warn = F)
+        powo_fams_uri[[i]] <- .powo_readLines(new_powo_fam_uri,
+                                              encoding = "UTF-8", warn = F)
 
         tt <- grepl("\\s{2,}This is a synonym of", powo_fams_uri[[i]])
         temp <- powo_fams_uri[[i]][tt]
@@ -182,8 +189,8 @@
                      i, "/", length(powo_codes$family)))
     }
 
-    powo_genus_uri[[i]] <- readLines(powo_codes$powo_uri[i], encoding = "UTF-8",
-                                     warn = F)
+    powo_genus_uri[[i]] <- .powo_readLines(powo_codes$powo_uri[i],
+                                           encoding = "UTF-8", warn = F)
     temp <- grepl("><a href[=]\"/taxon/urn[:]lsid[:]ipni[.]org[:]names[:]",
                   powo_genus_uri[[i]])
     powo_spp_uri <- powo_genus_uri[[i]][temp]
@@ -302,7 +309,7 @@
   for (i in seq_along(df$powo_uri)) {
     # The tryCatch function helps skipping error in for-loop.
     tryCatch({
-      list_html[[i]] <- readLines(paste(df$powo_uri[i]), warn = F)
+      list_html[[i]] <- .powo_readLines(paste(df$powo_uri[i]), warn = F)
       # Adding a counter to identify each running search
       tf <- df$powo_uri == df$powo_uri[i]
       if (verbose) {

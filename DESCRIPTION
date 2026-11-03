@@ -44,7 +44,8 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    withr
 URL: https://dboslab.github.io/expowo/,
     https://github.com/dboslab/expowo
 BugReports: https://github.com/DBOSlab/expowo/issues

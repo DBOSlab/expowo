@@ -1,9 +1,13 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/DBOSlab/expowo/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/DBOSlab/expowo/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/DBOSlab/expowo/branch/master/graph/badge.svg)](https://app.codecov.io/gh/DBOSlab/expowo?branch=master)
+coverage](https://codecov.io/gh/DBOSlab/expowo/graph/badge.svg)](https://app.codecov.io/gh/DBOSlab/expowo)
+[![Test
+Coverage](https://github.com/DBOSlab/expowo/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/DBOSlab/expowo/actions/workflows/test-coverage.yaml)
+[![R-CMD-check](https://github.com/DBOSlab/expowo/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/DBOSlab/expowo/actions/workflows/R-CMD-check.yaml)
+[![License:
+MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 <!-- badges: end -->
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
