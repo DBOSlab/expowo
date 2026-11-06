@@ -69,7 +69,6 @@ importFrom(tibble,
   add_row
 )
 importFrom(utils,
-  data,
   download.file,
   read.csv,
   unzip

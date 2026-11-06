@@ -126,3 +126,17 @@ test_that("powoSpecies rejects an unknown source", {
   expect_error(powoSpecies("Amborellaceae", source = "gbif"),
                "should be either")
 })
+
+test_that("searches do not create objects in the global environment", {
+  rm(list = intersect(c("POWOcodes", "botregions"), ls(globalenv())),
+     envir = globalenv())
+
+  powoSpecies("Martyniaceae", country = "Brazil", verbose = FALSE)
+  powoFam("Martyniaceae", verbose = FALSE)
+  local_powo_pages()
+  expect_output(powoSpecies("Martyniaceae", source = "powo", verbose = FALSE),
+                "ERROR")
+
+  expect_false(exists("POWOcodes", envir = globalenv(), inherits = FALSE))
+  expect_false(exists("botregions", envir = globalenv(), inherits = FALSE))
+})

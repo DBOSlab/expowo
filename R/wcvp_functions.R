@@ -218,7 +218,7 @@
   wn <- wcvp$names
 
   # Keep the family order of POWOcodes, as in the POWO search
-  utils::data("POWOcodes", package = "expowo")
+  POWOcodes <- expowo::POWOcodes
   fams <- POWOcodes$family[POWOcodes$family %in% family]
   fams <- c(fams, unique(family[!family %in% fams]))
 
@@ -470,7 +470,7 @@
 # vectorised version of the lookup used in botdiv_to_countries
 .botdiv_lookup <- function(areas) {
 
-  utils::data("botregions", package = "expowo")
+  botregions <- expowo::botregions
 
   res <- areas
   for (n in seq_along(areas)) {

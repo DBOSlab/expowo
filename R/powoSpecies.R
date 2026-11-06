@@ -98,7 +98,7 @@
 #' @importFrom tibble add_row
 #' @importFrom flora remove.authors
 #' @importFrom R.utils countLines
-#' @importFrom utils data read.csv
+#' @importFrom utils read.csv
 #'
 #' @export
 #'

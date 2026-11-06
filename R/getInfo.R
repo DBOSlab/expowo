@@ -362,7 +362,7 @@ get_synonyms <- function(df, syns) {
 botdiv_to_countries <- function(x, i) {
 
   # Load botanical subdivisions
-  utils::data("botregions", package = "expowo")
+  botregions <- expowo::botregions
 
   temp <- strsplit(x[[i]], ", ")[[1]]
 

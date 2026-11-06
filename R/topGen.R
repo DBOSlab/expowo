@@ -64,7 +64,6 @@
 #' @importFrom dplyr arrange desc filter group_by select slice
 #' @importFrom magrittr "%>%"
 #' @importFrom data.table fwrite
-#' @importFrom utils data
 #'
 #' @export
 #'

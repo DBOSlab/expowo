@@ -98,7 +98,7 @@
 #' @importFrom magrittr "%>%"
 #' @importFrom data.table fwrite
 #' @importFrom R.utils countLines
-#' @importFrom utils data read.csv
+#' @importFrom utils read.csv
 #'
 #' @export
 #'

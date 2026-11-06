@@ -61,7 +61,6 @@
 #' }
 #'
 #' @importFrom data.table fwrite
-#' @importFrom utils data
 #' @importFrom dplyr filter
 #'
 #' @export
@@ -81,7 +80,7 @@ powoFam <- function(family,
   dir <- .arg_check_dir(dir)
 
   # Extracting the uri of each plant family using associated data POWOcodes
-  utils::data("POWOcodes", package = "expowo")
+  POWOcodes <- expowo::POWOcodes
   powo_codes_fam <- dplyr::filter(POWOcodes, family %in% .env$family)
 
   # source check

@@ -34,7 +34,7 @@
 #' endemic species shown in the map. Botanical countries without endemics and
 #' those with more endemics than the last limit are shown in their own classes.
 #' The default creates the classes 0, 1-10, 11-50, 51-100, 101-250, 251-500 and
-#' > 500.
+#' more than 500.
 #'
 #' @param leg_title A character with the legend title.
 #'

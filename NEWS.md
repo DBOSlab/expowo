@@ -132,6 +132,9 @@
   *Bertholletia excelsa*, because *Lecythis pisonis* is currently treated as a
   synonym of *Pachylecythis pisonis*.
 
+* The search functions no longer create the objects `POWOcodes` and
+  `botregions` in the user's global environment.
+
 * expowo now requires R >= 4.0.0.
 
 * Added a `README.Rmd` from which `README.md` is generated.

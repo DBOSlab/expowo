@@ -16,7 +16,7 @@
                        verbose = verbose) {
 
   # Extract the uri of each plant family using associated data POWOcodes
-  utils::data("POWOcodes", package = "expowo")
+  POWOcodes <- expowo::POWOcodes
   powo_codes <- dplyr::filter(POWOcodes, family %in% .env$family)
 
   powo_fams_uri <- list()

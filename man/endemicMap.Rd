@@ -28,7 +28,8 @@ returned by \code{powoSpecies}.}
 \item{breaks}{A numeric vector with the upper limits of the classes of
 endemic species shown in the map. Botanical countries without endemics and
 those with more endemics than the last limit are shown in their own classes.
-The default creates the classes 0, 1-10, 11-50, 51-100, 101-250, 251-500 and}
+The default creates the classes 0, 1-10, 11-50, 51-100, 101-250, 251-500 and
+more than 500.}
 
 \item{leg_title}{A character with the legend title.}
 
