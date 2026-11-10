@@ -2,12 +2,13 @@
 % Please edit documentation in R/endemicMap.R
 \name{endemicMap}
 \alias{endemicMap}
-\title{Create a global map of endemic species}
+\title{Create global and regional maps of endemic species}
 \usage{
 endemicMap(inputdf = NULL,
            distcol = "native_to_botanical_countries",
            breaks = c(10, 50, 100, 250, 500),
            leg_title = "Endemic species",
+           region = "world",
            verbose = TRUE,
            save = FALSE,
            dpi = 600,
@@ -25,7 +26,7 @@ botanical countries separated by commas. When the input data has synonyms
 countries. The default is the column \code{native_to_botanical_countries}
 returned by \code{powoSpecies}.}
 
-\item{breaks}{A numeric vector with the upper limits of the classes of
+\item{breaks}{Numeric vector with the upper limits of the classes of
 endemic species shown in the map. Botanical countries without endemics and
 those with more endemics than the last limit are shown in their own classes.
 The default creates the classes 0, 1-10, 11-50, 51-100, 101-250, 251-500 and
@@ -33,10 +34,15 @@ more than 500.}
 
 \item{leg_title}{A character with the legend title.}
 
-\item{verbose}{Logical, if \code{FALSE}, a message showing each step will
-not be printed in the console.}
+\item{region}{Map extent. Available options are \code{"world"},
+\code{"europe"}, \code{"africa"}, \code{"asia_temperate"},
+\code{"asia_tropical"}, \code{"australasia"}, \code{"pacific"},
+\code{"northern_america"}, \code{"southern_america"} and
+\code{"antarctic"}.}
 
-\item{save}{Logical, if \code{TRUE}, the map will be saved on disk.}
+\item{verbose}{Logical. If \code{FALSE}, messages are not printed.}
+
+\item{save}{Logical. If \code{TRUE}, the map is saved to disk.}
 
 \item{dpi}{One number in the range of 72-4000 referring to the image
 resolution in dots per inch. The default is 600.}
@@ -48,8 +54,8 @@ within a subfolder named after the current date.}
 
 \item{filename}{Name of the output file. The default is \strong{endemic_map}.}
 
-\item{format}{The file format of the map: "jpg" (default), "pdf", "png" or
-"tiff".}
+\item{format}{Output format of the map: \code{"jpg"}, \code{"pdf"},
+\code{"png"} or \code{"tiff"}.}
 }
 \value{
 A \code{ggplot} object with the map, whose data has the number of
@@ -58,12 +64,14 @@ The TDWG map of botanical countries is downloaded only once and kept at
 \code{tools::R_user_dir("expowo", "cache")}.
 }
 \description{
-Produces a global map of the number of species endemic to each
+Produces a map of the number of species endemic to each
 botanical country, i.e. the species native to a single botanical country
 (level 3) of the
 \href{https://www.tdwg.org/standards/wgsrpd/}{World Geographical Scheme}
-for Recording Plant Distributions. While \code{powoMap} maps where species
-occur, \code{endemicMap} maps where species are restricted to.
+for Recording Plant Distributions. It comes with
+the option to display the entire world or one continent according to the
+Level 1 continental scheme of the WGSRPD. While \code{powoMap} maps where
+species occur, \code{endemicMap} maps where species are restricted to.
 }
 \examples{
 \dontrun{
@@ -72,7 +80,7 @@ library(expowo)
 fab <- powoSpecies("Fabaceae", verbose = FALSE)
 
 endemicMap(fab,
-           save = TRUE,
+           save = FALSE,
            dir = "results_endemicMap",
            filename = "Fabaceae_endemics")
 }
